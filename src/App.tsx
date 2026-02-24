@@ -4,6 +4,8 @@ import {
   applyNodeChanges,
   applyEdgeChanges,
   addEdge,
+  Background,
+  Controls,
   type NodeChange,
   type EdgeChange,
   type Connection,
@@ -36,7 +38,7 @@ function App() {
   );
 
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div style={{ width: '100vw', height: '100vh' }} className="bg-slate-950 text-white">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -44,7 +46,10 @@ function App() {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         fitView
-      />
+      >
+        <Background />
+        <Controls />
+      </ReactFlow>
     </div>
   )
 }

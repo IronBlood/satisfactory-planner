@@ -3,3 +3,13 @@
 body {
   margin: 0;
 }
+
+.react-flow__controls button {
+  background: var(--color-slate-800);
+  border-color: var(--color-slate-700);
+  color: var(--color-slate-400);
+}
+
+.react-flow__controls button[disabled] {
+  color: var(--color-slate-600);
+}
