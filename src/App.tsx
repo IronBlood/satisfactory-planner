@@ -1,4 +1,8 @@
-import { useState, useCallback } from 'react'
+import {
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import {
   ReactFlow,
   applyNodeChanges,
@@ -13,6 +17,7 @@ import {
   type Edge,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
+import Picker from "./Picker";
 
 const initialNodes: Node[] = [
   { id: 'n1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
@@ -23,6 +28,10 @@ const initialEdges: Edge[] = [{ id: 'n1-n2', source: 'n1', target: 'n2' }];
 function App() {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
+  const lastClickAt = useRef<number | null>(null);
+  const [isOpen, setOpen] = useState(false);
+  const onOpen = useCallback(() => setOpen(true), []);
+  const onClose = useCallback(() => setOpen(false), []);
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
@@ -36,6 +45,18 @@ function App() {
     (params: Connection) => setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
     [],
   );
+  const onDoubleClick = useCallback(
+    () => {
+      const now = Date.now();
+      if (lastClickAt.current !== null && now - lastClickAt.current < 250) {
+        onOpen();
+        lastClickAt.current = null;
+        return;
+      }
+      lastClickAt.current = now;
+    },
+    [],
+  );
 
   return (
     <div style={{ width: '100vw', height: '100vh' }} className="bg-slate-950 text-white">
@@ -45,11 +66,17 @@ function App() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        onPaneClick={onDoubleClick}
+        zoomOnDoubleClick={false}
         fitView
       >
         <Background />
         <Controls />
       </ReactFlow>
+      <Picker
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </div>
   )
 }
