@@ -1,4 +1,3 @@
-import type { Building } from "./buildings";
 import { imageByName } from "./images";
 import {
   ItemCategories,
@@ -20,18 +19,6 @@ export const ItemNames = {
 
 export type ItemName = typeof ItemNames[keyof typeof ItemNames];
 
-interface Rate {
-  name: ItemName;
-  rate: number;
-}
-
-interface Recipe {
-  name: string;
-  inputs: Rate[];
-  outputs: Rate[];
-  building: Building;
-}
-
 interface _Item {
   category: ItemCategory;
   name: ItemName;
@@ -44,7 +31,6 @@ export interface OreItem extends _Item {
 
 export interface NonOreItem extends _Item {
   category: NonOreItemCategory;
-  recipe: Recipe;
 }
 
 export type Item = OreItem | NonOreItem;
