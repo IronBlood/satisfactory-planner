@@ -1,22 +1,23 @@
 export const ItemCategories = {
-  Ore: "Ore",
-  Ingot: "Ingot",
-  Mineral: "Mineral",
-  Liquid: "Liquid",
+  ALL: "All",
+  Ore: "Ores",
+  Ingot: "Ingots",
+  Mineral: "Minerals",
+  Liquid: "Liquids",
   Gas: "Gas",
-  StandardPart: "StandardPart",
-  IndustrialPart: "IndustrialPart",
-  Electronic: "Electronic",
-  Communication: "Communication",
-  QuantumTechnology: "QuantumTechnology",
-  Container: "Container",
-  Fuel: "Fuel",
+  StandardPart: "Standard Parts",
+  IndustrialPart: "Industrial Parts",
+  Electronic: "Electronics",
+  Communication: "Communications",
+  QuantumTechnology: "Quantum Technology",
+  Container: "Containers",
+  Fuel: "Fuels",
   Consumed: "Consumed",
-  Ammo: "Ammo",
+  Ammo: "Ammos",
   Nuclear: "Nuclear",
   Waste: "Waste",
   Special: "Special",
 } as const;
 
 export type ItemCategory = typeof ItemCategories[keyof typeof ItemCategories];
-export type NonOreItemCategory = Exclude<ItemCategory, typeof ItemCategories.Ore>;
+export type NonOreItemCategory = Exclude<ItemCategory, typeof ItemCategories.Ore | typeof ItemCategories.ALL>;
