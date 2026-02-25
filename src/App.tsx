@@ -2,6 +2,7 @@ import {
   useCallback,
   useRef,
   useState,
+  type MouseEvent,
 } from "react";
 import {
   ReactFlow,
@@ -46,7 +47,7 @@ function App() {
     [],
   );
   const onDoubleClick = useCallback(
-    () => {
+    (event: MouseEvent) => {
       const now = Date.now();
       if (lastClickAt.current !== null && now - lastClickAt.current < 250) {
         onOpen();
