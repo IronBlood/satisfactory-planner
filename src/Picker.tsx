@@ -144,7 +144,7 @@ export default function Picker({
                   <span>Pick a recipe:</span>
                   <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 px-3 py-1.5 text-sm hover:text-sky-400" onClick={() => selectItem(null)}>Clear</button>
                 </h3>
-                <div className="flex-1 min-h-0 overflow-auto">
+                <div className="flex-1 min-h-48 overflow-auto">
                   <div className="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 sm:px-6 md:grid-cols-3 lg:grid-cols-4">
                     {recipeViews}
                   </div>
