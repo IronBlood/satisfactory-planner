@@ -28,6 +28,7 @@ export const OreItemNames = {
 
 export const IngotItemNames = {
   IronIngot: "Iron Ingot",
+  CopperIngot: "Copper Ingot",
 };
 
 export const MineralItemNames = {
@@ -36,23 +37,33 @@ export const MineralItemNames = {
 
 export const LiquidItemNames = {
   Water: "Water",
+  CrudeOil: "Crude Oil",
+  Turbofuel: "Turbofuel",
+  NitricAcid: "Nitric Acid",
 };
 
 export const GasItemNames = {
   NitrogenGas: "Nitrogen Gas",
+  RocketFuel: "Rocket Fuel",
 };
 
 export const StandardPartItemNames = {
   IronRod: "Iron Rod",
+  Screws: "Screws",
+  ReinforcedIronPlate: "Reinforced Iron Plate",
+  Plastic: "Plastic",
 };
 
 export const IndustrialPartItemNames = {
   Rotor: "Rotor",
+  Stator: "Stator",
 };
 
 export const ElectronicItemNames = {
   Wire: "Wire",
   Cabel: "Cabel",
+  CircuitBoard: "Circuit Board",
+  AILimiter: "AI Limiter",
   ReanimatedSAM: "Reanimated SAM",
 };
 
@@ -70,6 +81,7 @@ export const ContainerItemNames = {
 
 export const FuelItemNames = {
   CompactedCoal: "Compacted Coal",
+  UraniumFuelRod: "Uranium Fuel Rod",
 };
 
 export const ConsumedItemNames = {
@@ -246,18 +258,30 @@ const ITEM_IMAGE_MAP: Record<ItemName, string> = {
   [OreItemNames.SAM]: "IconDesc_SameOre_256.png",
   [OreItemNames.Uranium]: "IconDesc_UraniumOre_256.png",
   [IngotItemNames.IronIngot]: "IconDesc_IronIngot_256.png",
+  [IngotItemNames.CopperIngot]: "IconDesc_CopperIngot_256.png",
   [MineralItemNames.Concrete]: "IconDesc_Concrete_256.png",
   [LiquidItemNames.Water]: "LiquidWater_Pipe_256.png",
+  [LiquidItemNames.CrudeOil]: "LiquidOil_Pipe_256.png",
+  [LiquidItemNames.Turbofuel]: "IconDesc_LiquidTurboFuel_Pipe_256.png",
+  [LiquidItemNames.NitricAcid]: "IconDesc_NitricAcid_256.png",
   [GasItemNames.NitrogenGas]: "IconDesc_NitricAcid_256.png",
+  [GasItemNames.RocketFuel]: "IconDesc_RocketFuelPipe_256.png",
   [StandardPartItemNames.IronRod]: "IconDesc_IronRods_256.png",
+  [StandardPartItemNames.Screws]: "IconDesc_IronScrews_256.png",
+  [StandardPartItemNames.ReinforcedIronPlate]: "IconDesc_ReinforcedIronPlates_256.png",
+  [StandardPartItemNames.Plastic]: "IconDesc_Plastic_256.png",
   [IndustrialPartItemNames.Rotor]: "IconDesc_Rotor_256.png",
+  [IndustrialPartItemNames.Stator]: "IconDesc_Stator_256.png",
   [ElectronicItemNames.Wire]: "IconDesc_Wire_256.png",
   [ElectronicItemNames.Cabel]: "IconDesc_Cables_256.png",
+  [ElectronicItemNames.CircuitBoard]: "IconDesc_CircuitBoard_256.png",
+  [ElectronicItemNames.AILimiter]: "IconDesc_AILimiter_256.png",
   [ElectronicItemNames.ReanimatedSAM]: "IconDesc_ReanimatedSam_256.png",
   [CommunicationItemNames.Computer]: "IconDesc_Computer_256.png",
   [QuantumTechnologyItemNames.Diamonds]: "IconDesc_Diamonds_256.png",
   [ContainerItemNames.EmptyCanister]: "IconDesc_EmptyCannister_256.png",
   [FuelItemNames.CompactedCoal]: "IconDesc_CompactedCoal_256.png",
+  [FuelItemNames.UraniumFuelRod]: "IconDesc_NuclearFuelRod_256.png",
   [ConsumedItemNames.BlackPowder]: "IconDesc_Gunpowder_256.png",
   [AmmoItemNames.IronRebar]: "IconDesc_Rebar_256.png",
   [NuclearItemNames.ElectromagneticControlRod]: "IconDesc_ElectromagneticControlRod_256.png",

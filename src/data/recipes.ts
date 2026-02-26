@@ -365,6 +365,325 @@ export const Recipes: Recipe[] = [
       }
     ],
   },
+
+  {
+    name: "Iron Ingot",
+    building: BuildingNames.Smelter,
+    inputs: [
+      {
+        name: OreItemNames.IronOre,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 30,
+      },
+    ],
+  },
+
+  {
+    name: "Concrete",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: OreItemNames.Limestone,
+        rate: 45,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.Concrete,
+        rate: 15,
+      },
+    ],
+  },
+
+  ...purities.map(({ purity, mul_p }) => ({
+    name: `${LiquidItemNames.CrudeOil} (${purity})`,
+    building: BuildingNames.OilExtractor,
+    inputs: [],
+    outputs: [
+      {
+        name: LiquidItemNames.CrudeOil,
+        rate: 60 * mul_p,
+      },
+    ],
+  } as Recipe)),
+
+  {
+    name: "Rocket Fuel",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: LiquidItemNames.Turbofuel,
+        rate: 60,
+      },
+      {
+        name: LiquidItemNames.NitricAcid,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.RocketFuel,
+        rate: 100,
+      },
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 10,
+      },
+    ],
+  },
+
+  {
+    name: "Iron Rod",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.IronRod,
+        rate: 15,
+      },
+    ],
+  },
+
+  {
+    name: "Rotor",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.IronRod,
+        rate: 20,
+      },
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 100,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 4,
+      },
+    ],
+  },
+
+  {
+    name: "Wire",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Cable",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Cabel,
+        rate: 60,
+      },
+    ],
+  },
+
+  {
+    name: "Computer",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 10,
+      },
+      {
+        name: ElectronicItemNames.Cabel,
+        rate: 20,
+      },
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.Computer,
+        rate: 2.5,
+      },
+    ],
+  },
+
+  {
+    name: "Diamonds",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: OreItemNames.Coal,
+        rate: 600,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.Diamonds,
+        rate: 30,
+      },
+    ],
+  },
+
+  {
+    name: "Empty Canister",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 60,
+      },
+    ],
+  },
+
+  {
+    name: "Alternate: Compacted Coal",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: OreItemNames.Coal,
+        rate: 25,
+      },
+      {
+        name: OreItemNames.Sulfur,
+        rate: 25,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 25,
+      },
+    ],
+  },
+
+  {
+    name: "Black Powder",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: OreItemNames.Coal,
+        rate: 15,
+      },
+      {
+        name: OreItemNames.Sulfur,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: ConsumedItemNames.BlackPowder,
+        rate: 30,
+      },
+    ],
+  },
+
+  {
+    name: "Iron Rebar",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: StandardPartItemNames.IronRod,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.IronRebar,
+        rate: 15,
+      },
+    ],
+  },
+
+  {
+    name: "Electromagnetic Control Rod",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.Stator,
+        rate: 5,
+      },
+      {
+        name: ElectronicItemNames.AILimiter,
+        rate: 4,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 4,
+      },
+    ],
+  },
+
+  {
+    name: "Uranium Waste",
+    building: BuildingNames.NuclearPowerPlant,
+    inputs: [
+      {
+        name: FuelItemNames.UraniumFuelRod,
+        rate: 0.2,
+      },
+    ],
+    outputs: [
+      {
+        name: WasteItemNames.UraniumWaste,
+        rate: 10,
+      }
+    ],
+  },
+
+  {
+    name: "Smart Plating",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 2,
+      },
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 2,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.SmartPlating,
+        rate: 2,
+      },
+    ],
+  },
 ];
 
 export function getRecipesByOutput(o: ItemName) {
