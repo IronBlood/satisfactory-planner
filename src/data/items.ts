@@ -49,19 +49,12 @@ export interface NonOreItem extends _Item {
 
 export type Item = OreItem | NonOreItem;
 
-const Limestone: OreItem = {
-  category: ItemCategories.Ore,
-  name: ItemNames.Limestone,
-};
-
-const IronOre: OreItem = {
-  category: ItemCategories.Ore,
-  name: ItemNames.IronOre,
-};
-
 export const Items: Item[] = [
-  Limestone,
-  IronOre,
+  // Ores
+  ...Object.values(OreItemNames).map(name => ({
+    category: ItemCategories.Ore,
+    name,
+  })),
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 const ITEM_IMAGE_MAP: Record<ItemName, string> = {
