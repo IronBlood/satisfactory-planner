@@ -12,8 +12,14 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import Cardview from "./Cardview";
-import { Items } from "./data/items";
+import RecipeView from "./RecipeView";
+import {
+  Items,
+  getItemImageByName,
+  type Item,
+} from "./data/items";
 import { ItemCategories } from "./data/categories";
+import { getRecipesByOutput } from "./data/recipes";
 
 function keysOf<T extends object>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
@@ -41,15 +47,40 @@ export default function Picker({
       : Items.filter(item => item.category === activeCat);
   }, [activeCat]);
 
+  const [activeItem, setActiveItem] = useState<Item | null>(null);
+  const selectItem = useCallback((item: Item | null) => {
+    setActiveItem(item);
+  }, []);
+
   const cardViews = useMemo(() => {
     return filteredItems.map(item => (
       <Cardview
         key={item.name}
         name={item.name}
-        image={item.image}
+        image={getItemImageByName(item.name)}
+        onClick={() => selectItem(item)}
       />
     ));
   }, [filteredItems]);
+
+  const recipeViews = useMemo(() => {
+    return activeItem === null
+      ? []
+      : [
+        <RecipeView
+          key={`${activeItem.name} - source`}
+          output_name={activeItem.name}
+          image={getItemImageByName(activeItem.name)}
+        />,
+        ...getRecipesByOutput(activeItem.name).map(r => (
+          <RecipeView
+            key={r.name}
+            output_name={activeItem.name}
+            recipe={r}
+          />
+        )),
+      ];
+  }, [activeItem]);
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-10 text-white">
@@ -107,6 +138,18 @@ export default function Picker({
                   </div>
                 </div>
               </div>
+              {/* recipes */}
+              {activeItem && <div className="shrink flex min-h-0 flex-col overflow-hidden">
+                <h3 className="flex items-center justify-between bg-slate-900 px-3 py-1 font-semibold sm:px-6">
+                  <span>Pick a recipe:</span>
+                  <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 px-3 py-1.5 text-sm hover:text-sky-400" onClick={() => selectItem(null)}>Clear</button>
+                </h3>
+                <div className="flex-1 min-h-0 overflow-auto">
+                  <div className="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 sm:px-6 md:grid-cols-3 lg:grid-cols-4">
+                    {recipeViews}
+                  </div>
+                </div>
+              </div>}
             </div>
 
             {/* footer */}
