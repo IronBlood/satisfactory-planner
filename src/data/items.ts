@@ -22,7 +22,6 @@ export type ItemName = typeof ItemNames[keyof typeof ItemNames];
 interface _Item {
   category: ItemCategory;
   name: ItemName;
-  image: string;
 }
 
 export interface OreItem extends _Item {
@@ -35,12 +34,19 @@ export interface NonOreItem extends _Item {
 
 export type Item = OreItem | NonOreItem;
 
-const LimestoneOre: OreItem = {
+const Limestone: OreItem = {
   category: ItemCategories.Ore,
-  name: "Limestone",
-  image: imageByName["Stone_256.png"],
+  name: ItemNames.Limestone,
 };
 
 export const Items: Item[] = [
-  LimestoneOre,
+  Limestone,
 ].sort((a, b) => a.name.localeCompare(b.name));
+
+export function getItemImageByName(name: ItemName) {
+  switch (name) {
+    case ItemNames.Limestone: return imageByName["Stone_256.png"];
+  }
+
+  throw new Error("invalid name");
+}
