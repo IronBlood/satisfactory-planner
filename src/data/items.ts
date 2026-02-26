@@ -50,11 +50,11 @@ export const Items: Item[] = [
   IronOre,
 ].sort((a, b) => a.name.localeCompare(b.name));
 
-export function getItemImageByName(name: ItemName) {
-  switch (name) {
-    case ItemNames.Limestone: return imageByName["Stone_256.png"];
-    case ItemNames.IronOre: return imageByName["IconDesc_iron_new_256.png"];
-  }
+const ITEM_IMAGE_MAP: Record<ItemName, string> = {
+  [ItemNames.Limestone]: "Stone_256.png",
+  [ItemNames.IronOre]: "IconDesc_iron_new_256.png",
+};
 
-  throw new Error("invalid name");
+export function getItemImageByName(name: ItemName) {
+  return imageByName[ITEM_IMAGE_MAP[name]];
 }
