@@ -13,7 +13,7 @@ export const OrePurities = {
 
 export type OrePurity = typeof OrePurities[keyof typeof OrePurities];
 
-export const ItemNames = {
+export const OreItemNames = {
   Limestone: "Limestone",
   IronOre: "Iron Ore",
   CopperOre: "Copper Ore",
@@ -26,7 +26,13 @@ export const ItemNames = {
   Uranium: "Uranium",
 };
 
-export type ItemName = typeof ItemNames[keyof typeof ItemNames];
+export const NonOreItemNames = {
+};
+
+export type OreItemName = typeof OreItemNames[keyof typeof OreItemNames];
+export type NonOreItemName = typeof NonOreItemNames[keyof typeof NonOreItemNames];
+
+export type ItemName = OreItemName | NonOreItemName;
 
 interface _Item {
   category: ItemCategory;
@@ -59,16 +65,16 @@ export const Items: Item[] = [
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 const ITEM_IMAGE_MAP: Record<ItemName, string> = {
-  [ItemNames.Limestone]: "Stone_256.png",
-  [ItemNames.IronOre]: "IconDesc_iron_new_256.png",
-  [ItemNames.CopperOre]: "IconDesc_copper_new_256.png",
-  [ItemNames.CateriumOre]: "IconDesc_CateriumOre_256.png",
-  [ItemNames.Coal]: "IconDesc_CoalOre_256.png",
-  [ItemNames.RawQuartz]: "IconDesc_QuartzCrystal_256.png",
-  [ItemNames.Sulfur]: "Sulfur_256.png",
-  [ItemNames.Bauxite]: "IconDesc_Bauxite_256.png",
-  [ItemNames.SAM]: "IconDesc_SameOre_256.png",
-  [ItemNames.Uranium]: "IconDesc_UraniumOre_256.png",
+  [OreItemNames.Limestone]: "Stone_256.png",
+  [OreItemNames.IronOre]: "IconDesc_iron_new_256.png",
+  [OreItemNames.CopperOre]: "IconDesc_copper_new_256.png",
+  [OreItemNames.CateriumOre]: "IconDesc_CateriumOre_256.png",
+  [OreItemNames.Coal]: "IconDesc_CoalOre_256.png",
+  [OreItemNames.RawQuartz]: "IconDesc_QuartzCrystal_256.png",
+  [OreItemNames.Sulfur]: "Sulfur_256.png",
+  [OreItemNames.Bauxite]: "IconDesc_Bauxite_256.png",
+  [OreItemNames.SAM]: "IconDesc_SameOre_256.png",
+  [OreItemNames.Uranium]: "IconDesc_UraniumOre_256.png",
 };
 
 export function getItemImageByName(name: ItemName) {
