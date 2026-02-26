@@ -59,6 +59,7 @@ export default function Picker({
           <DialogPanel
             className="relative flex max-h-[80vh] w-full max-w-md transform flex-col overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:max-w-full md:max-w-4xl lg:max-w-6xl opacity-100 translate-y-0 sm:scale-100"
           >
+            {/* header */}
             <div
               className="grid flex-1 grid-cols-4 items-center gap-3 bg-slate-900 px-4 py-3 sm:px-6"
             >
@@ -74,6 +75,8 @@ export default function Picker({
                 </div>
               </div>
             </div>
+
+            {/* body */}
             <div
               className="flex flex-1 select-none flex-col overflow-hidden"
             >
@@ -105,6 +108,8 @@ export default function Picker({
                 </div>
               </div>
             </div>
+
+            {/* footer */}
             <div
               className="flex shrink gap-3 bg-slate-900 px-3 py-3 sm:flex-row-reverse sm:px-6"
             >
