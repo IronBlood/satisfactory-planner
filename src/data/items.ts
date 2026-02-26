@@ -53,6 +53,7 @@ export const IndustrialPartItemNames = {
 export const ElectronicItemNames = {
   Wire: "Wire",
   Cabel: "Cabel",
+  ReanimatedSAM: "Reanimated SAM",
 };
 
 export const CommunicationItemNames = {
@@ -252,6 +253,7 @@ const ITEM_IMAGE_MAP: Record<ItemName, string> = {
   [IndustrialPartItemNames.Rotor]: "IconDesc_Rotor_256.png",
   [ElectronicItemNames.Wire]: "IconDesc_Wire_256.png",
   [ElectronicItemNames.Cabel]: "IconDesc_Cables_256.png",
+  [ElectronicItemNames.ReanimatedSAM]: "IconDesc_ReanimatedSam_256.png",
   [CommunicationItemNames.Computer]: "IconDesc_Computer_256.png",
   [QuantumTechnologyItemNames.Diamonds]: "IconDesc_Diamonds_256.png",
   [ContainerItemNames.EmptyCanister]: "IconDesc_EmptyCannister_256.png",
