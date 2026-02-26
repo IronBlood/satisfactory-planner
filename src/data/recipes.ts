@@ -1,5 +1,5 @@
 import {
-  ItemNames,
+  OreItemNames,
   OrePurities,
   type ItemName,
   type OrePurity,
@@ -32,9 +32,7 @@ const miners: Array<{ mk: BuildingName; mul_m: number}> = [
 ];
 
 export const Recipes: Recipe[] = [
-  ...([
-    ItemNames.Limestone,
-  ].map(ore => {
+  ...(Object.values(OreItemNames).map(ore => {
     return purities.map(({ purity, mul_p }) => {
       return miners.map(({ mk, mul_m }) => {
         return {
