@@ -29,6 +29,8 @@ const purities: Array<{ purity: OrePurity; mul_p: number }> = [
 
 const miners: Array<{ mk: BuildingName; mul_m: number}> = [
   { mk: BuildingNames.MinerMk1, mul_m: 1 },
+  { mk: BuildingNames.MinerMk2, mul_m: 2 },
+  { mk: BuildingNames.MinerMk3, mul_m: 3 },
 ];
 
 export const Recipes: Recipe[] = [
@@ -36,7 +38,7 @@ export const Recipes: Recipe[] = [
     return purities.map(({ purity, mul_p }) => {
       return miners.map(({ mk, mul_m }) => {
         return {
-          name: `${ore} (${purity})`,
+          name: `${ore} (Mk.${mul_m} on ${purity})`,
           inputs: [],
           outputs: [{
             name: ore,
