@@ -15,6 +15,7 @@ export type OrePurity = typeof OrePurities[keyof typeof OrePurities];
 
 export const ItemNames = {
   Limestone: "Limestone",
+  IronOre: "Iron Ore",
 };
 
 export type ItemName = typeof ItemNames[keyof typeof ItemNames];
@@ -39,13 +40,20 @@ const Limestone: OreItem = {
   name: ItemNames.Limestone,
 };
 
+const IronOre: OreItem = {
+  category: ItemCategories.Ore,
+  name: ItemNames.IronOre,
+};
+
 export const Items: Item[] = [
   Limestone,
+  IronOre,
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export function getItemImageByName(name: ItemName) {
   switch (name) {
     case ItemNames.Limestone: return imageByName["Stone_256.png"];
+    case ItemNames.IronOre: return imageByName["IconDesc_iron_new_256.png"];
   }
 
   throw new Error("invalid name");
