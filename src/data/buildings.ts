@@ -20,6 +20,8 @@ export const BuildingNames = {
   ParticleAccelerator: "Particle Accelerator",
   QuantumEncoder: "Quantum Encoder",
   Converter: "Converter",
+
+  NuclearPowerPlant: "Nuclear Power Plant",
 } as const;
 
 export type BuildingName = typeof BuildingNames[keyof typeof BuildingNames];
@@ -121,5 +123,11 @@ export const Buildings: Record<BuildingName, Building> = {
     name: BuildingNames.Converter,
     image: imageByName["IconDesc_Converter_256.png"],
     power: 400,
+  },
+
+  [BuildingNames.NuclearPowerPlant]: {
+    name: BuildingNames.NuclearPowerPlant,
+    image: imageByName["NuclearPowerplant_256.png"],
+    power: -2500,
   },
 };
