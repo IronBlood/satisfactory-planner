@@ -113,7 +113,7 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
                 name={rate.name}
               />
             </Handle>
-            <div className="flex max-w-4 justify-center whitespace-nowrap text-xs font-thin">
+            <div className="flex justify-center whitespace-nowrap text-xs font-thin">
               <NumericInput
                 value={rate.rate * props.data.count}
                 onCommit={(next) => setCount(next / rate.rate)}

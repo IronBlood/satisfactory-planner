@@ -37,6 +37,7 @@ export default function NumericInput({
       type="text"
       inputMode="decimal"
       value={draft}
+      size={Math.max(1, draft.length)}
       onChange={(e) => {
         const s = e.target.value;
 
