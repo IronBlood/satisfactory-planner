@@ -1,10 +1,12 @@
 import {
   memo,
+  useCallback,
   useEffect,
 } from "react";
 import {
   Handle,
   Position,
+  useReactFlow,
   type Node,
   type NodeProps,
 } from "@xyflow/react";
@@ -18,12 +20,21 @@ import {
   Buildings,
 } from "../data/buildings";
 import HandleImage from "../components/HandleImage";
+import NumericInput from "../components/NumericInput";
 
 export type RecipeNodeType = Node<{
   recipe: Recipe;
+  count: number;
 }, "recipe">;
 
 export default memo((props: NodeProps<RecipeNodeType>) => {
+  const { setNodes } = useReactFlow();
+  const setCount = useCallback((next: number) => {
+    setNodes((nds) => nds.map(n => n.id === props.id
+      ? { ...n, data: { ...n.data, count: next } }
+      : n
+    ));
+  }, [setNodes, props.id]);
   useEffect(() => {
     console.log("mounted", props);
   }, [props.id]);
@@ -47,7 +58,12 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
                 name={rate.name}
               />
             </Handle>
-            <div className="flex max-w-4 justify-center whitespace-nowrap text-xs font-thin">{rate.rate}</div>
+            <div className="flex max-w-4 justify-center whitespace-nowrap text-xs font-thin">
+              <NumericInput
+                value={rate.rate * props.data.count}
+                onCommit={(next) => setCount(next / rate.rate)}
+              />
+            </div>
           </div>
         ))}
       </div>
@@ -65,7 +81,7 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
           </div>
           <div className="flex-1">
             <div className="text-sm">{recipe.name}</div>
-            <div className="text-xs text-gray-400">{building.name}<span className="ml-6 font-light italic">({building.power} MW)</span></div>
+            <div className="text-xs text-gray-400">{building.name} x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} /><span className="ml-6 font-light italic">({building.power * props.data.count} MW)</span></div>
           </div>
           <div className="shrink relative">
             {/*<OutputImage outputs={recipe.outputs} />*/}
@@ -97,7 +113,12 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
                 name={rate.name}
               />
             </Handle>
-            <div className="flex max-w-4 justify-center whitespace-nowrap text-xs font-thin">{rate.rate}</div>
+            <div className="flex max-w-4 justify-center whitespace-nowrap text-xs font-thin">
+              <NumericInput
+                value={rate.rate * props.data.count}
+                onCommit={(next) => setCount(next / rate.rate)}
+              />
+            </div>
           </div>
         ))}
       </div>
