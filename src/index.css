@@ -13,3 +13,10 @@ body {
 .react-flow__controls button[disabled] {
   color: var(--color-slate-600);
 }
+
+.react-flow__node-recipe .react-flow__handle {
+  height: 1rem;
+  width: 1rem;
+  position: unset;
+  transform: none;
+}
