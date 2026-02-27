@@ -7,18 +7,20 @@ import {
 
 type RecipeViewType = {
   output_name: string;
+  onClick: () => void;
+} & ({
   image?: string;
   recipe?: never;
 } | {
-  output_name: string;
   image?: never;
   recipe?: Recipe;
-};
+});
 
 export default function RecipeView({
   output_name,
   image,
   recipe,
+  onClick,
 }: RecipeViewType) {
   const isResourceOutput = recipe ? false : true;
   const outputImage = isResourceOutput
@@ -50,7 +52,7 @@ export default function RecipeView({
     </>;
   const output_rate = isResourceOutput ? 0 : recipe!.outputs.find(x => x.name === output_name)!.rate;
   return (
-    <div className={isResourceOutput ? "flex flex-col overflow-hidden rounded-lg bg-slate-700 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out" : "rounded-lg bg-slate-700 p-2 transition duration-200 ease-in-out cursor-pointer hover:bg-slate-800"}>
+    <div className={isResourceOutput ? "flex flex-col overflow-hidden rounded-lg bg-slate-700 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out" : "rounded-lg bg-slate-700 p-2 transition duration-200 ease-in-out cursor-pointer hover:bg-slate-800"} onClick={onClick}>
       <div className={isResourceOutput ? "flex flex-1 gap-2 p-2" : "flex gap-2"}>
         <div className="relative w-16 shrink text-center">
           {outputImage}

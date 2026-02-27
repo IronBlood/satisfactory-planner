@@ -28,14 +28,17 @@ function keysOf<T extends object>(obj: T) {
 export default function Picker({
   isOpen,
   onClose,
+  onSave,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  onSave: (name: string) => void;
 }) {
   const categoryKeys = keysOf(ItemCategories);
   type CategoryValue = (typeof ItemCategories)[keyof typeof ItemCategories];
 
   const [activeCat, setActiveCat] = useState<CategoryValue>(ItemCategories.ALL);
+  const [activeRecipe, setActiveRecipe] = useState<string | null>(null);
 
   const onPickCat = useCallback((k: CategoryValue) => {
     setActiveCat(k);
@@ -64,19 +67,22 @@ export default function Picker({
   }, [filteredItems]);
 
   const recipeViews = useMemo(() => {
+    const source_key = activeItem === null ? "" : `${activeItem.name} - source`;
     return activeItem === null
       ? []
       : [
         <RecipeView
-          key={`${activeItem.name} - source`}
+          key={source_key}
           output_name={activeItem.name}
           image={getItemImageByName(activeItem.name)}
+          onClick={() => setActiveRecipe(source_key)}
         />,
         ...getRecipesByOutput(activeItem.name).map(r => (
           <RecipeView
             key={r.name}
             output_name={activeItem.name}
             recipe={r}
+            onClick={() => setActiveRecipe(r.name)}
           />
         )),
       ];
@@ -156,8 +162,8 @@ export default function Picker({
             <div
               className="flex shrink gap-3 bg-slate-900 px-3 py-3 sm:flex-row-reverse sm:px-6"
             >
-              <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm cursor-not-allowed opacity-50" disabled>Add to planner</button>
-              <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400">Cancel</button>
+              <button className={["flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm", activeRecipe ? "hover:bg-sky-400" : "cursor-not-allowed opacity-50"].join(" ")} disabled={activeRecipe === null} onClick={() => { onSave(activeRecipe!); onClose(); }}>Add to planner</button>
+              <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400" onClick={() => onClose()}>Cancel</button>
             </div>
           </DialogPanel>
         </div>

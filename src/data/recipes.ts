@@ -25,7 +25,7 @@ import {
   type BuildingName,
 } from "./buildings";
 
-interface Rate {
+export interface Rate {
   name: ItemName;
   rate: number;
 }
@@ -685,6 +685,18 @@ export const Recipes: Recipe[] = [
     ],
   },
 ];
+
+const RecipeNameMap: Record<string, Recipe> = {};
+for (const r of Recipes) {
+  if (RecipeNameMap[r.name]) {
+    throw new Error("duplicated recipe names");
+  }
+  RecipeNameMap[r.name] = r;
+}
+
+export function getRecipeByName(n: string) {
+  return RecipeNameMap[n];
+}
 
 export function getRecipesByOutput(o: ItemName) {
   return Recipes.filter(r => r.outputs.some(x => x.name === o));

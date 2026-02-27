@@ -1,11 +1,12 @@
 type CardviewProps = {
   name: string;
   image: string;
+  onClick: () => void;
 };
 
-export default function Cardview({ name, image }: CardviewProps) {
+export default function Cardview({ name, image, onClick }: CardviewProps) {
   return (
-    <div className="cursor-pointer rounded-lg bg-slate-700 p-2 hover:bg-slate-800 transition duration-200 ease-in-out">
+    <div className="cursor-pointer rounded-lg bg-slate-700 p-2 hover:bg-slate-800 transition duration-200 ease-in-out" onClick={onClick}>
       <img
         alt={name}
         loading="lazy"
