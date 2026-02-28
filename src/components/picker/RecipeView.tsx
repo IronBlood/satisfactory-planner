@@ -1,10 +1,10 @@
 import {
   getItemImageByName,
-} from "./data/items";
+} from "../../data/items";
 import {
   type Recipe,
-} from "./data/recipes";
-import OutputImage from "./components/OutputImage";
+} from "../../data/recipes";
+import OutputImage from "../OutputImage";
 
 type RecipeViewType = {
   output_name: string;

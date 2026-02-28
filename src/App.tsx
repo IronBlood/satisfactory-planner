@@ -21,7 +21,7 @@ import {
   type IsValidConnection,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import Picker from "./Picker";
+import Picker from "./components/picker/Picker";
 import RecipeNode, { type RecipeNodeType } from "./nodes/RecipeNode";
 import {
   getRecipeByName,
