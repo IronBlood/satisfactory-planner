@@ -55,6 +55,11 @@ export default function Picker({
     setActiveItem(item);
   }, []);
 
+  const clearSelection = useCallback(() => {
+    setActiveItem(null);
+    setActiveRecipe(null);
+  }, [setActiveItem, setActiveRecipe]);
+
   const cardViews = useMemo(() => {
     return filteredItems.map(item => (
       <Cardview
@@ -144,7 +149,7 @@ export default function Picker({
               {activeItem && <div className="shrink-0 flex flex-col overflow-hidden">
                 <h3 className="flex items-center justify-between bg-slate-900 px-3 py-1 font-semibold sm:px-6">
                   <span>Pick a recipe:</span>
-                  <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 px-3 py-1.5 text-sm hover:text-sky-400" onClick={() => selectItem(null)}>Clear</button>
+                  <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 cursor-pointer" onClick={() => clearSelection()}>Clear</button>
                 </h3>
                 <div className="flex-1 min-h-24 max-h-48 overflow-auto">
                   <div className="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 sm:px-6 md:grid-cols-3 lg:grid-cols-4">
