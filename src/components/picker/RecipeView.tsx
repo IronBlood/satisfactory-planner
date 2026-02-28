@@ -23,6 +23,7 @@ export default function RecipeView({
   image,
   recipe,
   onClick,
+  activeRecipe,
 }: RecipeViewType) {
   const isResourceOutput = recipe ? false : true;
   const r = recipe ? getRecipeByName(recipe) : null;
@@ -42,8 +43,9 @@ export default function RecipeView({
   return (
     <div
       className={[
-        "rounded-lg bg-slate-700 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out",
+        "rounded-lg cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out",
         isResourceOutput ? "flex flex-col overflow-hidden" : "p-2",
+        ((isResourceOutput && activeRecipe?.endsWith(" - source")) || activeRecipe === recipe) ? "bg-slate-800 ring-1 ring-sky-500" : "bg-slate-700",
       ].join(" ")}
       onClick={onClick}
     >

@@ -67,9 +67,10 @@ export default function Picker({
         name={item.name}
         image={getItemImageByName(item.name)}
         onClick={() => selectItem(item)}
+        activeItem={activeItem?.name}
       />
     ));
-  }, [filteredItems]);
+  }, [filteredItems, activeItem]);
 
   const recipeViews = useMemo(() => {
     const source_key = activeItem === null ? "" : `${activeItem.name} - source`;
@@ -93,7 +94,7 @@ export default function Picker({
           />
         )),
       ];
-  }, [activeItem]);
+  }, [activeItem, activeRecipe]);
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-10 text-white">
