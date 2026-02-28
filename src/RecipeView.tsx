@@ -4,6 +4,7 @@ import {
 import {
   type Recipe,
 } from "./data/recipes";
+import OutputImage from "./components/OutputImage";
 
 type RecipeViewType = {
   output_name: string;
@@ -32,24 +33,9 @@ export default function RecipeView({
       height="256"
       className="inline-block aspect-square w-12"
     />
-    : <>
-      <img
-        src={getItemImageByName(recipe!.outputs[0].name)}
-        alt={recipe!.outputs[0].name}
-        loading="lazy"
-        width="256"
-        height="256"
-        className="inline-block aspect-square w-12"
-      />
-      {recipe!.outputs[1] && <img
-        src={getItemImageByName(recipe!.outputs[1].name)}
-        alt={recipe!.outputs[0].name}
-        loading="lazy"
-        width="256"
-        height="256"
-        className="absolute -bottom-2 -right-1 inline-block aspect-square w-7 overflow-hidden rounded-full bg-slate-800 ring-1 ring-gray-600"
-      />}
-    </>;
+    : <OutputImage
+      outputs={recipe!.outputs}
+    />;
   const output_rate = isResourceOutput ? 0 : recipe!.outputs.find(x => x.name === output_name)!.rate;
   return (
     <div className={isResourceOutput ? "flex flex-col overflow-hidden rounded-lg bg-slate-700 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out" : "rounded-lg bg-slate-700 p-2 transition duration-200 ease-in-out cursor-pointer hover:bg-slate-800"} onClick={onClick}>
