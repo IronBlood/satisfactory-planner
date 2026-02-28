@@ -40,7 +40,13 @@ export default function RecipeView({
     />;
   const output_rate = isResourceOutput ? 0 : r!.outputs.find(x => x.name === output_name)!.rate;
   return (
-    <div className={isResourceOutput ? "flex flex-col overflow-hidden rounded-lg bg-slate-700 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out" : "rounded-lg bg-slate-700 p-2 transition duration-200 ease-in-out cursor-pointer hover:bg-slate-800"} onClick={onClick}>
+    <div
+      className={[
+        "rounded-lg bg-slate-700 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out",
+        isResourceOutput ? "flex flex-col overflow-hidden" : "p-2",
+      ].join(" ")}
+      onClick={onClick}
+    >
       <div className={isResourceOutput ? "flex flex-1 gap-2 p-2" : "flex gap-2"}>
         <div className="relative w-16 shrink text-center">
           {outputImage}
