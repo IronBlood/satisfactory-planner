@@ -90,26 +90,24 @@ export default function Picker({
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-10 text-white">
-      <div className="fixed inset-0 bg-black/75 transition-opacity opacity-100" aria-hidden="true" />
-      <div className="fixed inset-0 z-10 overflow-y-auto">
+      <div className="fixed inset-0 bg-black/35" aria-hidden="true" />
+      <div className="fixed inset-0 overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center">
           <DialogPanel
-            className="relative flex max-h-[80vh] w-full max-w-md transform flex-col overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:max-w-full md:max-w-4xl lg:max-w-6xl opacity-100 translate-y-0 sm:scale-100"
+            className="relative flex max-h-[80vh] w-full max-w-md flex-col overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl sm:my-8 sm:max-w-full md:max-w-4xl lg:max-w-6xl"
           >
             {/* header */}
             <div
-              className="grid flex-1 grid-cols-4 items-center gap-3 bg-slate-900 px-4 py-3 sm:px-6"
+              className="flex items-center justify-between gap-3 bg-slate-900 px-4 py-3 sm:px-6"
             >
-              <DialogTitle as="h3" className="col-span-3 text-lg/6 font-semibold text-gray-100">What's next</DialogTitle>
+              <DialogTitle as="h3" className="text-lg/6 font-semibold text-gray-100">
+                What's next
+              </DialogTitle>
               <div
-                className="TextField flex items-center w-full text-gray-500 border rounded-md hover:border-gray-300 transition-all text-sm h-8 px-3 gap-2 border-gray-500 col-span-1"
+                className="TextField flex items-center w-full max-w-xs text-gray-500 border rounded-md hover:border-gray-300 transition-colors text-sm h-8 px-3 gap-2 border-gray-500"
               >
-                <div className="shrink">
-                  <MagnifyingGlassIcon className="size-5" />
-                </div>
-                <div className="relative flex-1">
-                  <input className="_reset-input-number m-0 w-full min-w-4 border-none bg-transparent p-0 text-inherit placeholder:text-gray-400 focus:border-0 focus:text-white focus:outline-none" placeholder="Search" />
-                </div>
+                <MagnifyingGlassIcon className="size-5" />
+                <input className="_reset-input-number m-0 w-full min-w-0 border-none bg-transparent p-0 text-inherit placeholder:text-gray-400 focus:text-white focus:outline-none" placeholder="Search" />
               </div>
             </div>
 
@@ -117,7 +115,7 @@ export default function Picker({
             <div
               className="flex flex-1 select-none flex-col overflow-hidden"
             >
-              <div className="grid flex-auto grid-cols-3 overflow-hidden bg-slate-800">
+              <div className="grid flex-1 min-h-0 grid-cols-3 overflow-hidden bg-slate-800">
                 <div className="col-span-1 hidden h-full overflow-hidden p-3 sm:block sm:pl-6">
                   <div className="col-span-1 h-full overflow-auto py-2">
                     {categoryKeys.map((k) => (
@@ -136,8 +134,6 @@ export default function Picker({
                 </div>
                 <div className="col-span-3 flex flex-col overflow-hidden p-3 px-0 sm:col-span-2 sm:pr-3">
                   <div className="overflow-auto px-3">
-                    <div id="cat-other" className="relative">
-                    </div>
                     <div className="grid grid-cols-2 gap-3 py-3 sm:grid-cols-3 md:grid-cols-4">
                       {cardViews}
                     </div>
@@ -145,12 +141,12 @@ export default function Picker({
                 </div>
               </div>
               {/* recipes */}
-              {activeItem && <div className="shrink flex min-h-0 flex-col overflow-hidden">
+              {activeItem && <div className="shrink-0 flex flex-col overflow-hidden">
                 <h3 className="flex items-center justify-between bg-slate-900 px-3 py-1 font-semibold sm:px-6">
                   <span>Pick a recipe:</span>
                   <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 px-3 py-1.5 text-sm hover:text-sky-400" onClick={() => selectItem(null)}>Clear</button>
                 </h3>
-                <div className="flex-1 min-h-48 overflow-auto">
+                <div className="flex-1 min-h-24 max-h-48 overflow-auto">
                   <div className="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 sm:px-6 md:grid-cols-3 lg:grid-cols-4">
                     {recipeViews}
                   </div>
@@ -160,10 +156,10 @@ export default function Picker({
 
             {/* footer */}
             <div
-              className="flex shrink gap-3 bg-slate-900 px-3 py-3 sm:flex-row-reverse sm:px-6"
+              className="flex gap-3 bg-slate-900 px-3 py-3 sm:flex-row-reverse sm:px-6"
             >
-              <button className={["flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm", activeRecipe ? "hover:bg-sky-400" : "cursor-not-allowed opacity-50"].join(" ")} disabled={activeRecipe === null} onClick={() => { onSave(activeRecipe!); onClose(); }}>Add to planner</button>
-              <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400" onClick={() => onClose()}>Cancel</button>
+              <button className={["flex items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm", activeRecipe ? "hover:bg-sky-400" : "cursor-not-allowed opacity-50"].join(" ")} disabled={activeRecipe === null} onClick={() => { onSave(activeRecipe!); onClose(); }}>Add to planner</button>
+              <button className="flex items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400" onClick={() => onClose()}>Cancel</button>
             </div>
           </DialogPanel>
         </div>
