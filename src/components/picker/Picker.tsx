@@ -17,9 +17,9 @@ import {
   Items,
   getItemImageByName,
   type Item,
-} from "../../data/items";
-import { ItemCategories } from "../../data/categories";
-import { getRecipesByOutput } from "../../data/recipes";
+} from "@/data/items";
+import { ItemCategories } from "@/data/categories";
+import { getRecipesByOutput } from "@/data/recipes";
 
 function keysOf<T extends object>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
