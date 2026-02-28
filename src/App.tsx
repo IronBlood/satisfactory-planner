@@ -23,13 +23,14 @@ import {
 import "@xyflow/react/dist/style.css";
 import Picker from "./components/picker/Picker";
 import RecipeNode, { type RecipeNodeType } from "./nodes/RecipeNode";
+import ResourceNode, { type ResourceNodeType } from "@/nodes/ResourceNode";
 import {
   getRecipeByName,
 } from "./data/recipes";
 import ConveyorEdge, { type ConveyorEdgeType } from "./nodes/ConveyorEdge";
 
-function isSource(s: string) {
-  return s.endsWith(` - source`);
+function getSrcIdx(s: string) {
+  return s.lastIndexOf(` - source`);
 }
 
 const isValidConnection: IsValidConnection<Edge> = (connection) => {
@@ -50,28 +51,39 @@ function App() {
       throw new Error(`invalid position`);
     }
 
-    if (isSource(name)) {
-      throw new Error("unimplemented");
-    } else {
-      setNodes((nodes) => [
-        ...nodes,
-        ({
-          id: crypto.randomUUID(),
-          position: {
-            x: pos.x,
-            y: pos.y,
-          },
-          data: {
-            recipe: getRecipeByName(name),
-            count: 1,
-          },
-          type: "recipe",
-        } as RecipeNodeType),
-      ]);
-    }
+    const id = crypto.randomUUID();
+    const position = {
+      x: pos.x,
+      y: pos.y,
+    };
+    let idx = -1;
+    let node: ResourceNodeType | RecipeNodeType = ((idx = getSrcIdx(name)) > 0)
+      ? {
+        id,
+        position,
+        type: "resource",
+        data: {
+          count: 0,
+          name: name.substring(0, idx),
+        },
+      } : {
+        id,
+        position,
+        data: {
+          recipe: getRecipeByName(name),
+          count: 1,
+        },
+        type: "recipe",
+      };
+
+    setNodes((nodes) => [
+      ...nodes,
+      node,
+    ]);
   }, [pos, setNodes]);
   const nodeTypes = useMemo(() => ({
     recipe: RecipeNode,
+    resource: ResourceNode,
   }), []);
   const edgeTypes = useMemo(() => ({
     conveyor: ConveyorEdge,
