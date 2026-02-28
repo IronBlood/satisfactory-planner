@@ -18,6 +18,7 @@ import {
   type Edge,
   type XYPosition,
   ReactFlowProvider,
+  type IsValidConnection,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import Picker from "./Picker";
@@ -25,10 +26,15 @@ import RecipeNode, { type RecipeNodeType } from "./nodes/RecipeNode";
 import {
   getRecipeByName,
 } from "./data/recipes";
+import ConveyorEdge, { type ConveyorEdgeType } from "./nodes/ConveyorEdge";
 
 function isSource(s: string) {
   return s.endsWith(` - source`);
 }
+
+const isValidConnection: IsValidConnection<Edge> = (connection) => {
+  return connection.sourceHandle === connection.targetHandle;
+};
 
 function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState([] as Node[]);
@@ -67,9 +73,22 @@ function App() {
   const nodeTypes = useMemo(() => ({
     recipe: RecipeNode,
   }), []);
+  const edgeTypes = useMemo(() => ({
+    conveyor: ConveyorEdge,
+  }), []);
 
   const onConnect = useCallback(
-    (params: Connection) => setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
+    (params: Connection) => {
+      const edge: ConveyorEdgeType = {
+        ...params,
+        id: crypto.randomUUID(),
+        type: "conveyor",
+        data: {
+          value: 0,
+        },
+      };
+      return setEdges((edgesSnapshot) => addEdge(edge as never, edgesSnapshot))
+    },
     [],
   );
   const onDoubleClick = useCallback(
@@ -92,10 +111,12 @@ function App() {
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         onPaneClick={onDoubleClick}
+        isValidConnection={isValidConnection}
         zoomOnDoubleClick={false}
         fitView
       >
