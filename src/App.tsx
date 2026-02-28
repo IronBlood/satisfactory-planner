@@ -7,14 +7,12 @@ import {
 } from "react";
 import {
   ReactFlow,
-  applyNodeChanges,
-  applyEdgeChanges,
   addEdge,
   Background,
   Controls,
+  useEdgesState,
+  useNodesState,
   useReactFlow,
-  type NodeChange,
-  type EdgeChange,
   type Connection,
   type Node,
   type Edge,
@@ -33,8 +31,8 @@ function isSource(s: string) {
 }
 
 function App() {
-  const [nodes, setNodes] = useState<Node[]>([]);
-  const [edges, setEdges] = useState<Edge[]>([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([] as Node[]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { screenToFlowPosition } = useReactFlow();
   const [pos, setPos] = useState<XYPosition | null>(null);
   const lastClickAt = useRef<number | null>(null);
@@ -70,14 +68,6 @@ function App() {
     recipe: RecipeNode,
   }), []);
 
-  const onNodesChange = useCallback(
-    (changes: NodeChange[]) => setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
-    [],
-  );
-  const onEdgesChange = useCallback(
-    (changes: EdgeChange[]) => setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot)),
-    [],
-  );
   const onConnect = useCallback(
     (params: Connection) => setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
     [],
