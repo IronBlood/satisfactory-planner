@@ -2,19 +2,20 @@ import {
   getItemImageByName,
 } from "@/data/items";
 import {
-  type Recipe,
+  getRecipeByName,
 } from "@/data/recipes";
 import OutputImage from "@/components/OutputImage";
 
 type RecipeViewType = {
   output_name: string;
   onClick: () => void;
+  activeRecipe: string | null;
 } & ({
   image?: string;
   recipe?: never;
 } | {
   image?: never;
-  recipe?: Recipe;
+  recipe?: string;
 });
 
 export default function RecipeView({
@@ -24,6 +25,7 @@ export default function RecipeView({
   onClick,
 }: RecipeViewType) {
   const isResourceOutput = recipe ? false : true;
+  const r = recipe ? getRecipeByName(recipe) : null;
   const outputImage = isResourceOutput
     ? <img
       src={image}
@@ -34,9 +36,9 @@ export default function RecipeView({
       className="inline-block aspect-square w-12"
     />
     : <OutputImage
-      outputs={recipe!.outputs}
+      outputs={r!.outputs}
     />;
-  const output_rate = isResourceOutput ? 0 : recipe!.outputs.find(x => x.name === output_name)!.rate;
+  const output_rate = isResourceOutput ? 0 : r!.outputs.find(x => x.name === output_name)!.rate;
   return (
     <div className={isResourceOutput ? "flex flex-col overflow-hidden rounded-lg bg-slate-700 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out" : "rounded-lg bg-slate-700 p-2 transition duration-200 ease-in-out cursor-pointer hover:bg-slate-800"} onClick={onClick}>
       <div className={isResourceOutput ? "flex flex-1 gap-2 p-2" : "flex gap-2"}>
@@ -44,8 +46,8 @@ export default function RecipeView({
           {outputImage}
         </div>
         <div className="flex-1">
-          <div className="text-xs">{isResourceOutput ? output_name : recipe!.name}</div>
-          <div className="text-sm text-gray-500">{recipe ? recipe.building : "Adjustable resource node"}</div>
+          <div className="text-xs">{isResourceOutput ? output_name : r!.name}</div>
+          <div className="text-sm text-gray-500">{r ? r.building : "Adjustable resource node"}</div>
         </div>
       </div>
       {isResourceOutput
@@ -53,7 +55,7 @@ export default function RecipeView({
         : <div className="mt-2 flex gap-2">
           <div className="w-16 shrink text-center"><span className="text-xs leading-6">{output_rate} / m</span></div>
           <div className="grid flex-1 grid-cols-2">
-            {recipe!.inputs.map((i) => (
+            {r!.inputs.map((i) => (
               <div
                 key={i.name}
                 className="flex items-center text-xs"

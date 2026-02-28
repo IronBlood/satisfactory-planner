@@ -81,13 +81,15 @@ export default function Picker({
           output_name={activeItem.name}
           image={getItemImageByName(activeItem.name)}
           onClick={() => setActiveRecipe(source_key)}
+          activeRecipe={activeRecipe}
         />,
         ...getRecipesByOutput(activeItem.name).map(r => (
           <RecipeView
             key={r.name}
             output_name={activeItem.name}
-            recipe={r}
+            recipe={r.name}
             onClick={() => setActiveRecipe(r.name)}
+            activeRecipe={activeRecipe}
           />
         )),
       ];
