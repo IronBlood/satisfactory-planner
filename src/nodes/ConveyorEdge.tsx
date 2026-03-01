@@ -5,6 +5,7 @@ import {
   type EdgeProps,
   type Edge,
 } from "@xyflow/react";
+import NumericInput from "@/components/NumericInput";
 
 export type ConveyorEdgeType = Edge<{ value: number }, "conveyor">;
 
@@ -26,7 +27,12 @@ export default function ConveyorEdge({
           position: "absolute",
           transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
           pointerEvents: "all",
-        }}>{data.value}</div> : <></>}
+        }}>
+          <NumericInput
+            value={data.value}
+            onCommit={(next) => console.log(next)}
+          />
+        </div> : <></>}
       </EdgeLabelRenderer>
     </>
   );
