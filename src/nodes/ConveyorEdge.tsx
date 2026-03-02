@@ -26,7 +26,7 @@ export default function ConveyorEdge({
   const onCommit = useCallback((next: number) => {
     setEdges((edges) =>
       edges.map((e) => e.id === id
-        ? { ...e, data: { value: next } }
+        ? { ...e, data: { ...e.data, value: next } }
         : e)
     );
   }, [id]);
