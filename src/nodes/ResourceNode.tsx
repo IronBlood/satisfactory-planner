@@ -9,11 +9,9 @@ import {
   type Node,
   type NodeProps,
 } from "@xyflow/react";
-import {
-  LockOpenIcon,
-} from "@heroicons/react/24/outline";
 import { getItemImageByName, type ItemName } from "@/data/items";
 import InOutHandle from "@/nodes/InOutHandle";
+import RateLocker from "@/components/RateLocker";
 
 export type ResourceNodeType = Node<{
   name: ItemName,
@@ -54,7 +52,9 @@ export default memo((props: NodeProps<ResourceNodeType>) => {
       </div>
       <div className="relative flex h-6 justify-evenly rounded-b-lg bg-slate-800">
         <div className="absolute bottom-0 right-0 top-0 flex w-auto items-center gap-2 px-2">
-          <button className="h-4 w-4 p-0.5 bg-slate-800 rounded-full transition text-slate-700 hover:text-slate-500"><LockOpenIcon /></button>
+          <RateLocker
+            isLocked={true}
+          />
         </div>
       </div>
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-end justify-evenly">

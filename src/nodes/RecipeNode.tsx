@@ -10,9 +10,6 @@ import {
   type NodeProps,
 } from "@xyflow/react";
 import {
-  CheckCircleIcon,
-} from "@heroicons/react/24/outline";
-import {
   type Recipe,
 } from "../data/recipes";
 import {
@@ -21,6 +18,7 @@ import {
 import NumericInput from "../components/NumericInput";
 import InOutHandle from "./InOutHandle";
 import OutputImage from "@/components/OutputImage";
+import RateLocker from "@/components/RateLocker";
 
 export type RecipeNodeType = Node<{
   recipe: Recipe;
@@ -78,10 +76,10 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
       </div>
       {/* Bottom background */}
       <div className="relative flex h-6 justify-evenly rounded-b-lg bg-slate-800 pattern-lines-yellow-800">
-        <div className="absolute bottom-0 left-0 top-0 flex w-auto items-center gap-2 px-2">
-          <div className="group relative contents text-xs">
-            <button className="h-4 w-4 p-px bg-slate-800 rounded-full transition text-slate-700 hover:text-slate-500"><CheckCircleIcon /></button>
-          </div>
+        <div className="absolute bottom-0 right-0 top-0 flex w-auto items-center gap-2 px-2">
+          <RateLocker
+            isLocked={true}
+          />
         </div>
       </div>
       {/* Bottom handlers */}
