@@ -30,7 +30,7 @@ export default function NumericInput({
       return;
     }
 
-    onCommit(n);
+    onCommit(Math.max(0, n));
   }, [draft, onCommit]);
 
   return (
@@ -44,7 +44,7 @@ export default function NumericInput({
       onChange={(e) => {
         const s = e.target.value;
 
-        if (s === "" || /^-?(\d+(\.\d*)?|\.\d*)$/.test(s)) {
+        if (s === "" || /^(\d+(\.\d*)?|\.\d*)$/.test(s)) {
           setDraft(s);
         }
       }}
