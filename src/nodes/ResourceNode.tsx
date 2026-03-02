@@ -1,10 +1,11 @@
 import {
   memo,
+  useCallback,
   useMemo,
 } from "react";
 import {
-  Handle,
   Position,
+  useReactFlow,
   type Node,
   type NodeProps,
 } from "@xyflow/react";
@@ -12,7 +13,7 @@ import {
   LockOpenIcon,
 } from "@heroicons/react/24/outline";
 import { getItemImageByName, type ItemName } from "@/data/items";
-import HandleImage from "@/components/HandleImage";
+import InOutHandle from "@/nodes/InOutHandle";
 
 export type ResourceNodeType = Node<{
   name: ItemName,
@@ -20,6 +21,13 @@ export type ResourceNodeType = Node<{
 }, "resource">;
 
 export default memo((props: NodeProps<ResourceNodeType>) => {
+  const { setNodes } = useReactFlow();
+  const setResource = useCallback((next: number) => {
+    setNodes((nodes) => nodes.map(n => n.id === props.id
+      ? { ...n, data: { ...n.data, count: next } }
+      : n
+    ));
+  }, [props.id]);
 
   const image = useMemo(() => getItemImageByName(props.data.name), [props]);
 
@@ -50,18 +58,14 @@ export default memo((props: NodeProps<ResourceNodeType>) => {
         </div>
       </div>
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-end justify-evenly">
-        <div className="pointer-events-auto -mb-2 flex flex-col-reverse items-center">
-          <Handle
-            type="source"
-            position={Position.Bottom}
-            id={props.data.name}
-          >
-            <HandleImage
-              direction="UP"
-              name={props.data.name}
-            />
-          </Handle>
-        </div>
+        <InOutHandle
+          nodeId={props.id}
+          name={props.data.name}
+          position={Position.Bottom}
+          handleType="source"
+          value={props.data.count}
+          onCommit={(next) => setResource(next)}
+        />
       </div>
     </div>
   );

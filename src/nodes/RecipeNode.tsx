@@ -4,7 +4,6 @@ import {
   useEffect,
 } from "react";
 import {
-  Handle,
   Position,
   useReactFlow,
   type Node,
@@ -19,8 +18,8 @@ import {
 import {
   Buildings,
 } from "../data/buildings";
-import HandleImage from "../components/HandleImage";
 import NumericInput from "../components/NumericInput";
+import InOutHandle from "./InOutHandle";
 
 export type RecipeNodeType = Node<{
   recipe: Recipe;
@@ -44,27 +43,15 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
     <div className="relative rounded-lg bg-slate-700 border-0" style={{ minWidth: "80px" }}>
       <div className="flex h-6 justify-evenly rounded-t-lg bg-slate-800 pattern-lines-yellow-800">
         {recipe.inputs.map(rate => (
-          <div
-            className="pointer-events-auto -mt-2 flex flex-col items-center"
+          <InOutHandle
             key={rate.name}
-          >
-            <Handle
-              type="target"
-              position={Position.Top}
-              id={rate.name}
-            >
-              <HandleImage
-                direction="DOWN"
-                name={rate.name}
-              />
-            </Handle>
-            <div className="flex max-w-4 justify-center whitespace-nowrap text-xs font-thin">
-              <NumericInput
-                value={rate.rate * props.data.count}
-                onCommit={(next) => setCount(next / rate.rate)}
-              />
-            </div>
-          </div>
+            nodeId={props.id}
+            handleType="target"
+            name={rate.name}
+            position={Position.Top}
+            value={rate.rate * props.data.count}
+            onCommit={(next) => setCount(next / rate.rate)}
+          />
         ))}
       </div>
       <div className="px-3 py-2">
@@ -99,27 +86,15 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
       {/* Bottom handlers */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-end justify-evenly">
         {recipe.outputs.map(rate => (
-          <div
+          <InOutHandle
             key={rate.name}
-            className="pointer-events-auto -mb-2 flex flex-col-reverse items-center"
-          >
-            <Handle
-              type="source"
-              position={Position.Bottom}
-              id={rate.name}
-            >
-              <HandleImage
-                direction="UP"
-                name={rate.name}
-              />
-            </Handle>
-            <div className="flex justify-center whitespace-nowrap text-xs font-thin">
-              <NumericInput
-                value={rate.rate * props.data.count}
-                onCommit={(next) => setCount(next / rate.rate)}
-              />
-            </div>
-          </div>
+            nodeId={props.id}
+            handleType="source"
+            name={rate.name}
+            position={Position.Bottom}
+            value={rate.rate * props.data.count}
+            onCommit={(next) => setCount(next / rate.rate)}
+          />
         ))}
       </div>
     </div>
