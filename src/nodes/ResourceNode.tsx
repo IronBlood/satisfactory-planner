@@ -66,6 +66,7 @@ export default memo((props: NodeProps<ResourceNodeType>) => {
           position={Position.Bottom}
           handleType="source"
           value={props.data.count}
+          isLocked={props.data.isLocked}
           onCommit={(next) => setResource(next)}
         />
       </div>

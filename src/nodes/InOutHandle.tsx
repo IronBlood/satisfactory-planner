@@ -16,7 +16,8 @@ export type InOutHandleParams = {
   name: ItemName;
   nodeId: string;
   position: Position;
-  value: number,
+  value: number;
+  isLocked: boolean;
   onCommit: (next: number) => void;
 };
 
@@ -26,6 +27,7 @@ export default function InOutHandle({
   nodeId,
   position,
   value,
+  isLocked,
   onCommit,
 }: InOutHandleParams) {
   const sum = useStore((s) => {
@@ -78,7 +80,7 @@ export default function InOutHandle({
         />
       </Handle>
       <div className="flex justify-center whitespace-nowrap text-xs font-thin gap-1">
-        <NumericInput value={value} onCommit={onCommit} />
+        <NumericInput value={value} onCommit={onCommit} readonly={isLocked} />
         <span className={spanStyle}>({sum})</span>
       </div>
     </div>

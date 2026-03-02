@@ -50,6 +50,7 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
             name={rate.name}
             position={Position.Top}
             value={rate.rate * props.data.count}
+            isLocked={props.data.isLocked}
             onCommit={(next) => setCount(next / rate.rate)}
           />
         ))}
@@ -68,7 +69,7 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
           </div>
           <div className="flex-1">
             <div className="text-sm">{recipe.name}</div>
-            <div className="text-xs text-gray-400">{building.name} x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} /><span className="ml-6 font-light italic">({building.power * props.data.count} MW)</span></div>
+            <div className="text-xs text-gray-400">{building.name} x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count} MW)</span></div>
           </div>
           <div className="shrink relative">
             <OutputImage outputs={recipe.outputs} showSecond={false} />
@@ -94,6 +95,7 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
             name={rate.name}
             position={Position.Bottom}
             value={rate.rate * props.data.count}
+            isLocked={props.data.isLocked}
             onCommit={(next) => setCount(next / rate.rate)}
           />
         ))}

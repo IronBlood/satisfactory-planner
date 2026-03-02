@@ -6,9 +6,11 @@ import {
 
 export default function NumericInput({
   value,
+  readonly = false,
   onCommit,
 }: {
   value: number;
+  readonly?: boolean;
   onCommit: (next: number) => void;
 }) {
   const [draft, setDraft] = useState(String(value));
@@ -36,6 +38,7 @@ export default function NumericInput({
       className="nodrag inline-block w-auto min-w-0 _reset-input-number"
       type="text"
       inputMode="decimal"
+      readOnly={readonly}
       value={draft}
       size={Math.max(1, draft.length)}
       onChange={(e) => {
