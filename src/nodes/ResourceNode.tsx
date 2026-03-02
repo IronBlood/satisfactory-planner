@@ -14,8 +14,9 @@ import InOutHandle from "@/nodes/InOutHandle";
 import RateLocker from "@/components/RateLocker";
 
 export type ResourceNodeType = Node<{
-  name: ItemName,
+  name: ItemName;
   count: number;
+  isLocked: boolean;
 }, "resource">;
 
 export default memo((props: NodeProps<ResourceNodeType>) => {
@@ -53,7 +54,8 @@ export default memo((props: NodeProps<ResourceNodeType>) => {
       <div className="relative flex h-6 justify-evenly rounded-b-lg bg-slate-800">
         <div className="absolute bottom-0 right-0 top-0 flex w-auto items-center gap-2 px-2">
           <RateLocker
-            isLocked={true}
+            nodeId={props.id}
+            isLocked={props.data.isLocked}
           />
         </div>
       </div>

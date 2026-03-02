@@ -65,6 +65,7 @@ function App() {
         data: {
           count: 0,
           name: name.substring(0, idx),
+          isLocked: false,
         },
       } : {
         id,
@@ -72,6 +73,7 @@ function App() {
         data: {
           recipe: getRecipeByName(name),
           count: 1,
+          isLocked: false,
         },
         type: "recipe",
       };
