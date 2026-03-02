@@ -1,7 +1,6 @@
 import {
   memo,
   useCallback,
-  useEffect,
 } from "react";
 import {
   Position,
@@ -34,9 +33,6 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
       : n
     ));
   }, [setNodes, props.id]);
-  useEffect(() => {
-    console.log("mounted", props);
-  }, [props.id]);
   const { recipe } = props.data;
   const building = Buildings[recipe.building];
   return (
