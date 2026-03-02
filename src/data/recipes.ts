@@ -701,3 +701,7 @@ export function getRecipeByName(n: string) {
 export function getRecipesByOutput(o: ItemName) {
   return Recipes.filter(r => r.outputs.some(x => x.name === o));
 }
+
+export function getRecipesByInput(i: ItemName) {
+  return Recipes.filter(r => r.inputs.some(x => x.name === i));
+}

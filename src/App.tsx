@@ -19,6 +19,7 @@ import {
   type XYPosition,
   ReactFlowProvider,
   type IsValidConnection,
+  type OnConnectEnd,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import Picker from "./components/picker/Picker";
@@ -27,6 +28,7 @@ import ResourceNode, { type ResourceNodeType } from "@/nodes/ResourceNode";
 import {
   getRecipeByName,
 } from "./data/recipes";
+import { type ItemName } from "@/data/items";
 import ConveyorEdge, { type ConveyorEdgeType } from "./nodes/ConveyorEdge";
 
 function getSrcIdx(s: string) {
@@ -37,14 +39,26 @@ const isValidConnection: IsValidConnection<Edge> = (connection) => {
   return connection.sourceHandle === connection.targetHandle;
 };
 
+type SourceState = {
+  sourceNode: string;
+  sourceItem: string;
+};
+
 function App() {
+  const [source, setSource] = useState<SourceState | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([] as Node[]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { screenToFlowPosition } = useReactFlow();
   const [pos, setPos] = useState<XYPosition | null>(null);
   const lastClickAt = useRef<number | null>(null);
   const [isOpen, setOpen] = useState(false);
-  const onOpen = useCallback(() => setOpen(true), []);
+  const onOpen = useCallback(() => {
+    setOpen(true);
+  }, []);
+  const onOpenWithSource = useCallback((source: SourceState) => {
+    setOpen(true);
+    setSource(source);
+  }, []);
   const onClose = useCallback(() => setOpen(false), []);
   const onSave = useCallback((name: string) => {
     if (!pos) {
@@ -82,6 +96,16 @@ function App() {
       ...nodes,
       node,
     ]);
+
+    if (source) {
+      onConnect({
+        source: source.sourceNode,
+        sourceHandle: source.sourceItem,
+        target: node.id,
+        targetHandle: source.sourceItem,
+      });
+      setSource(null);
+    }
   }, [pos, setNodes]);
   const nodeTypes = useMemo(() => ({
     recipe: RecipeNode,
@@ -118,6 +142,20 @@ function App() {
     },
     [screenToFlowPosition, onOpen],
   );
+  const onConnectEnd: OnConnectEnd = useCallback((event, state) => {
+    if (state.toNode === null) {
+      const { clientX, clientY } = "changedTouches" in event ? event.changedTouches[0] : event;
+      setPos(screenToFlowPosition({ x: clientX, y: clientY }));
+      if (state.fromHandle?.type === "source") {
+        onOpenWithSource({
+          sourceNode: state.fromNode!.id,
+          sourceItem: (state.fromHandle!.id as ItemName),
+        });
+      } else if (state.fromHandle?.type === "target") {
+        console.log("TODO");
+      }
+    }
+  }, []);
 
   return (
     <div style={{ width: '100vw', height: '100vh' }} className="bg-slate-950 text-white">
@@ -129,6 +167,7 @@ function App() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        onConnectEnd={onConnectEnd}
         onPaneClick={onDoubleClick}
         isValidConnection={isValidConnection}
         zoomOnDoubleClick={false}
@@ -141,6 +180,7 @@ function App() {
         isOpen={isOpen}
         onClose={onClose}
         onSave={onSave}
+        sourceType={source?.sourceItem}
       />
     </div>
   )

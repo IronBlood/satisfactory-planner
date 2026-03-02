@@ -17,9 +17,14 @@ import {
   Items,
   getItemImageByName,
   type Item,
+  type ItemName,
 } from "@/data/items";
 import { ItemCategories } from "@/data/categories";
-import { getRecipesByOutput } from "@/data/recipes";
+import {
+  getRecipesByInput,
+  getRecipesByOutput,
+  type Recipe,
+} from "@/data/recipes";
 
 function keysOf<T extends object>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
@@ -29,10 +34,12 @@ export default function Picker({
   isOpen,
   onClose,
   onSave,
+  sourceType,
 }: {
   isOpen: boolean;
   onClose: () => void;
   onSave: (name: string) => void;
+  sourceType?: ItemName;
 }) {
   const categoryKeys = keysOf(ItemCategories);
   type CategoryValue = (typeof ItemCategories)[keyof typeof ItemCategories];
@@ -44,11 +51,28 @@ export default function Picker({
     setActiveCat(k);
   }, []);
 
+  const recipesCanBeUsed: Recipe[] = useMemo(() => {
+    return sourceType ? getRecipesByInput(sourceType) : []
+  }, [sourceType]);
+
+  const sourceItems = useMemo(() => {
+    if (sourceType) {
+      const set = new Set<ItemName>();
+      for (const r of recipesCanBeUsed) {
+        r.outputs.forEach(x => set.add(x.name));
+      }
+
+      return Items.filter(item => set.has(item.name));
+    } else {
+      return Items;
+    }
+  }, [sourceType, recipesCanBeUsed]);
+
   const filteredItems = useMemo(() => {
     return activeCat === ItemCategories.ALL
-      ? Items
-      : Items.filter(item => item.category === activeCat);
-  }, [activeCat]);
+      ? sourceItems
+      : sourceItems.filter(item => item.category === activeCat);
+  }, [activeCat, sourceItems]);
 
   const [activeItem, setActiveItem] = useState<Item | null>(null);
   const selectItem = useCallback((item: Item | null) => {
@@ -74,17 +98,10 @@ export default function Picker({
 
   const recipeViews = useMemo(() => {
     const source_key = activeItem === null ? "" : `${activeItem.name} - source`;
-    return activeItem === null
-      ? []
-      : [
-        <RecipeView
-          key={source_key}
-          output_name={activeItem.name}
-          image={getItemImageByName(activeItem.name)}
-          onClick={() => setActiveRecipe(source_key)}
-          activeRecipe={activeRecipe}
-        />,
-        ...getRecipesByOutput(activeItem.name).map(r => (
+    if (sourceType) {
+      return activeItem === null
+        ? []
+        : recipesCanBeUsed.filter(r => r.outputs.some(x => x.name === activeItem.name)).map(r => (
           <RecipeView
             key={r.name}
             output_name={activeItem.name}
@@ -92,9 +109,30 @@ export default function Picker({
             onClick={() => setActiveRecipe(r.name)}
             activeRecipe={activeRecipe}
           />
-        )),
-      ];
-  }, [activeItem, activeRecipe]);
+        ));
+    } else {
+      return activeItem === null
+        ? []
+        : [
+          <RecipeView
+            key={source_key}
+            output_name={activeItem.name}
+            image={getItemImageByName(activeItem.name)}
+            onClick={() => setActiveRecipe(source_key)}
+            activeRecipe={activeRecipe}
+          />,
+          ...getRecipesByOutput(activeItem.name).map(r => (
+            <RecipeView
+              key={r.name}
+              output_name={activeItem.name}
+              recipe={r.name}
+              onClick={() => setActiveRecipe(r.name)}
+              activeRecipe={activeRecipe}
+            />
+          )),
+        ];
+    }
+  }, [activeItem, activeRecipe, sourceType, recipesCanBeUsed]);
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-10 text-white">
