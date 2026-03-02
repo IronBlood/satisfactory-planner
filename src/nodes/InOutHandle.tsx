@@ -21,6 +21,8 @@ export type InOutHandleParams = {
   onCommit: (next: number) => void;
 };
 
+const EPSILON = 0.0001;
+
 export default function InOutHandle({
   handleType,
   name,
@@ -45,7 +47,7 @@ export default function InOutHandle({
   });
 
   const spanStyle = useMemo(() => {
-    if (sum === value) {
+    if (Math.abs(sum - value) <= EPSILON) {
       return "bg-green-700";
     }
 
