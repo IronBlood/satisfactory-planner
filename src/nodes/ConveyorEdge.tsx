@@ -1,9 +1,13 @@
 import {
+  useCallback,
+} from "react";
+import {
   getStraightPath,
   BaseEdge,
   EdgeLabelRenderer,
   type EdgeProps,
   type Edge,
+  useReactFlow,
 } from "@xyflow/react";
 import NumericInput from "@/components/NumericInput";
 
@@ -17,8 +21,15 @@ export default function ConveyorEdge({
   targetY,
   data,
 }: EdgeProps<ConveyorEdgeType>) {
-  console.log(data);
+  const { setEdges } = useReactFlow();
   const [edgePath, labelX, labelY] = getStraightPath({ sourceX, sourceY, targetX, targetY });
+  const onCommit = useCallback((next: number) => {
+    setEdges((edges) =>
+      edges.map((e) => e.id === id
+        ? { ...e, data: { value: next } }
+        : e)
+    );
+  }, [id]);
   return (
     <>
       <BaseEdge id={id} path={edgePath} />
@@ -30,7 +41,7 @@ export default function ConveyorEdge({
         }}>
           <NumericInput
             value={data.value}
-            onCommit={(next) => console.log(next)}
+            onCommit={onCommit}
           />
         </div> : <></>}
       </EdgeLabelRenderer>
