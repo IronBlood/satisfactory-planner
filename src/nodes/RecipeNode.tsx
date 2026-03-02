@@ -20,6 +20,7 @@ import {
 } from "../data/buildings";
 import NumericInput from "../components/NumericInput";
 import InOutHandle from "./InOutHandle";
+import OutputImage from "@/components/OutputImage";
 
 export type RecipeNodeType = Node<{
   recipe: Recipe;
@@ -71,7 +72,7 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
             <div className="text-xs text-gray-400">{building.name} x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} /><span className="ml-6 font-light italic">({building.power * props.data.count} MW)</span></div>
           </div>
           <div className="shrink relative">
-            {/*<OutputImage outputs={recipe.outputs} />*/}
+            <OutputImage outputs={recipe.outputs} showSecond={false} />
           </div>
         </div>
       </div>

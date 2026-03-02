@@ -8,8 +8,10 @@ import { type Rate } from "../data/recipes";
  */
 export default function OutputImage({
   outputs,
+  showSecond = true,
 }: {
-  outputs: Rate[],
+  outputs: Rate[];
+  showSecond?: boolean;
 }) {
   return (
     <>
@@ -21,7 +23,7 @@ export default function OutputImage({
         height="256"
         className="inline-block aspect-square w-12"
       />
-      {outputs[1] && <img
+      {showSecond && outputs[1] && <img
         src={getItemImageByName(outputs[1].name)}
         alt={outputs[1].name}
         loading="lazy"
