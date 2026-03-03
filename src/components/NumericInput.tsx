@@ -8,10 +8,12 @@ export default function NumericInput({
   value,
   readonly = false,
   onCommit,
+  textRight = false,
 }: {
   value: number;
   readonly?: boolean;
   onCommit: (next: number) => void;
+  textRight?: boolean;
 }) {
   const [draft, setDraft] = useState(String(value));
 
@@ -35,7 +37,10 @@ export default function NumericInput({
 
   return (
     <input
-      className="nodrag inline-block w-auto min-w-0 _reset-input-number"
+      className={[
+        "nodrag inline-block w-auto min-w-0 _reset-input-number",
+        textRight ? "text-right" : "",
+      ].join(" ")}
       type="text"
       inputMode="decimal"
       readOnly={readonly}
