@@ -33,6 +33,10 @@ import {
 } from "./data/recipes";
 import { type ItemName } from "@/data/items";
 import ConveyorEdge, { type ConveyorEdgeType } from "./nodes/ConveyorEdge";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
@@ -345,9 +349,20 @@ function App() {
 
 function Wrapper() {
   return (
-    <ReactFlowProvider>
-      <App />
-    </ReactFlowProvider>
+    <div className="h-screen w-screen flex flex-col">
+      <header className="h-16 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950 text-white text-xl">
+        <div>Yet Another Satisfactory Planner</div>
+        <div className="transition duration-200 text-slate-300 hover:text-slate-100"><FontAwesomeIcon icon={faGithub} /></div>
+      </header>
+      <ReactFlowProvider>
+        <App />
+      </ReactFlowProvider>
+      <footer className="h-12 border-t border-slate-800 bg-slate-950 px-4 flex items-center text-xs text-slate-400">
+        <div>
+          <span className="font-bold">Disclaimer: </span>Satisfactory and its assets are trademarks and copyrighted materials of Coffee Stain Studios. This is an unofficial fan-made tool and is not affiliated with, endorsed, sponsored, or approved by Coffee Stain Studios.
+        </div>
+      </footer>
+    </div>
   );
 }
 
