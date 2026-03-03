@@ -32,7 +32,10 @@ export default memo((props: NodeProps<ResourceNodeType>) => {
 
   return (
     <div
-      className="relative rounded-lg bg-slate-700 border-0"
+      className={[
+        "relative rounded-lg bg-slate-700 border-0",
+        props.data.isLocked ? "nodrag" : "",
+      ].join(" ")}
       style={{ minWidth: "80px" }}
     >
       <div className="px-3 pt-4 pb-2">

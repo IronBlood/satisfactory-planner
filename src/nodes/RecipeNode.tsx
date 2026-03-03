@@ -36,7 +36,13 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
   const { recipe } = props.data;
   const building = Buildings[recipe.building];
   return (
-    <div className="relative rounded-lg bg-slate-700 border-0" style={{ minWidth: "80px" }}>
+    <div
+      className={[
+        "relative rounded-lg bg-slate-700 border-0",
+        props.data.isLocked ? "nodrag" : "",
+      ].join(" ")}
+      style={{ minWidth: "80px" }}
+    >
       <div className="flex h-6 justify-evenly rounded-t-lg bg-slate-800 pattern-lines-yellow-800">
         {recipe.inputs.map(rate => (
           <InOutHandle
