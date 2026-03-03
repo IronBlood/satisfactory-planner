@@ -270,6 +270,11 @@ function App({
       return;
 
     const flow = rfInstance.toObject();
+    for (const e of flow.edges) {
+      delete e.animated;
+      delete e.selected;
+    }
+
     const json = JSON.stringify(flow, null, 2);
 
     const blob = new Blob([json], { type: "application/json" });
