@@ -361,6 +361,7 @@ function App({
           onInit={setRfInstance}
           isValidConnection={isValidConnection}
           zoomOnDoubleClick={false}
+          nodeOrigin={[0.5, 0.5]}
           proOptions={{ hideAttribution: true }}
           fitView
         >
