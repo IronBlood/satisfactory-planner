@@ -79,7 +79,7 @@ export const IndustrialPartItemNames = {
 
 export const ElectronicItemNames = {
   Wire: "Wire",
-  Cable: "Cabel",
+  Cable: "Cable",
   Quickwire: "Quickwire",
   CircuitBoard: "Circuit Board",
   AILimiter: "AI Limiter",
