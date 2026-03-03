@@ -502,7 +502,7 @@ export const Recipes: Recipe[] = [
     ],
     outputs: [
       {
-        name: ElectronicItemNames.Cabel,
+        name: ElectronicItemNames.Cable,
         rate: 60,
       },
     ],
@@ -517,7 +517,7 @@ export const Recipes: Recipe[] = [
         rate: 10,
       },
       {
-        name: ElectronicItemNames.Cabel,
+        name: ElectronicItemNames.Cable,
         rate: 20,
       },
       {

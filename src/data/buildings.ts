@@ -84,7 +84,7 @@ export const Buildings: Record<BuildingName, Building> = {
     ingredients: {
       [IndustrialPartItemNames.Motor]: 15,
       [StandardPartItemNames.EncasedIndustrialBeam]: 20,
-      [ElectronicItemNames.Cabel]: 60,
+      [ElectronicItemNames.Cable]: 60,
     },
   },
   [BuildingNames.WaterExtractor]: {
@@ -144,7 +144,7 @@ export const Buildings: Record<BuildingName, Building> = {
     power: 4,
     ingredients: {
       [StandardPartItemNames.ReinforcedIronPlate]: 2,
-      [ElectronicItemNames.Cabel]: 8,
+      [ElectronicItemNames.Cable]: 8,
     },
   },
   [BuildingNames.Assembler]: {
@@ -154,7 +154,7 @@ export const Buildings: Record<BuildingName, Building> = {
     ingredients: {
       [StandardPartItemNames.ReinforcedIronPlate]: 8,
       [IndustrialPartItemNames.Rotor]: 4,
-      [ElectronicItemNames.Cabel]: 10,
+      [ElectronicItemNames.Cable]: 10,
     },
   },
   [BuildingNames.Manufacturer]: {
@@ -165,7 +165,7 @@ export const Buildings: Record<BuildingName, Building> = {
       [IndustrialPartItemNames.Motor]: 10,
       [StandardPartItemNames.ModularFrame]: 20,
       [StandardPartItemNames.Plastic]: 50,
-      [ElectronicItemNames.Cabel]: 50,
+      [ElectronicItemNames.Cable]: 50,
     },
   },
   [BuildingNames.Refinery]: {
@@ -244,7 +244,7 @@ export const Buildings: Record<BuildingName, Building> = {
       [CommunicationItemNames.Supercomputer]: 10,
       [StandardPartItemNames.HeavyModularFrame]: 25,
       [StandardPartItemNames.AlcladAluminumSheet]: 100,
-      [ElectronicItemNames.Cabel]: 200,
+      [ElectronicItemNames.Cable]: 200,
       [MineralItemNames.Concrete]: 250,
     },
   },

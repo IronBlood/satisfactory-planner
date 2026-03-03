@@ -79,7 +79,7 @@ export const IndustrialPartItemNames = {
 
 export const ElectronicItemNames = {
   Wire: "Wire",
-  Cabel: "Cabel",
+  Cable: "Cabel",
   Quickwire: "Quickwire",
   CircuitBoard: "Circuit Board",
   AILimiter: "AI Limiter",
@@ -318,7 +318,7 @@ const ITEM_IMAGE_MAP: Record<ItemName, string> = {
   [IndustrialPartItemNames.CoolingSystem]: "IconDesc_CoolingSystem_256.png",
   [IndustrialPartItemNames.TurboMotor]: "IconDesc_TurboMotor_256.png",
   [ElectronicItemNames.Wire]: "IconDesc_Wire_256.png",
-  [ElectronicItemNames.Cabel]: "IconDesc_Cables_256.png",
+  [ElectronicItemNames.Cable]: "IconDesc_Cables_256.png",
   [ElectronicItemNames.Quickwire]: "IconDesc_Quickwire_256.png",
   [ElectronicItemNames.CircuitBoard]: "IconDesc_CircuitBoard_256.png",
   [ElectronicItemNames.AILimiter]: "IconDesc_AILimiter_256.png",
