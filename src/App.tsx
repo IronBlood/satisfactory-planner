@@ -37,6 +37,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
+import Summary from "@/components/Summary";
+import type { AppNode } from "./types";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
@@ -52,6 +54,7 @@ type SourceState = {
 };
 
 function App() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [source, setSource] = useState<SourceState | null>(null);
   const [target, setTarget] = useState<SourceState | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([] as Node[]);
@@ -75,6 +78,8 @@ function App() {
   const edgeTypes = useMemo(() => ({
     conveyor: ConveyorEdge,
   }), []);
+
+  const toggleSidebar = useCallback(() => setSidebarOpen(!isSidebarOpen), [isSidebarOpen, setSidebarOpen]);
 
   const onOpen = useCallback(() => {
     setOpen(true);
@@ -299,38 +304,49 @@ function App() {
   }, []);
 
   return (
-    <div style={{ width: '100vw', height: '100vh' }} className="bg-slate-950 text-white">
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        nodeTypes={nodeTypes}
-        edgeTypes={edgeTypes}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onConnectEnd={onConnectEnd}
-        onPaneClick={onDoubleClick}
-        onInit={setRfInstance}
-        isValidConnection={isValidConnection}
-        zoomOnDoubleClick={false}
-        fitView
+    <main className="bg-slate-950 text-white flex h-full min-h-0">
+      <section className="relative flex-1 min-w-0 min-h-0">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onConnectEnd={onConnectEnd}
+          onPaneClick={onDoubleClick}
+          onInit={setRfInstance}
+          isValidConnection={isValidConnection}
+          zoomOnDoubleClick={false}
+          fitView
+        >
+          <Background />
+          <Controls />
+          <Panel position="top-right">
+            <div className="flex gap-2">
+              <button className="rounded-md px-3 py-1.5 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400" onClick={onSaveFlow}>save</button>
+              <button className="rounded-md px-3 py-1.5 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400" onClick={onLoadFlow}>load</button>
+              <button className="rounded-md px-3 py-1.5 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400" onClick={toggleSidebar}>{isSidebarOpen ? "hide" : "show"} info</button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/json,.json"
+                className="hidden"
+                onChange={onPickFlowFile}
+              />
+            </div>
+          </Panel>
+        </ReactFlow>
+      </section>
+      <aside
+        className={[
+          "shrink-0 border-l border-slate-800 transition-[width] duration-200 overflow-hidden",
+          isSidebarOpen ? "w-80" : "w-0 border-l-0",
+        ].join(" ")}
       >
-        <Background />
-        <Controls />
-        <Panel position="top-right">
-          <div className="flex gap-2">
-            <button className="rounded-md px-3 py-1.5 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400" onClick={onSaveFlow}>save</button>
-            <button className="rounded-md px-3 py-1.5 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400" onClick={onLoadFlow}>load</button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="application/json,.json"
-              className="hidden"
-              onChange={onPickFlowFile}
-            />
-          </div>
-        </Panel>
-      </ReactFlow>
+        <Summary nodes={nodes as AppNode[]} />
+      </aside>
       <Picker
         isOpen={isOpen}
         onClose={onClose}
@@ -343,7 +359,7 @@ function App() {
         onSave={onSaveRecipePicker}
         target={target?.sourceItem}
       />
-    </div>
+    </main>
   )
 }
 
