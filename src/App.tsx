@@ -337,6 +337,7 @@ function App({
           onInit={setRfInstance}
           isValidConnection={isValidConnection}
           zoomOnDoubleClick={false}
+          proOptions={{ hideAttribution: true }}
           fitView
         >
           <Background />
@@ -374,6 +375,24 @@ function App({
   )
 }
 
+function FooterLink({
+  text,
+  href,
+}: {
+  text: string;
+  href: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      className="font-bold border-b border-dashed"
+    >
+      {text}
+    </a>
+  );
+}
+
 function Wrapper() {
   const actionsRef = useRef<ActionsRef>({});
 
@@ -393,7 +412,7 @@ function Wrapper() {
       </ReactFlowProvider>
       <footer className="h-12 border-t border-slate-800 bg-slate-950 px-4 flex items-center text-xs text-slate-400">
         <div>
-          <span className="font-bold">Disclaimer: </span>Satisfactory and its assets are trademarks and copyrighted materials of <span className="font-bold">Coffee Stain Studios</span>. This is an unofficial fan-made tool and is not affiliated with, endorsed, sponsored, or approved by Coffee Stain Studios. Inspired by <a href="https://satisfactory-planner.vercel.app/" target="_blank" className="font-bold border-b border-dashed">Satisfactory Planner</a>.
+          <span className="font-bold">Disclaimer: </span>Satisfactory and its assets are trademarks and copyrighted materials of <span className="font-bold">Coffee Stain Studios</span>. This is an unofficial fan-made tool and is not affiliated with, endorsed, sponsored, or approved by Coffee Stain Studios. Inspired by <FooterLink href="https://satisfactory-planner.vercel.app/" text="Satisfactory Planner" />. Built with <FooterLink href="https://react.dev/" text="React" />, <FooterLink href="https://reactflow.dev/" text="React Flow" /> and <FooterLink href="https://tailwindcss.com" text="tailwindcss" />.
         </div>
       </footer>
     </div>
