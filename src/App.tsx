@@ -425,7 +425,7 @@ function Wrapper() {
             onClick={() => actionsRef.current.toggleSidebar?.()}
             text="info"
           />
-          <div className="transition duration-200 text-slate-300 hover:text-slate-100"><FontAwesomeIcon icon={faGithub} /></div>
+          <div className="transition duration-200 text-slate-300 hover:text-slate-100 items-center text-2xl"><FontAwesomeIcon icon={faGithub} /></div>
         </div>
       </header>
       <ReactFlowProvider>
