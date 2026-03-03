@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -8,7 +9,6 @@ import {
 import {
   Background,
   Controls,
-  Panel,
   ReactFlow,
   ReactFlowProvider,
   addEdge,
@@ -53,7 +53,17 @@ type SourceState = {
   sourceItem: string;
 };
 
-function App() {
+type ActionsRef = {
+  saveFlow?: () => void;
+  loadFlow?: () => void;
+  toggleSidebar?: () => void;
+};
+
+function App({
+  onActionsReady,
+}: {
+  onActionsReady: (a: ActionsRef) => void;
+}) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [source, setSource] = useState<SourceState | null>(null);
   const [target, setTarget] = useState<SourceState | null>(null);
@@ -303,6 +313,14 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    onActionsReady({
+      saveFlow: onSaveFlow,
+      loadFlow: onLoadFlow,
+      toggleSidebar,
+    });
+  }, [onActionsReady, onSaveFlow, onLoadFlow, toggleSidebar]);
+
   return (
     <main className="bg-slate-950 text-white flex h-full min-h-0">
       <section className="relative flex-1 min-w-0 min-h-0">
@@ -323,20 +341,6 @@ function App() {
         >
           <Background />
           <Controls />
-          <Panel position="top-right">
-            <div className="flex gap-2">
-              <button className="rounded-md px-3 py-1.5 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400" onClick={onSaveFlow}>save</button>
-              <button className="rounded-md px-3 py-1.5 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400" onClick={onLoadFlow}>load</button>
-              <button className="rounded-md px-3 py-1.5 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400" onClick={toggleSidebar}>{isSidebarOpen ? "hide" : "show"} info</button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="application/json,.json"
-                className="hidden"
-                onChange={onPickFlowFile}
-              />
-            </div>
-          </Panel>
         </ReactFlow>
       </section>
       <aside
@@ -359,19 +363,33 @@ function App() {
         onSave={onSaveRecipePicker}
         target={target?.sourceItem}
       />
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="application/json,.json"
+        className="hidden"
+        onChange={onPickFlowFile}
+      />
     </main>
   )
 }
 
 function Wrapper() {
+  const actionsRef = useRef<ActionsRef>({});
+
   return (
     <div className="h-screen w-screen flex flex-col">
       <header className="h-16 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950 text-white text-xl">
         <div>Yet Another Satisfactory Planner</div>
-        <div className="transition duration-200 text-slate-300 hover:text-slate-100"><FontAwesomeIcon icon={faGithub} /></div>
+        <div className="flex gap-2">
+          <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={() => actionsRef.current.saveFlow?.()}>save</button>
+          <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={() => actionsRef.current.loadFlow?.()}>load</button>
+          <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={() => actionsRef.current.toggleSidebar?.()}>info</button>
+          <div className="transition duration-200 text-slate-300 hover:text-slate-100"><FontAwesomeIcon icon={faGithub} /></div>
+        </div>
       </header>
       <ReactFlowProvider>
-        <App />
+        <App onActionsReady={(a) => { actionsRef.current = a; }} />
       </ReactFlowProvider>
       <footer className="h-12 border-t border-slate-800 bg-slate-950 px-4 flex items-center text-xs text-slate-400">
         <div>
