@@ -10,8 +10,12 @@ body {
   color: var(--color-slate-400);
 }
 
-.react-flow__attribution a {
-  color: white !important;
+.react-flow .react-flow__attribution {
+  background: var(--color-slate-800);
+}
+
+.react-flow .react-flow__attribution a {
+  color: var(--color-slate-400);
 }
 
 .react-flow__controls button[disabled] {
