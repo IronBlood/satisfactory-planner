@@ -270,6 +270,10 @@ function App({
       return;
 
     const flow = rfInstance.toObject();
+    for (const n of flow.nodes) {
+      delete n.dragging;
+      delete n.selected;
+    }
     for (const e of flow.edges) {
       delete e.animated;
       delete e.selected;
