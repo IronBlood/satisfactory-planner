@@ -52,15 +52,58 @@ function App() {
   const [pos, setPos] = useState<XYPosition | null>(null);
   const lastClickAt = useRef<number | null>(null);
   const [isOpen, setOpen] = useState(false);
+
+  const nodeTypes = useMemo(() => ({
+    recipe: RecipeNode,
+    resource: ResourceNode,
+  }), []);
+
+  const edgeTypes = useMemo(() => ({
+    conveyor: ConveyorEdge,
+  }), []);
+
   const onOpen = useCallback(() => {
     setOpen(true);
     setSource(null);
   }, []);
+
   const onOpenWithSource = useCallback((source: SourceState) => {
     setOpen(true);
     setSource(source);
   }, []);
+
   const onClose = useCallback(() => setOpen(false), []);
+
+  const onConnect = useCallback(
+    (params: Connection) => {
+      const edge: ConveyorEdgeType = {
+        ...params,
+        id: crypto.randomUUID(),
+        type: "conveyor",
+        data: {
+          value: 0,
+        },
+      };
+      return setEdges((edgesSnapshot) => addEdge(edge as never, edgesSnapshot))
+    },
+    [],
+  );
+
+  const onConnectEnd: OnConnectEnd = useCallback((event, state) => {
+    if (state.toNode === null) {
+      const { clientX, clientY } = "changedTouches" in event ? event.changedTouches[0] : event;
+      setPos(screenToFlowPosition({ x: clientX, y: clientY }));
+      if (state.fromHandle?.type === "source") {
+        onOpenWithSource({
+          sourceNode: state.fromNode!.id,
+          sourceItem: (state.fromHandle!.id as ItemName),
+        });
+      } else if (state.fromHandle?.type === "target") {
+        console.log("TODO");
+      }
+    }
+  }, [screenToFlowPosition, onOpenWithSource]);
+
   const onSave = useCallback((name: string) => {
     if (!pos) {
       throw new Error(`invalid position`);
@@ -107,29 +150,8 @@ function App() {
       });
       setSource(null);
     }
-  }, [pos, setNodes, source]);
-  const nodeTypes = useMemo(() => ({
-    recipe: RecipeNode,
-    resource: ResourceNode,
-  }), []);
-  const edgeTypes = useMemo(() => ({
-    conveyor: ConveyorEdge,
-  }), []);
+  }, [pos, setNodes, source, onConnect]);
 
-  const onConnect = useCallback(
-    (params: Connection) => {
-      const edge: ConveyorEdgeType = {
-        ...params,
-        id: crypto.randomUUID(),
-        type: "conveyor",
-        data: {
-          value: 0,
-        },
-      };
-      return setEdges((edgesSnapshot) => addEdge(edge as never, edgesSnapshot))
-    },
-    [],
-  );
   const onDoubleClick = useCallback(
     (event: MouseEvent) => {
       const now = Date.now();
@@ -143,20 +165,6 @@ function App() {
     },
     [screenToFlowPosition, onOpen],
   );
-  const onConnectEnd: OnConnectEnd = useCallback((event, state) => {
-    if (state.toNode === null) {
-      const { clientX, clientY } = "changedTouches" in event ? event.changedTouches[0] : event;
-      setPos(screenToFlowPosition({ x: clientX, y: clientY }));
-      if (state.fromHandle?.type === "source") {
-        onOpenWithSource({
-          sourceNode: state.fromNode!.id,
-          sourceItem: (state.fromHandle!.id as ItemName),
-        });
-      } else if (state.fromHandle?.type === "target") {
-        console.log("TODO");
-      }
-    }
-  }, []);
 
   return (
     <div style={{ width: '100vw', height: '100vh' }} className="bg-slate-950 text-white">
