@@ -68,7 +68,7 @@ function App({
   const [source, setSource] = useState<SourceState | null>(null);
   const [target, setTarget] = useState<SourceState | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([] as Node[]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([] as ConveyorEdgeType[]);
   const {
     setViewport,
     screenToFlowPosition,
@@ -77,7 +77,7 @@ function App({
   const lastClickAt = useRef<number | null>(null);
   const [isOpen, setOpen] = useState(false);
   const [isRecipePickerOpen, setRecipePickerOpen] = useState(false);
-  const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, never> | null>(null);
+  const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, ConveyorEdgeType> | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const nodeTypes = useMemo(() => ({
@@ -287,7 +287,7 @@ function App({
       const text = await file.text();
       const json = JSON.parse(text) as {
         nodes: Node[];
-        edges: never[]; // FIXME
+        edges: ConveyorEdgeType[];
         viewport: {
           x: number;
           y: number;
