@@ -10,6 +10,11 @@ body {
   color: var(--color-slate-400);
 }
 
+.react-flow__controls button:hover {
+  background: var(--color-slate-700);
+  color: var(--color-slate-100);
+}
+
 .react-flow .react-flow__attribution {
   background: var(--color-slate-800);
 }
