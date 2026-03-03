@@ -54,6 +54,7 @@ function App() {
   const [isOpen, setOpen] = useState(false);
   const onOpen = useCallback(() => {
     setOpen(true);
+    setSource(null);
   }, []);
   const onOpenWithSource = useCallback((source: SourceState) => {
     setOpen(true);
@@ -106,7 +107,7 @@ function App() {
       });
       setSource(null);
     }
-  }, [pos, setNodes]);
+  }, [pos, setNodes, source]);
   const nodeTypes = useMemo(() => ({
     recipe: RecipeNode,
     resource: ResourceNode,
