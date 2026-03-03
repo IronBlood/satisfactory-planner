@@ -142,6 +142,16 @@ function App({
     }
   }, [screenToFlowPosition, onOpenWithSource, onOpenRecipePicker]);
 
+  const onEdgeClick = useCallback((_event: MouseEvent<Element, globalThis.MouseEvent>, edge: Edge) => {
+    setEdges((edges) => {
+      const nextSelected = !(edge?.animated === true);
+      return edges.map(e => e.id === edge.id
+        ? { ...e, animated: nextSelected }
+        : { ...e, animated: false }
+      );
+    });
+  }, [setEdges]);
+
   const onSave = useCallback((name: string) => {
     if (!pos) {
       throw new Error(`invalid position`);
@@ -331,6 +341,7 @@ function App({
           edgeTypes={edgeTypes}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
+          onEdgeClick={onEdgeClick}
           onConnect={onConnect}
           onConnectEnd={onConnectEnd}
           onPaneClick={onDoubleClick}
