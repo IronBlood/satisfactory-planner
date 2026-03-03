@@ -375,6 +375,18 @@ function App({
   )
 }
 
+function MenuButton({
+  text,
+  onClick,
+}: {
+  text: string;
+  onClick: () => void;
+}) {
+  return (
+    <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={onClick}>{text}</button>
+  );
+}
+
 function FooterLink({
   text,
   href,
@@ -401,9 +413,18 @@ function Wrapper() {
       <header className="h-16 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950 text-white text-xl">
         <div>Yet Another Satisfactory Planner</div>
         <div className="flex gap-2">
-          <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={() => actionsRef.current.saveFlow?.()}>save</button>
-          <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={() => actionsRef.current.loadFlow?.()}>load</button>
-          <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={() => actionsRef.current.toggleSidebar?.()}>info</button>
+          <MenuButton
+            onClick={() => actionsRef.current.saveFlow?.()}
+            text="save"
+          />
+          <MenuButton
+            onClick={() => actionsRef.current.loadFlow?.()}
+            text="load"
+          />
+          <MenuButton
+            onClick={() => actionsRef.current.toggleSidebar?.()}
+            text="info"
+          />
           <div className="transition duration-200 text-slate-300 hover:text-slate-100"><FontAwesomeIcon icon={faGithub} /></div>
         </div>
       </header>
