@@ -261,6 +261,10 @@ function App({
         return;
       }
       lastClickAt.current = now;
+      setEdges(edges => edges.map(e => {
+        delete e.animated;
+        return e;
+      }));
     },
     [screenToFlowPosition, onOpen],
   );
