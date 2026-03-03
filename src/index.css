@@ -4,6 +4,10 @@ body {
   margin: 0;
 }
 
+.planner-flow {
+  --xy-edge-stroke-selected: var(--color-sky-500);
+}
+
 .react-flow__controls button {
   background: var(--color-slate-800);
   border-color: var(--color-slate-700);

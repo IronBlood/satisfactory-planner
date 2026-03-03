@@ -345,7 +345,7 @@ function App({
   }, [onActionsReady, onSaveFlow, onLoadFlow, toggleSidebar]);
 
   return (
-    <main className="bg-slate-950 text-white flex h-full min-h-0">
+    <main className="bg-slate-950 text-white flex h-full min-h-0 planner-flow">
       <section className="relative flex-1 min-w-0 min-h-0">
         <ReactFlow
           nodes={nodes}
