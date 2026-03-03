@@ -375,7 +375,7 @@ function Wrapper() {
       </ReactFlowProvider>
       <footer className="h-12 border-t border-slate-800 bg-slate-950 px-4 flex items-center text-xs text-slate-400">
         <div>
-          <span className="font-bold">Disclaimer: </span>Satisfactory and its assets are trademarks and copyrighted materials of Coffee Stain Studios. This is an unofficial fan-made tool and is not affiliated with, endorsed, sponsored, or approved by Coffee Stain Studios.
+          <span className="font-bold">Disclaimer: </span>Satisfactory and its assets are trademarks and copyrighted materials of <span className="font-bold">Coffee Stain Studios</span>. This is an unofficial fan-made tool and is not affiliated with, endorsed, sponsored, or approved by Coffee Stain Studios. Inspired by <a href="https://satisfactory-planner.vercel.app/" target="_blank" className="font-bold border-b border-dashed">Satisfactory Planner</a>.
         </div>
       </footer>
     </div>
