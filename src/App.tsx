@@ -23,6 +23,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import Picker from "./components/picker/Picker";
+import RecipePicker from "@/components/picker/RecipePicker";
 import RecipeNode, { type RecipeNodeType } from "./nodes/RecipeNode";
 import ResourceNode, { type ResourceNodeType } from "@/nodes/ResourceNode";
 import {
@@ -46,12 +47,14 @@ type SourceState = {
 
 function App() {
   const [source, setSource] = useState<SourceState | null>(null);
+  const [target, setTarget] = useState<SourceState | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([] as Node[]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { screenToFlowPosition } = useReactFlow();
   const [pos, setPos] = useState<XYPosition | null>(null);
   const lastClickAt = useRef<number | null>(null);
   const [isOpen, setOpen] = useState(false);
+  const [isRecipePickerOpen, setRecipePickerOpen] = useState(false);
 
   const nodeTypes = useMemo(() => ({
     recipe: RecipeNode,
@@ -72,7 +75,13 @@ function App() {
     setSource(source);
   }, []);
 
+  const onOpenRecipePicker = useCallback((source: SourceState) => {
+    setTarget(source);
+    setRecipePickerOpen(true);
+  }, []);
+
   const onClose = useCallback(() => setOpen(false), []);
+  const onCloseRecipePicker = useCallback(() => setRecipePickerOpen(false), [setRecipePickerOpen]);
 
   const onConnect = useCallback(
     (params: Connection) => {
@@ -99,10 +108,13 @@ function App() {
           sourceItem: (state.fromHandle!.id as ItemName),
         });
       } else if (state.fromHandle?.type === "target") {
-        console.log("TODO");
+        onOpenRecipePicker({
+          sourceNode: state.fromNode!.id,
+          sourceItem: (state.fromHandle!.id as ItemName),
+        });
       }
     }
-  }, [screenToFlowPosition, onOpenWithSource]);
+  }, [screenToFlowPosition, onOpenWithSource, onOpenRecipePicker]);
 
   const onSave = useCallback((name: string) => {
     if (!pos) {
@@ -152,6 +164,57 @@ function App() {
     }
   }, [pos, setNodes, source, onConnect]);
 
+  const onSaveRecipePicker = useCallback((name: string) => {
+    if (!pos) {
+      throw new Error(`invalid position`);
+    }
+    if (!target) {
+      throw new Error(`invalid target`);
+    }
+
+    const id = crypto.randomUUID();
+    const position = {
+      x: pos.x,
+      y: pos.y,
+    };
+    let idx = -1;
+
+    let node: ResourceNodeType | RecipeNodeType = ((idx = getSrcIdx(name)) > 0)
+      ? {
+        id,
+        position,
+        type: "resource",
+        data: {
+          count: 0,
+          name: name.substring(0, idx),
+          isLocked: false,
+        },
+      } : {
+        id,
+        position,
+        data: {
+          recipe: getRecipeByName(name),
+          count: 1,
+          isLocked: false,
+        },
+        type: "recipe",
+      };
+
+    setNodes((nodes) => [
+      ...nodes,
+      node,
+    ]);
+
+    onConnect({
+      target: target.sourceNode,
+      targetHandle: target.sourceItem,
+      source: node.id,
+      sourceHandle: target.sourceItem,
+    });
+
+    setTarget(null);
+  }, [pos, setNodes, target, onConnect]);
+
   const onDoubleClick = useCallback(
     (event: MouseEvent) => {
       const now = Date.now();
@@ -190,6 +253,12 @@ function App() {
         onClose={onClose}
         onSave={onSave}
         sourceType={source?.sourceItem}
+      />
+      <RecipePicker
+        isOpen={isRecipePickerOpen}
+        onClose={onCloseRecipePicker}
+        onSave={onSaveRecipePicker}
+        target={target?.sourceItem}
       />
     </div>
   )
