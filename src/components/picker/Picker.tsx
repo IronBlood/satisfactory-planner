@@ -77,6 +77,7 @@ export default function Picker({
   const [activeItem, setActiveItem] = useState<Item | null>(null);
   const selectItem = useCallback((item: Item | null) => {
     setActiveItem(item);
+    setActiveRecipe(null);
   }, []);
 
   const clearSelection = useCallback(() => {
