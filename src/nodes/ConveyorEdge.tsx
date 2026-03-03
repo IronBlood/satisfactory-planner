@@ -2,9 +2,9 @@ import {
   useCallback,
 } from "react";
 import {
-  getStraightPath,
+  getSimpleBezierPath,
   BaseEdge,
-  EdgeLabelRenderer,
+  EdgeToolbar,
   type EdgeProps,
   type Edge,
   useReactFlow,
@@ -22,7 +22,7 @@ export default function ConveyorEdge({
   data,
 }: EdgeProps<ConveyorEdgeType>) {
   const { setEdges } = useReactFlow();
-  const [edgePath, labelX, labelY] = getStraightPath({ sourceX, sourceY, targetX, targetY });
+  const [edgePath, centerX, centerY] = getSimpleBezierPath({ sourceX, sourceY, targetX, targetY });
   const onCommit = useCallback((next: number) => {
     setEdges((edges) =>
       edges.map((e) => e.id === id
@@ -33,18 +33,15 @@ export default function ConveyorEdge({
   return (
     <>
       <BaseEdge id={id} path={edgePath} />
-      <EdgeLabelRenderer>
-        {data ? <div style={{
-          position: "absolute",
-          transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
-          pointerEvents: "all",
-        }}>
-          <NumericInput
+      <EdgeToolbar edgeId={id} x={centerX} y={centerY} isVisible>
+        {data
+          ? <div className="rounded-full inline-flex items-center border border-slate-500 bg-slate-700 px-2 py-0.5"><NumericInput
             value={data.value}
             onCommit={onCommit}
-          />
-        </div> : <></>}
-      </EdgeLabelRenderer>
+            textRight
+          /> <span className="mx-2">/</span> min</div>
+          : <></>}
+      </EdgeToolbar>
     </>
   );
 }
