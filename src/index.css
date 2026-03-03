@@ -15,16 +15,16 @@ body {
   color: var(--color-slate-100);
 }
 
+.react-flow__controls button[disabled] {
+  color: var(--color-slate-600);
+}
+
 .react-flow .react-flow__attribution {
   background: var(--color-slate-800);
 }
 
 .react-flow .react-flow__attribution a {
   color: var(--color-slate-400);
-}
-
-.react-flow__controls button[disabled] {
-  color: var(--color-slate-600);
 }
 
 .react-flow__node-resource .react-flow__handle,
