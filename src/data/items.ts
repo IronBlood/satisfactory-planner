@@ -50,29 +50,55 @@ export const GasItemNames = {
 export const StandardPartItemNames = {
   IronRod: "Iron Rod",
   Screws: "Screws",
+  IronPlate: "Iron Plate",
   ReinforcedIronPlate: "Reinforced Iron Plate",
+  CopperSheet: "Copper Sheet",
+  AlcladAluminumSheet: "Alclad Aluminum Sheet",
+  AluminumCasing: "Aluminum Casing",
+  SteelPipe: "Steel Pipe",
+  StealBeam: "Steel Beam",
+  EncasedIndustrialBeam: "Encased Industrial Beam",
+  ModularFrame: "Modular Frame",
+  HeavyModularFrame: "Heavy Modular Frame",
+  FusedModularFrame: "Fused Modular Frame",
+  FicsiteTrigon: "Ficsite Trigon",
+  Fabric: "Fabric",
   Plastic: "Plastic",
+  Rubber: "Rubber",
 };
 
 export const IndustrialPartItemNames = {
   Rotor: "Rotor",
   Stator: "Stator",
+  Battery: "Battery",
+  Motor: "Motor",
+  HeatSink: "Heat Sink",
+  CoolingSystem: "Cooling System",
+  TurboMotor: "Turbo Motor",
 };
 
 export const ElectronicItemNames = {
   Wire: "Wire",
   Cabel: "Cabel",
+  Quickwire: "Quickwire",
   CircuitBoard: "Circuit Board",
   AILimiter: "AI Limiter",
+  HighSpeedConnector: "High-Speed Connector",
   ReanimatedSAM: "Reanimated SAM",
+  SAMFluctuator: "SAM Fluctuator",
 };
 
 export const CommunicationItemNames = {
   Computer: "Computer",
+  Supercomputer: "Supercomputer",
+  RadioControlUnit: "Radio Control Unit",
+  CrystalOscillator: "Crystal Oscillator",
+  SuperpositionOscillator: "Superposition Oscillator",
 };
 
 export const QuantumTechnologyItemNames = {
   Diamonds: "Diamonds",
+  TimeCrystal: "Time Crystal",
 };
 
 export const ContainerItemNames = {
@@ -102,6 +128,7 @@ export const WasteItemNames = {
 
 export const SpecialItemNames = {
   SmartPlating: "Smart Plating",
+  PortableMiner: "Portable Miner",
 };
 
 export type OreItemName = typeof OreItemNames[keyof typeof OreItemNames];
@@ -268,17 +295,43 @@ const ITEM_IMAGE_MAP: Record<ItemName, string> = {
   [GasItemNames.RocketFuel]: "IconDesc_RocketFuelPipe_256.png",
   [StandardPartItemNames.IronRod]: "IconDesc_IronRods_256.png",
   [StandardPartItemNames.Screws]: "IconDesc_IronScrews_256.png",
+  [StandardPartItemNames.IronPlate]: "IconDesc_IronPlates_256.png",
   [StandardPartItemNames.ReinforcedIronPlate]: "IconDesc_ReinforcedIronPlates_256.png",
+  [StandardPartItemNames.CopperSheet]: "IconDesc_CopperSheet_256.png",
+  [StandardPartItemNames.AlcladAluminumSheet]: "IconDesc_AluminiumSheet_256.png",
+  [StandardPartItemNames.AluminumCasing]: "IconDesc_AluminiumCasing_256.png",
+  [StandardPartItemNames.SteelPipe]: "IconDesc_SteelPipe_256.png",
+  [StandardPartItemNames.StealBeam]: "IconDesc_SteelBeam_256.png",
+  [StandardPartItemNames.EncasedIndustrialBeam]: "IconDesc_EncasedSteelBeam_256.png",
+  [StandardPartItemNames.ModularFrame]: "IconDesc_ModularFrame_256.png",
+  [StandardPartItemNames.HeavyModularFrame]: "IconDesc_ModularFrameHeavy_256.png",
+  [StandardPartItemNames.FusedModularFrame]: "IconDesc_FusedModularFrame_256.png",
+  [StandardPartItemNames.FicsiteTrigon]: "IconDesc_FicsiteMesh_256.png",
+  [StandardPartItemNames.Fabric]: "IconDesc_Fabric_256.png",
   [StandardPartItemNames.Plastic]: "IconDesc_Plastic_256.png",
+  [StandardPartItemNames.Rubber]: "IconDesc_Rubber_256.png",
   [IndustrialPartItemNames.Rotor]: "IconDesc_Rotor_256.png",
   [IndustrialPartItemNames.Stator]: "IconDesc_Stator_256.png",
+  [IndustrialPartItemNames.Battery]: "IconDesc_Battery_256.png",
+  [IndustrialPartItemNames.Motor]: "IconDesc_Engine_256.png",
+  [IndustrialPartItemNames.HeatSink]: "IconDesc_Heatsink_256.png",
+  [IndustrialPartItemNames.CoolingSystem]: "IconDesc_CoolingSystem_256.png",
+  [IndustrialPartItemNames.TurboMotor]: "IconDesc_TurboMotor_256.png",
   [ElectronicItemNames.Wire]: "IconDesc_Wire_256.png",
   [ElectronicItemNames.Cabel]: "IconDesc_Cables_256.png",
+  [ElectronicItemNames.Quickwire]: "IconDesc_Quickwire_256.png",
   [ElectronicItemNames.CircuitBoard]: "IconDesc_CircuitBoard_256.png",
   [ElectronicItemNames.AILimiter]: "IconDesc_AILimiter_256.png",
+  [ElectronicItemNames.HighSpeedConnector]: "IconDesc_HighSpeedConnector_256.png",
   [ElectronicItemNames.ReanimatedSAM]: "IconDesc_ReanimatedSam_256.png",
+  [ElectronicItemNames.SAMFluctuator]: "IconDesc_SamFluctuator_256.png",
   [CommunicationItemNames.Computer]: "IconDesc_Computer_256.png",
+  [CommunicationItemNames.Supercomputer]: "IconDesc_QuantumComputer_256.png",
+  [CommunicationItemNames.RadioControlUnit]: "IconDesc_RadioControlUnit_256.png",
+  [CommunicationItemNames.CrystalOscillator]: "IconDesc_CrystalOscillator_256.png",
+  [CommunicationItemNames.SuperpositionOscillator]: "IconDesc_SuperPositionOscillator_256.png",
   [QuantumTechnologyItemNames.Diamonds]: "IconDesc_Diamonds_256.png",
+  [QuantumTechnologyItemNames.TimeCrystal]: "IconDesc_ExoticMatter_256.png",
   [ContainerItemNames.EmptyCanister]: "IconDesc_EmptyCannister_256.png",
   [FuelItemNames.CompactedCoal]: "IconDesc_CompactedCoal_256.png",
   [FuelItemNames.UraniumFuelRod]: "IconDesc_NuclearFuelRod_256.png",
@@ -287,6 +340,7 @@ const ITEM_IMAGE_MAP: Record<ItemName, string> = {
   [NuclearItemNames.ElectromagneticControlRod]: "IconDesc_ElectromagneticControlRod_256.png",
   [WasteItemNames.UraniumWaste]: "IconDesc_NuclearWaste_256.png",
   [SpecialItemNames.SmartPlating]: "IconDesc_SpelevatorPart_1_256.png",
+  [SpecialItemNames.PortableMiner]: "IconDesc_PortableMiner_256.png",
 };
 
 export function getItemImageByName(name: ItemName) {
