@@ -2,6 +2,14 @@ import {
   useMemo,
 } from "react";
 import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@headlessui/react";
+import {
+  ChevronDownIcon,
+} from "@heroicons/react/20/solid";
+import {
   type AppNode,
 } from "@/types";
 import {
@@ -19,6 +27,26 @@ interface Summary {
 
 function entries<T extends string | number | symbol, S>(records: Record<T, S>) {
   return Object.entries(records) as [T, S][];
+}
+
+function SummaryDisclosure({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Disclosure as="div" className="p-6">
+      <DisclosureButton className="group flex w-full items-center justify-between">
+        <span className="text-sm/6 font-medium text-white group-data-hover:text-white/80">{title}</span>
+        <ChevronDownIcon className="size-5 fill-white/60 group-data-hover:fill-white/50 group-data-open:rotate-180" />
+      </DisclosureButton>
+      <DisclosurePanel className="mt-2 text-sm/5 text-white/50">
+        {children}
+      </DisclosurePanel>
+    </Disclosure>
+  );
 }
 
 export default function Summary({
@@ -58,11 +86,10 @@ export default function Summary({
   }, [nodes]);
   return (
     <div>
-      {summary.power_comsumed > 0 && <div><span className="font-bold">Power Cosumed:</span> ~{summary.power_comsumed} MW</div>}
-      {summary.power_generated > 0 && <div><span className="font-bold">Power Generated:</span> ~{summary.power_generated} MW</div>}
+      {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed">about {summary.power_comsumed} MW</SummaryDisclosure>}
+      {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated">about {summary.power_generated} MW</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
-        <>
-          <div className="font-bold">Items</div>
+        <SummaryDisclosure title="Items">
           <ul>
             {Object.keys(summary.need).sort().map(key => (
               <li
@@ -72,7 +99,7 @@ export default function Summary({
               </li>
             ))}
           </ul>
-        </>
+        </SummaryDisclosure>
       )}
     </div>
   );
