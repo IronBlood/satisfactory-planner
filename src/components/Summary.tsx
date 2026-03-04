@@ -37,12 +37,12 @@ function SummaryDisclosure({
   children: React.ReactNode;
 }) {
   return (
-    <Disclosure as="div" className="p-6">
+    <Disclosure as="div" className="p-4">
       <DisclosureButton className="group flex w-full items-center justify-between">
-        <span className="text-sm/6 font-medium text-white group-data-hover:text-white/80">{title}</span>
-        <ChevronDownIcon className="size-5 fill-white/60 group-data-hover:fill-white/50 group-data-open:rotate-180" />
+        <span className="font-medium text-sky-600 group-data-hover:text-sky-500">{title}</span>
+        <ChevronDownIcon className="size-5 fill-sky-600 group-data-hover:fill-sky-500 group-data-open:rotate-180" />
       </DisclosureButton>
-      <DisclosurePanel className="mt-2 text-sm/5 text-white/50">
+      <DisclosurePanel className="mt-2 text-sm text-slate-300">
         {children}
       </DisclosurePanel>
     </Disclosure>
@@ -85,7 +85,7 @@ export default function Summary({
     return s;
   }, [nodes]);
   return (
-    <div>
+    <div className="divide-y divide-slate-800">
       {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed">about {summary.power_comsumed} MW</SummaryDisclosure>}
       {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated">about {summary.power_generated} MW</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
