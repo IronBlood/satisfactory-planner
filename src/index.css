@@ -6,21 +6,11 @@ body {
 
 .planner-flow {
   --xy-edge-stroke-selected: var(--color-sky-500);
-}
-
-.react-flow__controls button {
-  background: var(--color-slate-800);
-  border-color: var(--color-slate-700);
-  color: var(--color-slate-400);
-}
-
-.react-flow__controls button:hover {
-  background: var(--color-slate-700);
-  color: var(--color-slate-100);
-}
-
-.react-flow__controls button[disabled] {
-  color: var(--color-slate-600);
+  --xy-controls-button-border-color: var(--color-slate-700);
+  --xy-controls-button-background-color: var(--color-slate-800);
+  --xy-controls-button-background-color-hover: var(--color-slate-700);
+  --xy-controls-button-color: var(--color-slate-400);
+  --xy-controls-button-color-hover: var(--color-slate-100);
 }
 
 .react-flow .react-flow__attribution {
