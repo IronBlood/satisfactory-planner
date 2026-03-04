@@ -21,6 +21,12 @@ body {
   color: var(--color-slate-400);
 }
 
+.react-flow__node-resource.selected,
+.react-flow__node-recipe.selected {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 1px var(--color-sky-500);
+}
+
 .react-flow__node-resource .react-flow__handle,
 .react-flow__node-recipe .react-flow__handle {
   height: 1rem;
