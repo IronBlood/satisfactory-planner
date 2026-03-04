@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useEffect,
 } from "react";
 import {
   getSimpleBezierPath,
@@ -20,6 +21,7 @@ export default function ConveyorEdge({
   targetX,
   targetY,
   data,
+  selected,
 }: EdgeProps<ConveyorEdgeType>) {
   const { setEdges } = useReactFlow();
   const [edgePath, centerX, centerY] = getSimpleBezierPath({ sourceX, sourceY, targetX, targetY });
@@ -30,6 +32,14 @@ export default function ConveyorEdge({
         : e)
     );
   }, [id]);
+  useEffect(() => {
+    setEdges((edges) =>
+      edges.map((e) => e.id === id
+        ? { ...e, animated: selected }
+        : e
+      )
+    );
+  }, [id, selected]);
   return (
     <>
       <BaseEdge id={id} path={edgePath} />
