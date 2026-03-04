@@ -19,6 +19,7 @@ import {
   type Edge,
   type IsValidConnection,
   type Node,
+  type NodeMouseHandler,
   type OnConnectEnd,
   type ReactFlowInstance,
   type XYPosition,
@@ -141,6 +142,18 @@ function App({
       }
     }
   }, [screenToFlowPosition, onOpenWithSource, onOpenRecipePicker]);
+
+  const onNodeClick: NodeMouseHandler<Node> = useCallback((_, node) => {
+    const linked = edges.filter(e => e.target === node.id || e.source === node.id);
+    const linkedIdSet = new Set(linked.map(e => e.id));
+    setEdges(edges =>
+      edges.map(e => linkedIdSet.has(e.id)
+
+        ? { ...e, selected: true }
+        : { ...e, selected: false }
+      )
+    );
+  }, [setEdges, edges]);
 
   const onSave = useCallback((name: string) => {
     if (!pos) {
@@ -343,6 +356,7 @@ function App({
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
           onNodesChange={onNodesChange}
+          onNodeClick={onNodeClick}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           onConnectEnd={onConnectEnd}
