@@ -53,7 +53,7 @@ export default function RecipePicker({
         />
       )),
     ];
-  }, [recipes, target]);
+  }, [recipes, target, activeRecipe]);
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-10 text-white">
