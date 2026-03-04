@@ -66,11 +66,12 @@ export default function Summary({
         continue;
       }
 
-      const { recipe, count } = node.data;
-      const ceiled = Math.ceil(count);
-      const building = Buildings[recipe.building];
+      const ceiled = Math.ceil(node.data.count);
+      const building = node.type === "building"
+        ? Buildings[node.data.name]
+        : Buildings[node.data.recipe.building];
 
-      const power_total = count * building.power;
+      const power_total = node.data.count * building.power;
       if (power_total < 0) {
         s.power_generated -= power_total;
       } else {

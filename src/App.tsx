@@ -40,6 +40,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import Summary from "@/components/Summary";
 import type { AppNode } from "./types";
+import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
@@ -84,6 +85,7 @@ function App({
   const nodeTypes = useMemo(() => ({
     recipe: RecipeNode,
     resource: ResourceNode,
+    building: BuildingNode,
   }), []);
 
   const edgeTypes = useMemo(() => ({
@@ -155,37 +157,47 @@ function App({
     );
   }, [setEdges, edges]);
 
-  const onSave = useCallback((name: string) => {
+  const onSave = useCallback((name: string, isBuilding?: boolean) => {
     if (!pos) {
       throw new Error(`invalid position`);
     }
 
-    const id = crypto.randomUUID();
+    const id = crypto.randomUUID() as string;
     const position = {
       x: pos.x,
       y: pos.y,
     };
     let idx = -1;
-    let node: ResourceNodeType | RecipeNodeType = ((idx = getSrcIdx(name)) > 0)
+    let node: AppNode = isBuilding
       ? {
         id,
         position,
-        type: "resource",
+        type: "building",
         data: {
-          count: 0,
-          name: name.substring(0, idx),
-          isLocked: false,
-        },
-      } : {
-        id,
-        position,
-        data: {
-          recipe: getRecipeByName(name),
+          name: name as SupportedBuildings,
           count: 1,
           isLocked: false,
         },
-        type: "recipe",
-      };
+      } : ((idx = getSrcIdx(name)) > 0)
+        ? {
+          id,
+          position,
+          type: "resource",
+          data: {
+            count: 0,
+            name: name.substring(0, idx),
+            isLocked: false,
+          },
+        } : {
+          id,
+          position,
+          data: {
+            recipe: getRecipeByName(name),
+            count: 1,
+            isLocked: false,
+          },
+          type: "recipe",
+        };
 
     setNodes((nodes) => [
       ...nodes,

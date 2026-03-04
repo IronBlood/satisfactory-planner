@@ -25,9 +25,34 @@ import {
   getRecipesByOutput,
   type Recipe,
 } from "@/data/recipes";
+import { Buildings } from "@/data/buildings";
 
 function keysOf<T extends object>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
+}
+
+function CatItem({
+  onClick,
+  isSelected,
+  text,
+}: {
+  onClick: () => void;
+  isSelected: boolean;
+  text: string;
+}) {
+  return (
+    <div
+      onClick={onClick}
+      className={[
+        "block py-1 pl-4 transition duration-200 ease-in-out",
+        isSelected
+          ? "border-l border-accent text-sky-500"
+          : "border-l border-transparent text-gray-300 hover:text-sky-500 cursor-pointer",
+      ].join(" ")}
+    >
+      {text}
+    </div>
+  );
 }
 
 export default function Picker({
@@ -38,17 +63,31 @@ export default function Picker({
 }: {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (name: string) => void;
+  onSave: (name: string, isBuilding?: boolean) => void;
   sourceType?: ItemName;
 }) {
   const categoryKeys = keysOf(ItemCategories);
   type CategoryValue = (typeof ItemCategories)[keyof typeof ItemCategories];
+  const CatBuilding = "Buildings";
+  type ExtendedCategoryValue = CategoryValue | typeof CatBuilding;
 
-  const [activeCat, setActiveCat] = useState<CategoryValue>(ItemCategories.ALL);
+  const specialBuildings = [
+    Buildings["AWESOME Sink"],
+    Buildings["Resource Well Pressurizer"],
+  ];
+
+  const [activeCat, setActiveCat] = useState<ExtendedCategoryValue>(ItemCategories.ALL);
   const [activeRecipe, setActiveRecipe] = useState<string | null>(null);
+  const [activeItem, setActiveItem] = useState<Item | null>(null);
+  const [activeBuilding, setActiveBuilding] = useState<string | undefined>(undefined);
 
-  const onPickCat = useCallback((k: CategoryValue) => {
+  const onPickCat = useCallback((k: ExtendedCategoryValue) => {
+    setActiveBuilding(undefined);
     setActiveCat(k);
+    if (k === CatBuilding) {
+      setActiveItem(null);
+      setActiveRecipe(null);
+    }
   }, []);
 
   const recipesCanBeUsed: Recipe[] = useMemo(() => {
@@ -69,12 +108,13 @@ export default function Picker({
   }, [sourceType, recipesCanBeUsed]);
 
   const filteredItems = useMemo(() => {
-    return activeCat === ItemCategories.ALL
-      ? sourceItems
-      : sourceItems.filter(item => item.category === activeCat);
+    return activeCat === CatBuilding
+      ? []
+      : activeCat === ItemCategories.ALL
+        ? sourceItems
+        : sourceItems.filter(item => item.category === activeCat);
   }, [activeCat, sourceItems]);
 
-  const [activeItem, setActiveItem] = useState<Item | null>(null);
   const selectItem = useCallback((item: Item | null) => {
     if (item === activeItem) {
       return;
@@ -86,19 +126,48 @@ export default function Picker({
   const clearSelection = useCallback(() => {
     setActiveItem(null);
     setActiveRecipe(null);
-  }, [setActiveItem, setActiveRecipe]);
+    setActiveBuilding(undefined);
+  }, [setActiveItem, setActiveRecipe, setActiveBuilding]);
+
+  const canBeAdded = useMemo(() => {
+    if (activeCat === CatBuilding) {
+      return activeBuilding !== undefined;
+    }
+
+    return activeRecipe !== null;
+  }, [activeCat, activeBuilding, activeRecipe, CatBuilding]);
+
+  const doSave = useCallback(() => {
+    if (activeCat === CatBuilding) {
+      onSave(activeBuilding!, true);
+    } else {
+      onSave(activeRecipe!);
+    }
+    clearSelection();
+    onClose();
+  }, [activeRecipe, activeBuilding, activeCat, CatBuilding]);
 
   const cardViews = useMemo(() => {
-    return filteredItems.map(item => (
-      <ItemView
-        key={item.name}
-        name={item.name}
-        image={getItemImageByName(item.name)}
-        onClick={() => selectItem(item)}
-        activeItem={activeItem?.name}
-      />
-    ));
-  }, [filteredItems, activeItem]);
+    return activeCat === CatBuilding
+      ? specialBuildings.map(building => (
+        <ItemView
+          key={building.name}
+          name={building.name}
+          image={building.image}
+          onClick={() => setActiveBuilding(building.name)}
+          activeItem={activeBuilding}
+        />
+      ))
+      : filteredItems.map(item => (
+        <ItemView
+          key={item.name}
+          name={item.name}
+          image={getItemImageByName(item.name)}
+          onClick={() => selectItem(item)}
+          activeItem={activeItem?.name}
+        />
+      ));
+  }, [filteredItems, activeItem, activeCat, specialBuildings]);
 
   const recipeViews = useMemo(() => {
     const source_key = activeItem === null ? "" : `${activeItem.name} - source`;
@@ -168,17 +237,18 @@ export default function Picker({
               <div className="grid flex-1 min-h-0 grid-cols-3 overflow-hidden bg-slate-800">
                 <div className="col-span-1 hidden h-full overflow-hidden p-3 sm:block sm:pl-6">
                   <div className="col-span-1 h-full overflow-auto py-2">
+                    {!sourceType && <CatItem
+                      onClick={() => onPickCat(CatBuilding)}
+                      isSelected={activeCat === CatBuilding}
+                      text={CatBuilding}
+                    />}
                     {categoryKeys.map((k) => (
-                      <div
+                      <CatItem
                         key={k}
                         onClick={() => onPickCat(ItemCategories[k])}
-                        className={[
-                          "block py-1 pl-4 transition duration-200 ease-in-out",
-                          ItemCategories[k] === activeCat
-                            ? "border-l border-accent text-sky-500"
-                            : "border-l border-transparent text-gray-300 hover:text-sky-500 cursor-pointer",
-                        ].join(" ")}
-                      >{ItemCategories[k]}</div>
+                        isSelected={activeCat === ItemCategories[k]}
+                        text={ItemCategories[k]}
+                      />
                     ))}
                   </div>
                 </div>
@@ -208,7 +278,7 @@ export default function Picker({
             <div
               className="flex gap-3 bg-slate-900 px-3 py-3 sm:flex-row-reverse sm:px-6"
             >
-              <button className={["flex items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm", activeRecipe ? "hover:bg-sky-400" : "cursor-not-allowed opacity-50"].join(" ")} disabled={activeRecipe === null} onClick={() => { onSave(activeRecipe!); clearSelection(); onClose(); }}>Add to planner</button>
+              <button className={["flex items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm", canBeAdded ? "hover:bg-sky-400" : "cursor-not-allowed opacity-50"].join(" ")} disabled={!canBeAdded} onClick={doSave}>Add to planner</button>
               <button className="flex items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400" onClick={() => onClose()}>Cancel</button>
             </div>
           </DialogPanel>
