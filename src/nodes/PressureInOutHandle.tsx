@@ -1,6 +1,10 @@
 import {
+  useMemo,
+} from "react";
+import {
   Handle,
   Position,
+  useNodeConnections,
 } from "@xyflow/react";
 
 export type PressureInOutHandleParams = {
@@ -16,6 +20,20 @@ export default function PressureInOutHandle({
   nodeId,
   position,
 }: PressureInOutHandleParams) {
+  const connections = useNodeConnections({
+    handleType,
+    handleId: PressureHandleId,
+    id: nodeId,
+  });
+
+  const isConnectable = useMemo(() => {
+    if (handleType === "target") {
+      return connections.length < 1;
+    }
+
+    return true;
+  }, [connections, handleType]);
+
   return (
     <div
       className={position === Position.Top ? "-mt-2" : "-mb-2"}
@@ -24,6 +42,7 @@ export default function PressureInOutHandle({
         type={handleType}
         position={position}
         id={PressureHandleId}
+        isConnectable={isConnectable}
       />
     </div>
   );
