@@ -12,12 +12,14 @@ import {
   type Recipe,
 } from "../data/recipes";
 import {
+  BuildingNames,
   Buildings,
 } from "../data/buildings";
 import NumericInput from "../components/NumericInput";
 import InOutHandle from "./InOutHandle";
 import OutputImage from "@/components/OutputImage";
 import BaseNode from "./BaseNode";
+import PressureInOutHandle from "./PressureInOutHandle";
 
 export type RecipeNodeType = Node<{
   recipe: Recipe;
@@ -53,6 +55,13 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
             onCommit={(next) => setCount(next / rate.rate)}
           />
         ))}
+        {recipe.building === BuildingNames.ResourceWellExtractor && (
+          <PressureInOutHandle
+            handleType="target"
+            nodeId={props.id}
+            position={Position.Top}
+          />
+        )}
       </BaseNode.InHandles>
       <BaseNode.Body>
         <div className="flex gap-3">
