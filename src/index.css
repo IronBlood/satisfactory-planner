@@ -33,6 +33,18 @@ body {
   transform: none;
 }
 
+.react-flow__node .pressure-handle-red .react-flow__handle[data-handleid="PressureHandleId"] {
+  --xy-handle-background-color: var(--color-red-700);
+}
+
+.react-flow__node .pressure-handle-green .react-flow__handle[data-handleid="PressureHandleId"] {
+  --xy-handle-background-color: var(--color-green-700);
+}
+
+.react-flow__node .pressure-handle-yellow .react-flow__handle[data-handleid="PressureHandleId"] {
+  --xy-handle-background-color: var(--color-yellow-700);
+}
+
 .react-flow__node .react-flow__handle[data-handleid="AwesomeSinkHandle"] {
   --xy-handle-background-color: var(--color-green-700);
 }

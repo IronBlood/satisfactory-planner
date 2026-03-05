@@ -110,6 +110,7 @@ function RWPNode(props: RWPNodePropsType) {
           handleType="source"
           nodeId={props.id}
           position={Position.Bottom}
+          parentCount={props.data.count}
         />
       </BaseNode.OutHandles>
       <BaseNode.Body>
