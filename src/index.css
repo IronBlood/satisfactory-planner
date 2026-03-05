@@ -32,3 +32,7 @@ body {
   position: unset;
   transform: none;
 }
+
+.react-flow__node .react-flow__handle[data-handleid="AwesomeSinkHandle"] {
+  --xy-handle-background-color: var(--color-green-700);
+}

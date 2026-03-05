@@ -10,6 +10,7 @@ import {
 import BaseNode from "./BaseNode";
 import NumericInput from "@/components/NumericInput";
 import { useCallback } from "react";
+import AwesomeSinkHandle from "./SinkHandle";
 
 export type SupportedBuildings =
   | typeof BuildingNames.AwesomeSink
@@ -56,6 +57,9 @@ function AwesomeSinkNode(props: AwesomeSinkNodePropsType) {
       isLocked={props.data.isLocked}
       nodeId={props.id}
     >
+      <BaseNode.InHandles>
+        <AwesomeSinkHandle />
+      </BaseNode.InHandles>
       <BaseNode.Body>
         <div className="flex gap-3">
           <div className="shrink items-center">
