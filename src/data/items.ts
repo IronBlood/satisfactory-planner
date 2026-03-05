@@ -346,3 +346,10 @@ const ITEM_IMAGE_MAP: Record<ItemName, string> = {
 export function getItemImageByName(name: ItemName) {
   return imageByName[ITEM_IMAGE_MAP[name]];
 }
+
+const liquidSet = new Set(Object.values(LiquidItemNames));
+const gasSet = new Set(Object.values(GasItemNames));
+
+export function isItemSinkable(name: ItemName) {
+  return !liquidSet.has(name) && !gasSet.has(name);
+}

@@ -32,7 +32,7 @@ import ResourceNode, { type ResourceNodeType } from "@/nodes/ResourceNode";
 import {
   getRecipeByName,
 } from "./data/recipes";
-import { type ItemName } from "@/data/items";
+import { isItemSinkable, type ItemName } from "@/data/items";
 import ConveyorEdge, { type ConveyorEdgeType } from "./nodes/ConveyorEdge";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -54,7 +54,9 @@ const isValidConnection: IsValidConnection<Edge> = (connection) => {
       return false;
     }
 
-    return true;
+    return connection.sourceHandle
+      ? isItemSinkable(connection.sourceHandle)
+      : false;
   }
   return connection.sourceHandle === connection.targetHandle;
 };
