@@ -400,6 +400,30 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  {
+    name: LiquidItemNames.Water,
+    building: BuildingNames.WaterExtractor,
+    inputs: [],
+    outputs: [
+      {
+        name: LiquidItemNames.Water,
+        rate: 120,
+      },
+    ],
+  },
+
+  ...purities.map(({ purity, mul_p }) => ({
+    name: `${LiquidItemNames.Water} (${purity}) Resource Well`,
+    building: BuildingNames.ResourceWellExtractor,
+    inputs: [],
+    outputs: [
+      {
+        name: LiquidItemNames.Water,
+        rate: 30 * mul_p,
+      },
+    ],
+  } as Recipe)),
+
   ...purities.map(({ purity, mul_p }) => ({
     name: `${LiquidItemNames.CrudeOil} (${purity})`,
     building: BuildingNames.OilExtractor,
@@ -408,6 +432,30 @@ export const Recipes: Recipe[] = [
       {
         name: LiquidItemNames.CrudeOil,
         rate: 60 * mul_p,
+      },
+    ],
+  } as Recipe)),
+
+  ...purities.map(({ purity, mul_p }) => ({
+    name: `${LiquidItemNames.CrudeOil} (${purity}) Resource Well`,
+    building: BuildingNames.ResourceWellExtractor,
+    inputs: [],
+    outputs: [
+      {
+        name: LiquidItemNames.CrudeOil,
+        rate: 30 * mul_p,
+      },
+    ],
+  } as Recipe)),
+
+  ...purities.map(({ purity, mul_p }) => ({
+    name: `${GasItemNames.NitrogenGas} (${purity})`,
+    building: BuildingNames.ResourceWellExtractor,
+    inputs: [],
+    outputs: [
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 30 * mul_p,
       },
     ],
   } as Recipe)),
