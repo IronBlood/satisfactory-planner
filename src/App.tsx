@@ -41,6 +41,7 @@ import {
 import Summary from "@/components/Summary";
 import type { AppNode } from "./types";
 import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
+import { AwesomeSinkHandleId } from "./nodes/SinkHandle";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
@@ -129,6 +130,9 @@ function App({
 
   const onConnectEnd: OnConnectEnd = useCallback((event, state) => {
     if (state.toNode === null) {
+      if (state.fromHandle?.id === AwesomeSinkHandleId) {
+        return;
+      }
       const { clientX, clientY } = "changedTouches" in event ? event.changedTouches[0] : event;
       setPos(screenToFlowPosition({ x: clientX, y: clientY }));
       if (state.fromHandle?.type === "source") {
