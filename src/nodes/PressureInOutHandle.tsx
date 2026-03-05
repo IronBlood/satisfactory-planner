@@ -31,7 +31,6 @@ export default function PressureInOutHandle({
   const maxConnections = useMemo(() => {
     if (handleType === "target")
       return 1;
-    console.log(parentCount);
     return Math.ceil(parentCount) * 6;
   }, [handleType, parentCount]);
 
