@@ -11,7 +11,7 @@ import {
 } from "@xyflow/react";
 import { getItemImageByName, type ItemName } from "@/data/items";
 import InOutHandle from "@/nodes/InOutHandle";
-import RateLocker from "@/components/RateLocker";
+import BaseNode from "./BaseNode";
 
 export type ResourceNodeType = Node<{
   name: ItemName;
@@ -31,14 +31,8 @@ export default memo((props: NodeProps<ResourceNodeType>) => {
   const image = useMemo(() => getItemImageByName(props.data.name), [props]);
 
   return (
-    <div
-      className={[
-        "relative rounded-lg bg-slate-700 border-0",
-        props.data.isLocked ? "nodrag" : "",
-      ].join(" ")}
-      style={{ minWidth: "80px" }}
-    >
-      <div className="px-3 pt-4 pb-2">
+    <BaseNode nodeId={props.id} isLocked={props.data.isLocked}>
+      <BaseNode.Body>
         <div className="flex items-center gap-2">
           <img
             alt={props.data.name}
@@ -53,16 +47,8 @@ export default memo((props: NodeProps<ResourceNodeType>) => {
             <div className="text-xs text-gray-500">Source:&nbsp;<span>{props.data.count}</span></div>
           </div>
         </div>
-      </div>
-      <div className="relative flex h-6 justify-evenly rounded-b-lg bg-slate-800">
-        <div className="absolute bottom-0 right-0 top-0 flex w-auto items-center gap-2 px-2">
-          <RateLocker
-            nodeId={props.id}
-            isLocked={props.data.isLocked}
-          />
-        </div>
-      </div>
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-end justify-evenly">
+      </BaseNode.Body>
+      <BaseNode.OutHandles>
         <InOutHandle
           nodeId={props.id}
           name={props.data.name}
@@ -72,7 +58,7 @@ export default memo((props: NodeProps<ResourceNodeType>) => {
           isLocked={props.data.isLocked}
           onCommit={(next) => setResource(next)}
         />
-      </div>
-    </div>
+      </BaseNode.OutHandles>
+    </BaseNode>
   );
 });
