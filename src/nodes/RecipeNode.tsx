@@ -17,7 +17,7 @@ import {
 import NumericInput from "../components/NumericInput";
 import InOutHandle from "./InOutHandle";
 import OutputImage from "@/components/OutputImage";
-import RateLocker from "@/components/RateLocker";
+import BaseNode from "./BaseNode";
 
 export type RecipeNodeType = Node<{
   recipe: Recipe;
@@ -36,14 +36,11 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
   const { recipe } = props.data;
   const building = Buildings[recipe.building];
   return (
-    <div
-      className={[
-        "relative rounded-lg bg-slate-700 border-0",
-        props.data.isLocked ? "nodrag" : "",
-      ].join(" ")}
-      style={{ minWidth: "80px" }}
+    <BaseNode
+      isLocked={props.data.isLocked}
+      nodeId={props.id}
     >
-      <div className="flex h-6 justify-evenly rounded-t-lg bg-slate-800 pattern-lines-yellow-800">
+      <BaseNode.InHandles>
         {recipe.inputs.map(rate => (
           <InOutHandle
             key={rate.name}
@@ -56,8 +53,8 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
             onCommit={(next) => setCount(next / rate.rate)}
           />
         ))}
-      </div>
-      <div className="px-3 py-2">
+      </BaseNode.InHandles>
+      <BaseNode.Body>
         <div className="flex gap-3">
           <div className="flex shrink items-center">
             <img
@@ -77,18 +74,8 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
             <OutputImage outputs={recipe.outputs} showSecond={false} />
           </div>
         </div>
-      </div>
-      {/* Bottom background */}
-      <div className="relative flex h-6 justify-evenly rounded-b-lg bg-slate-800 pattern-lines-yellow-800">
-        <div className="absolute bottom-0 right-0 top-0 flex w-auto items-center gap-2 px-2">
-          <RateLocker
-            nodeId={props.id}
-            isLocked={props.data.isLocked}
-          />
-        </div>
-      </div>
-      {/* Bottom handlers */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-end justify-evenly">
+      </BaseNode.Body>
+      <BaseNode.OutHandles>
         {recipe.outputs.map(rate => (
           <InOutHandle
             key={rate.name}
@@ -101,7 +88,7 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
             onCommit={(next) => setCount(next / rate.rate)}
           />
         ))}
-      </div>
-    </div>
+      </BaseNode.OutHandles>
+    </BaseNode>
   );
 });
