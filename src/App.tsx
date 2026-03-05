@@ -33,16 +33,17 @@ import {
   getRecipeByName,
 } from "./data/recipes";
 import { isItemSinkable, type ItemName } from "@/data/items";
-import ConveyorEdge, { type ConveyorEdgeType } from "./nodes/ConveyorEdge";
+import ConveyorEdge from "./nodes/ConveyorEdge";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 import Summary from "@/components/Summary";
-import type { AppNode } from "./types";
+import type { AppEdge, AppNode } from "./types";
 import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
 import { AwesomeSinkHandleId } from "./nodes/SinkHandle";
 import { PressureHandleId } from "./nodes/PressureInOutHandle";
+import PressureEdge from "./nodes/PressureEdge";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
@@ -81,7 +82,7 @@ function App({
   const [source, setSource] = useState<SourceState | null>(null);
   const [target, setTarget] = useState<SourceState | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([] as Node[]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([] as ConveyorEdgeType[]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([] as AppEdge[]);
   const {
     setViewport,
     screenToFlowPosition,
@@ -90,7 +91,7 @@ function App({
   const lastClickAt = useRef<number | null>(null);
   const [isOpen, setOpen] = useState(false);
   const [isRecipePickerOpen, setRecipePickerOpen] = useState(false);
-  const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, ConveyorEdgeType> | null>(null);
+  const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, AppEdge> | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const nodeTypes = useMemo(() => ({
@@ -101,6 +102,7 @@ function App({
 
   const edgeTypes = useMemo(() => ({
     conveyor: ConveyorEdge,
+    pressure: PressureEdge,
   }), []);
 
   const toggleSidebar = useCallback(() => setSidebarOpen(!isSidebarOpen), [isSidebarOpen, setSidebarOpen]);
@@ -125,14 +127,20 @@ function App({
 
   const onConnect = useCallback(
     (params: Connection) => {
-      const edge: ConveyorEdgeType = {
-        ...params,
-        id: crypto.randomUUID(),
-        type: "conveyor",
-        data: {
-          value: 0,
-        },
-      };
+      const edge: AppEdge = params.sourceHandle === PressureHandleId
+        ? {
+          ...params,
+          id: crypto.randomUUID(),
+          type: "pressure",
+        }
+        : {
+          ...params,
+          id: crypto.randomUUID(),
+          type: "conveyor",
+          data: {
+            value: 0,
+          },
+        };
       return setEdges((edgesSnapshot) => addEdge(edge as never, edgesSnapshot))
     },
     [],
@@ -342,7 +350,7 @@ function App({
       const text = await file.text();
       const json = JSON.parse(text) as {
         nodes: Node[];
-        edges: ConveyorEdgeType[];
+        edges: AppEdge[];
         viewport: {
           x: number;
           y: number;
