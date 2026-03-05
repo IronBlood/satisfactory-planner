@@ -17,9 +17,9 @@ import {
 } from "../data/buildings";
 import NumericInput from "../components/NumericInput";
 import InOutHandle from "./InOutHandle";
-import OutputImage from "@/components/OutputImage";
 import BaseNode from "./BaseNode";
 import PressureInOutHandle from "./PressureInOutHandle";
+import { getItemImageByName } from "@/data/items";
 
 export type RecipeNodeType = Node<{
   recipe: Recipe;
@@ -79,8 +79,14 @@ export default memo((props: NodeProps<RecipeNodeType>) => {
             <div className="text-sm">{recipe.name}</div>
             <div className="text-xs text-gray-400">{building.name} x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count} MW)</span></div>
           </div>
-          <div className="shrink relative">
-            <OutputImage outputs={recipe.outputs} showSecond={false} />
+          <div className="shrink items-center">
+            <img
+              alt={recipe.outputs[0].name}
+              width="256"
+              height="256"
+              className="aspect-square w-8"
+              src={getItemImageByName(recipe.outputs[0].name)}
+            />
           </div>
         </div>
       </BaseNode.Body>
