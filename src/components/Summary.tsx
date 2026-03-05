@@ -87,8 +87,8 @@ export default function Summary({
   }, [nodes]);
   return (
     <div className="divide-y divide-slate-800">
-      {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed">about {summary.power_comsumed} MW</SummaryDisclosure>}
-      {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated">about {summary.power_generated} MW</SummaryDisclosure>}
+      {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed"><span className="italic">approx.</span> {summary.power_comsumed} MW</SummaryDisclosure>}
+      {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {summary.power_generated} MW</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
         <SummaryDisclosure title="Items">
           <ul>
