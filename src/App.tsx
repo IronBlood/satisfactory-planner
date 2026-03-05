@@ -42,14 +42,20 @@ import Summary from "@/components/Summary";
 import type { AppNode } from "./types";
 import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
 import { AwesomeSinkHandleId } from "./nodes/SinkHandle";
+import { PressureHandleId } from "./nodes/PressureInOutHandle";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
 }
 
 const isValidConnection: IsValidConnection<Edge> = (connection) => {
-  if (connection.targetHandle === AwesomeSinkHandleId)
+  if (connection.targetHandle === AwesomeSinkHandleId) {
+    if (connection.sourceHandle === PressureHandleId) {
+      return false;
+    }
+
     return true;
+  }
   return connection.sourceHandle === connection.targetHandle;
 };
 
@@ -132,7 +138,10 @@ function App({
 
   const onConnectEnd: OnConnectEnd = useCallback((event, state) => {
     if (state.toNode === null) {
-      if (state.fromHandle?.id === AwesomeSinkHandleId) {
+      if ([
+        AwesomeSinkHandleId,
+        PressureHandleId,
+      ].includes(state.fromHandle?.id ?? "")) {
         return;
       }
       const { clientX, clientY } = "changedTouches" in event ? event.changedTouches[0] : event;

@@ -1,4 +1,5 @@
 import {
+  Position,
   useReactFlow,
   type Node,
   type NodeProps,
@@ -11,6 +12,7 @@ import BaseNode from "./BaseNode";
 import NumericInput from "@/components/NumericInput";
 import { useCallback } from "react";
 import AwesomeSinkHandle from "./SinkHandle";
+import PressureInOutHandle from "./PressureInOutHandle";
 
 export type SupportedBuildings =
   | typeof BuildingNames.AwesomeSink
@@ -104,7 +106,11 @@ function RWPNode(props: RWPNodePropsType) {
       nodeId={props.id}
     >
       <BaseNode.OutHandles>
-        TODO
+        <PressureInOutHandle
+          handleType="source"
+          nodeId={props.id}
+          position={Position.Bottom}
+        />
       </BaseNode.OutHandles>
       <BaseNode.Body>
         <div className="flex gap-3">
