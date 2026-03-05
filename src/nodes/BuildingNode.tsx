@@ -41,7 +41,7 @@ function isAwesomeSinkNode(props: BuildingNodePropsType): props is AwesomeSinkNo
 }
 
 function AwesomeSinkNode(props: AwesomeSinkNodePropsType) {
-  const building = Buildings["AWESOME Sink"];
+  const building = Buildings[BuildingNames.AwesomeSink];
 
   const { setNodes } = useReactFlow();
   const setCount = useCallback((next: number) => {
