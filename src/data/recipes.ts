@@ -40,13 +40,13 @@ export interface Recipe {
 const purities: Array<{ purity: OrePurity; mul_p: number }> = [
   { purity: OrePurities.Impure, mul_p: 1 },
   { purity: OrePurities.Normal, mul_p: 2 },
-  { purity: OrePurities.Pure, mul_p: 3 },
+  { purity: OrePurities.Pure, mul_p: 4 },
 ];
 
 const miners: Array<{ mk: BuildingName; mul_m: number}> = [
   { mk: BuildingNames.MinerMk1, mul_m: 1 },
   { mk: BuildingNames.MinerMk2, mul_m: 2 },
-  { mk: BuildingNames.MinerMk3, mul_m: 3 },
+  { mk: BuildingNames.MinerMk3, mul_m: 4 },
 ];
 
 export const Recipes: Recipe[] = [
