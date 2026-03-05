@@ -48,6 +48,8 @@ function getSrcIdx(s: string) {
 }
 
 const isValidConnection: IsValidConnection<Edge> = (connection) => {
+  if (connection.targetHandle === AwesomeSinkHandleId)
+    return true;
   return connection.sourceHandle === connection.targetHandle;
 };
 
