@@ -472,17 +472,17 @@ function Wrapper() {
         <div className="flex gap-2">
           <MenuButton
             onClick={() => actionsRef.current.saveFlow?.()}
-            text="save"
+            text="export"
           />
           <MenuButton
             onClick={() => actionsRef.current.loadFlow?.()}
-            text="load"
+            text="import"
           />
           <MenuButton
             onClick={() => actionsRef.current.toggleSidebar?.()}
             text="info"
           />
-          <div className="transition duration-200 text-slate-300 hover:text-slate-100 items-center text-2xl"><FontAwesomeIcon icon={faGithub} /></div>
+          <div className="transition duration-200 text-sky-700 hover:text-sky-500 items-center text-2xl"><FontAwesomeIcon icon={faGithub} /></div>
         </div>
       </header>
       <ReactFlowProvider>
