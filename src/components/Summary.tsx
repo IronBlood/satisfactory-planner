@@ -21,13 +21,17 @@ import {
 import {
   BuildingNames,
   Buildings,
+  type BuildingName,
 } from "@/data/buildings";
 import { ConveyorEdgeTypeId, type ConveyorEdgeType } from "@/nodes/ConveyorEdge";
+import type { ResourceNodeType } from "@/nodes/ResourceNode";
+import type { RecipeNodeType } from "@/nodes/RecipeNode";
 
 type ItemMap = Record<ItemName, number>;
 
 interface Summary {
   need: ItemMap;
+  inputs: ItemMap;
   outputs: ItemMap;
   power_comsumed: number;
   power_generated: number;
@@ -77,6 +81,27 @@ function ListItems({
   );
 }
 
+const InputBuildings: BuildingName[] = [
+  BuildingNames.MinerMk1,
+  BuildingNames.MinerMk1,
+  BuildingNames.MinerMk3,
+  BuildingNames.WaterExtractor,
+  BuildingNames.OilExtractor,
+  BuildingNames.ResourceWellExtractor,
+];
+
+function isInputNode(node: AppNode): node is ResourceNodeType | RecipeNodeType {
+  if (node.type === "resource") {
+    return true;
+  }
+
+  if (node.type === "building") {
+    return false;
+  }
+
+  return InputBuildings.includes(node.data.recipe.building);
+}
+
 export default function Summary({
   nodes,
 }: {
@@ -90,12 +115,23 @@ export default function Summary({
   const summary: Summary = useMemo(() => {
     const s: Summary = {
       need: {},
+      inputs: {},
       outputs: {},
       power_comsumed: 0,
       power_generated: 0,
     };
 
     for (const node of nodes) {
+      if (isInputNode(node)) {
+        if (node.type === "resource") {
+          s.inputs[node.data.name] = (s.inputs[node.data.name] || 0) + node.data.count;
+        } else {
+          // NOTE: this should be a valid pair
+          const { name, rate } = node.data.recipe.outputs[0];
+          s.inputs[name] = (s.inputs[name] || 0) + rate;
+        }
+      }
+
       if (node.type === "resource") {
         continue;
       }
@@ -147,6 +183,11 @@ export default function Summary({
       {Object.keys(summary.need).length > 0 && (
         <SummaryDisclosure title="Items">
           <ListItems map={summary.need} unit="x" />
+        </SummaryDisclosure>
+      )}
+      {Object.keys(summary.inputs).length > 0 && (
+        <SummaryDisclosure title="Inputs">
+          <ListItems map={summary.inputs} unit="/min" />
         </SummaryDisclosure>
       )}
       {Object.keys(summary.outputs).length > 0 && (
