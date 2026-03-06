@@ -228,23 +228,23 @@ function Wrapper() {
             </ListboxOptions>
           </Listbox>
           <div
-            className="text-slate-300 text-sm hover:text-slate-100"
+            className="text-slate-300 text-sm"
           >
             <FontAwesomeIcon
-              className="cursor-pointer"
+              className="cursor-pointer hover:text-slate-100"
               icon={faPlus}
               onClick={addFlow}
             />
             <FontAwesomeIcon
               className={[
                 "",
-                data.flows.length === 1 ? "text-slate-600" : "cursor-pointer",
+                data.flows.length === 1 ? "text-slate-600" : "cursor-pointer hover:text-slate-100",
               ].join(" ")}
               icon={faMinus}
               onClick={deleteFlow}
             />
             <FontAwesomeIcon
-              className="cursor-pointer"
+              className="cursor-pointer hover:text-slate-100"
               icon={faPencil}
               onClick={renameFlow}
             />
