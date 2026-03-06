@@ -273,78 +273,289 @@ export const Items: Item[] = [
   })),
 ].sort((a, b) => a.name.localeCompare(b.name));
 
-const ITEM_IMAGE_MAP: Record<ItemName, string> = {
-  [OreItemNames.Limestone]: "Stone_256.png",
-  [OreItemNames.IronOre]: "IconDesc_iron_new_256.png",
-  [OreItemNames.CopperOre]: "IconDesc_copper_new_256.png",
-  [OreItemNames.CateriumOre]: "IconDesc_CateriumOre_256.png",
-  [OreItemNames.Coal]: "IconDesc_CoalOre_256.png",
-  [OreItemNames.RawQuartz]: "IconDesc_QuartzCrystal_256.png",
-  [OreItemNames.Sulfur]: "Sulfur_256.png",
-  [OreItemNames.Bauxite]: "IconDesc_Bauxite_256.png",
-  [OreItemNames.SAM]: "IconDesc_SameOre_256.png",
-  [OreItemNames.Uranium]: "IconDesc_UraniumOre_256.png",
-  [IngotItemNames.IronIngot]: "IconDesc_IronIngot_256.png",
-  [IngotItemNames.CopperIngot]: "IconDesc_CopperIngot_256.png",
-  [MineralItemNames.Concrete]: "IconDesc_Concrete_256.png",
-  [LiquidItemNames.Water]: "LiquidWater_Pipe_256.png",
-  [LiquidItemNames.CrudeOil]: "LiquidOil_Pipe_256.png",
-  [LiquidItemNames.Turbofuel]: "IconDesc_LiquidTurboFuel_Pipe_256.png",
-  [LiquidItemNames.NitricAcid]: "IconDesc_NitricAcid_256.png",
-  [GasItemNames.NitrogenGas]: "IconDesc_NitricAcid_256.png",
-  [GasItemNames.RocketFuel]: "IconDesc_RocketFuelPipe_256.png",
-  [StandardPartItemNames.IronRod]: "IconDesc_IronRods_256.png",
-  [StandardPartItemNames.Screws]: "IconDesc_IronScrews_256.png",
-  [StandardPartItemNames.IronPlate]: "IconDesc_IronPlates_256.png",
-  [StandardPartItemNames.ReinforcedIronPlate]: "IconDesc_ReinforcedIronPlates_256.png",
-  [StandardPartItemNames.CopperSheet]: "IconDesc_CopperSheet_256.png",
-  [StandardPartItemNames.AlcladAluminumSheet]: "IconDesc_AluminiumSheet_256.png",
-  [StandardPartItemNames.AluminumCasing]: "IconDesc_AluminiumCasing_256.png",
-  [StandardPartItemNames.SteelPipe]: "IconDesc_SteelPipe_256.png",
-  [StandardPartItemNames.StealBeam]: "IconDesc_SteelBeam_256.png",
-  [StandardPartItemNames.EncasedIndustrialBeam]: "IconDesc_EncasedSteelBeam_256.png",
-  [StandardPartItemNames.ModularFrame]: "IconDesc_ModularFrame_256.png",
-  [StandardPartItemNames.HeavyModularFrame]: "IconDesc_ModularFrameHeavy_256.png",
-  [StandardPartItemNames.FusedModularFrame]: "IconDesc_FusedModularFrame_256.png",
-  [StandardPartItemNames.FicsiteTrigon]: "IconDesc_FicsiteMesh_256.png",
-  [StandardPartItemNames.Fabric]: "IconDesc_Fabric_256.png",
-  [StandardPartItemNames.Plastic]: "IconDesc_Plastic_256.png",
-  [StandardPartItemNames.Rubber]: "IconDesc_Rubber_256.png",
-  [IndustrialPartItemNames.Rotor]: "IconDesc_Rotor_256.png",
-  [IndustrialPartItemNames.Stator]: "IconDesc_Stator_256.png",
-  [IndustrialPartItemNames.Battery]: "IconDesc_Battery_256.png",
-  [IndustrialPartItemNames.Motor]: "IconDesc_Engine_256.png",
-  [IndustrialPartItemNames.HeatSink]: "IconDesc_Heatsink_256.png",
-  [IndustrialPartItemNames.CoolingSystem]: "IconDesc_CoolingSystem_256.png",
-  [IndustrialPartItemNames.TurboMotor]: "IconDesc_TurboMotor_256.png",
-  [ElectronicItemNames.Wire]: "IconDesc_Wire_256.png",
-  [ElectronicItemNames.Cable]: "IconDesc_Cables_256.png",
-  [ElectronicItemNames.Quickwire]: "IconDesc_Quickwire_256.png",
-  [ElectronicItemNames.CircuitBoard]: "IconDesc_CircuitBoard_256.png",
-  [ElectronicItemNames.AILimiter]: "IconDesc_AILimiter_256.png",
-  [ElectronicItemNames.HighSpeedConnector]: "IconDesc_HighSpeedConnector_256.png",
-  [ElectronicItemNames.ReanimatedSAM]: "IconDesc_ReanimatedSam_256.png",
-  [ElectronicItemNames.SAMFluctuator]: "IconDesc_SamFluctuator_256.png",
-  [CommunicationItemNames.Computer]: "IconDesc_Computer_256.png",
-  [CommunicationItemNames.Supercomputer]: "IconDesc_QuantumComputer_256.png",
-  [CommunicationItemNames.RadioControlUnit]: "IconDesc_RadioControlUnit_256.png",
-  [CommunicationItemNames.CrystalOscillator]: "IconDesc_CrystalOscillator_256.png",
-  [CommunicationItemNames.SuperpositionOscillator]: "IconDesc_SuperPositionOscillator_256.png",
-  [QuantumTechnologyItemNames.Diamonds]: "IconDesc_Diamonds_256.png",
-  [QuantumTechnologyItemNames.TimeCrystal]: "IconDesc_ExoticMatter_256.png",
-  [ContainerItemNames.EmptyCanister]: "IconDesc_EmptyCannister_256.png",
-  [FuelItemNames.CompactedCoal]: "IconDesc_CompactedCoal_256.png",
-  [FuelItemNames.UraniumFuelRod]: "IconDesc_NuclearFuelRod_256.png",
-  [ConsumedItemNames.BlackPowder]: "IconDesc_Gunpowder_256.png",
-  [AmmoItemNames.IronRebar]: "IconDesc_Rebar_256.png",
-  [NuclearItemNames.ElectromagneticControlRod]: "IconDesc_ElectromagneticControlRod_256.png",
-  [WasteItemNames.UraniumWaste]: "IconDesc_NuclearWaste_256.png",
-  [SpecialItemNames.SmartPlating]: "IconDesc_SpelevatorPart_1_256.png",
-  [SpecialItemNames.PortableMiner]: "IconDesc_PortableMiner_256.png",
+type ITEM_META = {
+  image: string;
+  sink_points: number;
+};
+
+const ITEM_MAP: Record<ItemName, ITEM_META> = {
+  [OreItemNames.Limestone]: {
+    image: "Stone_256.png",
+    sink_points: 2,
+  },
+  [OreItemNames.IronOre]: {
+    image: "IconDesc_iron_new_256.png",
+    sink_points: 1,
+  },
+  [OreItemNames.CopperOre]: {
+    image: "IconDesc_copper_new_256.png",
+    sink_points: 3,
+  },
+  [OreItemNames.CateriumOre]: {
+    image: "IconDesc_CateriumOre_256.png",
+    sink_points: 7,
+  },
+  [OreItemNames.Coal]: {
+    image: "IconDesc_CoalOre_256.png",
+    sink_points: 3,
+  },
+  [OreItemNames.RawQuartz]: {
+    image: "IconDesc_QuartzCrystal_256.png",
+    sink_points: 15,
+  },
+  [OreItemNames.Sulfur]: {
+    image: "Sulfur_256.png",
+    sink_points: 11,
+  },
+  [OreItemNames.Bauxite]: {
+    image: "IconDesc_Bauxite_256.png",
+    sink_points: 8,
+  },
+  [OreItemNames.SAM]: {
+    image: "IconDesc_SameOre_256.png",
+    sink_points: 20,
+  },
+  [OreItemNames.Uranium]: {
+    image: "IconDesc_UraniumOre_256.png",
+    sink_points: 35,
+  },
+  [IngotItemNames.IronIngot]: {
+    image: "IconDesc_IronIngot_256.png",
+    sink_points: 2,
+  },
+  [IngotItemNames.CopperIngot]: {
+    image: "IconDesc_CopperIngot_256.png",
+    sink_points: 6,
+  },
+  [MineralItemNames.Concrete]: {
+    image: "IconDesc_Concrete_256.png",
+    sink_points: 12,
+  },
+  [LiquidItemNames.Water]: {
+    image: "LiquidWater_Pipe_256.png",
+    // TODO
+    sink_points: 5,
+  },
+  [LiquidItemNames.CrudeOil]: {
+    image: "LiquidOil_Pipe_256.png",
+    sink_points: 30,
+  },
+  [LiquidItemNames.Turbofuel]: {
+    image: "IconDesc_LiquidTurboFuel_Pipe_256.png",
+    sink_points: 225,
+  },
+  [LiquidItemNames.NitricAcid]: {
+    image: "IconDesc_NitricAcid_256.png",
+    sink_points: 94,
+  },
+  [GasItemNames.NitrogenGas]: {
+    image: "IconDesc_NitricAcid_256.png",
+    sink_points: 10,
+  },
+  [GasItemNames.RocketFuel]: {
+    image: "IconDesc_RocketFuelPipe_256.png",
+    sink_points: 289,
+  },
+  [StandardPartItemNames.IronRod]: {
+    image: "IconDesc_IronRods_256.png",
+    sink_points: 4,
+  },
+  [StandardPartItemNames.Screws]: {
+    image: "IconDesc_IronScrews_256.png",
+    sink_points: 2,
+  },
+  [StandardPartItemNames.IronPlate]: {
+    image: "IconDesc_IronPlates_256.png",
+    sink_points: 6,
+  },
+  [StandardPartItemNames.ReinforcedIronPlate]: {
+    image: "IconDesc_ReinforcedIronPlates_256.png",
+    sink_points: 120,
+  },
+  [StandardPartItemNames.CopperSheet]: {
+    image: "IconDesc_CopperSheet_256.png",
+    sink_points: 24,
+  },
+  [StandardPartItemNames.AlcladAluminumSheet]: {
+    image: "IconDesc_AluminiumSheet_256.png",
+    sink_points: 266,
+  },
+  [StandardPartItemNames.AluminumCasing]: {
+    image: "IconDesc_AluminiumCasing_256.png",
+    sink_points: 393,
+  },
+  [StandardPartItemNames.SteelPipe]: {
+    image: "IconDesc_SteelPipe_256.png",
+    sink_points: 24,
+  },
+  [StandardPartItemNames.StealBeam]: {
+    image: "IconDesc_SteelBeam_256.png",
+    sink_points: 64,
+  },
+  [StandardPartItemNames.EncasedIndustrialBeam]: {
+    image: "IconDesc_EncasedSteelBeam_256.png",
+    sink_points: 528,
+  },
+  [StandardPartItemNames.ModularFrame]: {
+    image: "IconDesc_ModularFrame_256.png",
+    sink_points: 408
+  },
+  [StandardPartItemNames.HeavyModularFrame]: {
+    image: "IconDesc_ModularFrameHeavy_256.png",
+    sink_points: 10800,
+  },
+  [StandardPartItemNames.FusedModularFrame]: {
+    image: "IconDesc_FusedModularFrame_256.png",
+    sink_points: 62840,
+  },
+  [StandardPartItemNames.FicsiteTrigon]: {
+    image: "IconDesc_FicsiteMesh_256.png",
+    sink_points: 1291,
+  },
+  [StandardPartItemNames.Fabric]: {
+    image: "IconDesc_Fabric_256.png",
+    sink_points: 140,
+  },
+  [StandardPartItemNames.Plastic]: {
+    image: "IconDesc_Plastic_256.png",
+    sink_points: 75,
+  },
+  [StandardPartItemNames.Rubber]: {
+    image: "IconDesc_Rubber_256.png",
+    sink_points: 60,
+  },
+  [IndustrialPartItemNames.Rotor]: {
+    image: "IconDesc_Rotor_256.png",
+    sink_points: 140,
+  },
+  [IndustrialPartItemNames.Stator]: {
+    image: "IconDesc_Stator_256.png",
+    sink_points: 240,
+  },
+  [IndustrialPartItemNames.Battery]: {
+    image: "IconDesc_Battery_256.png",
+    sink_points: 465,
+  },
+  [IndustrialPartItemNames.Motor]: {
+    image: "IconDesc_Engine_256.png",
+    sink_points: 1520,
+  },
+  [IndustrialPartItemNames.HeatSink]: {
+    image: "IconDesc_Heatsink_256.png",
+    sink_points: 2804,
+  },
+  [IndustrialPartItemNames.CoolingSystem]: {
+    image: "IconDesc_CoolingSystem_256.png",
+    sink_points: 12006,
+  },
+  [IndustrialPartItemNames.TurboMotor]: {
+    image: "IconDesc_TurboMotor_256.png",
+    sink_points: 240496,
+  },
+  [ElectronicItemNames.Wire]: {
+    image: "IconDesc_Wire_256.png",
+    sink_points: 6,
+  },
+  [ElectronicItemNames.Cable]: {
+    image: "IconDesc_Cables_256.png",
+    sink_points: 24,
+  },
+  [ElectronicItemNames.Quickwire]: {
+    image: "IconDesc_Quickwire_256.png",
+    sink_points: 17,
+  },
+  [ElectronicItemNames.CircuitBoard]: {
+    image: "IconDesc_CircuitBoard_256.png",
+    sink_points: 696,
+  },
+  [ElectronicItemNames.AILimiter]: {
+    image: "IconDesc_AILimiter_256.png",
+    sink_points: 920,
+  },
+  [ElectronicItemNames.HighSpeedConnector]: {
+    image: "IconDesc_HighSpeedConnector_256.png",
+    sink_points: 3776,
+  },
+  [ElectronicItemNames.ReanimatedSAM]: {
+    image: "IconDesc_ReanimatedSam_256.png",
+    sink_points: 160,
+  },
+  [ElectronicItemNames.SAMFluctuator]: {
+    image: "IconDesc_SamFluctuator_256.png",
+    sink_points: 1968,
+  },
+  [CommunicationItemNames.Computer]: {
+    image: "IconDesc_Computer_256.png",
+    sink_points: 8352,
+  },
+  [CommunicationItemNames.Supercomputer]: {
+    image: "IconDesc_QuantumComputer_256.png",
+    sink_points: 97352,
+  },
+  [CommunicationItemNames.RadioControlUnit]: {
+    image: "IconDesc_RadioControlUnit_256.png",
+    sink_points: 32352,
+  },
+  [CommunicationItemNames.CrystalOscillator]: {
+    image: "IconDesc_CrystalOscillator_256.png",
+    sink_points: 3072,
+  },
+  [CommunicationItemNames.SuperpositionOscillator]: {
+    image: "IconDesc_SuperPositionOscillator_256.png",
+    sink_points: 37292,
+  },
+  [QuantumTechnologyItemNames.Diamonds]: {
+    image: "IconDesc_Diamonds_256.png",
+    sink_points: 240,
+  },
+  [QuantumTechnologyItemNames.TimeCrystal]: {
+    image: "IconDesc_ExoticMatter_256.png",
+    sink_points: 960,
+  },
+  [ContainerItemNames.EmptyCanister]: {
+    image: "IconDesc_EmptyCannister_256.png",
+    sink_points: 60,
+  },
+  [FuelItemNames.CompactedCoal]: {
+    image: "IconDesc_CompactedCoal_256.png",
+    sink_points: 28,
+  },
+  [FuelItemNames.UraniumFuelRod]: {
+    image: "IconDesc_NuclearFuelRod_256.png",
+    sink_points: 43468,
+  },
+  [ConsumedItemNames.BlackPowder]: {
+    image: "IconDesc_Gunpowder_256.png",
+    sink_points: 14,
+  },
+  [AmmoItemNames.IronRebar]: {
+    image: "IconDesc_Rebar_256.png",
+    sink_points: 8,
+  },
+  [NuclearItemNames.ElectromagneticControlRod]: {
+    image: "IconDesc_ElectromagneticControlRod_256.png",
+    sink_points: 2560,
+  },
+  [WasteItemNames.UraniumWaste]: {
+    image: "IconDesc_NuclearWaste_256.png",
+    sink_points: -1,
+  },
+  [SpecialItemNames.SmartPlating]: {
+    image: "IconDesc_SpelevatorPart_1_256.png",
+    sink_points: 520,
+  },
+  [SpecialItemNames.PortableMiner]: {
+    image: "IconDesc_PortableMiner_256.png",
+    sink_points: 56,
+  },
 };
 
 export function getItemImageByName(name: ItemName) {
-  return imageByName[ITEM_IMAGE_MAP[name]];
+  return imageByName[ITEM_MAP[name].image];
+}
+
+export function getItemSPByName(name: ItemName) {
+  return ITEM_MAP[name].sink_points;
 }
 
 const liquidSet = new Set(Object.values(LiquidItemNames));
