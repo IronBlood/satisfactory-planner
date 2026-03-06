@@ -44,6 +44,7 @@ import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
 import { AwesomeSinkHandleId } from "./nodes/SinkHandle";
 import { PressureHandleId } from "./nodes/PressureInOutHandle";
 import PressureEdge from "./nodes/PressureEdge";
+import { stripeData, useDataContext } from "./DataProvider";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
@@ -465,13 +466,31 @@ function FooterLink({
 function Wrapper() {
   const actionsRef = useRef<ActionsRef>({});
 
+  const { data } = useDataContext();
+
+  const exportFlow = useCallback(() => {
+    const stripedData = stripeData(data);
+    const json = JSON.stringify(stripedData, null, 2);
+
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `satisfactory-planner-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, [data]);
+
   return (
     <div className="h-screen w-screen flex flex-col">
       <header className="h-16 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950 text-white text-xl">
         <div>Yet Another Satisfactory Planner</div>
         <div className="flex gap-2">
           <MenuButton
-            onClick={() => actionsRef.current.saveFlow?.()}
+            onClick={() => exportFlow()}
             text="export"
           />
           <MenuButton

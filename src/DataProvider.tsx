@@ -49,3 +49,29 @@ export function useDataContext() {
   }
   return ctx;
 }
+
+export function stripeData(data: MultiFlow) {
+  const striped: MultiFlow = {
+    version: CURR_VER,
+    flows: data.flows.map(f => ({
+      ...f,
+      flow: {
+        nodes: f.flow.nodes.map(node => {
+          const dup = Object.assign({}, node);
+          delete dup.dragging;
+          delete dup.selected;
+          return dup;
+        }),
+        edges: f.flow.edges.map(edge => {
+          const dup = Object.assign({}, edge);
+          delete edge.animated;
+          delete edge.selected;
+          return dup;
+        }),
+        viewport: Object.assign(f.flow.viewport),
+      },
+    })),
+  };
+
+  return striped;
+}
