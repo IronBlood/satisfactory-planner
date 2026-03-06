@@ -14,3 +14,16 @@ export type AppEdge =
   | ConveyorEdgeType
   | PressureEdgeType
 ;
+
+/**
+ * A single flow, which can be used by xyflow directly
+ */
+export type AppFlow = {
+  nodes: AppNode[];
+  edges: AppEdge[];
+  viewport: {
+    x: number;
+    y: number;
+    zoom: number;
+  };
+}

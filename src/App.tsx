@@ -39,7 +39,7 @@ import {
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 import Summary from "@/components/Summary";
-import type { AppEdge, AppNode } from "./types";
+import type { AppEdge, AppFlow, AppNode } from "./types";
 import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
 import { AwesomeSinkHandleId } from "./nodes/SinkHandle";
 import { PressureHandleId } from "./nodes/PressureInOutHandle";
@@ -348,15 +348,7 @@ function App({
 
     try {
       const text = await file.text();
-      const json = JSON.parse(text) as {
-        nodes: Node[];
-        edges: AppEdge[];
-        viewport: {
-          x: number;
-          y: number;
-          zoom: number;
-        };
-      };
+      const json = JSON.parse(text) as AppFlow;
 
       if (json) {
         const {
