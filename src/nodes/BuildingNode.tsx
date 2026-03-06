@@ -13,6 +13,7 @@ import NumericInput from "@/components/NumericInput";
 import { useCallback } from "react";
 import AwesomeSinkHandle from "./SinkHandle";
 import PressureInOutHandle from "./PressureInOutHandle";
+import AwesomeCollectorHandle from "./CollectorHandle";
 
 export type SupportedBuildings =
   | typeof BuildingNames.AwesomeSink
@@ -153,6 +154,9 @@ function CollectorNode(props: AwesomeCollectorPropsType) {
       isLocked={props.data.isLocked}
       nodeId={props.id}
     >
+      <BaseNode.InHandles>
+        <AwesomeCollectorHandle />
+      </BaseNode.InHandles>
       <BaseNode.Body>
         <div className="flex gap-3">
           <div className="shrink items-center">

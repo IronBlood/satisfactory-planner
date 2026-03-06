@@ -45,6 +45,7 @@ body {
   --xy-handle-background-color: var(--color-yellow-700);
 }
 
+.react-flow__node .react-flow__handle[data-handleid="AwesomeCollectorHandle"],
 .react-flow__node .react-flow__handle[data-handleid="AwesomeSinkHandle"] {
   --xy-handle-background-color: var(--color-green-700);
 }
