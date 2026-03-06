@@ -39,7 +39,7 @@ import {
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 import Summary from "@/components/Summary";
-import type { AppEdge, AppFlow, AppNode } from "./types";
+import type { AppEdge, AppFlow, AppNode, MultiFlow } from "./types";
 import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
 import { AwesomeSinkHandleId } from "./nodes/SinkHandle";
 import { PressureHandleId } from "./nodes/PressureInOutHandle";
@@ -69,7 +69,6 @@ type SourceState = {
 };
 
 type ActionsRef = {
-  loadFlow?: () => void;
   toggleSidebar?: () => void;
 };
 
@@ -92,7 +91,6 @@ function App({
   const [isOpen, setOpen] = useState(false);
   const [isRecipePickerOpen, setRecipePickerOpen] = useState(false);
   const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, AppEdge> | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const nodeTypes = useMemo(() => ({
     recipe: RecipeNode,
@@ -309,43 +307,12 @@ function App({
     [screenToFlowPosition, onOpen],
   );
 
-  const onLoadFlow = useCallback(() => {
-    fileInputRef.current?.click();
-  }, [setRfInstance]);
-
-  const onPickFlowFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file)
-      return;
-
-    try {
-      const text = await file.text();
-      const json = JSON.parse(text) as AppFlow;
-
-      if (json) {
-        const {
-          x = 0,
-          y = 0,
-          zoom = 1,
-        } = json.viewport;
-
-        setNodes(json.nodes || []);
-        setEdges(json.edges || []);
-        setViewport({ x, y, zoom });
-      }
-    } catch (err) {
-      console.error("Failed to load flow json", err);
-    } finally {
-      e.target.value = "";
-    }
-  }, []);
 
   useEffect(() => {
     onActionsReady({
-      loadFlow: onLoadFlow,
       toggleSidebar,
     });
-  }, [onActionsReady, onLoadFlow, toggleSidebar]);
+  }, [onActionsReady, toggleSidebar]);
 
   return (
     <main className="bg-slate-950 text-white flex h-full min-h-0 planner-flow">
@@ -392,13 +359,6 @@ function App({
         onSave={onSaveRecipePicker}
         target={target?.sourceItem}
       />
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="application/json,.json"
-        className="hidden"
-        onChange={onPickFlowFile}
-      />
     </main>
   )
 }
@@ -435,8 +395,9 @@ function FooterLink({
 
 function Wrapper() {
   const actionsRef = useRef<ActionsRef>({});
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const { data } = useDataContext();
+  const { data, setData } = useDataContext();
 
   const exportFlow = useCallback(() => {
     const stripedData = stripeData(data);
@@ -454,6 +415,30 @@ function Wrapper() {
     URL.revokeObjectURL(url);
   }, [data]);
 
+  const importFlow = useCallback(() => {
+    fileInputRef.current?.click();
+  }, [setData]);
+
+  const onPickFlowFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file)
+      return;
+
+    try {
+      const text = await file.text();
+      const json = JSON.parse(text) as MultiFlow;
+
+      if (json) {
+        // TODO validate
+        setData(json);
+      }
+    } catch (err) {
+      console.error("Failed to load flow json", err);
+    } finally {
+      e.target.value = "";
+    }
+  }, []);
+
   return (
     <div className="h-screen w-screen flex flex-col">
       <header className="h-16 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950 text-white text-xl">
@@ -464,7 +449,7 @@ function Wrapper() {
             text="export"
           />
           <MenuButton
-            onClick={() => actionsRef.current.loadFlow?.()}
+            onClick={() => importFlow()}
             text="import"
           />
           <MenuButton
@@ -472,6 +457,13 @@ function Wrapper() {
             text="info"
           />
           <div className="transition duration-200 text-sky-700 hover:text-sky-500 items-center text-2xl"><FontAwesomeIcon icon={faGithub} /></div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json,.json"
+            className="hidden"
+            onChange={onPickFlowFile}
+          />
         </div>
       </header>
       <ReactFlowProvider>
