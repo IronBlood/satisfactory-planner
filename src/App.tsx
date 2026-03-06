@@ -359,7 +359,7 @@ function App({
           isSidebarOpen ? "w-80" : "w-0 border-l-0",
         ].join(" ")}
       >
-        <Summary nodes={nodes as AppNode[]} />
+        <Summary nodes={nodes as AppNode[]} edges={edges} />
       </aside>
       <Picker
         isOpen={isOpen}

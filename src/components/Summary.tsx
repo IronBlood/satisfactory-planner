@@ -13,6 +13,7 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/20/solid";
 import {
+  type AppEdge,
   type AppNode,
 } from "@/types";
 import {
@@ -104,8 +105,10 @@ function isInputNode(node: AppNode): node is ResourceNodeType | RecipeNodeType {
 
 export default function Summary({
   nodes,
+  edges,
 }: {
   nodes: AppNode[];
+  edges: AppEdge[];
 }) {
   const {
     getNodeConnections,
@@ -175,7 +178,7 @@ export default function Summary({
     }
 
     return s;
-  }, [nodes, getEdge, getNodeConnections]);
+  }, [nodes, edges, getEdge, getNodeConnections]);
   return (
     <div className="divide-y divide-slate-800">
       {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed"><span className="italic">approx.</span> {summary.power_comsumed} MW</SummaryDisclosure>}
