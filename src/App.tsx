@@ -39,17 +39,25 @@ import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
 import { AwesomeSinkHandleId } from "./nodes/SinkHandle";
 import { PressureHandleId } from "./nodes/PressureInOutHandle";
 import PressureEdge from "./nodes/PressureEdge";
+import { AwesomeCollectorHandleId } from "./nodes/CollectorHandle";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
 }
 
 const isValidConnection: IsValidConnection<Edge> = (connection) => {
-  if (connection.targetHandle === AwesomeSinkHandleId) {
-    if (connection.sourceHandle === PressureHandleId) {
-      return false;
-    }
+  if (connection.sourceHandle === PressureHandleId && connection.targetHandle === PressureHandleId) {
+    return true;
+  }
+  if (connection.sourceHandle === PressureHandleId || connection.targetHandle === PressureHandleId) {
+    return false;
+  }
 
+  if (connection.targetHandle === AwesomeCollectorHandleId) {
+    return true;
+  }
+
+  if (connection.targetHandle === AwesomeSinkHandleId) {
     return connection.sourceHandle
       ? isItemSinkable(connection.sourceHandle)
       : false;
@@ -147,6 +155,7 @@ function App({
       if ([
         AwesomeSinkHandleId,
         PressureHandleId,
+        AwesomeCollectorHandleId,
       ].includes(state.fromHandle?.id ?? "")) {
         return;
       }
