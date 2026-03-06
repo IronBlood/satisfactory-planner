@@ -129,6 +129,21 @@ function Wrapper() {
   }, []);
 
   const setActiveIdx = useCallback((idx: number) => {
+    const snapshot = actionsRef.current.syncActiveFlow?.();
+    if (!snapshot) {
+      throw new Error("cannot get a snapshot");
+    }
+
+    const nextData = {
+      ...data,
+      flows: data.flows.map((flow, idx) => idx !== activeIdx
+        ? flow
+        : { ...flow, flow: snapshot }
+      ),
+    };
+
+    setData(nextData);
+
     if (idx < 0) {
       idx = 0;
     }
@@ -138,7 +153,7 @@ function Wrapper() {
     }
 
     _setActiveIdx(idx | 0);
-  }, [activeIdx, _setActiveIdx, data]);
+  }, [activeIdx, _setActiveIdx, data, setData]);
 
   const addFlow = useCallback(() => {
     setData({
@@ -260,7 +275,6 @@ function Wrapper() {
       <ReactFlowProvider>
         <App
           onActionsReady={(a) => { actionsRef.current = a; }}
-          currIdx={activeIdx}
         />
       </ReactFlowProvider>
       <footer className="h-12 border-t border-slate-800 bg-slate-950 px-4 flex items-center text-xs text-slate-400">

@@ -39,7 +39,6 @@ import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
 import { AwesomeSinkHandleId } from "./nodes/SinkHandle";
 import { PressureHandleId } from "./nodes/PressureInOutHandle";
 import PressureEdge from "./nodes/PressureEdge";
-import { useDataContext } from "./DataProvider";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
@@ -70,10 +69,8 @@ export type ActionsRef = {
 
 function App({
   onActionsReady,
-  currIdx,
 }: {
   onActionsReady: (a: ActionsRef) => void;
-  currIdx: number;
 }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [source, setSource] = useState<SourceState | null>(null);
@@ -89,8 +86,6 @@ function App({
   const [isOpen, setOpen] = useState(false);
   const [isRecipePickerOpen, setRecipePickerOpen] = useState(false);
   const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, AppEdge> | null>(null);
-  const prevIdx = useRef(currIdx);
-  const { data, setData } = useDataContext();
 
   const nodeTypes = useMemo(() => ({
     recipe: RecipeNode,
@@ -307,35 +302,6 @@ function App({
     },
     [screenToFlowPosition, onOpen],
   );
-
-  useEffect(() => {
-    if (currIdx === prevIdx.current)
-      return;
-
-    if (!rfInstance)
-      return;
-
-    const oldIdx = prevIdx.current;
-    const flow = rfInstance.toObject() as AppFlow;
-    setData({
-      ...data,
-      flows: data.flows.map((f, idx) => idx !== oldIdx
-        ? f
-        : { ...f, flow }),
-    });
-
-    prevIdx.current = currIdx;
-
-    const next = data.flows[currIdx].flow;
-    setNodes(next.nodes);
-    setEdges(next.edges);
-    const {
-      x = 0,
-      y = 0,
-      zoom = 1,
-    } = next.viewport;
-    setViewport({ x, y, zoom });
-  }, [currIdx, data, setData, rfInstance]);
 
   useEffect(() => {
     onActionsReady({
