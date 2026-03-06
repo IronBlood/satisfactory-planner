@@ -15,9 +15,11 @@ import {
 } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPlus,
+  faCheck,
   faMinus,
+  faPlus,
   faPencil,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
@@ -65,6 +67,8 @@ function Wrapper() {
   const [activeIdx, _setActiveIdx] = useState(0);
   const actionsRef = useRef<ActionsRef>({});
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [isRenaming, setRenaming] = useState(false);
+  const [planName, setPlanName] = useState("");
 
   const { data, setData } = useDataContext();
 
@@ -182,74 +186,107 @@ function Wrapper() {
     });
   }, [data, activeIdx, setData, setActiveIdx]);
 
-  const renameFlow = useCallback(() => {
+  const selectedFlowName = useMemo(() => list[activeIdx], [list, activeIdx]);
+  const activeFlow = useMemo(() => data.flows[activeIdx].flow, [data, activeIdx]);
+
+  const enterRenaming = useCallback(() => {
+    setRenaming(true);
+    setPlanName(selectedFlowName.name);
+  }, [setRenaming, selectedFlowName, setPlanName]);
+
+  const exitRenaming = useCallback(() => {
+    setRenaming(false);
+    setPlanName("");
+  }, [setRenaming, setPlanName]);
+
+  const acceptRenaming = useCallback(() => {
     setData({
       ...data,
       flows: data.flows.map((flow, idx) => idx === activeIdx
-        ? { ...flow, name: "TODO" }
+        ? { ...flow, name: planName }
         : flow
       ),
     });
-  }, [data, activeIdx]);
 
-  const selectedFlowName = useMemo(() => list[activeIdx], [list, activeIdx]);
-  const activeFlow = useMemo(() => data.flows[activeIdx].flow, [data, activeIdx]);
+    setRenaming(false);
+    setPlanName("");
+  }, [data, activeIdx, planName, setRenaming, setPlanName]);
 
   return (
     <div className="h-screen w-screen flex flex-col">
       <header className="h-16 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950 text-white text-xl">
         <div>Yet Another Satisfactory Planner</div>
-        <div className="w-46 gap-2 flex justify-between items-center">
-          <Listbox value={selectedFlowName} onChange={(v) => setActiveIdx(v.id)}>
-            <ListboxButton
-              className="relative rounded-lg bg-slate-800 text-left text-sm text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus:-outline-offset-2"
+        {!isRenaming &&
+          <div className="w-46 gap-2 flex justify-between items-center">
+            <Listbox value={selectedFlowName} onChange={(v) => setActiveIdx(v.id)}>
+              <ListboxButton
+                className="relative rounded-lg bg-slate-800 text-left text-sm text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus:-outline-offset-2"
+              >
+                {selectedFlowName.name}
+                <ChevronDownIcon
+                  className="group pointer-events-none aboslute size-4 fill-white/60"
+                  aria-hidden="true"
+                />
+              </ListboxButton>
+              <ListboxOptions
+                anchor="bottom"
+                transition
+                className="w-(--button-width) rounded-xl border border-slate-700 bg-slate-800 p-1 [--anchor-gap:--spacing(1)] focus:outline-none transition duration-100 ease-in data-leav:data-closed:opacity-0"
+              >
+                {list.map((item, idx) => (
+                  <ListboxOption
+                    key={`${idx}-${item.name}`}
+                    value={item}
+                    className="group flex cursor-default items-center gap-2 rounded-lg px-1 py-1 select-none data-focus:bg-slate-700"
+                  >
+                    <CheckIcon className="invisible size-4 fill-white group-data-selected:visible" />
+                    <div className="text-sm/6 text-slate-300">{item.name}</div>
+                  </ListboxOption>
+                ))}
+              </ListboxOptions>
+            </Listbox>
+            <div
+              className="text-slate-300 text-sm"
             >
-              {selectedFlowName.name}
-              <ChevronDownIcon
-                className="group pointer-events-none aboslute size-4 fill-white/60"
-                aria-hidden="true"
+              <FontAwesomeIcon
+                className="cursor-pointer hover:text-slate-100"
+                icon={faPlus}
+                onClick={addFlow}
               />
-            </ListboxButton>
-            <ListboxOptions
-              anchor="bottom"
-              transition
-              className="w-(--button-width) rounded-xl border border-slate-700 bg-slate-800 p-1 [--anchor-gap:--spacing(1)] focus:outline-none transition duration-100 ease-in data-leav:data-closed:opacity-0"
-            >
-              {list.map((item, idx) => (
-                <ListboxOption
-                  key={`${idx}-${item.name}`}
-                  value={item}
-                  className="group flex cursor-default items-center gap-2 rounded-lg px-1 py-1 select-none data-focus:bg-slate-700"
-                >
-                  <CheckIcon className="invisible size-4 fill-white group-data-selected:visible" />
-                  <div className="text-sm/6 text-slate-300">{item.name}</div>
-                </ListboxOption>
-              ))}
-            </ListboxOptions>
-          </Listbox>
-          <div
-            className="text-slate-300 text-sm"
-          >
+              <FontAwesomeIcon
+                className={[
+                  "",
+                  data.flows.length === 1 ? "text-slate-600" : "cursor-pointer hover:text-slate-100",
+                ].join(" ")}
+                icon={faMinus}
+                onClick={deleteFlow}
+              />
+              <FontAwesomeIcon
+                className="cursor-pointer hover:text-slate-100"
+                icon={faPencil}
+                onClick={enterRenaming}
+              />
+            </div>
+          </div>}
+        {isRenaming && <div className="flex items-center">
+          <input
+            className="bg-slate-800"
+            value={planName}
+            onChange={(e) => setPlanName(e.target.value)}
+          />
+          <div className="text-sm">
             <FontAwesomeIcon
-              className="cursor-pointer hover:text-slate-100"
-              icon={faPlus}
-              onClick={addFlow}
+              className="cursor-pointer text-green-300"
+              icon={faCheck}
+              onClick={acceptRenaming}
             />
             <FontAwesomeIcon
-              className={[
-                "",
-                data.flows.length === 1 ? "text-slate-600" : "cursor-pointer hover:text-slate-100",
-              ].join(" ")}
-              icon={faMinus}
-              onClick={deleteFlow}
-            />
-            <FontAwesomeIcon
-              className="cursor-pointer hover:text-slate-100"
-              icon={faPencil}
-              onClick={renameFlow}
+              className="cursor-pointer text-red-500"
+              icon={faXmark}
+              onClick={exitRenaming}
             />
           </div>
-        </div>
+        </div>}
         <div className="flex gap-2">
           <MenuButton
             onClick={() => exportFlow()}
