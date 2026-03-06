@@ -17,6 +17,7 @@ import {
   type AppNode,
 } from "@/types";
 import {
+  getItemSPByName,
   type ItemName,
 } from "@/data/items";
 import {
@@ -34,6 +35,7 @@ interface Summary {
   need: ItemMap;
   inputs: ItemMap;
   outputs: ItemMap;
+  sink_points: number;
   power_comsumed: number;
   power_generated: number;
 }
@@ -120,6 +122,7 @@ export default function Summary({
       need: {},
       inputs: {},
       outputs: {},
+      sink_points: 0,
       power_comsumed: 0,
       power_generated: 0,
     };
@@ -160,6 +163,24 @@ export default function Summary({
         continue;
       }
 
+      if (node.type === "building" && node.data.name === BuildingNames.AwesomeSink) {
+        const connections = getNodeConnections({
+          type: "target",
+          nodeId: node.id,
+        });
+
+        connections.forEach(c => {
+          const edge = getEdge(c.edgeId);
+          if (!c.sourceHandle || edge?.type !== ConveyorEdgeTypeId) {
+            // TODO
+            console.log("expect sourceHandle from:", c);
+            return;
+          }
+
+          s.sink_points += getItemSPByName(c.sourceHandle) * ((edge as ConveyorEdgeType).data?.value || 0);
+        });
+      }
+
       const ceiled = Math.ceil(node.data.count);
       const building = node.type === "building"
         ? Buildings[node.data.name]
@@ -179,10 +200,12 @@ export default function Summary({
 
     return s;
   }, [nodes, edges, getEdge, getNodeConnections]);
+
   return (
     <div className="divide-y divide-slate-800">
       {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed"><span className="italic">approx.</span> {summary.power_comsumed} MW</SummaryDisclosure>}
       {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {summary.power_generated} MW</SummaryDisclosure>}
+      {summary.sink_points > 0 && <SummaryDisclosure title="Sink Points"><span className="italic">approx.</span> {summary.sink_points} /min</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
         <SummaryDisclosure title="Items for Buildings">
           <ListItems map={summary.need} unit="x" />
