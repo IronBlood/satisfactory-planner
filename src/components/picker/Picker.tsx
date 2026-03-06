@@ -80,6 +80,16 @@ export default function Picker({
   const [activeRecipe, setActiveRecipe] = useState<string | null>(null);
   const [activeItem, setActiveItem] = useState<Item | null>(null);
   const [activeBuilding, setActiveBuilding] = useState<string | undefined>(undefined);
+  const [searchText, setSearchText] = useState("");
+
+  const computedRegex = useMemo(() => {
+    const trimmed = searchText.trim();
+    if (trimmed.length < 2) {
+      return null;
+    }
+    const replaced = trimmed.replace(/[-\\^$*+?.()|[\]{}]/g, "\\$&");
+    return RegExp(replaced, "i");
+  }, [searchText]);
 
   const onPickCat = useCallback((k: ExtendedCategoryValue) => {
     setActiveBuilding(undefined);
@@ -110,10 +120,14 @@ export default function Picker({
   const filteredItems = useMemo(() => {
     return activeCat === CatBuilding
       ? []
-      : activeCat === ItemCategories.ALL
-        ? sourceItems
-        : sourceItems.filter(item => item.category === activeCat);
-  }, [activeCat, sourceItems]);
+      : computedRegex === null
+        ? activeCat === ItemCategories.ALL
+          ? sourceItems
+          : sourceItems.filter(item => item.category === activeCat)
+        : activeCat === ItemCategories.ALL
+          ? sourceItems.filter(item => computedRegex.test(item.name))
+          : sourceItems.filter(item => item.category === activeCat && computedRegex.test(item.name));
+  }, [activeCat, sourceItems, computedRegex]);
 
   const selectItem = useCallback((item: Item | null) => {
     if (item === activeItem) {
@@ -226,7 +240,11 @@ export default function Picker({
                 className="TextField flex items-center w-full max-w-xs text-gray-500 border rounded-md hover:border-gray-300 transition-colors text-sm h-8 px-3 gap-2 border-gray-500"
               >
                 <MagnifyingGlassIcon className="size-5" />
-                <input className="_reset-input-number m-0 w-full min-w-0 border-none bg-transparent p-0 text-inherit placeholder:text-gray-400 focus:text-white focus:outline-none" placeholder="Search" />
+                <input
+                  className="_reset-input-number m-0 w-full min-w-0 border-none bg-transparent p-0 text-inherit placeholder:text-gray-400 focus:text-white focus:outline-none"
+                  placeholder="Search"
+                  onChange={(e) => setSearchText(e.target.value)}
+                />
               </div>
             </div>
 
