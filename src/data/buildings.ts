@@ -34,6 +34,7 @@ export const BuildingNames = {
   NuclearPowerPlant: "Nuclear Power Plant",
 
   AwesomeSink: "AWESOME Sink",
+  AwesomeCollector: "AWESOME Collector (non-existing)",
 } as const;
 
 export type BuildingName = typeof BuildingNames[keyof typeof BuildingNames];
@@ -259,6 +260,14 @@ export const Buildings: Record<BuildingName, Building> = {
       [StandardPartItemNames.ReinforcedIronPlate]: 15,
       [ElectronicItemNames.Cable]: 30,
       [MineralItemNames.Concrete]: 45,
+    },
+  },
+
+  [BuildingNames.AwesomeCollector]: {
+    name: BuildingNames.AwesomeCollector,
+    image: imageByName["IconDesc_StorageContainer_256.png"],
+    power: 0,
+    ingredients: {
     },
   },
 };
