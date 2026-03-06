@@ -200,6 +200,13 @@ function Wrapper() {
   }, [setRenaming, setPlanName]);
 
   const acceptRenaming = useCallback(() => {
+    if (planName.length === 0) {
+      // TODO
+      console.error("shouldn't be empty");
+      setRenaming(false);
+      return;
+    }
+
     const snapshot = actionsRef.current.syncActiveFlow?.();
     if (!snapshot) {
       throw new Error("cannot get a snapshot");
