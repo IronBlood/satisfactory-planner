@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import {
+  type AppFlow,
   type MultiFlow,
 } from "./types";
 
@@ -17,21 +18,32 @@ const DataContext = createContext<{
   setData: (data: MultiFlow) => void;
 } | null>(null);
 
+const DEFAULT_FLOW: {
+  name: string;
+  flow: AppFlow;
+} = {
+  name: "Unnamed Plan",
+  flow: {
+    nodes: [],
+    edges: [],
+    viewport: {
+      x: 0,
+      y: 0,
+      zoom: 1,
+    },
+  },
+} as const;
+
+export function getDefaultFlow() {
+  return Object.assign({}, DEFAULT_FLOW);
+}
+
 export function DataProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<MultiFlow>({
     version: CURR_VER,
-    flows: [{
-      name: "Unnamed Plan",
-      flow: {
-        nodes: [],
-        edges: [],
-        viewport: {
-          x: 0,
-          y: 0,
-          zoom: 1,
-        },
-      },
-    }],
+    flows: [
+      getDefaultFlow(),
+    ],
   });
 
   const value = useMemo(() => ({
