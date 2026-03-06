@@ -279,9 +279,10 @@ function Wrapper() {
           </div>}
         {isRenaming && <div className="flex items-center">
           <input
-            className="bg-slate-800"
+            className="bg-slate-800 border border-slate-500 rounded-md px-3 py-1 focus:outline-none focus:border-slate-100 hover:border-blue-300 placeholder:text-slate-500 outline-none"
             value={planName}
             onChange={(e) => setPlanName(e.target.value)}
+            placeholder="your next awesome plan"
           />
           <div className="text-sm">
             <FontAwesomeIcon
