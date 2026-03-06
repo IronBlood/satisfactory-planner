@@ -74,7 +74,22 @@ function Wrapper() {
   })), [data]);
 
   const exportFlow = useCallback(() => {
-    const stripedData = stripeData(data);
+    const snapshot = actionsRef.current.syncActiveFlow?.();
+    if (!snapshot) {
+      throw new Error("cannot get a snapshot");
+    }
+
+    const nextData = {
+      ...data,
+      flows: data.flows.map((flow, idx) => idx !== activeIdx
+        ? flow
+        : { ...flow, flow: snapshot }
+      ),
+    };
+
+    setData(nextData);
+
+    const stripedData = stripeData(nextData);
     const json = JSON.stringify(stripedData, null, 2);
 
     const blob = new Blob([json], { type: "application/json" });
@@ -87,7 +102,7 @@ function Wrapper() {
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-  }, [data]);
+  }, [data, activeIdx, actionsRef, setData]);
 
   const importFlow = useCallback(() => {
     fileInputRef.current?.click();

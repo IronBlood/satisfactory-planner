@@ -64,6 +64,7 @@ type SourceState = {
 };
 
 export type ActionsRef = {
+  syncActiveFlow?: () => AppFlow | null;
   toggleSidebar?: () => void;
 };
 
@@ -103,6 +104,7 @@ function App({
   }), []);
 
   const toggleSidebar = useCallback(() => setSidebarOpen(!isSidebarOpen), [isSidebarOpen, setSidebarOpen]);
+  const syncActiveFlow = useCallback(() => rfInstance?.toObject() as AppFlow | null, [rfInstance]);
 
   const onOpen = useCallback(() => {
     setOpen(true);
@@ -338,8 +340,9 @@ function App({
   useEffect(() => {
     onActionsReady({
       toggleSidebar,
+      syncActiveFlow,
     });
-  }, [onActionsReady, toggleSidebar]);
+  }, [onActionsReady, toggleSidebar, syncActiveFlow]);
 
   return (
     <main className="bg-slate-950 text-white flex h-full min-h-0 planner-flow">
