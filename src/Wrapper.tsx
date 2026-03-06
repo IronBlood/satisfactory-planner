@@ -200,17 +200,26 @@ function Wrapper() {
   }, [setRenaming, setPlanName]);
 
   const acceptRenaming = useCallback(() => {
+    const snapshot = actionsRef.current.syncActiveFlow?.();
+    if (!snapshot) {
+      throw new Error("cannot get a snapshot");
+    }
+
     setData({
       ...data,
       flows: data.flows.map((flow, idx) => idx === activeIdx
-        ? { ...flow, name: planName }
+        ? {
+          ...flow,
+          name: planName,
+          flow: snapshot,
+        }
         : flow
       ),
     });
 
     setRenaming(false);
     setPlanName("");
-  }, [data, activeIdx, planName, setRenaming, setPlanName]);
+  }, [data, activeIdx, planName, setRenaming, setPlanName, setData]);
 
   return (
     <div className="h-screen w-screen flex flex-col">
