@@ -74,6 +74,7 @@ export default function Picker({
   const specialBuildings = [
     Buildings[BuildingNames.AwesomeSink],
     Buildings[BuildingNames.ResourceWellPressurizer],
+    Buildings[BuildingNames.AwesomeCollector],
   ];
 
   const [activeCat, setActiveCat] = useState<ExtendedCategoryValue>(ItemCategories.ALL);

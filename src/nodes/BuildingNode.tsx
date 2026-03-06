@@ -17,6 +17,7 @@ import PressureInOutHandle from "./PressureInOutHandle";
 export type SupportedBuildings =
   | typeof BuildingNames.AwesomeSink
   | typeof BuildingNames.ResourceWellPressurizer
+  | typeof BuildingNames.AwesomeCollector
   ;
 
 type BaseBuildingData = {
@@ -32,10 +33,15 @@ type RWPData = BaseBuildingData & {
   name: typeof BuildingNames.ResourceWellPressurizer;
 };
 
-type BuildingData = AwesomeSinkData | RWPData;
+type AwesomeCollectorData = BaseBuildingData & {
+  name: typeof BuildingNames.AwesomeCollector;
+};
+
+type BuildingData = AwesomeSinkData | RWPData | AwesomeCollectorData;
 
 type AwesomeSinkNodePropsType = NodeProps<Node<AwesomeSinkData, "building">>;
 type RWPNodePropsType = NodeProps<Node<RWPData, "building">>;
+type AwesomeCollectorPropsType = NodeProps<Node<AwesomeCollectorData, "building">>;
 export type BuildingNodeType = Node<BuildingData, "building">;
 type BuildingNodePropsType = NodeProps<BuildingNodeType>;
 
@@ -45,6 +51,10 @@ function isAwesomeSinkNode(props: BuildingNodePropsType): props is AwesomeSinkNo
 
 function isResourceWellPressurizerNode(props: BuildingNodePropsType): props is RWPNodePropsType {
   return props.data.name === BuildingNames.ResourceWellPressurizer;
+}
+
+function isAwesomeCollectorNode(props: BuildingNodePropsType): props is AwesomeCollectorPropsType {
+  return props.data.name === BuildingNames.AwesomeCollector;
 }
 
 function AwesomeSinkNode(props: AwesomeSinkNodePropsType) {
@@ -135,6 +145,35 @@ function RWPNode(props: RWPNodePropsType) {
   );
 }
 
+function CollectorNode(props: AwesomeCollectorPropsType) {
+  const building = Buildings[BuildingNames.AwesomeCollector];
+
+  return (
+    <BaseNode
+      isLocked={props.data.isLocked}
+      nodeId={props.id}
+    >
+      <BaseNode.Body>
+        <div className="flex gap-3">
+          <div className="shrink items-center">
+            <img
+              alt={building.name}
+              width="256"
+              height="256"
+              className="aspect-square w-10"
+              src={building.image}
+            />
+          </div>
+          <div className="flex-1">
+            <div className="text-sm">AWESOME Collector</div>
+            <div className="text-xs text-gray-400">non-existing</div>
+          </div>
+        </div>
+      </BaseNode.Body>
+    </BaseNode>
+  );
+}
+
 export default function BuildingNode(props: BuildingNodePropsType) {
   if (isAwesomeSinkNode(props)) {
     return AwesomeSinkNode(props);
@@ -142,6 +181,10 @@ export default function BuildingNode(props: BuildingNodePropsType) {
 
   if (isResourceWellPressurizerNode(props)) {
     return RWPNode(props);
+  }
+
+  if (isAwesomeCollectorNode(props)) {
+    return CollectorNode(props);
   }
 
   throw new Error("TODO");
