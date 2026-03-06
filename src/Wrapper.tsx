@@ -243,7 +243,10 @@ function Wrapper() {
         </div>
       </header>
       <ReactFlowProvider>
-        <App onActionsReady={(a) => { actionsRef.current = a; }} />
+        <App
+          onActionsReady={(a) => { actionsRef.current = a; }}
+          currIdx={activeIdx}
+        />
       </ReactFlowProvider>
       <footer className="h-12 border-t border-slate-800 bg-slate-950 px-4 flex items-center text-xs text-slate-400">
         <div>
