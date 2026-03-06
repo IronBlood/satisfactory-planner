@@ -2,6 +2,9 @@ import {
   useMemo,
 } from "react";
 import {
+  useReactFlow,
+} from "@xyflow/react";
+import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
@@ -16,11 +19,16 @@ import {
   type ItemName,
 } from "@/data/items";
 import {
+  BuildingNames,
   Buildings,
 } from "@/data/buildings";
+import { ConveyorEdgeTypeId, type ConveyorEdgeType } from "@/nodes/ConveyorEdge";
+
+type ItemMap = Record<ItemName, number>;
 
 interface Summary {
-  need: Record<ItemName, number>;
+  need: ItemMap;
+  outputs: ItemMap;
   power_comsumed: number;
   power_generated: number;
 }
@@ -49,20 +57,67 @@ function SummaryDisclosure({
   );
 }
 
+function ListItems({
+  map,
+  unit
+}: {
+  map: ItemMap;
+  unit: string;
+}) {
+  return (
+    <ul>
+      {Object.keys(map).sort().map(key => (
+        <li
+          key={key}
+        >
+          <span className="font-bold">{map[key]}</span>{unit} {key}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function Summary({
   nodes,
 }: {
   nodes: AppNode[];
 }) {
+  const {
+    getNodeConnections,
+    getEdge,
+  } = useReactFlow();
+
   const summary: Summary = useMemo(() => {
     const s: Summary = {
       need: {},
+      outputs: {},
       power_comsumed: 0,
       power_generated: 0,
     };
 
     for (const node of nodes) {
       if (node.type === "resource") {
+        continue;
+      }
+
+      if (node.type === "building" && node.data.name === BuildingNames.AwesomeCollector) {
+        const connections = getNodeConnections({
+          type: "target",
+          nodeId: node.id,
+        });
+
+        connections.forEach(c => {
+          const edge = getEdge(c.edgeId);
+          if (edge?.type !== ConveyorEdgeTypeId) {
+            // TODO
+            return;
+          }
+
+          if (c.sourceHandle) {
+            s.outputs[c.sourceHandle] = (s.outputs[c.sourceHandle] || 0) + ((edge as ConveyorEdgeType).data?.value || 0);
+          }
+        });
+
         continue;
       }
 
@@ -84,22 +139,19 @@ export default function Summary({
     }
 
     return s;
-  }, [nodes]);
+  }, [nodes, getEdge, getNodeConnections]);
   return (
     <div className="divide-y divide-slate-800">
       {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed"><span className="italic">approx.</span> {summary.power_comsumed} MW</SummaryDisclosure>}
       {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {summary.power_generated} MW</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
         <SummaryDisclosure title="Items">
-          <ul>
-            {Object.keys(summary.need).sort().map(key => (
-              <li
-                key={key}
-              >
-                <span className="font-bold">{summary.need[key]}</span>x {key}
-              </li>
-            ))}
-          </ul>
+          <ListItems map={summary.need} unit="x" />
+        </SummaryDisclosure>
+      )}
+      {Object.keys(summary.outputs).length > 0 && (
+        <SummaryDisclosure title="Outputs">
+          <ListItems map={summary.outputs} unit="/min" />
         </SummaryDisclosure>
       )}
     </div>
