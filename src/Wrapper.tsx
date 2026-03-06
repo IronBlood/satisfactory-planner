@@ -140,15 +140,16 @@ function Wrapper() {
       return;
     }
 
+    const idx = activeIdx;
+    setActiveIdx(0);
+
     setData({
       ...data,
       flows: [
-        ...data.flows.slice(0, activeIdx),
-        ...data.flows.slice(activeIdx + 1),
+        ...data.flows.slice(0, idx),
+        ...data.flows.slice(idx + 1),
       ],
     });
-
-    setActiveIdx(0);
   }, [data, activeIdx, setData, setActiveIdx]);
 
   const renameFlow = useCallback(() => {
