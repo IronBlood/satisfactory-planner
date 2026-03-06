@@ -10,7 +10,6 @@ import {
   Background,
   Controls,
   ReactFlow,
-  ReactFlowProvider,
   addEdge,
   useEdgesState,
   useNodesState,
@@ -34,10 +33,6 @@ import {
 } from "./data/recipes";
 import { isItemSinkable, type ItemName } from "@/data/items";
 import ConveyorEdge from "./nodes/ConveyorEdge";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGithub,
-} from "@fortawesome/free-brands-svg-icons";
 import Summary from "@/components/Summary";
 import type { AppEdge, AppFlow, AppNode } from "./types";
 import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
@@ -67,16 +62,17 @@ type SourceState = {
   sourceItem: string;
 };
 
-type ActionsRef = {
-  saveFlow?: () => void;
-  loadFlow?: () => void;
+export type ActionsRef = {
+  syncActiveFlow?: () => AppFlow | null;
   toggleSidebar?: () => void;
 };
 
 function App({
   onActionsReady,
+  activeFlow,
 }: {
   onActionsReady: (a: ActionsRef) => void;
+  activeFlow: AppFlow;
 }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [source, setSource] = useState<SourceState | null>(null);
@@ -92,7 +88,6 @@ function App({
   const [isOpen, setOpen] = useState(false);
   const [isRecipePickerOpen, setRecipePickerOpen] = useState(false);
   const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, AppEdge> | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const nodeTypes = useMemo(() => ({
     recipe: RecipeNode,
@@ -106,6 +101,7 @@ function App({
   }), []);
 
   const toggleSidebar = useCallback(() => setSidebarOpen(!isSidebarOpen), [isSidebarOpen, setSidebarOpen]);
+  const syncActiveFlow = useCallback(() => rfInstance?.toObject() as AppFlow | null, [rfInstance]);
 
   const onOpen = useCallback(() => {
     setOpen(true);
@@ -309,72 +305,19 @@ function App({
     [screenToFlowPosition, onOpen],
   );
 
-  const onSaveFlow = useCallback(() => {
-    if (!rfInstance)
-      return;
-
-    const flow = rfInstance.toObject();
-    for (const n of flow.nodes) {
-      delete n.dragging;
-      delete n.selected;
-    }
-    for (const e of flow.edges) {
-      delete e.animated;
-      delete e.selected;
-    }
-
-    const json = JSON.stringify(flow, null, 2);
-
-    const blob = new Blob([json], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `satisfactory-planner-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  }, [rfInstance]);
-
-  const onLoadFlow = useCallback(() => {
-    fileInputRef.current?.click();
-  }, [setRfInstance]);
-
-  const onPickFlowFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file)
-      return;
-
-    try {
-      const text = await file.text();
-      const json = JSON.parse(text) as AppFlow;
-
-      if (json) {
-        const {
-          x = 0,
-          y = 0,
-          zoom = 1,
-        } = json.viewport;
-
-        setNodes(json.nodes || []);
-        setEdges(json.edges || []);
-        setViewport({ x, y, zoom });
-      }
-    } catch (err) {
-      console.error("Failed to load flow json", err);
-    } finally {
-      e.target.value = "";
-    }
-  }, []);
+  useEffect(() => {
+    setNodes(activeFlow.nodes || []);
+    setEdges(activeFlow.edges || []);
+    const { x = 0, y = 0, zoom = 1 } = activeFlow.viewport ?? {};
+    setViewport({ x, y, zoom });
+  }, [activeFlow, setEdges, setNodes, setViewport]);
 
   useEffect(() => {
     onActionsReady({
-      saveFlow: onSaveFlow,
-      loadFlow: onLoadFlow,
       toggleSidebar,
+      syncActiveFlow,
     });
-  }, [onActionsReady, onSaveFlow, onLoadFlow, toggleSidebar]);
+  }, [onActionsReady, toggleSidebar, syncActiveFlow]);
 
   return (
     <main className="bg-slate-950 text-white flex h-full min-h-0 planner-flow">
@@ -421,80 +364,8 @@ function App({
         onSave={onSaveRecipePicker}
         target={target?.sourceItem}
       />
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="application/json,.json"
-        className="hidden"
-        onChange={onPickFlowFile}
-      />
     </main>
   )
 }
 
-function MenuButton({
-  text,
-  onClick,
-}: {
-  text: string;
-  onClick: () => void;
-}) {
-  return (
-    <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={onClick}>{text}</button>
-  );
-}
-
-function FooterLink({
-  text,
-  href,
-}: {
-  text: string;
-  href: string;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      className="font-bold border-b border-dashed"
-    >
-      {text}
-    </a>
-  );
-}
-
-function Wrapper() {
-  const actionsRef = useRef<ActionsRef>({});
-
-  return (
-    <div className="h-screen w-screen flex flex-col">
-      <header className="h-16 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950 text-white text-xl">
-        <div>Yet Another Satisfactory Planner</div>
-        <div className="flex gap-2">
-          <MenuButton
-            onClick={() => actionsRef.current.saveFlow?.()}
-            text="export"
-          />
-          <MenuButton
-            onClick={() => actionsRef.current.loadFlow?.()}
-            text="import"
-          />
-          <MenuButton
-            onClick={() => actionsRef.current.toggleSidebar?.()}
-            text="info"
-          />
-          <div className="transition duration-200 text-sky-700 hover:text-sky-500 items-center text-2xl"><FontAwesomeIcon icon={faGithub} /></div>
-        </div>
-      </header>
-      <ReactFlowProvider>
-        <App onActionsReady={(a) => { actionsRef.current = a; }} />
-      </ReactFlowProvider>
-      <footer className="h-12 border-t border-slate-800 bg-slate-950 px-4 flex items-center text-xs text-slate-400">
-        <div>
-          <span className="font-bold">Disclaimer: </span>Satisfactory and its assets are trademarks and copyrighted materials of <span className="font-bold">Coffee Stain Studios</span>. This is an unofficial fan-made tool and is not affiliated with, endorsed, sponsored, or approved by Coffee Stain Studios. Inspired by <FooterLink href="https://satisfactory-planner.vercel.app/" text="Satisfactory Planner" />. Built with <FooterLink href="https://react.dev/" text="React" />, <FooterLink href="https://reactflow.dev/" text="React Flow" /> and <FooterLink href="https://tailwindcss.com" text="tailwindcss" />.
-        </div>
-      </footer>
-    </div>
-  );
-}
-
-export default Wrapper;
+export default App;

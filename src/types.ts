@@ -27,3 +27,12 @@ export type AppFlow = {
     zoom: number;
   };
 }
+
+export type MultiFlow = {
+  /** Has to be an integer */
+  version: number;
+  flows: Array<{
+    name: string;
+    flow: AppFlow;
+  }>;
+};
