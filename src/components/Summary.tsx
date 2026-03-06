@@ -181,7 +181,7 @@ export default function Summary({
       {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed"><span className="italic">approx.</span> {summary.power_comsumed} MW</SummaryDisclosure>}
       {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {summary.power_generated} MW</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
-        <SummaryDisclosure title="Items">
+        <SummaryDisclosure title="Items for Buildings">
           <ListItems map={summary.need} unit="x" />
         </SummaryDisclosure>
       )}
