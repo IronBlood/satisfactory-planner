@@ -69,7 +69,6 @@ type SourceState = {
 };
 
 type ActionsRef = {
-  saveFlow?: () => void;
   loadFlow?: () => void;
   toggleSidebar?: () => void;
 };
@@ -310,34 +309,6 @@ function App({
     [screenToFlowPosition, onOpen],
   );
 
-  const onSaveFlow = useCallback(() => {
-    if (!rfInstance)
-      return;
-
-    const flow = rfInstance.toObject();
-    for (const n of flow.nodes) {
-      delete n.dragging;
-      delete n.selected;
-    }
-    for (const e of flow.edges) {
-      delete e.animated;
-      delete e.selected;
-    }
-
-    const json = JSON.stringify(flow, null, 2);
-
-    const blob = new Blob([json], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `satisfactory-planner-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  }, [rfInstance]);
-
   const onLoadFlow = useCallback(() => {
     fileInputRef.current?.click();
   }, [setRfInstance]);
@@ -371,11 +342,10 @@ function App({
 
   useEffect(() => {
     onActionsReady({
-      saveFlow: onSaveFlow,
       loadFlow: onLoadFlow,
       toggleSidebar,
     });
-  }, [onActionsReady, onSaveFlow, onLoadFlow, toggleSidebar]);
+  }, [onActionsReady, onLoadFlow, toggleSidebar]);
 
   return (
     <main className="bg-slate-950 text-white flex h-full min-h-0 planner-flow">
