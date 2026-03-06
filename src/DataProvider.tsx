@@ -20,7 +20,18 @@ const DataContext = createContext<{
 export function DataProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<MultiFlow>({
     version: CURR_VER,
-    flows: [],
+    flows: [{
+      name: "Unnamed Plan",
+      flow: {
+        nodes: [],
+        edges: [],
+        viewport: {
+          x: 0,
+          y: 0,
+          zoom: 1,
+        },
+      },
+    }],
   });
 
   const value = useMemo(() => ({
