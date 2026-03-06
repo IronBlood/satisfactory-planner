@@ -25,7 +25,7 @@ import {
   getRecipesByOutput,
   type Recipe,
 } from "@/data/recipes";
-import { Buildings } from "@/data/buildings";
+import { BuildingNames, Buildings } from "@/data/buildings";
 
 function keysOf<T extends object>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
@@ -72,8 +72,8 @@ export default function Picker({
   type ExtendedCategoryValue = CategoryValue | typeof CatBuilding;
 
   const specialBuildings = [
-    Buildings["AWESOME Sink"],
-    Buildings["Resource Well Pressurizer"],
+    Buildings[BuildingNames.AwesomeSink],
+    Buildings[BuildingNames.ResourceWellPressurizer],
   ];
 
   const [activeCat, setActiveCat] = useState<ExtendedCategoryValue>(ItemCategories.ALL);
