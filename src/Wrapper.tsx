@@ -193,6 +193,7 @@ function Wrapper() {
   }, [data, activeIdx]);
 
   const selectedFlowName = useMemo(() => list[activeIdx], [list, activeIdx]);
+  const activeFlow = useMemo(() => data.flows[activeIdx].flow, [data, activeIdx]);
 
   return (
     <div className="h-screen w-screen flex flex-col">
@@ -275,6 +276,7 @@ function Wrapper() {
       <ReactFlowProvider>
         <App
           onActionsReady={(a) => { actionsRef.current = a; }}
+          activeFlow={activeFlow}
         />
       </ReactFlowProvider>
       <footer className="h-12 border-t border-slate-800 bg-slate-950 px-4 flex items-center text-xs text-slate-400">

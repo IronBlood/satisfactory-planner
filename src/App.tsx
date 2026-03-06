@@ -69,8 +69,10 @@ export type ActionsRef = {
 
 function App({
   onActionsReady,
+  activeFlow,
 }: {
   onActionsReady: (a: ActionsRef) => void;
+  activeFlow: AppFlow;
 }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [source, setSource] = useState<SourceState | null>(null);
@@ -302,6 +304,13 @@ function App({
     },
     [screenToFlowPosition, onOpen],
   );
+
+  useEffect(() => {
+    setNodes(activeFlow.nodes || []);
+    setEdges(activeFlow.edges || []);
+    const { x = 0, y = 0, zoom = 1 } = activeFlow.viewport ?? {};
+    setViewport({ x, y, zoom });
+  }, [activeFlow, setEdges, setNodes, setViewport]);
 
   useEffect(() => {
     onActionsReady({
