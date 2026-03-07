@@ -10,7 +10,7 @@ import {
   type NodeProps,
 } from "@xyflow/react";
 import { getItemImageByName, type ItemName } from "@/data/items";
-import InOutHandle from "@/nodes/InOutHandle";
+import { InOutHandle } from "@/flow/handles";
 import BaseNode from "./BaseNode";
 
 export type ResourceNodeType = Node<{
@@ -19,7 +19,7 @@ export type ResourceNodeType = Node<{
   isLocked: boolean;
 }, "resource">;
 
-export default memo((props: NodeProps<ResourceNodeType>) => {
+export const ResourceNode = memo((props: NodeProps<ResourceNodeType>) => {
   const { setNodes } = useReactFlow();
   const setResource = useCallback((next: number) => {
     setNodes((nodes) => nodes.map(n => n.id === props.id

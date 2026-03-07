@@ -6,6 +6,9 @@ import {
   Position,
   useNodeConnections,
 } from "@xyflow/react";
+import {
+  AppHandleTypes,
+} from "@/flow/constants"
 
 export type PressureInOutHandleParams = {
   handleType: "source" | "target";
@@ -14,9 +17,7 @@ export type PressureInOutHandleParams = {
   parentCount?: number;
 };
 
-export const PressureHandleId = "PressureHandleId";
-
-export default function PressureInOutHandle({
+export function PressureInOutHandle({
   handleType,
   nodeId,
   position,
@@ -24,7 +25,7 @@ export default function PressureInOutHandle({
 }: PressureInOutHandleParams) {
   const connections = useNodeConnections({
     handleType,
-    handleId: PressureHandleId,
+    handleId: AppHandleTypes.Pressure,
     id: nodeId,
   });
 
@@ -67,7 +68,7 @@ export default function PressureInOutHandle({
       <Handle
         type={handleType}
         position={position}
-        id={PressureHandleId}
+        id={AppHandleTypes.Pressure}
         isConnectable={isConnectable}
       />
     </div>

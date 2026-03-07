@@ -25,9 +25,16 @@ import {
   Buildings,
   type BuildingName,
 } from "@/data/buildings";
-import { ConveyorEdgeTypeId, type ConveyorEdgeType } from "@/nodes/ConveyorEdge";
-import type { ResourceNodeType } from "@/nodes/ResourceNode";
-import type { RecipeNodeType } from "@/nodes/RecipeNode";
+import {
+  AppEdgeTypes,
+} from "@/flow/constants";
+import type {
+  ConveyorEdgeType,
+} from "@/flow/edges";
+import type {
+  ResourceNodeType,
+  RecipeNodeType,
+} from "@/flow/nodes";
 
 type ItemMap = Record<ItemName, number>;
 
@@ -150,7 +157,7 @@ export default function Summary({
 
         connections.forEach(c => {
           const edge = getEdge(c.edgeId);
-          if (edge?.type !== ConveyorEdgeTypeId) {
+          if (edge?.type !== AppEdgeTypes.Conveyor) {
             // TODO
             return;
           }
@@ -171,7 +178,7 @@ export default function Summary({
 
         connections.forEach(c => {
           const edge = getEdge(c.edgeId);
-          if (!c.sourceHandle || edge?.type !== ConveyorEdgeTypeId) {
+          if (!c.sourceHandle || edge?.type !== AppEdgeTypes.Conveyor) {
             // TODO
             console.log("expect sourceHandle from:", c);
             return;

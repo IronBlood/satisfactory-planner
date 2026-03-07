@@ -3,9 +3,9 @@ import {
   Position,
 } from "@xyflow/react";
 
-export const AwesomeCollectorHandleId = "AwesomeCollectorHandle";
+import { AppHandleTypes } from "@/flow/constants";
 
-export default function AwesomeCollectorHandle() {
+export function AwesomeCollectorHandle() {
   return (
     <div
       className="-mt-2"
@@ -13,7 +13,7 @@ export default function AwesomeCollectorHandle() {
       <Handle
         type="target"
         position={Position.Top}
-        id={AwesomeCollectorHandleId}
+        id={AppHandleTypes.AwesomeCollector}
       />
     </div>
   );

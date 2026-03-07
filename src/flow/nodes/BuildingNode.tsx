@@ -11,9 +11,11 @@ import {
 import BaseNode from "./BaseNode";
 import NumericInput from "@/components/NumericInput";
 import { useCallback } from "react";
-import AwesomeSinkHandle from "./SinkHandle";
-import PressureInOutHandle from "./PressureInOutHandle";
-import AwesomeCollectorHandle from "./CollectorHandle";
+import {
+  AwesomeSinkHandle,
+  PressureInOutHandle,
+  AwesomeCollectorHandle,
+} from "@/flow/handles";
 
 export type SupportedBuildings =
   | typeof BuildingNames.AwesomeSink
@@ -178,7 +180,7 @@ function CollectorNode(props: AwesomeCollectorPropsType) {
   );
 }
 
-export default function BuildingNode(props: BuildingNodePropsType) {
+export function BuildingNode(props: BuildingNodePropsType) {
   if (isAwesomeSinkNode(props)) {
     return AwesomeSinkNode(props);
   }

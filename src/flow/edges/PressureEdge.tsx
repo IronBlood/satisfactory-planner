@@ -9,9 +9,13 @@ import {
   type EdgeProps,
 } from "@xyflow/react";
 
-export type PressureEdgeType = Edge<{}, "pressure">;
+import {
+  AppEdgeTypes,
+} from "@/flow/constants";
 
-export default function PressureEdge({
+export type PressureEdgeType = Edge<{}, typeof AppEdgeTypes.Pressure>;
+
+export function PressureEdge({
   id,
   sourceX,
   sourceY,
