@@ -8,7 +8,7 @@ import {
 } from "@xyflow/react";
 import HandleImage from "@/components/HandleImage";
 import type { ItemName } from "@/data/items";
-import type { ConveyorEdgeType } from "./ConveyorEdge";
+import type { ConveyorEdgeType } from "@/flow/edges";
 import NumericInput from "@/components/NumericInput";
 
 export type InOutHandleParams = {
@@ -23,7 +23,7 @@ export type InOutHandleParams = {
 
 const EPSILON = 0.0001;
 
-export default function InOutHandle({
+export function InOutHandle({
   handleType,
   name,
   nodeId,

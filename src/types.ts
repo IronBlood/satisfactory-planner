@@ -1,8 +1,12 @@
-import type { BuildingNodeType } from "@/nodes/BuildingNode";
-import type { ResourceNodeType } from "@/nodes/ResourceNode";
-import type { RecipeNodeType } from "@/nodes/RecipeNode";
-import type { ConveyorEdgeType } from "./nodes/ConveyorEdge";
-import type { PressureEdgeType } from "./nodes/PressureEdge";
+import type {
+  BuildingNodeType,
+  RecipeNodeType,
+  ResourceNodeType,
+} from "@/flow/nodes";
+import type {
+  ConveyorEdgeType,
+  PressureEdgeType,
+} from "@/flow/edges";
 
 export type AppNode =
   | ResourceNodeType

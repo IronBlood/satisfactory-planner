@@ -3,7 +3,7 @@ import {
   useEffect,
 } from "react";
 import {
-  getSimpleBezierPath,
+  getSmoothStepPath,
   BaseEdge,
   EdgeToolbar,
   type EdgeProps,
@@ -12,10 +12,13 @@ import {
 } from "@xyflow/react";
 import NumericInput from "@/components/NumericInput";
 
-export const ConveyorEdgeTypeId = "conveyor";
-export type ConveyorEdgeType = Edge<{ value: number }, typeof ConveyorEdgeTypeId>;
+import {
+  AppEdgeTypes,
+} from "@/flow/constants";
 
-export default function ConveyorEdge({
+export type ConveyorEdgeType = Edge<{ value: number }, typeof AppEdgeTypes.Conveyor>;
+
+export function ConveyorEdge({
   id,
   sourceX,
   sourceY,
@@ -25,7 +28,7 @@ export default function ConveyorEdge({
   selected,
 }: EdgeProps<ConveyorEdgeType>) {
   const { setEdges } = useReactFlow();
-  const [edgePath, centerX, centerY] = getSimpleBezierPath({ sourceX, sourceY, targetX, targetY });
+  const [edgePath, centerX, centerY] = getSmoothStepPath({ sourceX, sourceY, targetX, targetY });
   const onCommit = useCallback((next: number) => {
     setEdges((edges) =>
       edges.map((e) => e.id === id

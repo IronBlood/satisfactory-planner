@@ -10,15 +10,17 @@ import {
 } from "@xyflow/react";
 import {
   type Recipe,
-} from "../data/recipes";
+} from "@/data/recipes";
 import {
   BuildingNames,
   Buildings,
-} from "../data/buildings";
-import NumericInput from "../components/NumericInput";
-import InOutHandle from "./InOutHandle";
+} from "@/data/buildings";
+import NumericInput from "@/components/NumericInput";
+import {
+  InOutHandle,
+  PressureInOutHandle,
+} from "@/flow/handles";
 import BaseNode from "./BaseNode";
-import PressureInOutHandle from "./PressureInOutHandle";
 import { getItemImageByName } from "@/data/items";
 
 export type RecipeNodeType = Node<{
@@ -27,7 +29,7 @@ export type RecipeNodeType = Node<{
   isLocked: boolean;
 }, "recipe">;
 
-export default memo((props: NodeProps<RecipeNodeType>) => {
+export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
   const { setNodes } = useReactFlow();
   const setCount = useCallback((next: number) => {
     setNodes((nds) => nds.map(n => n.id === props.id

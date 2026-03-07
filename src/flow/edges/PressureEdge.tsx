@@ -3,15 +3,19 @@ import {
 } from "react";
 import {
   BaseEdge,
-  getSimpleBezierPath,
+  getSmoothStepPath,
   useReactFlow,
   type Edge,
   type EdgeProps,
 } from "@xyflow/react";
 
-export type PressureEdgeType = Edge<{}, "pressure">;
+import {
+  AppEdgeTypes,
+} from "@/flow/constants";
 
-export default function PressureEdge({
+export type PressureEdgeType = Edge<{}, typeof AppEdgeTypes.Pressure>;
+
+export function PressureEdge({
   id,
   sourceX,
   sourceY,
@@ -23,7 +27,7 @@ export default function PressureEdge({
 
   const [
     edgePath,
-  ] = getSimpleBezierPath({
+  ] = getSmoothStepPath({
     sourceX,
     sourceY,
     targetX,

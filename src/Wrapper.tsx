@@ -3,6 +3,7 @@ import {
   useMemo,
   useRef,
   useState,
+  type ReactNode,
 } from "react";
 import {
   ReactFlowProvider,
@@ -42,6 +43,38 @@ function MenuButton({
 }) {
   return (
     <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={onClick}>{text}</button>
+  );
+}
+
+function IconButton({
+  label,
+  onClick,
+  disabled = false,
+  children,
+  className = "",
+}: {
+  label: string;
+  onClick: () => void;
+  disabled?: boolean;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className="relative group">
+      <button
+        type="button"
+        aria-label={label}
+        title={label}
+        disabled={disabled}
+        onClick={onClick}
+        className={`cursor-pointer disabled:cursor-not-allowed disabled:text-slate-600 ${className}`}
+      >
+        {children}
+      </button>
+      <div className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 rounded bg-slate-800 px-2 py-1 text-sx text-slate-100 opacity-0 shadow transition group-hover:opacity-100 group-focus-within:opacity-100">
+        {label}
+      </div>
+    </div>
   );
 }
 
@@ -236,7 +269,7 @@ function Wrapper() {
           <div className="w-46 gap-2 flex justify-between items-center">
             <Listbox value={selectedFlowName} onChange={(v) => setActiveIdx(v.id)}>
               <ListboxButton
-                className="relative rounded-lg bg-slate-800 text-left text-sm text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus:-outline-offset-2"
+                className="relative flex-1 rounded-lg bg-slate-800 text-left text-sm text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus:-outline-offset-2"
               >
                 {selectedFlowName.name}
                 <ChevronDownIcon
@@ -262,46 +295,62 @@ function Wrapper() {
               </ListboxOptions>
             </Listbox>
             <div
-              className="text-slate-300 text-sm"
+              className="text-slate-300 text-sm flex items-center"
             >
-              <FontAwesomeIcon
-                className="cursor-pointer hover:text-slate-100"
-                icon={faPlus}
+              <IconButton
+                label="Add a plan"
                 onClick={addFlow}
-              />
-              <FontAwesomeIcon
-                className={[
-                  "",
-                  data.flows.length === 1 ? "text-slate-600" : "cursor-pointer hover:text-slate-100",
-                ].join(" ")}
-                icon={faMinus}
+              >
+                <FontAwesomeIcon
+                  icon={faPlus}
+                />
+              </IconButton>
+              <IconButton
+                disabled={data.flows.length === 1}
                 onClick={deleteFlow}
-              />
-              <FontAwesomeIcon
-                className="cursor-pointer hover:text-slate-100"
-                icon={faPencil}
+                label="Delete this plan"
+              >
+                <FontAwesomeIcon
+                  icon={faMinus}
+                />
+              </IconButton>
+              <IconButton
                 onClick={enterRenaming}
-              />
+                label="Rename this plan"
+              >
+                <FontAwesomeIcon
+                  icon={faPencil}
+                />
+              </IconButton>
             </div>
           </div>}
         {isRenaming && <div className="flex items-center">
           <input
-            className="bg-slate-800 border border-slate-500 rounded-md px-3 py-1 focus:outline-none focus:border-slate-100 hover:border-blue-300 placeholder:text-slate-500 outline-none"
+            className="text-sm text-slate-300 bg-slate-800 border border-slate-500 rounded-md px-3 py-1 focus:outline-none focus:border-slate-100 hover:border-blue-300 placeholder:text-slate-500 outline-none"
             value={planName}
             onChange={(e) => setPlanName(e.target.value)}
             placeholder="your next awesome plan"
           />
-          <div className="text-sm">
-            <FontAwesomeIcon
-              className="cursor-pointer text-green-300"
-              icon={faCheck}
+          <div className="text-sm flex items-center">
+            <IconButton
+              label="confirm"
               onClick={acceptRenaming}
-            />
-            <FontAwesomeIcon
-              className="cursor-pointer text-red-500"
-              icon={faXmark}
+              disabled={planName.length === 0}
+              className="text-green-300"
+            >
+              <FontAwesomeIcon
+                icon={faCheck}
+              />
+            </IconButton>
+            <IconButton
+              label="cancel"
               onClick={exitRenaming}
-            />
+            >
+              <FontAwesomeIcon
+                className="text-red-500"
+                icon={faXmark}
+              />
+            </IconButton>
           </div>
         </div>}
         <div className="flex gap-2">

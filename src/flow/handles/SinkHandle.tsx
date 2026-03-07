@@ -3,9 +3,11 @@ import {
   Position,
 } from "@xyflow/react";
 
-export const AwesomeSinkHandleId = "AwesomeSinkHandle";
+import {
+  AppHandleTypes,
+} from "@/flow/constants";
 
-export default function AwesomeSinkHandle() {
+export function AwesomeSinkHandle() {
   return (
     <div
       className="-mt-2"
@@ -13,7 +15,7 @@ export default function AwesomeSinkHandle() {
       <Handle
         type="target"
         position={Position.Top}
-        id={AwesomeSinkHandleId}
+        id={AppHandleTypes.AwesomeSink}
       />
     </div>
   );

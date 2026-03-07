@@ -17,6 +17,7 @@ import {
   type AppNode,
 } from "@/types";
 import {
+  getItemImageByName,
   getItemSPByName,
   type ItemName,
 } from "@/data/items";
@@ -25,9 +26,16 @@ import {
   Buildings,
   type BuildingName,
 } from "@/data/buildings";
-import { ConveyorEdgeTypeId, type ConveyorEdgeType } from "@/nodes/ConveyorEdge";
-import type { ResourceNodeType } from "@/nodes/ResourceNode";
-import type { RecipeNodeType } from "@/nodes/RecipeNode";
+import {
+  AppEdgeTypes,
+} from "@/flow/constants";
+import type {
+  ConveyorEdgeType,
+} from "@/flow/edges";
+import type {
+  ResourceNodeType,
+  RecipeNodeType,
+} from "@/flow/nodes";
 
 type ItemMap = Record<ItemName, number>;
 
@@ -77,7 +85,12 @@ function ListItems({
         <li
           key={key}
         >
-          <span className="font-bold">{map[key]}</span>{unit} {key}
+          <span className="font-bold">{map[key]}</span>{unit} <img
+            alt={key}
+            loading="lazy"
+            src={getItemImageByName(key)}
+            className="aspect-square w-6 inline-block mx-2"
+          /> {key}
         </li>
       ))}
     </ul>
@@ -150,7 +163,7 @@ export default function Summary({
 
         connections.forEach(c => {
           const edge = getEdge(c.edgeId);
-          if (edge?.type !== ConveyorEdgeTypeId) {
+          if (edge?.type !== AppEdgeTypes.Conveyor) {
             // TODO
             return;
           }
@@ -171,7 +184,7 @@ export default function Summary({
 
         connections.forEach(c => {
           const edge = getEdge(c.edgeId);
-          if (!c.sourceHandle || edge?.type !== ConveyorEdgeTypeId) {
+          if (!c.sourceHandle || edge?.type !== AppEdgeTypes.Conveyor) {
             // TODO
             console.log("expect sourceHandle from:", c);
             return;

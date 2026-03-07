@@ -26,38 +26,45 @@ import {
 import "@xyflow/react/dist/style.css";
 import Picker from "./components/picker/Picker";
 import RecipePicker from "@/components/picker/RecipePicker";
-import RecipeNode, { type RecipeNodeType } from "./nodes/RecipeNode";
-import ResourceNode, { type ResourceNodeType } from "@/nodes/ResourceNode";
+import {
+  BuildingNode,
+  RecipeNode,
+  ResourceNode,
+  type RecipeNodeType,
+  type ResourceNodeType,
+  type SupportedBuildings,
+} from "@/flow/nodes";
+import {
+  ConveyorEdge,
+  PressureEdge
+} from "@/flow/edges";
+import {
+  AppHandleTypes,
+} from "@/flow/constants";
 import {
   getRecipeByName,
 } from "./data/recipes";
 import { isItemSinkable, type ItemName } from "@/data/items";
-import ConveyorEdge from "./nodes/ConveyorEdge";
 import Summary from "@/components/Summary";
 import type { AppEdge, AppFlow, AppNode } from "./types";
-import BuildingNode, { type SupportedBuildings } from "./nodes/BuildingNode";
-import { AwesomeSinkHandleId } from "./nodes/SinkHandle";
-import { PressureHandleId } from "./nodes/PressureInOutHandle";
-import PressureEdge from "./nodes/PressureEdge";
-import { AwesomeCollectorHandleId } from "./nodes/CollectorHandle";
 
 function getSrcIdx(s: string) {
   return s.lastIndexOf(` - source`);
 }
 
 const isValidConnection: IsValidConnection<Edge> = (connection) => {
-  if (connection.sourceHandle === PressureHandleId && connection.targetHandle === PressureHandleId) {
+  if (connection.sourceHandle === AppHandleTypes.Pressure && connection.targetHandle === AppHandleTypes.Pressure) {
     return true;
   }
-  if (connection.sourceHandle === PressureHandleId || connection.targetHandle === PressureHandleId) {
+  if (connection.sourceHandle === AppHandleTypes.Pressure || connection.targetHandle === AppHandleTypes.Pressure) {
     return false;
   }
 
-  if (connection.targetHandle === AwesomeCollectorHandleId) {
+  if (connection.targetHandle === AppHandleTypes.AwesomeCollector) {
     return true;
   }
 
-  if (connection.targetHandle === AwesomeSinkHandleId) {
+  if (connection.targetHandle === AppHandleTypes.AwesomeSink) {
     return connection.sourceHandle
       ? isItemSinkable(connection.sourceHandle)
       : false;
@@ -131,7 +138,7 @@ function App({
 
   const onConnect = useCallback(
     (params: Connection) => {
-      const edge: AppEdge = params.sourceHandle === PressureHandleId
+      const edge: AppEdge = params.sourceHandle === AppHandleTypes.Pressure
         ? {
           ...params,
           id: crypto.randomUUID(),
@@ -152,11 +159,11 @@ function App({
 
   const onConnectEnd: OnConnectEnd = useCallback((event, state) => {
     if (state.toNode === null) {
-      if ([
-        AwesomeSinkHandleId,
-        PressureHandleId,
-        AwesomeCollectorHandleId,
-      ].includes(state.fromHandle?.id ?? "")) {
+      if (([
+        AppHandleTypes.AwesomeSink,
+        AppHandleTypes.Pressure,
+        AppHandleTypes.AwesomeCollector,
+      ] as string[]).includes(state.fromHandle?.id ?? "")) {
         return;
       }
       const { clientX, clientY } = "changedTouches" in event ? event.changedTouches[0] : event;
@@ -346,7 +353,6 @@ function App({
           isValidConnection={isValidConnection}
           zoomOnDoubleClick={false}
           nodeOrigin={[0.5, 0.5]}
-          proOptions={{ hideAttribution: true }}
           fitView
         >
           <Background />
@@ -355,11 +361,20 @@ function App({
       </section>
       <aside
         className={[
-          "shrink-0 border-l border-slate-800 transition-[width] duration-200 overflow-hidden",
-          isSidebarOpen ? "w-80" : "w-0 border-l-0",
+          "shrink-0 border-l transition-[width,border-color] duration-200 overflow-hidden",
+          isSidebarOpen ? "w-80 border-slate-800" : "w-0 border-transparent",
         ].join(" ")}
       >
-        <Summary nodes={nodes as AppNode[]} edges={edges} />
+        <div
+          className={[
+            "h-full w-80 transition-[transform,opacity] duration-200",
+            isSidebarOpen
+              ? "translate-x-0 opacity-100"
+              : "translate-x-4 opacity-0 pointer-events-none"
+          ].join(" ")}
+        >
+          <Summary nodes={nodes as AppNode[]} edges={edges} />
+        </div>
       </aside>
       <Picker
         isOpen={isOpen}

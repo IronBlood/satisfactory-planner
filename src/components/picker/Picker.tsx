@@ -242,7 +242,7 @@ export default function Picker({
               >
                 <MagnifyingGlassIcon className="size-5" />
                 <input
-                  className="_reset-input-number m-0 w-full min-w-0 border-none bg-transparent p-0 text-inherit placeholder:text-gray-400 focus:text-white focus:outline-none"
+                  className="appearance-none outline-2 outline-offset-2 outline-transparent m-0 w-full min-w-0 border-none bg-transparent p-0 text-inherit placeholder:text-gray-400 focus:text-white focus:outline-none"
                   placeholder="Search"
                   onChange={(e) => setSearchText(e.target.value)}
                 />
