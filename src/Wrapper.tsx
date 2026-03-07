@@ -267,7 +267,7 @@ function Wrapper() {
           <div className="w-46 gap-2 flex justify-between items-center">
             <Listbox value={selectedFlowName} onChange={(v) => setActiveIdx(v.id)}>
               <ListboxButton
-                className="relative rounded-lg bg-slate-800 text-left text-sm text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus:-outline-offset-2"
+                className="relative flex-1 rounded-lg bg-slate-800 text-left text-sm text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus:-outline-offset-2"
               >
                 {selectedFlowName.name}
                 <ChevronDownIcon
