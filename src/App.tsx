@@ -361,11 +361,20 @@ function App({
       </section>
       <aside
         className={[
-          "shrink-0 border-l border-slate-800 transition-[width] duration-200 overflow-hidden",
-          isSidebarOpen ? "w-80" : "w-0 border-l-0",
+          "shrink-0 border-l transition-[width,border-color] duration-200 overflow-hidden",
+          isSidebarOpen ? "w-80 border-slate-800" : "w-0 border-transparent",
         ].join(" ")}
       >
-        <Summary nodes={nodes as AppNode[]} edges={edges} />
+        <div
+          className={[
+            "h-full w-80 transition-[transform,opacity] duration-200",
+            isSidebarOpen
+              ? "translate-x-0 opacity-100"
+              : "translate-x-4 opacity-0 pointer-events-none"
+          ].join(" ")}
+        >
+          <Summary nodes={nodes as AppNode[]} edges={edges} />
+        </div>
       </aside>
       <Picker
         isOpen={isOpen}
