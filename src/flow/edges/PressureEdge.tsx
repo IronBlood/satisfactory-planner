@@ -3,7 +3,7 @@ import {
 } from "react";
 import {
   BaseEdge,
-  getSimpleBezierPath,
+  getSmoothStepPath,
   useReactFlow,
   type Edge,
   type EdgeProps,
@@ -27,7 +27,7 @@ export function PressureEdge({
 
   const [
     edgePath,
-  ] = getSimpleBezierPath({
+  ] = getSmoothStepPath({
     sourceX,
     sourceY,
     targetX,
