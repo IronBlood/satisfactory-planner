@@ -51,11 +51,13 @@ function IconButton({
   onClick,
   disabled = false,
   children,
+  className = "",
 }: {
   label: string;
   onClick: () => void;
   disabled?: boolean;
   children: ReactNode;
+  className?: string;
 }) {
   return (
     <div className="relative group">
@@ -65,7 +67,7 @@ function IconButton({
         title={label}
         disabled={disabled}
         onClick={onClick}
-        className="cursor-pointer disabled:cursor-not-allowed disabled:text-slate-600"
+        className={`cursor-pointer disabled:cursor-not-allowed disabled:text-slate-600 ${className}`}
       >
         {children}
       </button>
@@ -333,9 +335,10 @@ function Wrapper() {
             <IconButton
               label="confirm"
               onClick={acceptRenaming}
+              disabled={planName.length === 0}
+              className="text-green-300"
             >
               <FontAwesomeIcon
-                className="cursor-pointer text-green-300"
                 icon={faCheck}
               />
             </IconButton>
