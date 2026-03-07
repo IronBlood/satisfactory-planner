@@ -2,6 +2,9 @@ import {
   useMemo,
 } from "react";
 import {
+  useReactFlow,
+} from "@xyflow/react";
+import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
@@ -10,17 +13,29 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/20/solid";
 import {
+  type AppEdge,
   type AppNode,
 } from "@/types";
 import {
+  getItemSPByName,
   type ItemName,
 } from "@/data/items";
 import {
+  BuildingNames,
   Buildings,
+  type BuildingName,
 } from "@/data/buildings";
+import { ConveyorEdgeTypeId, type ConveyorEdgeType } from "@/nodes/ConveyorEdge";
+import type { ResourceNodeType } from "@/nodes/ResourceNode";
+import type { RecipeNodeType } from "@/nodes/RecipeNode";
+
+type ItemMap = Record<ItemName, number>;
 
 interface Summary {
-  need: Record<ItemName, number>;
+  need: ItemMap;
+  inputs: ItemMap;
+  outputs: ItemMap;
+  sink_points: number;
   power_comsumed: number;
   power_generated: number;
 }
@@ -49,21 +64,121 @@ function SummaryDisclosure({
   );
 }
 
+function ListItems({
+  map,
+  unit
+}: {
+  map: ItemMap;
+  unit: string;
+}) {
+  return (
+    <ul>
+      {Object.keys(map).sort().map(key => (
+        <li
+          key={key}
+        >
+          <span className="font-bold">{map[key]}</span>{unit} {key}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+const InputBuildings: BuildingName[] = [
+  BuildingNames.MinerMk1,
+  BuildingNames.MinerMk1,
+  BuildingNames.MinerMk3,
+  BuildingNames.WaterExtractor,
+  BuildingNames.OilExtractor,
+  BuildingNames.ResourceWellExtractor,
+];
+
+function isInputNode(node: AppNode): node is ResourceNodeType | RecipeNodeType {
+  if (node.type === "resource") {
+    return true;
+  }
+
+  if (node.type === "building") {
+    return false;
+  }
+
+  return InputBuildings.includes(node.data.recipe.building);
+}
+
 export default function Summary({
   nodes,
+  edges,
 }: {
   nodes: AppNode[];
+  edges: AppEdge[];
 }) {
+  const {
+    getNodeConnections,
+    getEdge,
+  } = useReactFlow();
+
   const summary: Summary = useMemo(() => {
     const s: Summary = {
       need: {},
+      inputs: {},
+      outputs: {},
+      sink_points: 0,
       power_comsumed: 0,
       power_generated: 0,
     };
 
     for (const node of nodes) {
+      if (isInputNode(node)) {
+        if (node.type === "resource") {
+          s.inputs[node.data.name] = (s.inputs[node.data.name] || 0) + node.data.count;
+        } else {
+          // NOTE: this should be a valid pair
+          const { name, rate } = node.data.recipe.outputs[0];
+          s.inputs[name] = (s.inputs[name] || 0) + rate;
+        }
+      }
+
       if (node.type === "resource") {
         continue;
+      }
+
+      if (node.type === "building" && node.data.name === BuildingNames.AwesomeCollector) {
+        const connections = getNodeConnections({
+          type: "target",
+          nodeId: node.id,
+        });
+
+        connections.forEach(c => {
+          const edge = getEdge(c.edgeId);
+          if (edge?.type !== ConveyorEdgeTypeId) {
+            // TODO
+            return;
+          }
+
+          if (c.sourceHandle) {
+            s.outputs[c.sourceHandle] = (s.outputs[c.sourceHandle] || 0) + ((edge as ConveyorEdgeType).data?.value || 0);
+          }
+        });
+
+        continue;
+      }
+
+      if (node.type === "building" && node.data.name === BuildingNames.AwesomeSink) {
+        const connections = getNodeConnections({
+          type: "target",
+          nodeId: node.id,
+        });
+
+        connections.forEach(c => {
+          const edge = getEdge(c.edgeId);
+          if (!c.sourceHandle || edge?.type !== ConveyorEdgeTypeId) {
+            // TODO
+            console.log("expect sourceHandle from:", c);
+            return;
+          }
+
+          s.sink_points += getItemSPByName(c.sourceHandle) * ((edge as ConveyorEdgeType).data?.value || 0);
+        });
       }
 
       const ceiled = Math.ceil(node.data.count);
@@ -84,22 +199,26 @@ export default function Summary({
     }
 
     return s;
-  }, [nodes]);
+  }, [nodes, edges, getEdge, getNodeConnections]);
+
   return (
     <div className="divide-y divide-slate-800">
       {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed"><span className="italic">approx.</span> {summary.power_comsumed} MW</SummaryDisclosure>}
       {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {summary.power_generated} MW</SummaryDisclosure>}
+      {summary.sink_points > 0 && <SummaryDisclosure title="Sink Points"><span className="italic">approx.</span> {summary.sink_points} /min</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
-        <SummaryDisclosure title="Items">
-          <ul>
-            {Object.keys(summary.need).sort().map(key => (
-              <li
-                key={key}
-              >
-                <span className="font-bold">{summary.need[key]}</span>x {key}
-              </li>
-            ))}
-          </ul>
+        <SummaryDisclosure title="Items for Buildings">
+          <ListItems map={summary.need} unit="x" />
+        </SummaryDisclosure>
+      )}
+      {Object.keys(summary.inputs).length > 0 && (
+        <SummaryDisclosure title="Inputs">
+          <ListItems map={summary.inputs} unit="/min" />
+        </SummaryDisclosure>
+      )}
+      {Object.keys(summary.outputs).length > 0 && (
+        <SummaryDisclosure title="Outputs">
+          <ListItems map={summary.outputs} unit="/min" />
         </SummaryDisclosure>
       )}
     </div>

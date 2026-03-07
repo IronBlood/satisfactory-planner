@@ -12,7 +12,8 @@ import {
 } from "@xyflow/react";
 import NumericInput from "@/components/NumericInput";
 
-export type ConveyorEdgeType = Edge<{ value: number }, "conveyor">;
+export const ConveyorEdgeTypeId = "conveyor";
+export type ConveyorEdgeType = Edge<{ value: number }, typeof ConveyorEdgeTypeId>;
 
 export default function ConveyorEdge({
   id,
