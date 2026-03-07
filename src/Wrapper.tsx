@@ -329,17 +329,25 @@ function Wrapper() {
             onChange={(e) => setPlanName(e.target.value)}
             placeholder="your next awesome plan"
           />
-          <div className="text-sm">
-            <FontAwesomeIcon
-              className="cursor-pointer text-green-300"
-              icon={faCheck}
+          <div className="text-sm flex items-center">
+            <IconButton
+              label="confirm"
               onClick={acceptRenaming}
-            />
-            <FontAwesomeIcon
-              className="cursor-pointer text-red-500"
-              icon={faXmark}
+            >
+              <FontAwesomeIcon
+                className="cursor-pointer text-green-300"
+                icon={faCheck}
+              />
+            </IconButton>
+            <IconButton
+              label="cancel"
               onClick={exitRenaming}
-            />
+            >
+              <FontAwesomeIcon
+                className="text-red-500"
+                icon={faXmark}
+              />
+            </IconButton>
           </div>
         </div>}
         <div className="flex gap-2">
