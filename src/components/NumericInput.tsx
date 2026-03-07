@@ -38,7 +38,7 @@ export default function NumericInput({
   return (
     <input
       className={[
-        "nodrag inline-block w-auto min-w-0 _reset-input-number",
+        "nodrag inline-block w-auto min-w-0 appearance-none border-0 outline-2 outline-transparent outline-offset-2",
         textRight ? "text-right" : "",
       ].join(" ")}
       type="text"
