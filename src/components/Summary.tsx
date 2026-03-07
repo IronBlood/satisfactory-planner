@@ -17,6 +17,7 @@ import {
   type AppNode,
 } from "@/types";
 import {
+  getItemImageByName,
   getItemSPByName,
   type ItemName,
 } from "@/data/items";
@@ -84,7 +85,12 @@ function ListItems({
         <li
           key={key}
         >
-          <span className="font-bold">{map[key]}</span>{unit} {key}
+          <span className="font-bold">{map[key]}</span>{unit} <img
+            alt={key}
+            loading="lazy"
+            src={getItemImageByName(key)}
+            className="aspect-square w-6 inline-block mx-2"
+          /> {key}
         </li>
       ))}
     </ul>
