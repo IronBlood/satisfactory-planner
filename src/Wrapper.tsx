@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -13,10 +14,16 @@ import {
   ListboxButton,
   ListboxOption,
   ListboxOptions,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Switch,
 } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
+  faGear,
   faMinus,
   faPlus,
   faPencil,
@@ -33,6 +40,9 @@ import type {
 } from "./types";
 import { getDefaultFlow, stripeData, useDataContext } from "./DataProvider";
 import { ChevronDownIcon, CheckIcon } from "@heroicons/react/20/solid";
+import { loadGoogleAnalytics } from "./analytics";
+
+const GA_KEY = "allow_ga";
 
 function AppMenuButton({
   text,
@@ -102,8 +112,31 @@ function Wrapper() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isRenaming, setRenaming] = useState(false);
   const [planName, setPlanName] = useState("");
+  const [showGABanner, setShowGABanner] = useState(false);
+  const [gaChoice, setGaChoice] = useState<boolean>(false);
 
   const { data, setData } = useDataContext();
+
+  useEffect(() => {
+    const raw = localStorage.getItem(GA_KEY);
+    if (raw === "true") {
+      loadGoogleAnalytics();
+    } else if (raw === "false") {
+      // do nothing
+    } else {
+      setShowGABanner(true);
+    }
+    setGaChoice(raw === "true");
+  }, []);
+
+  const setTrack = useCallback((value: boolean) => {
+    localStorage.setItem(GA_KEY, String(value));
+    setShowGABanner(false);
+    setGaChoice(value);
+    if (value) {
+      loadGoogleAnalytics();
+    }
+  }, []);
 
   const list = useMemo(() => data.flows.map((flow, idx) => ({
     id: idx,
@@ -366,6 +399,42 @@ function Wrapper() {
             onClick={() => actionsRef.current.toggleSidebar?.()}
             text="info"
           />
+          {!showGABanner && (
+            <Menu>
+              <MenuButton>
+                <FontAwesomeIcon
+                  className="text-sky-700 hover:text-sky-500 cursor-pointer"
+                  icon={faGear}
+                />
+              </MenuButton>
+              <MenuItems
+                transition
+                anchor="bottom end"
+                className="origin-top-right rounded-xl border border-slate-800 bg-slate-700 p-4 text-sm text-slate-300 transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0"
+              >
+                <MenuItem>
+                  <div>
+                    <div className="flex justify-between text-sm items-center gap-2">
+                      <span>Allow analytics</span>
+                      <Switch
+                        checked={gaChoice}
+                        onChange={setTrack}
+                        className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-white/10 p-1 ease-in-out focus:not-data-focus:outline-none data-checked:bg-white/10 data-focus:outline data-focus:outline-white"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-slate-700 shadow-lg ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-7 group-data-checked:bg-green-400"
+                        />
+                      </Switch>
+                    </div>
+                    <div className="italic">
+                      refresh required after changes
+                    </div>
+                  </div>
+                </MenuItem>
+              </MenuItems>
+            </Menu>
+          )}
           <div className="transition duration-200 text-sky-700 hover:text-sky-500 items-center text-2xl"><FontAwesomeIcon icon={faGithub} /></div>
           <input
             ref={fileInputRef}
@@ -387,6 +456,35 @@ function Wrapper() {
           <span className="font-bold">Disclaimer: </span>Satisfactory and its assets are trademarks and copyrighted materials of <span className="font-bold">Coffee Stain Studios</span>. This is an unofficial fan-made tool and is not affiliated with, endorsed, sponsored, or approved by Coffee Stain Studios. Inspired by <FooterLink href="https://satisfactory-planner.vercel.app/" text="Satisfactory Planner" />. Built with <FooterLink href="https://react.dev/" text="React" />, <FooterLink href="https://reactflow.dev/" text="React Flow" /> and <FooterLink href="https://tailwindcss.com" text="tailwindcss" />.
         </div>
       </footer>
+      {showGABanner && (
+        <div
+          className="h-16 bg-slate-800 px-4 text-sm text-slate-400 flex justify-between items-center"
+        >
+          <span>We’d like to use Google Analytics to understand how this site is used and improve it. We only enable it if you agree. You can turn this off at any time.</span>
+          <div
+            className="text-white flex gap-2"
+          >
+            <button
+              className="bg-green-700 p-2 cursor-pointer"
+              onClick={() => setTrack(true)}
+            >
+              <FontAwesomeIcon
+                icon={faCheck}
+              />
+              Yes
+            </button>
+            <button
+              className="bg-red-600 p-2 cursor-pointer"
+              onClick={() => setTrack(false)}
+            >
+              <FontAwesomeIcon
+                icon={faXmark}
+              />
+              No, don't track
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
