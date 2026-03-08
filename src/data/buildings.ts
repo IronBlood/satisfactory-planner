@@ -31,6 +31,8 @@ export const BuildingNames = {
   QuantumEncoder: "Quantum Encoder",
   Converter: "Converter",
 
+  CoalPoweredGenerator: "Coal-Powered Generator",
+  FuelPoweredGenerator: "Fuel-Powered Generator",
   NuclearPowerPlant: "Nuclear Power Plant",
 
   AwesomeSink: "AWESOME Sink",
@@ -239,6 +241,28 @@ export const Buildings: Record<BuildingName, Building> = {
     },
   },
 
+  [BuildingNames.CoalPoweredGenerator]: {
+    name: BuildingNames.CoalPoweredGenerator,
+    image: imageByName["IconDesc_CoalGenerator_256.png"],
+    power: -75,
+    ingredients: {
+      [StandardPartItemNames.ReinforcedIronPlate]: 20,
+      [IndustrialPartItemNames.Rotor]: 10,
+      [ElectronicItemNames.Cable]: 30,
+    },
+  },
+  [BuildingNames.FuelPoweredGenerator]: {
+    name: BuildingNames.FuelPoweredGenerator,
+    image: imageByName["FuelGenerator_256.png"],
+    power: -250,
+    ingredients: {
+      [IndustrialPartItemNames.Motor]: 15,
+      [StandardPartItemNames.EncasedIndustrialBeam]: 15,
+      [StandardPartItemNames.CopperSheet]: 30,
+      [StandardPartItemNames.Rubber]: 50,
+      [ElectronicItemNames.Quickwire]: 50,
+    },
+  },
   [BuildingNames.NuclearPowerPlant]: {
     name: BuildingNames.NuclearPowerPlant,
     image: imageByName["NuclearPowerplant_256.png"],
