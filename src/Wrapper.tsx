@@ -34,7 +34,7 @@ import type {
 import { getDefaultFlow, stripeData, useDataContext } from "./DataProvider";
 import { ChevronDownIcon, CheckIcon } from "@heroicons/react/20/solid";
 
-function MenuButton({
+function AppMenuButton({
   text,
   onClick,
 }: {
@@ -354,15 +354,15 @@ function Wrapper() {
           </div>
         </div>}
         <div className="flex gap-2">
-          <MenuButton
+          <AppMenuButton
             onClick={() => exportFlow()}
             text="export"
           />
-          <MenuButton
+          <AppMenuButton
             onClick={() => importFlow()}
             text="import"
           />
-          <MenuButton
+          <AppMenuButton
             onClick={() => actionsRef.current.toggleSidebar?.()}
             text="info"
           />
