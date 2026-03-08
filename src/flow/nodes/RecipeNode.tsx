@@ -82,13 +82,15 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
             <div className="text-xs text-gray-400">{building.name} x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count} MW)</span></div>
           </div>
           <div className="shrink items-center">
-            <img
-              alt={recipe.outputs[0].name}
-              width="256"
-              height="256"
-              className="aspect-square w-8"
-              src={getItemImageByName(recipe.outputs[0].name)}
-            />
+            {recipe.outputs[0] && (
+              <img
+                alt={recipe.outputs[0].name}
+                width="256"
+                height="256"
+                className="aspect-square w-8"
+                src={getItemImageByName(recipe.outputs[0].name)}
+              />
+            )}
           </div>
         </div>
       </BaseNode.Body>
