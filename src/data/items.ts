@@ -33,6 +33,12 @@ export const IngotItemNames = {
 
 export const MineralItemNames = {
   Concrete: "Concrete",
+  QuartzCrystal: "Quartz Crystal",
+  Silica: "Silica",
+  CopperPowder: "Copper Powder",
+  PolymerResin: "Polymer Resin",
+  PetroleumCoke: "Petroleum Coke",
+  AluminumScrap: "Aluminum Scrap",
 };
 
 export const LiquidItemNames = {
@@ -330,6 +336,30 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [MineralItemNames.Concrete]: {
     image: "IconDesc_Concrete_256.png",
     sink_points: 12,
+  },
+  [MineralItemNames.QuartzCrystal]: {
+    image: "IconDesc_QuartzResource_256.png",
+    sink_points: 50,
+  },
+  [MineralItemNames.Silica]: {
+    image: "IconDesc_Silica_256.png",
+    sink_points: 20,
+  },
+  [MineralItemNames.CopperPowder]: {
+    image: "IconDesc_CopperDust_256.png",
+    sink_points: 72,
+  },
+  [MineralItemNames.PolymerResin]: {
+    image: "IconDesc_PolymerResin_256.png",
+    sink_points: 12,
+  },
+  [MineralItemNames.PetroleumCoke]: {
+    image: "IconDesc_PetroleumCoke_256.png",
+    sink_points: 20,
+  },
+  [MineralItemNames.AluminumScrap]: {
+    image: "IconDesc_AluminiumScrap_256.png",
+    sink_points: 27,
   },
   [LiquidItemNames.Water]: {
     image: "LiquidWater_Pipe_256.png",
