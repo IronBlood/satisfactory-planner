@@ -732,6 +732,115 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+
+  {
+    name: "Power (Compacted Coal)",
+    building: BuildingNames.CoalPoweredGenerator,
+    inputs: [
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 7.14,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 45,
+      },
+    ],
+    outputs: [
+    ],
+  },
+  {
+    name: "Power (Coal)",
+    building: BuildingNames.CoalPoweredGenerator,
+    inputs: [
+      {
+        name: OreItemNames.Coal,
+        rate: 15,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 45,
+      },
+    ],
+    outputs: [
+    ],
+  },
+  {
+    name: "Power (Petroleum Coke)",
+    building: BuildingNames.CoalPoweredGenerator,
+    inputs: [
+      {
+        name: MineralItemNames.PetroleumCoke,
+        rate: 25,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 45,
+      },
+    ],
+    outputs: [
+    ],
+  },
+  {
+    name: "Power (Ionized Fuel)",
+    building: BuildingNames.FuelPoweredGenerator,
+    inputs: [
+      {
+        name: GasItemNames.IonizedFuel,
+        rate: 3,
+      },
+    ],
+    outputs: [
+    ],
+  },
+  {
+    name: "Power (Rocket Fuel)",
+    building: BuildingNames.FuelPoweredGenerator,
+    inputs: [
+      {
+        name: GasItemNames.RocketFuel,
+        rate: 4.17,
+      },
+    ],
+    outputs: [
+    ],
+  },
+  {
+    name: "Power (Turbofuel)",
+    building: BuildingNames.FuelPoweredGenerator,
+    inputs: [
+      {
+        name: LiquidItemNames.Turbofuel,
+        rate: 7.5,
+      },
+    ],
+    outputs: [
+    ],
+  },
+  {
+    name: "Power (Liquid Biofuel)",
+    building: BuildingNames.FuelPoweredGenerator,
+    inputs: [
+      {
+        name: LiquidItemNames.LiquidBiofuel,
+        rate: 20,
+      },
+    ],
+    outputs: [
+    ],
+  },
+  {
+    name: "Power (Fuel)",
+    building: BuildingNames.FuelPoweredGenerator,
+    inputs: [
+      {
+        name: LiquidItemNames.Fuel,
+        rate: 20,
+      },
+    ],
+    outputs: [
+    ],
+  },
 ];
 
 const RecipeNameMap: Record<string, Recipe> = {};
