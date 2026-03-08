@@ -44,8 +44,14 @@ export const MineralItemNames = {
 export const LiquidItemNames = {
   Water: "Water",
   CrudeOil: "Crude Oil",
+  HeavyOilResidue: "Heavy Oil Residue",
+  Fuel: "Fuel",
+  LiquidBiofuel: "Liquid Biofuel",
   Turbofuel: "Turbofuel",
+  AluminaSolution: "Alumina Solution",
+  SulfuricAcid: "Sulfuric Acid",
   NitricAcid: "Nitric Acid",
+  DissolvedSilica: "Dissolved Silica",
 };
 
 export const GasItemNames = {
@@ -373,13 +379,37 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
     image: "LiquidOil_Pipe_256.png",
     sink_points: 30,
   },
+  [LiquidItemNames.HeavyOilResidue]: {
+    image: "IconDesc_LiquidHeavyOilResidue_Pipe_256.png",
+    sink_points: 30,
+  },
+  [LiquidItemNames.Fuel]: {
+    image: "IconDesc_LiquidFuel_Pipe_256.png",
+    sink_points: 75,
+  },
+  [LiquidItemNames.LiquidBiofuel]: {
+    image: "IconDesc_LiquidBiofuel_Pipe_256.png",
+    sink_points: 261,
+  },
   [LiquidItemNames.Turbofuel]: {
     image: "IconDesc_LiquidTurboFuel_Pipe_256.png",
     sink_points: 225,
   },
+  [LiquidItemNames.AluminaSolution]: {
+    image: "LiquidAlumina_Pipe_256.png",
+    sink_points: 20,
+  },
+  [LiquidItemNames.SulfuricAcid]: {
+    image: "IconDesc_LiquidSulfuricAcid_Pipe_256.png",
+    sink_points: 16,
+  },
   [LiquidItemNames.NitricAcid]: {
     image: "IconDesc_NitricAcid_256.png",
     sink_points: 94,
+  },
+  [LiquidItemNames.DissolvedSilica]: {
+    image: "IconDesc_DissolvedSilica_256.png",
+    sink_points: -1,
   },
   [GasItemNames.NitrogenGas]: {
     image: "IconDesc_NitricAcid_256.png",
