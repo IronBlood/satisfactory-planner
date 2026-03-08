@@ -51,6 +51,9 @@ export const LiquidItemNames = {
 export const GasItemNames = {
   NitrogenGas: "Nitrogen Gas",
   RocketFuel: "Rocket Fuel",
+  IonizedFuel: "Ionized Fuel",
+  DarkMatterResidue: "Dark Matter Residue",
+  ExcitedPhotonicMatter: "Excited Photonic Matter",
 };
 
 export const StandardPartItemNames = {
@@ -385,6 +388,18 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [GasItemNames.RocketFuel]: {
     image: "IconDesc_RocketFuelPipe_256.png",
     sink_points: 289,
+  },
+  [GasItemNames.IonizedFuel]: {
+    image: "IconDesc_IonizedFuel_256.png",
+    sink_points: 2398,
+  },
+  [GasItemNames.DarkMatterResidue]: {
+    image: "IconDesc_DarkEnergy_256.png",
+    sink_points: 130,
+  },
+  [GasItemNames.ExcitedPhotonicMatter]: {
+    image: "IconDesc_QuantumEnergy_256.png",
+    sink_points: 100,
   },
   [StandardPartItemNames.IronRod]: {
     image: "IconDesc_IronRods_256.png",
