@@ -137,7 +137,15 @@ export const ContainerItemNames = {
 
 export const FuelItemNames = {
   CompactedCoal: "Compacted Coal",
+  PackagedOil: "Packaged Oil",
+  PackagedHeavyOilResidue: "Packaged Heavy Oil Residue",
+  PackagedFuel: "Packaged Fuel",
+  PackagedLiquidBiofuel: "Packaged Liquid Biofuel",
+  PackagedTurbofuel: "Packaged Turbofuel",
+  PackagedRocketFuel: "Packaged Rocket Fuel",
+  PackagedIonizedFuel: "Packaged Ionized Fuel",
   UraniumFuelRod: "Uranium Fuel Rod",
+  PlutoniumFuelRod: "Plutonium Fuel Rod",
 };
 
 export const ConsumedItemNames = {
@@ -670,9 +678,41 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
     image: "IconDesc_CompactedCoal_256.png",
     sink_points: 28,
   },
+  [FuelItemNames.PackagedOil]: {
+    image: "Oil_256.png",
+    sink_points: 180,
+  },
+  [FuelItemNames.PackagedHeavyOilResidue]: {
+    image: "OilResidue_256.png",
+    sink_points: 180,
+  },
+  [FuelItemNames.PackagedFuel]: {
+    image: "IconDesc_Fuel_256.png",
+    sink_points: 270,
+  },
+  [FuelItemNames.PackagedLiquidBiofuel]: {
+    image: "IconDesc_LiquidBiofuel_256.png",
+    sink_points: 370,
+  },
+  [FuelItemNames.PackagedTurbofuel]: {
+    image: "IconDesc_TurboFuel_256.png",
+    sink_points: 570,
+  },
+  [FuelItemNames.PackagedRocketFuel]: {
+    image: "IconDesc_PackagedRocketFuel_256.png",
+    sink_points: 1028,
+  },
+  [FuelItemNames.PackagedIonizedFuel]: {
+    image: "IconDesc_IonizedRocketFuel_256.png",
+    sink_points: 5246,
+  },
   [FuelItemNames.UraniumFuelRod]: {
     image: "IconDesc_NuclearFuelRod_256.png",
     sink_points: 43468,
+  },
+  [FuelItemNames.PlutoniumFuelRod]: {
+    image: "IconDesc_PlutoniumFuelRod_256.png",
+    sink_points: 153184,
   },
   [ConsumedItemNames.BlackPowder]: {
     image: "IconDesc_Gunpowder_256.png",
