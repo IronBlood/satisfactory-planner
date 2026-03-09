@@ -50,6 +50,7 @@ const miners: Array<{ building: BuildingName; mk: number; mul_m: number}> = [
 ];
 
 export const Recipes: Recipe[] = [
+  // Ores
   ...(Object.values(OreItemNames).map(ore => {
     return purities.map(({ purity, mul_p }) => {
       return miners.map(({ building, mk, mul_m }) => {
@@ -366,6 +367,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Ingots
   {
     name: "Iron Ingot",
     building: BuildingNames.Smelter,
@@ -463,6 +465,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Minerals
   {
     name: "Concrete",
     building: BuildingNames.Constructor,
@@ -480,6 +483,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Liquids
   {
     name: LiquidItemNames.Water,
     building: BuildingNames.WaterExtractor,
@@ -528,6 +532,7 @@ export const Recipes: Recipe[] = [
     ],
   } as Recipe)),
 
+  // Gas
   ...purities.map(({ purity, mul_p }) => ({
     name: `${GasItemNames.NitrogenGas} (${purity})`,
     building: BuildingNames.ResourceWellExtractor,
@@ -565,6 +570,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Standard Parts
   {
     name: "Iron Rod",
     building: BuildingNames.Constructor,
@@ -582,6 +588,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Industrial Parts
   {
     name: "Rotor",
     building: BuildingNames.Assembler,
@@ -603,6 +610,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Electronics
   {
     name: "Wire",
     building: BuildingNames.Constructor,
@@ -636,6 +644,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Communication
   {
     name: "Computer",
     building: BuildingNames.Manufacturer,
@@ -661,6 +670,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Quantum
   {
     name: "Diamonds",
     building: BuildingNames.ParticleAccelerator,
@@ -678,6 +688,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Container
   {
     name: "Empty Canister",
     building: BuildingNames.Constructor,
@@ -695,6 +706,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Fuel
   {
     name: "Alternate: Compacted Coal",
     building: BuildingNames.Assembler,
@@ -716,6 +728,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Consumed
   {
     name: "Black Powder",
     building: BuildingNames.Assembler,
@@ -737,6 +750,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Ammo
   {
     name: "Iron Rebar",
     building: BuildingNames.Constructor,
@@ -754,6 +768,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Nuclear
   {
     name: "Electromagnetic Control Rod",
     building: BuildingNames.Assembler,
@@ -775,6 +790,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Waste
   {
     name: "Uranium Waste",
     building: BuildingNames.NuclearPowerPlant,
@@ -792,6 +808,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Special
   {
     name: "Smart Plating",
     building: BuildingNames.Assembler,
@@ -813,6 +830,7 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  // Coal and Fuel generators
   {
     name: "Power (Compacted Coal)",
     building: BuildingNames.CoalPoweredGenerator,
