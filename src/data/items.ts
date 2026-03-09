@@ -118,6 +118,10 @@ export const CommunicationItemNames = {
 export const QuantumTechnologyItemNames = {
   Diamonds: "Diamonds",
   TimeCrystal: "Time Crystal",
+  DarkMatterCrystal: "Dark Matter Crystal",
+  SingularityCell: "Singularity Cell",
+  NeuralQuantumProcessor: "Neural-Quantum Processor",
+  AlienPowerMatrix: "Alien Power Matrix",
 };
 
 export const ContainerItemNames = {
@@ -606,6 +610,22 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [QuantumTechnologyItemNames.TimeCrystal]: {
     image: "IconDesc_ExoticMatter_256.png",
     sink_points: 960,
+  },
+  [QuantumTechnologyItemNames.DarkMatterCrystal]: {
+    image: "IconDesc_TimeCrystal_256.png",
+    sink_points: 1780,
+  },
+  [QuantumTechnologyItemNames.SingularityCell]: {
+    image: "IconDesc_SingularityCell_256.png",
+    sink_points: 114675,
+  },
+  [QuantumTechnologyItemNames.NeuralQuantumProcessor]: {
+    image: "IconDesc_TemporalProcessor_256.png",
+    sink_points: 248034,
+  },
+  [QuantumTechnologyItemNames.AlienPowerMatrix]: {
+    image: "IconDesc_AlienPowerMatrix_256.png",
+    sink_points: 210,
   },
   [ContainerItemNames.EmptyCanister]: {
     image: "IconDesc_EmptyCannister_256.png",
