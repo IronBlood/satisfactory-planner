@@ -182,6 +182,7 @@ export const NuclearItemNames = {
 
 export const WasteItemNames = {
   UraniumWaste: "Uranium Waste",
+  PlutoniumWaste: "Plutonium Waste",
 };
 
 export const SpecialItemNames = {
@@ -828,6 +829,10 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   },
   [WasteItemNames.UraniumWaste]: {
     image: "IconDesc_NuclearWaste_256.png",
+    sink_points: -1,
+  },
+  [WasteItemNames.PlutoniumWaste]: {
+    image: "IconDesc_PlutoniumWaste_256.png",
     sink_points: -1,
   },
   [SpecialItemNames.SmartPlating]: {
