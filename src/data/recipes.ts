@@ -636,6 +636,87 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Steel Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: OreItemNames.IronOre,
+        rate: 45,
+      },
+      {
+        name: OreItemNames.Coal,
+        rate: 45,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 45,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Coke Steel Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: OreItemNames.IronOre,
+        rate: 75,
+      },
+      {
+        name: MineralItemNames.PetroleumCoke,
+        rate: 75,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 100,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Compacted Steel Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: OreItemNames.IronOre,
+        rate: 5,
+      },
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 2.5,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 10,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Solid Steel Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 40,
+      },
+      {
+        name: OreItemNames.Coal,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 60,
+      },
+    ],
+  },
+
 
   // Minerals
   {
