@@ -382,6 +382,86 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Basic Iron Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: OreItemNames.IronOre,
+        rate: 25,
+      },
+      {
+        name: OreItemNames.Limestone,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 50,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Iron Alloy Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: OreItemNames.IronOre,
+        rate: 40,
+      },
+      {
+        name: OreItemNames.CopperOre,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 75,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Leached Iron Ingot",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.IronOre,
+        rate: 50,
+      },
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 100,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Pure Iron Ingot",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.IronOre,
+        rate: 35,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 65,
+      },
+    ],
+  },
 
   {
     name: "Concrete",
