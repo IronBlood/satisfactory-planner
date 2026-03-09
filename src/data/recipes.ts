@@ -1526,6 +1526,46 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Sulfuric Acid",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.Sulfur,
+        rate: 50,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 50,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 50,
+      },
+    ],
+  },
+  {
+    name: "Unpackage Sulfuric Acid",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: ContainerItemNames.PackagedSulfuricAcid,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 60,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 60,
+      },
+    ],
+  },
 
   // Gas
   ...purities.map(({ purity, mul_p }) => ({
