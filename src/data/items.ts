@@ -150,6 +150,9 @@ export const FuelItemNames = {
 
 export const ConsumedItemNames = {
   BlackPowder: "Black Powder",
+  SmokelessPowder: "Smokeless Powder",
+  GasFilter: "Gas Filter",
+  IodineInfusedFilter: "Iodine-Infused Filter",
 };
 
 export const AmmoItemNames = {
@@ -717,6 +720,18 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [ConsumedItemNames.BlackPowder]: {
     image: "IconDesc_Gunpowder_256.png",
     sink_points: 14,
+  },
+  [ConsumedItemNames.SmokelessPowder]: {
+    image: "IconDesc_GunpowderMk2_256.png",
+    sink_points: 58,
+  },
+  [ConsumedItemNames.GasFilter]: {
+    image: "IconDesc_GasMaskFilter_256.png",
+    sink_points: 608,
+  },
+  [ConsumedItemNames.IodineInfusedFilter]: {
+    image: "IconDesc_HazmatFilter_256.png",
+    sink_points: 2274,
   },
   [AmmoItemNames.IronRebar]: {
     image: "IconDesc_Rebar_256.png",
