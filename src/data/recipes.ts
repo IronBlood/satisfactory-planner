@@ -1086,6 +1086,86 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Aluminum Scrap",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: LiquidItemNames.AluminaSolution,
+        rate: 240,
+      },
+      {
+        name: OreItemNames.Coal,
+        rate: 120,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.AluminumScrap,
+        rate: 360,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 120,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Electrode Aluminum Scrap",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: LiquidItemNames.AluminaSolution,
+        rate: 180,
+      },
+      {
+        name: MineralItemNames.PetroleumCoke,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.AluminumScrap,
+        rate: 300,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 105,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Instant Scrap",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: OreItemNames.Bauxite,
+        rate: 150,
+      },
+      {
+        name: OreItemNames.Coal,
+        rate: 100,
+      },
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 50,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.AluminumScrap,
+        rate: 300,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 50,
+      },
+    ],
+  },
 
   // Liquids
   {
