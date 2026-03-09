@@ -1374,6 +1374,94 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Turbofuel",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: LiquidItemNames.Fuel,
+        rate: 22.5,
+      },
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.Turbofuel,
+        rate: 18.75,
+      },
+    ],
+  },
+  {
+    name: "Unpackage Turbofuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: FuelItemNames.PackagedTurbofuel,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.Turbofuel,
+        rate: 20,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Turbo Blend Fuel",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: LiquidItemNames.Fuel,
+        rate: 15,
+      },
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 30,
+      },
+      {
+        name: OreItemNames.Sulfur,
+        rate: 22.5,
+      },
+      {
+        name: MineralItemNames.PetroleumCoke,
+        rate: 22.5,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.Turbofuel,
+        rate: 45,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Turbo Heavy Fuel",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 37.5,
+      },
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.Turbofuel,
+        rate: 30,
+      },
+    ],
+  },
 
   // Gas
   ...purities.map(({ purity, mul_p }) => ({
