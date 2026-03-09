@@ -1462,6 +1462,70 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alumina Solution",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.Bauxite,
+        rate: 120,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 180,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.AluminaSolution,
+        rate: 120,
+      },
+      {
+        name: MineralItemNames.Silica,
+        rate: 50,
+      },
+    ],
+  },
+  {
+    name: "Unpackage Alumina Solution",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: ContainerItemNames.PackagedAluminaSolution,
+        rate: 120,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.AluminaSolution,
+        rate: 120,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 120,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Sloppy Alumina",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.Bauxite,
+        rate: 200,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 200,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.AluminaSolution,
+        rate: 240,
+      },
+    ],
+  },
 
   // Gas
   ...purities.map(({ purity, mul_p }) => ({
