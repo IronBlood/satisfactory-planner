@@ -716,7 +716,42 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
-
+  {
+    name: "Aluminum Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: MineralItemNames.AluminumScrap,
+        rate: 90,
+      },
+      {
+        name: MineralItemNames.Silica,
+        rate: 75,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Pure Aluminum Ingot",
+    building: BuildingNames.Smelter,
+    inputs: [
+      {
+        name: MineralItemNames.AluminumScrap,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 30,
+      },
+    ],
+  },
 
   // Minerals
   {
