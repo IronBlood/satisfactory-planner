@@ -1566,6 +1566,50 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Nitric Acid",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 120,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 30,
+      },
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.NitricAcid,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Unpackage Nitric Acid",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: ContainerItemNames.PackagedNitricAcid,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.NitricAcid,
+        rate: 20,
+      },
+      {
+        name: ContainerItemNames.EmptyFluidTank,
+        rate: 20,
+      },
+    ],
+  },
 
   // Gas
   ...purities.map(({ purity, mul_p }) => ({
