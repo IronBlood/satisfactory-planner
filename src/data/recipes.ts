@@ -1192,6 +1192,27 @@ export const Recipes: Recipe[] = [
     ],
   } as Recipe)),
 
+  {
+    name: "Unpackage Water",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: ContainerItemNames.PackagedWater,
+        rate: 120,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.Water,
+        rate: 120,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 120,
+      },
+    ],
+  },
+
   ...purities.map(({ purity, mul_p }) => ({
     name: `${LiquidItemNames.CrudeOil} (${purity})`,
     building: BuildingNames.OilExtractor,
@@ -1215,6 +1236,27 @@ export const Recipes: Recipe[] = [
       },
     ],
   } as Recipe)),
+
+  {
+    name: "Unpackage Oil",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: FuelItemNames.PackagedOil,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.CrudeOil,
+        rate: 60,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 60,
+      },
+    ],
+  },
 
   // Gas
   ...purities.map(({ purity, mul_p }) => ({
