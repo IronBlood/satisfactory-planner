@@ -970,6 +970,70 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Silica",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: OreItemNames.RawQuartz,
+        rate: 22.5,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.Silica,
+        rate: 37.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Cheap Silica",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: OreItemNames.RawQuartz,
+        rate: 22.5,
+      },
+      {
+        name: OreItemNames.Limestone,
+        rate: 37.5,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.Silica,
+        rate: 52.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Distilled Silica",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: LiquidItemNames.DissolvedSilica,
+        rate: 120,
+      },
+      {
+        name: OreItemNames.Limestone,
+        rate: 50,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 100,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.Silica,
+        rate: 270,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 80,
+      },
+    ],
+  },
 
   // Liquids
   {
