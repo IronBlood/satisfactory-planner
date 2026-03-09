@@ -830,6 +830,66 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Alternate: Fine Concrete",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: MineralItemNames.Silica,
+        rate: 15,
+      },
+      {
+        name: OreItemNames.Limestone,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.Concrete,
+        rate: 50,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Rubber Concrete",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: OreItemNames.Limestone,
+        rate: 100,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.Concrete,
+        rate: 90,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Wet Concrete",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.Limestone,
+        rate: 120,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 100,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.Concrete,
+        rate: 80,
+      },
+    ],
+  },
 
   // Liquids
   {
