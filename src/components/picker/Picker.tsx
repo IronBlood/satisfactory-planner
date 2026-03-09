@@ -187,7 +187,16 @@ export default function Picker({
     }
     clearSelection();
     onClose();
-  }, [activeRecipe, activeBuilding, activeCat, CatBuilding, buildingHasRecipes]);
+  }, [
+    activeRecipe,
+    activeBuilding,
+    activeCat,
+    CatBuilding,
+    buildingHasRecipes,
+    onSave,
+    clearSelection,
+    onClose,
+  ]);
 
   const cardViews = useMemo(() => {
     return activeCat === CatBuilding
