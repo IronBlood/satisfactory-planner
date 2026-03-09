@@ -126,6 +126,13 @@ export const QuantumTechnologyItemNames = {
 
 export const ContainerItemNames = {
   EmptyCanister: "Empty Canister",
+  EmptyFluidTank: "Empty Fluid Tank",
+  PressureConversionCube: "Pressure Conversion Cube",
+  PackagedWater: "Packaged Water",
+  PackagedAluminaSolution: "Packaged Alumina Solution",
+  PackagedSulfuricAcid: "Packaged Sulfuric Acid",
+  PackagedNitricAcid: "Packaged Nitric Acid",
+  PackagedNitrogenGas: "Packaged Nitrogen Gas",
 };
 
 export const FuelItemNames = {
@@ -630,6 +637,34 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [ContainerItemNames.EmptyCanister]: {
     image: "IconDesc_EmptyCannister_256.png",
     sink_points: 60,
+  },
+  [ContainerItemNames.EmptyFluidTank]: {
+    image: "IconDesc_PressureTank_256.png",
+    sink_points: 170,
+  },
+  [ContainerItemNames.PressureConversionCube]: {
+    image: "IconDesc_ConversionCube_256.png",
+    sink_points: 255088,
+  },
+  [ContainerItemNames.PackagedWater]: {
+    image: "IconDesc_PackagedWater_256.png",
+    sink_points: 130,
+  },
+  [ContainerItemNames.PackagedAluminaSolution]: {
+    image: "IconDesc_PackagedAluminaSolution_256.png",
+    sink_points: 160,
+  },
+  [ContainerItemNames.PackagedSulfuricAcid]: {
+    image: "IconDesc_PckagedSulphuricAcid_256.png",
+    sink_points: 152,
+  },
+  [ContainerItemNames.PackagedNitricAcid]: {
+    image: "IconDesc_PackagedNitricAcid_256.png",
+    sink_points: 412,
+  },
+  [ContainerItemNames.PackagedNitrogenGas]: {
+    image: "IconDesc_PackagedNitrogen_256.png",
+    sink_points: 312,
   },
   [FuelItemNames.CompactedCoal]: {
     image: "IconDesc_CompactedCoal_256.png",
