@@ -890,6 +890,86 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Quartz Crystal",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: OreItemNames.RawQuartz,
+        rate: 37.5
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 22.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Fused Quartz Crystal",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: OreItemNames.RawQuartz,
+        rate: 75,
+      },
+      {
+        name: OreItemNames.Coal,
+        rate: 36,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 54,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Pure Quartz Crystal",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.RawQuartz,
+        rate: 67.5,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 37.5,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 52.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Quartz Purification",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.RawQuartz,
+        rate: 120,
+      },
+      {
+        name: LiquidItemNames.NitricAcid,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 75,
+      },
+      {
+        name: LiquidItemNames.DissolvedSilica,
+        rate: 60,
+      },
+    ],
+  },
 
   // Liquids
   {
