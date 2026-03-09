@@ -1050,6 +1050,26 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Polymer Resin",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: LiquidItemNames.CrudeOil,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.PolymerResin,
+        rate: 130,
+      },
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 20,
+      },
+    ],
+  },
 
   // Liquids
   {
