@@ -172,6 +172,12 @@ export const AmmoItemNames = {
 
 export const NuclearItemNames = {
   ElectromagneticControlRod: "Electromagnetic Control Rod",
+  EncasedUraniumCell: "Encased Uranium Cell",
+  NonFissileUranium: "Non-Fissile Uranium",
+  PlutoniumPellet: "Plutonium Pellet",
+  EncasedPlutoniumCell: "Encased Plutonium Cell",
+  Ficsonium: "Ficsonium",
+  FicsoniumFuelRod: "Ficsonium Fuel Rod",
 };
 
 export const WasteItemNames = {
@@ -795,6 +801,30 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [NuclearItemNames.ElectromagneticControlRod]: {
     image: "IconDesc_ElectromagneticControlRod_256.png",
     sink_points: 2560,
+  },
+  [NuclearItemNames.EncasedUraniumCell]: {
+    image: "IconDesc_NuclearCell_256.png",
+    sink_points: 147,
+  },
+  [NuclearItemNames.NonFissileUranium]: {
+    image: "IconDesc_NonFissileUranium_256.png",
+    sink_points: -1,
+  },
+  [NuclearItemNames.PlutoniumPellet]: {
+    image: "IconDesc_PlutoniumPellet_256.png",
+    sink_points: -1,
+  },
+  [NuclearItemNames.EncasedPlutoniumCell]: {
+    image: "IconDesc_EncasedPlutoniumCell_256.png",
+    sink_points: -1,
+  },
+  [NuclearItemNames.Ficsonium]: {
+    image: "IconDesc_FicsoniumCell_256.png",
+    sink_points: -1,
+  },
+  [NuclearItemNames.FicsoniumFuelRod]: {
+    image: "IconDesc_FicsoniumFuelRod_256.png",
+    sink_points: -1,
   },
   [WasteItemNames.UraniumWaste]: {
     image: "IconDesc_NuclearWaste_256.png",
