@@ -752,6 +752,66 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Ficsite Ingot (Aluminum)",
+    building: BuildingNames.Converter,
+    inputs: [
+      {
+        name: ElectronicItemNames.ReanimatedSAM,
+        rate: 60,
+      },
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 120,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.FicsiteIngot,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Ficsite Ingot (Caterium)",
+    building: BuildingNames.Converter,
+    inputs: [
+      {
+        name: ElectronicItemNames.ReanimatedSAM,
+        rate: 45,
+      },
+      {
+        name: IngotItemNames.CateriumIngot,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.FicsiteIngot,
+        rate: 15,
+      },
+    ],
+  },
+  {
+    name: "Ficsite Ingot (Iron)",
+    building: BuildingNames.Converter,
+    inputs: [
+      {
+        name: ElectronicItemNames.ReanimatedSAM,
+        rate: 40,
+      },
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 240,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.FicsiteIngot,
+        rate: 10,
+      },
+    ],
+  },
 
   // Minerals
   {
