@@ -31,6 +31,17 @@ function keysOf<T extends object>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
 }
 
+const categoryKeys = keysOf(ItemCategories);
+type CategoryValue = (typeof ItemCategories)[keyof typeof ItemCategories];
+const CatBuilding = "Buildings";
+type ExtendedCategoryValue = CategoryValue | typeof CatBuilding;
+
+const specialBuildings = [
+  Buildings[BuildingNames.AwesomeSink],
+  Buildings[BuildingNames.ResourceWellPressurizer],
+  Buildings[BuildingNames.AwesomeCollector],
+];
+
 function CatItem({
   onClick,
   isSelected,
@@ -66,17 +77,6 @@ export default function Picker({
   onSave: (name: string, isBuilding?: boolean) => void;
   sourceType?: ItemName;
 }) {
-  const categoryKeys = keysOf(ItemCategories);
-  type CategoryValue = (typeof ItemCategories)[keyof typeof ItemCategories];
-  const CatBuilding = "Buildings";
-  type ExtendedCategoryValue = CategoryValue | typeof CatBuilding;
-
-  const specialBuildings = [
-    Buildings[BuildingNames.AwesomeSink],
-    Buildings[BuildingNames.ResourceWellPressurizer],
-    Buildings[BuildingNames.AwesomeCollector],
-  ];
-
   const [activeCat, setActiveCat] = useState<ExtendedCategoryValue>(ItemCategories.ALL);
   const [activeRecipe, setActiveRecipe] = useState<string | null>(null);
   const [activeItem, setActiveItem] = useState<Item | null>(null);
