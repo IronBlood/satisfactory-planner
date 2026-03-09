@@ -1034,6 +1034,22 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Copper Powder",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 300,
+      },
+    ],
+    outputs: [
+      {
+        name: MineralItemNames.CopperPowder,
+        rate: 50,
+      },
+    ],
+  },
 
   // Liquids
   {
