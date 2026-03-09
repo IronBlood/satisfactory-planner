@@ -560,6 +560,82 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Caterium Ingot",
+    building: BuildingNames.Smelter,
+    inputs: [
+      {
+        name: OreItemNames.CateriumOre,
+        rate: 45,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.CateriumIngot,
+        rate: 15,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Leached Caterium Ingot",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.CateriumOre,
+        rate: 54,
+      },
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.CateriumIngot,
+        rate: 36,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Pure Caterium Ingot",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.CateriumOre,
+        rate: 24,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 24,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.CateriumIngot,
+        rate: 12,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Tempered Caterium Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: OreItemNames.CateriumOre,
+        rate: 45,
+      },
+      {
+        name: MineralItemNames.PetroleumCoke,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.CateriumIngot,
+        rate: 22.5,
+      },
+    ],
+  },
 
   // Minerals
   {
