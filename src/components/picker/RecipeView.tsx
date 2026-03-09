@@ -39,7 +39,7 @@ export default function RecipeView({
     : <OutputImage
       outputs={r!.outputs}
     />;
-  const output_rate = isResourceOutput ? 0 : r!.outputs.find(x => x.name === output_name)!.rate;
+  const output_rate = isResourceOutput ? 0 : r?.outputs.find(x => x.name === output_name)?.rate ?? 0;
   return (
     <div
       className={[
@@ -61,7 +61,7 @@ export default function RecipeView({
       {isResourceOutput
         ? <div className="shrink bg-slate-900 text-center text-sm font-light text-slate-300">Resource output</div>
         : <div className="mt-2 flex gap-2">
-          <div className="w-16 shrink text-center"><span className="text-xs leading-6">{output_rate} / m</span></div>
+          <div className="w-16 shrink text-center">{output_rate > 0 && <span className="text-xs leading-6">{output_rate} / m</span>}</div>
           <div className="grid flex-1 grid-cols-2">
             {r!.inputs.map((i) => (
               <div

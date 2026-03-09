@@ -21,11 +21,12 @@ import {
 } from "@/data/items";
 import { ItemCategories } from "@/data/categories";
 import {
+  getRecipesByBuilding,
   getRecipesByInput,
   getRecipesByOutput,
   type Recipe,
 } from "@/data/recipes";
-import { BuildingNames, Buildings } from "@/data/buildings";
+import { BuildingNames, Buildings, type BuildingName } from "@/data/buildings";
 
 function keysOf<T extends object>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
@@ -66,6 +67,11 @@ function CatItem({
   );
 }
 
+const BuildingHasRecipes = (b: string) => ([
+  BuildingNames.CoalPoweredGenerator,
+  BuildingNames.FuelPoweredGenerator,
+] as string[]).includes(b);
+
 export default function Picker({
   isOpen,
   onClose,
@@ -80,8 +86,13 @@ export default function Picker({
   const [activeCat, setActiveCat] = useState<ExtendedCategoryValue>(ItemCategories.ALL);
   const [activeRecipe, setActiveRecipe] = useState<string | null>(null);
   const [activeItem, setActiveItem] = useState<Item | null>(null);
-  const [activeBuilding, setActiveBuilding] = useState<string | undefined>(undefined);
+  const [activeBuilding, _setActiveBuilding] = useState<BuildingName | undefined>(undefined);
   const [searchText, setSearchText] = useState("");
+
+  const setActiveBuilding = useCallback((building: BuildingName | undefined) => {
+    setActiveRecipe(null);
+    _setActiveBuilding(building);
+  }, []);
 
   const computedRegex = useMemo(() => {
     const trimmed = searchText.trim();
@@ -100,6 +111,10 @@ export default function Picker({
       setActiveRecipe(null);
     }
   }, []);
+
+  const buildingHasRecipes = useMemo(() => !activeBuilding
+    ? false
+    : BuildingHasRecipes(activeBuilding), [activeBuilding]);
 
   const recipesCanBeUsed: Recipe[] = useMemo(() => {
     return sourceType ? getRecipesByInput(sourceType) : []
@@ -146,33 +161,59 @@ export default function Picker({
 
   const canBeAdded = useMemo(() => {
     if (activeCat === CatBuilding) {
-      return activeBuilding !== undefined;
+      if (!activeBuilding) {
+        return false;
+      }
+
+      if (!buildingHasRecipes) {
+        return true;
+      }
+
+      return activeRecipe !== null;
     }
 
     return activeRecipe !== null;
-  }, [activeCat, activeBuilding, activeRecipe, CatBuilding]);
+  }, [activeCat, activeBuilding, activeRecipe, CatBuilding, buildingHasRecipes]);
 
   const doSave = useCallback(() => {
     if (activeCat === CatBuilding) {
-      onSave(activeBuilding!, true);
+      if (buildingHasRecipes) {
+        onSave(activeRecipe!);
+      } else {
+        onSave(activeBuilding!, true);
+      }
     } else {
       onSave(activeRecipe!);
     }
     clearSelection();
     onClose();
-  }, [activeRecipe, activeBuilding, activeCat, CatBuilding]);
+  }, [activeRecipe, activeBuilding, activeCat, CatBuilding, buildingHasRecipes]);
 
   const cardViews = useMemo(() => {
     return activeCat === CatBuilding
-      ? specialBuildings.map(building => (
-        <ItemView
-          key={building.name}
-          name={building.name}
-          image={building.image}
-          onClick={() => setActiveBuilding(building.name)}
-          activeItem={activeBuilding}
-        />
-      ))
+      ? [
+        ...specialBuildings.map(building => (
+          <ItemView
+            key={building.name}
+            name={building.name}
+            image={building.image}
+            onClick={() => setActiveBuilding(building.name)}
+            activeItem={activeBuilding}
+          />
+        )),
+        ...[
+          Buildings[BuildingNames.CoalPoweredGenerator],
+          Buildings[BuildingNames.FuelPoweredGenerator],
+        ].map(building => (
+          <ItemView
+            key={building.name}
+            name={building.name}
+            image={building.image}
+            onClick={() => setActiveBuilding(building.name)}
+            activeItem={activeBuilding}
+          />
+        )),
+      ]
       : filteredItems.map(item => (
         <ItemView
           key={item.name}
@@ -182,7 +223,7 @@ export default function Picker({
           activeItem={activeItem?.name}
         />
       ));
-  }, [filteredItems, activeItem, activeCat, specialBuildings]);
+  }, [filteredItems, activeItem, activeCat, specialBuildings, activeBuilding]);
 
   const recipeViews = useMemo(() => {
     const source_key = activeItem === null ? "" : `${activeItem.name} - source`;
@@ -198,6 +239,18 @@ export default function Picker({
             activeRecipe={activeRecipe}
           />
         ));
+    } else if (activeCat === "Buildings") {
+      return activeBuilding && buildingHasRecipes
+        ? getRecipesByBuilding(activeBuilding).map(r => (
+          <RecipeView
+            key={r.name}
+            output_name=""
+            recipe={r.name}
+            onClick={() => setActiveRecipe(r.name)}
+            activeRecipe={activeRecipe}
+          />
+        ))
+        : [];
     } else {
       return activeItem === null
         ? []
@@ -220,7 +273,16 @@ export default function Picker({
           )),
         ];
     }
-  }, [activeItem, activeRecipe, sourceType, recipesCanBeUsed]);
+  }, [
+    activeItem,
+    activeRecipe,
+    sourceType,
+    recipesCanBeUsed,
+    buildingHasRecipes,
+    activeBuilding,
+    activeCat,
+    buildingHasRecipes,
+  ]);
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-10 text-white">
@@ -280,7 +342,7 @@ export default function Picker({
                 </div>
               </div>
               {/* recipes */}
-              {activeItem && <div className="shrink-0 flex flex-col overflow-hidden">
+              {recipeViews.length > 0 && <div className="shrink-0 flex flex-col overflow-hidden">
                 <h3 className="flex items-center justify-between bg-slate-900 px-3 py-1 font-semibold sm:px-6">
                   <span>Pick a recipe:</span>
                   <button className="flex h-fit items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 cursor-pointer" onClick={() => clearSelection()}>Clear</button>

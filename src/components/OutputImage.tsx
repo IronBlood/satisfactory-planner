@@ -15,14 +15,14 @@ export default function OutputImage({
 }) {
   return (
     <>
-      <img
+      {outputs[0] && <img
         src={getItemImageByName(outputs[0].name)}
         alt={outputs[0].name}
         loading="lazy"
         width="256"
         height="256"
         className="inline-block aspect-square w-12"
-      />
+      />}
       {showSecond && outputs[1] && <img
         src={getItemImageByName(outputs[1].name)}
         alt={outputs[1].name}
