@@ -29,6 +29,10 @@ export const OreItemNames = {
 export const IngotItemNames = {
   IronIngot: "Iron Ingot",
   CopperIngot: "Copper Ingot",
+  CateriumIngot: "Caterium Ingot",
+  SteelIngot: "Steel Ingot",
+  AluminumIngot: "Aluminum Ingot",
+  FicsiteIngot: "Ficsite Ingot",
 };
 
 export const MineralItemNames = {
@@ -341,6 +345,22 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [IngotItemNames.CopperIngot]: {
     image: "IconDesc_CopperIngot_256.png",
     sink_points: 6,
+  },
+  [IngotItemNames.CateriumIngot]: {
+    image: "IconDesc_CateriumIngot_256.png",
+    sink_points: 42,
+  },
+  [IngotItemNames.SteelIngot]: {
+    image: "IconDesc_SteelIngot_256.png",
+    sink_points: 8,
+  },
+  [IngotItemNames.AluminumIngot]: {
+    image: "IconDesc_AluminiumIngot_256.png",
+    sink_points: 131,
+  },
+  [IngotItemNames.FicsiteIngot]: {
+    image: "IconDesc_FicsiteIngot_256.png",
+    sink_points: 1936,
   },
   [MineralItemNames.Concrete]: {
     image: "IconDesc_Concrete_256.png",
