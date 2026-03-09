@@ -1258,6 +1258,47 @@ export const Recipes: Recipe[] = [
     ],
   },
 
+  {
+    name: "Unpackage Heavy Oil Residue",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: FuelItemNames.PackagedHeavyOilResidue,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 20,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Heavy Oil Residue",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: LiquidItemNames.CrudeOil,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 40,
+      },
+      {
+        name: MineralItemNames.PolymerResin,
+        rate: 20,
+      },
+    ],
+  },
+
   // Gas
   ...purities.map(({ purity, mul_p }) => ({
     name: `${GasItemNames.NitrogenGas} (${purity})`,
