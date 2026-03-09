@@ -43,24 +43,24 @@ const purities: Array<{ purity: OrePurity; mul_p: number }> = [
   { purity: OrePurities.Pure, mul_p: 4 },
 ];
 
-const miners: Array<{ mk: BuildingName; mul_m: number}> = [
-  { mk: BuildingNames.MinerMk1, mul_m: 1 },
-  { mk: BuildingNames.MinerMk2, mul_m: 2 },
-  { mk: BuildingNames.MinerMk3, mul_m: 4 },
+const miners: Array<{ building: BuildingName; mk: number; mul_m: number}> = [
+  { building: BuildingNames.MinerMk1, mk: 1, mul_m: 1 },
+  { building: BuildingNames.MinerMk2, mk: 2, mul_m: 2 },
+  { building: BuildingNames.MinerMk3, mk: 3, mul_m: 4 },
 ];
 
 export const Recipes: Recipe[] = [
   ...(Object.values(OreItemNames).map(ore => {
     return purities.map(({ purity, mul_p }) => {
-      return miners.map(({ mk, mul_m }) => {
+      return miners.map(({ building, mk, mul_m }) => {
         return {
-          name: `${ore} (Mk.${mul_m} on ${purity})`,
+          name: `${ore} (Mk.${mk} on ${purity})`,
           inputs: [],
           outputs: [{
             name: ore,
             rate: 30 * mul_p * mul_m,
           }],
-          building: mk,
+          building,
         } as Recipe;
       }).flat();
     }).flat();
