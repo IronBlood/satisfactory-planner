@@ -157,6 +157,17 @@ export const ConsumedItemNames = {
 
 export const AmmoItemNames = {
   IronRebar: "Iron Rebar",
+  StunRebar: "Stun Rebar",
+  ShatterRebar: "Shatter Rebar",
+  ExplosiveRebar: "Explosive Rebar",
+  RifleAmmo: "Rifle Ammo",
+  HomingRifleAmmo: "Homing Rifle Ammo",
+  TurboRifleAmmo: "Turbo Rifle Ammo",
+  Nobelisk: "Nobelisk",
+  GasNobelisk: "Gas Nobelisk",
+  PulseNobelisk: "Pulse Nobelisk",
+  ClusterNobelisk: "Cluster Nobelisk",
+  NukeNobelisk: "Nuke Nobelisk",
 };
 
 export const NuclearItemNames = {
@@ -736,6 +747,50 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [AmmoItemNames.IronRebar]: {
     image: "IconDesc_Rebar_256.png",
     sink_points: 8,
+  },
+  [AmmoItemNames.StunRebar]: {
+    image: "IconDesc_StunRebar_256.png",
+    sink_points: 186,
+  },
+  [AmmoItemNames.ShatterRebar]: {
+    image: "IconDesc_ScatterRebar_256.png",
+    sink_points: 332,
+  },
+  [AmmoItemNames.ExplosiveRebar]: {
+    image: "IconDesc_ExpRebar_256.png",
+    sink_points: 360,
+  },
+  [AmmoItemNames.RifleAmmo]: {
+    image: "IconDesc_Rifle_256.png",
+    sink_points: 25,
+  },
+  [AmmoItemNames.HomingRifleAmmo]: {
+    image: "IconDesc_HomingRifle_256.png",
+    sink_points: 855,
+  },
+  [AmmoItemNames.TurboRifleAmmo]: {
+    image: "IconDesc_TurboRifle_256.png",
+    sink_points: 120,
+  },
+  [AmmoItemNames.Nobelisk]: {
+    image: "IconDesc_Explosive_256.png",
+    sink_points: 152,
+  },
+  [AmmoItemNames.GasNobelisk]: {
+    image: "IconDesc_Gas_256.png",
+    sink_points: 544,
+  },
+  [AmmoItemNames.PulseNobelisk]: {
+    image: "IconDesc_Shock_256.png",
+    sink_points: 1533,
+  },
+  [AmmoItemNames.ClusterNobelisk]: {
+    image: "IconDesc_Cluster_256.png",
+    sink_points: 1376,
+  },
+  [AmmoItemNames.NukeNobelisk]: {
+    image: "IconDesc_Nuke_256.png",
+    sink_points: 19600,
   },
   [NuclearItemNames.ElectromagneticControlRod]: {
     image: "IconDesc_ElectromagneticControlRod_256.png",
