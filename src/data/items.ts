@@ -188,6 +188,17 @@ export const WasteItemNames = {
 export const SpecialItemNames = {
   SmartPlating: "Smart Plating",
   PortableMiner: "Portable Miner",
+  VersatileFramework: "Versatile Framework",
+  AutomatedWiring: "Automated Wiring",
+  ModularEngine: "Modular Engine",
+  AdaptiveControlUnit: "Adaptive Control Unit",
+  AssemblyDirectorSystem: "Assembly Director System",
+  MagneticFieldGenerator: "Magnetic Field Generator",
+  ThermalPropulsionRocket: "Thermal Propulsion Rocket",
+  NuclearPasta: "Nuclear Pasta",
+  BiochemicalSculptor: "Biochemical Sculptor",
+  BallisticWarpDrive: "Ballistic Warp Drive",
+  AIExpansionServer: "AI Expansion Server",
 };
 
 export type OreItemName = typeof OreItemNames[keyof typeof OreItemNames];
@@ -842,6 +853,50 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [SpecialItemNames.PortableMiner]: {
     image: "IconDesc_PortableMiner_256.png",
     sink_points: 56,
+  },
+  [SpecialItemNames.VersatileFramework]: {
+    image: "IconDesc_SpelevatorPart_2_256.png",
+    sink_points: 1176,
+  },
+  [SpecialItemNames.AutomatedWiring]: {
+    image: "SpelevatorPart_3_256.png",
+    sink_points: 1440,
+  },
+  [SpecialItemNames.ModularEngine]: {
+    image: "IconDesc_SpelevatorPart_4_256.png",
+    sink_points: 9960,
+  },
+  [SpecialItemNames.AdaptiveControlUnit]: {
+    image: "IconDesc_SpelevatorPart_5_256.png",
+    sink_points: 76368,
+  },
+  [SpecialItemNames.AssemblyDirectorSystem]: {
+    image: "IconDesc_AssemblyDirectorSystem_256.png",
+    sink_points: 500176,
+  },
+  [SpecialItemNames.MagneticFieldGenerator]: {
+    image: "IconDesc_MagneticFieldGenerator_256.png",
+    sink_points: 11000,
+  },
+  [SpecialItemNames.ThermalPropulsionRocket]: {
+    image: "IconDesc_ThermalPropulsionRocket_256.png",
+    sink_points: 728508,
+  },
+  [SpecialItemNames.NuclearPasta]: {
+    image: "IconDesc_NuclearPasta_256.png",
+    sink_points: 538976,
+  },
+  [SpecialItemNames.BiochemicalSculptor]: {
+    image: "IconDesc_BiochemicalSculptor_256.png",
+    sink_points: 301778,
+  },
+  [SpecialItemNames.BallisticWarpDrive]: {
+    image: "IconDesc_BallisticWarpDrive_256.png",
+    sink_points: 2895334,
+  },
+  [SpecialItemNames.AIExpansionServer]: {
+    image: "IconDesc_AIExpension_256.png",
+    sink_points: 597652,
   },
 };
 
