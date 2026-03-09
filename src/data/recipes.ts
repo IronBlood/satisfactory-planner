@@ -464,6 +464,102 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Copper Ingot",
+    building: BuildingNames.Smelter,
+    inputs: [
+      {
+        name: OreItemNames.CopperOre,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Copper Alloy Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: OreItemNames.CopperOre,
+        rate: 50,
+      },
+      {
+        name: OreItemNames.IronOre,
+        rate: 50,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 100,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Leached Copper Ingot",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.CopperOre,
+        rate: 45,
+      },
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 25,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 110,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Pure Copper Ingot",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: OreItemNames.CopperOre,
+        rate: 15,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 37.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Tempered Copper Ingot",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: OreItemNames.CopperOre,
+        rate: 25,
+      },
+      {
+        name: MineralItemNames.PetroleumCoke,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 60,
+      },
+    ],
+  },
 
   // Minerals
   {
