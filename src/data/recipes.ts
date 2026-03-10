@@ -2976,6 +2976,90 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Turbo Motor",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.CoolingSystem,
+        rate: 7.5,
+      },
+      {
+        name: CommunicationItemNames.RadioControlUnit,
+        rate: 3.75,
+      },
+      {
+        name: IndustrialPartItemNames.Motor,
+        rate: 7.5,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 45,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.TurboMotor,
+        rate: 1.875,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Turbo Electric Motor",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.Motor,
+        rate: 6.56,
+      },
+      {
+        name: CommunicationItemNames.RadioControlUnit,
+        rate: 8.44,
+      },
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 4.69,
+      },
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 6.56,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.TurboMotor,
+        rate: 2.81,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Turbo Pressure Motor",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.Motor,
+        rate: 7.5,
+      },
+      {
+        name: ContainerItemNames.PressureConversionCube,
+        rate: 1.88,
+      },
+      {
+        name: ContainerItemNames.PackagedNitrogenGas,
+        rate: 45,
+      },
+      {
+        name: IndustrialPartItemNames.Stator,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.TurboMotor,
+        rate: 3.75,
+      },
+    ],
+  },
 
   // Electronics
   {
