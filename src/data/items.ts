@@ -186,6 +186,7 @@ export const WasteItemNames = {
 };
 
 export const SpecialItemNames = {
+  PowerShard: "Power Shard",
   SmartPlating: "Smart Plating",
   PortableMiner: "Portable Miner",
   VersatileFramework: "Versatile Framework",
@@ -844,6 +845,10 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   },
   [WasteItemNames.PlutoniumWaste]: {
     image: "IconDesc_PlutoniumWaste_256.png",
+    sink_points: -1,
+  },
+  [SpecialItemNames.PowerShard]: {
+    image: "PowerShard_256.png",
     sink_points: -1,
   },
   [SpecialItemNames.SmartPlating]: {
