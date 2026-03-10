@@ -1938,6 +1938,62 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Iron Plate",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Coated Iron Plate",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 37.5,
+      },
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 7.5,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 75,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Steel Iron Plate",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 15,
+      },
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 45,
+      },
+    ],
+  },
 
   // Industrial Parts
   {
