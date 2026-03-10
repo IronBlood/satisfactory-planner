@@ -2310,6 +2310,202 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Modular Frame",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 3,
+      },
+      {
+        name: StandardPartItemNames.IronRod,
+        rate: 12,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.ModularFrame,
+        rate: 2,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Bolted Frame",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 7.5,
+      },
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 140,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.ModularFrame,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Steeled Frame",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 2,
+      },
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.ModularFrame,
+        rate: 3,
+      },
+    ],
+  },
+  {
+    name: "Heavy Modular Frame",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: StandardPartItemNames.ModularFrame,
+        rate: 10,
+      },
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 40,
+      },
+      {
+        name: StandardPartItemNames.EncasedIndustrialBeam,
+        rate: 10,
+      },
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 240,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.HeavyModularFrame,
+        rate: 2,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Heavy Encased Frame",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: StandardPartItemNames.ModularFrame,
+        rate: 7.5,
+      },
+      {
+        name: StandardPartItemNames.EncasedIndustrialBeam,
+        rate: 9.38
+      },
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 33.75,
+      },
+      {
+        name: MineralItemNames.Concrete,
+        rate: 20.63,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.HeavyModularFrame,
+        rate: 2.81
+      },
+    ],
+  },
+  {
+    name: "Alt.: Heavy Flexible Frame",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: StandardPartItemNames.ModularFrame,
+        rate: 18.75,
+      },
+      {
+        name: StandardPartItemNames.EncasedIndustrialBeam,
+        rate: 11.25,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 75,
+      },
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 390,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.HeavyModularFrame,
+        rate: 3.75,
+      },
+    ],
+  },
+  {
+    name: "Fused Modular Frame",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: StandardPartItemNames.HeavyModularFrame,
+        rate: 1.5,
+      },
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 75,
+      },
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 37.5,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.FusedModularFrame,
+        rate: 1.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Heat-Fused Frame",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: StandardPartItemNames.HeavyModularFrame,
+        rate: 3,
+      },
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 150,
+      },
+      {
+        name: LiquidItemNames.NitricAcid,
+        rate: 24,
+      },
+      {
+        name: LiquidItemNames.Fuel,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.FusedModularFrame,
+        rate: 3,
+      },
+    ],
+  },
 
   // Industrial Parts
   {
