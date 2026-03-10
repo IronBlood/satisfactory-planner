@@ -2506,6 +2506,22 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Ficsite Trigon",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.FicsiteIngot,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.FicsiteTrigon,
+        rate: 30,
+      },
+    ],
+  },
 
   // Industrial Parts
   {
