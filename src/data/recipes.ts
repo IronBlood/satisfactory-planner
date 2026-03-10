@@ -1623,6 +1623,66 @@ export const Recipes: Recipe[] = [
       },
     ],
   } as Recipe)),
+  {
+    name: "Unpackage Nitrogen Gas",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: ContainerItemNames.PackagedNitrogenGas,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 240,
+      },
+      {
+        name: ContainerItemNames.EmptyFluidTank,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Nitrogen Gas (Bauxite)",
+    building: BuildingNames.Converter,
+    inputs: [
+      {
+        name: ElectronicItemNames.ReanimatedSAM,
+        rate: 10,
+      },
+      {
+        name: OreItemNames.Bauxite,
+        rate: 100,
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 120,
+      },
+    ],
+  },
+  {
+    name: "Nitrogen Gas (Caterium)",
+    building: BuildingNames.Converter,
+    inputs: [
+      {
+        name: ElectronicItemNames.ReanimatedSAM,
+        rate: 10,
+      },
+      {
+        name: OreItemNames.CateriumOre,
+        rate: 120,
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 120,
+      }
+    ],
+  },
 
   {
     name: "Rocket Fuel",
@@ -1645,6 +1705,138 @@ export const Recipes: Recipe[] = [
       {
         name: FuelItemNames.CompactedCoal,
         rate: 10,
+      },
+    ],
+  },
+  {
+    name: "Unpackage Rocket Fuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: FuelItemNames.PackagedRocketFuel,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.RocketFuel,
+        rate: 120,
+      },
+      {
+        name: ContainerItemNames.EmptyFluidTank,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Nitro Rocket Fuel",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: LiquidItemNames.Fuel,
+        rate: 100,
+      },
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 75,
+      },
+      {
+        name: OreItemNames.Sulfur,
+        rate: 100,
+      },
+      {
+        name: OreItemNames.Coal,
+        rate: 50,
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.RocketFuel,
+        rate: 150,
+      },
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 25,
+      },
+    ],
+  },
+  {
+    name: "Ionized Fuel",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: GasItemNames.RocketFuel,
+        rate: 40,
+      },
+      {
+        name: SpecialItemNames.PowerShard,
+        rate: 2.5
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.IonizedFuel,
+        rate: 40,
+      },
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Unpackage Ionized Fuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: FuelItemNames.PackagedIonizedFuel,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.IonizedFuel,
+        rate: 80,
+      },
+      {
+        name: ContainerItemNames.EmptyFluidTank,
+        rate: 40,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Dark-Ion Fuel",
+    building: BuildingNames.Converter,
+    inputs: [
+      {
+        name: FuelItemNames.PackagedRocketFuel,
+        rate: 240,
+      },
+      {
+        name: QuantumTechnologyItemNames.DarkMatterCrystal,
+        rate: 80,
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.IonizedFuel,
+        rate: 200,
+      },
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 40,
+      },
+    ],
+  },
+  {
+    name: "Excited Photonic Matter",
+    building: BuildingNames.Converter,
+    inputs: [
+    ],
+    outputs: [
+      {
+        name: GasItemNames.ExcitedPhotonicMatter,
+        rate: 200,
       },
     ],
   },
