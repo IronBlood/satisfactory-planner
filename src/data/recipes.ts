@@ -2924,6 +2924,58 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Cooling System",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.HeatSink,
+        rate: 12,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 12,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 30,
+      },
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 150,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.CoolingSystem,
+        rate: 6,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Cooling Device",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.HeatSink,
+        rate: 10,
+      },
+      {
+        name: IndustrialPartItemNames.Motor,
+        rate: 2.5,
+      },
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.CoolingSystem,
+        rate: 5,
+      },
+    ],
+  },
 
   // Electronics
   {
