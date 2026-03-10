@@ -1994,6 +1994,86 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Reinforced Iron Plate",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 30,
+      },
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Adhered Iron Plate",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 11.25,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 3.75,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 3.75,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Bolted Iron Plate",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 90,
+      },
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 250,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 15,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Stitched Iron Plate",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 18.75,
+      },
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 37.5,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 5.63,
+      },
+    ],
+  },
 
   // Industrial Parts
   {
