@@ -2684,6 +2684,46 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Copper Rotor",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.CopperSheet,
+        rate: 22.5,
+      },
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 195,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 11.25,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Steel Rotor",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 10,
+      },
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 5,
+      },
+    ],
+  },
 
   // Electronics
   {
