@@ -2166,6 +2166,150 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Steel Pipe",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Iron Pipe",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 100,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 25,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Molded Steel Pipe",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 50,
+      },
+      {
+        name: MineralItemNames.Concrete,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 50,
+      },
+    ],
+  },
+  {
+    name: "Steel Beam",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.StealBeam,
+        rate: 15,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Aluminum Beam",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 22.5,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.StealBeam,
+        rate: 22.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Molded Beam",
+    building: BuildingNames.Foundry,
+    inputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 120,
+      },
+      {
+        name: MineralItemNames.Concrete,
+        rate: 80,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.StealBeam,
+        rate: 45,
+      },
+    ],
+  },
+  {
+    name: "Encased Industrial Beam",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.StealBeam,
+        rate: 18,
+      },
+      {
+        name: MineralItemNames.Concrete,
+        rate: 36,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.EncasedIndustrialBeam,
+        rate: 6,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Encased Industrial Pipe",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 24,
+      },
+      {
+        name: MineralItemNames.Concrete,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.EncasedIndustrialBeam,
+        rate: 4,
+      },
+    ],
+  },
 
   // Industrial Parts
   {
