@@ -2522,6 +2522,146 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Polyester Fabric",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: MineralItemNames.PolymerResin,
+        rate: 30,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Fabric,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Plastic",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: LiquidItemNames.CrudeOil,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 20,
+      },
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 10,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Recycled Plastic",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 30,
+      },
+      {
+        name: LiquidItemNames.Fuel,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Residual Plastic",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: MineralItemNames.PolymerResin,
+        rate: 60,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Rubber",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: LiquidItemNames.CrudeOil,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 20,
+      },
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Recycled Rubber",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 30,
+      },
+      {
+        name: LiquidItemNames.Fuel,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Residual Rubber",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: MineralItemNames.PolymerResin,
+        rate: 40,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 20,
+      },
+    ],
+  },
 
   // Industrial Parts
   {
