@@ -2724,6 +2724,46 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Stator",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 15,
+      },
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Stator,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Quickwire Stator",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 16,
+      },
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Stator,
+        rate: 8,
+      },
+    ],
+  },
 
   // Electronics
   {
