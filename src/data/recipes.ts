@@ -2764,6 +2764,62 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Battery",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 50,
+      },
+      {
+        name: LiquidItemNames.AluminaSolution,
+        rate: 40,
+      },
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Battery,
+        rate: 20,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Classic Battery",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: OreItemNames.Sulfur,
+        rate: 45,
+      },
+      {
+        name: StandardPartItemNames.AlcladAluminumSheet,
+        rate: 52.5,
+      },
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 60,
+      },
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 90
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Battery,
+        rate: 30,
+      },
+    ],
+  },
 
   // Electronics
   {
