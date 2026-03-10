@@ -3146,6 +3146,66 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Coated Cable",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 37.5,
+      },
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Cable,
+        rate: 67.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Insulated Cable",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 45,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Cable,
+        rate: 100,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Quickwire Cable",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 7.5,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 5,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Cable,
+        rate: 27.5,
+      },
+    ],
+  },
 
   // Communication
   {
