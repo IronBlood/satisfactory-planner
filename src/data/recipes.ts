@@ -2884,6 +2884,46 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Heat Sink",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.AlcladAluminumSheet,
+        rate: 37.5,
+      },
+      {
+        name: StandardPartItemNames.CopperSheet,
+        rate: 22.5,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.HeatSink,
+        rate: 7.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Heat Exchanger",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 30,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.HeatSink,
+        rate: 10,
+      },
+    ],
+  },
 
   // Electronics
   {
