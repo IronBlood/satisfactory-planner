@@ -3079,6 +3079,58 @@ export const Recipes: Recipe[] = [
     ],
   },
   {
+    name: "Alt.: Caterium Wire",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.CateriumIngot,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 120,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Fused Wire",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 12,
+      },
+      {
+        name: IngotItemNames.CateriumIngot,
+        rate: 3,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 90,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Iron Wire",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 12.5,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 22.5,
+      },
+    ],
+  },
+  {
     name: "Cable",
     building: BuildingNames.Constructor,
     inputs: [
