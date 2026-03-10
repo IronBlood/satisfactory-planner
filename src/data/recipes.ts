@@ -2820,6 +2820,70 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Motor",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 10,
+      },
+      {
+        name: IndustrialPartItemNames.Stator,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Motor,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Electric Motor",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 3.75,
+      },
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 7.5,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Motor,
+        rate: 7.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Rigor Motor",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 3.75,
+      },
+      {
+        name: IndustrialPartItemNames.Stator,
+        rate: 3.75,
+      },
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        rate: 1.25,
+      },
+    ],
+    outputs: [
+      {
+        name: IndustrialPartItemNames.Motor,
+        rate: 7.5,
+      },
+    ],
+  },
 
   // Electronics
   {
