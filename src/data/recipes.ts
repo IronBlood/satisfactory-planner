@@ -2074,6 +2074,98 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Copper Sheet",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.CopperSheet,
+        rate: 10,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Steamed Copper Sheet",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 22.5,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 22.5,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.CopperSheet,
+        rate: 22.5,
+      },
+    ],
+  },
+  {
+    name: "Alclad Aluminum Sheet",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 30,
+      },
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.AlcladAluminumSheet,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Aluminum Casing",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 90,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Alclad Casing",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 150,
+      },
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 75,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 112.5
+      },
+    ],
+  },
 
   // Industrial Parts
   {
