@@ -1858,6 +1858,86 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Aluminum Rod",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 7.5,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.IronRod,
+        rate: 52.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Steel Rod",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 12,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.IronRod,
+        rate: 48,
+      },
+    ],
+  },
+  {
+    name: "Screws",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: StandardPartItemNames.IronRod,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 40,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Cast Screws",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.IronIngot,
+        rate: 12.5,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 50,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Steel Screws",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 5,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.Screws,
+        rate: 260,
+      },
+    ],
+  },
 
   // Industrial Parts
   {
