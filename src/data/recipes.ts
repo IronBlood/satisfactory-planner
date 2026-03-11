@@ -4136,6 +4136,26 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Packaged Alumina Solution",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: LiquidItemNames.AluminaSolution,
+        rate: 120,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 120,
+      },
+    ],
+    outputs: [
+      {
+        name: ContainerItemNames.PackagedAluminaSolution,
+        rate: 120,
+      },
+    ],
+  },
 
   // Fuel
   {
