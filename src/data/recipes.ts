@@ -4238,6 +4238,266 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Packaged Oil",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: LiquidItemNames.CrudeOil,
+        rate: 30,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PackagedOil,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Packaged Heavy Oil Residue",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 30,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PackagedHeavyOilResidue,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Packaged Fuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: LiquidItemNames.Fuel,
+        rate: 40,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PackagedFuel,
+        rate: 40,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Diluted Packaged Fuel",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 30,
+      },
+      {
+        name: ContainerItemNames.PackagedWater,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PackagedFuel,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Packaged Liquid Biofuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: LiquidItemNames.LiquidBiofuel,
+        rate: 40,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PackagedLiquidBiofuel,
+        rate: 40,
+      },
+    ],
+  },
+  {
+    name: "Packaged Turbofuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: LiquidItemNames.Turbofuel,
+        rate: 20,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PackagedTurbofuel,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Packaged Rocket Fuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: GasItemNames.RocketFuel,
+        rate: 120,
+      },
+      {
+        name: ContainerItemNames.EmptyFluidTank,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PackagedRocketFuel,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Packaged Ionized Fuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: GasItemNames.IonizedFuel,
+        rate: 80,
+      },
+      {
+        name: ContainerItemNames.EmptyFluidTank,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PackagedIonizedFuel,
+        rate: 40,
+      },
+    ],
+  },
+  {
+    name: "Uranium Fuel Rod",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: NuclearItemNames.EncasedUraniumCell,
+        rate: 20,
+      },
+      {
+        name: StandardPartItemNames.EncasedIndustrialBeam,
+        rate: 1.2,
+      },
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 2,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.UraniumFuelRod,
+        rate: 0.4,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Uranium Fuel Unit",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: NuclearItemNames.EncasedUraniumCell,
+        rate: 100,
+      },
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 2,
+      },
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        rate: 0.6,
+      },
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 2,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.UraniumFuelRod,
+        rate: 0.6,
+      },
+    ],
+  },
+  {
+    name: "Plutonium Fuel Rod",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: NuclearItemNames.EncasedPlutoniumCell,
+        rate: 7.5,
+      },
+      {
+        name: StandardPartItemNames.StealBeam,
+        rate: 4.5,
+      },
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 1.5,
+      },
+      {
+        name: IndustrialPartItemNames.HeatSink,
+        rate: 2.5,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PlutoniumFuelRod,
+        rate: 0.25,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Plutonium Fuel Unit",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: NuclearItemNames.EncasedPlutoniumCell,
+        rate: 10,
+      },
+      {
+        name: ContainerItemNames.PressureConversionCube,
+        rate: 0.5,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.PlutoniumFuelRod,
+        rate: 0.5,
+      },
+    ],
+  },
 
   // Consumed
   {
