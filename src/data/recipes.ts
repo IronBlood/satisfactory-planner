@@ -3934,6 +3934,34 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Singularity Cell",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: SpecialItemNames.NuclearPasta,
+        rate: 1,
+      },
+      {
+        name: QuantumTechnologyItemNames.DarkMatterCrystal,
+        rate: 20,
+      },
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 100,
+      },
+      {
+        name: MineralItemNames.Concrete,
+        rate: 200,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.SingularityCell,
+        rate: 10,
+      },
+    ],
+  },
 
   // Container
   {
