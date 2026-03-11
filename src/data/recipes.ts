@@ -4080,6 +4080,22 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Empty Fluid Tank",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: ContainerItemNames.EmptyFluidTank,
+        rate: 60,
+      },
+    ],
+  },
 
   // Fuel
   {
