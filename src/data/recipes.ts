@@ -4116,6 +4116,26 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Packaged Water",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: LiquidItemNames.Water,
+        rate: 60,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: ContainerItemNames.PackagedWater,
+        rate: 60,
+      },
+    ],
+  },
 
   // Fuel
   {
