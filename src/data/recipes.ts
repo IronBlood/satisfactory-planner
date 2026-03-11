@@ -3242,6 +3242,86 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Circuit Board",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.CopperSheet,
+        rate: 15,
+      },
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 7.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Caterium Circuit Board",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 12.5,
+      },
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 37.5,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 8.75,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Electrode Circuit Board",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 20,
+      },
+      {
+        name: MineralItemNames.PetroleumCoke,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Silicon Circuit Board",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.CopperSheet,
+        rate: 27.5,
+      },
+      {
+        name: MineralItemNames.Silica,
+        rate: 27.5,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 12.5,
+      },
+    ],
+  },
 
   // Communication
   {
