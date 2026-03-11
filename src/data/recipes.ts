@@ -3672,6 +3672,54 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Crystal Oscillator",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 18,
+      },
+      {
+        name: ElectronicItemNames.Cable,
+        rate: 14,
+      },
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 2.5,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        rate: 1,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Insulated Crystal Oscillator",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 1.875 * 10,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 1.875 * 7,
+      },
+      {
+        name: ElectronicItemNames.AILimiter,
+        rate: 1.875,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        rate: 1.875,
+      },
+    ],
+  },
 
   // Quantum
   {
