@@ -4044,6 +4044,42 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Coated Iron Canister",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 30,
+      },
+      {
+        name: StandardPartItemNames.CopperSheet,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Steel Canister",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.SteelIngot,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: ContainerItemNames.EmptyCanister,
+        rate: 40,
+      },
+    ],
+  },
 
   // Fuel
   {
