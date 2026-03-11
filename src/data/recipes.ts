@@ -4626,6 +4626,70 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Stun Rebar",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: AmmoItemNames.IronRebar,
+        rate: 10,
+      },
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 50,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.StunRebar,
+        rate: 10,
+      },
+    ],
+  },
+  {
+    name: "Shatter Rebar",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: AmmoItemNames.IronRebar,
+        rate: 10,
+      },
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.ShatterRebar,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Explosive Rebar",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: AmmoItemNames.IronRebar,
+        rate: 10,
+      },
+      {
+        name: ConsumedItemNames.SmokelessPowder,
+        rate: 10,
+      },
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.ExplosiveRebar,
+        rate: 5,
+      },
+    ],
+  },
 
   // Nuclear
   {
