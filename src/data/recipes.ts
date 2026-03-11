@@ -4176,6 +4176,26 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Packaged Nitric Acid",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: LiquidItemNames.NitricAcid,
+        rate: 30,
+      },
+      {
+        name: ContainerItemNames.EmptyFluidTank,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: ContainerItemNames.PackagedNitricAcid,
+        rate: 30,
+      },
+    ],
+  },
 
   // Fuel
   {
