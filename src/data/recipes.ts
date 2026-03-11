@@ -3720,6 +3720,38 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Superposition Oscillator",
+    building: BuildingNames.QuantumEncoder,
+    inputs: [
+      {
+        name: QuantumTechnologyItemNames.DarkMatterCrystal,
+        rate: 30,
+      },
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        rate: 5,
+      },
+      {
+        name: StandardPartItemNames.AlcladAluminumSheet,
+        rate: 45,
+      },
+      {
+        name: GasItemNames.ExcitedPhotonicMatter,
+        rate: 125,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.SuperpositionOscillator,
+        rate: 5,
+      },
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 125,
+      },
+    ],
+  },
 
   // Quantum
   {
