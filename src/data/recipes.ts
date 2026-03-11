@@ -3770,6 +3770,98 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Cloudy Diamonds",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: OreItemNames.Coal,
+        rate: 240,
+      },
+      {
+        name: OreItemNames.Limestone,
+        rate: 480,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.Diamonds,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Oil-Based Diamonds",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: LiquidItemNames.CrudeOil,
+        rate: 200,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.Diamonds,
+        rate: 40,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Petroleum Diamonds",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: MineralItemNames.PetroleumCoke,
+        rate: 720,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.Diamonds,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Pink Diamonds",
+    building: BuildingNames.Converter,
+    inputs: [
+      {
+        name: OreItemNames.Coal,
+        rate: 120,
+      },
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 45,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.Diamonds,
+        rate: 15,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Turbo Diamonds",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: OreItemNames.Coal,
+        rate: 600,
+      },
+      {
+        name: FuelItemNames.PackagedTurbofuel,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.Diamonds,
+        rate: 60,
+      },
+    ],
+  },
 
   // Container
   {
