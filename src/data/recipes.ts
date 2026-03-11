@@ -4196,6 +4196,26 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Packaged Nitrogen Gas",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: GasItemNames.NitrogenGas,
+        rate: 240,
+      },
+      {
+        name: ContainerItemNames.EmptyFluidTank,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: ContainerItemNames.PackagedNitrogenGas,
+        rate: 60,
+      },
+    ],
+  },
 
   // Fuel
   {
