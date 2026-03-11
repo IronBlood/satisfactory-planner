@@ -3362,6 +3362,54 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "High-Speed Connector",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 210,
+      },
+      {
+        name: ElectronicItemNames.Cable,
+        rate: 37.5,
+      },
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 3.75,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.HighSpeedConnector,
+        rate: 3.75,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Silicon High-Speed Connector",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 90,
+      },
+      {
+        name: MineralItemNames.Silica,
+        rate: 37.5,
+      },
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 3,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.HighSpeedConnector,
+        rate: 3,
+      },
+    ],
+  },
 
   // Communication
   {
