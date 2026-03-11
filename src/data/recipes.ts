@@ -3596,6 +3596,82 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Radio Control Unit",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 40,
+      },
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        rate: 1.25,
+      },
+      {
+        name: CommunicationItemNames.Computer,
+        rate: 2.5,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.RadioControlUnit,
+        rate: 2.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Radio Connection Unit",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.HeatSink,
+        rate: 15,
+      },
+      {
+        name: ElectronicItemNames.HighSpeedConnector,
+        rate: 7.5,
+      },
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 45,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.RadioControlUnit,
+        rate: 3.75,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Radio Control System",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        rate: 1.5,
+      },
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 15,
+      },
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 90,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 45,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.RadioControlUnit,
+        rate: 4.5
+      },
+    ],
+  },
 
   // Quantum
   {
