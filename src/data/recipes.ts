@@ -3994,6 +3994,38 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alien Power Matrix",
+    building: BuildingNames.QuantumEncoder,
+    inputs: [
+      {
+        name: ElectronicItemNames.SAMFluctuator,
+        rate: 12.5,
+      },
+      {
+        name: SpecialItemNames.PowerShard,
+        rate: 7.5,
+      },
+      {
+        name: CommunicationItemNames.SuperpositionOscillator,
+        rate: 7.5,
+      },
+      {
+        name: GasItemNames.ExcitedPhotonicMatter,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.AlienPowerMatrix,
+        rate: 2.5,
+      },
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 60,
+      },
+    ],
+  },
 
   // Container
   {
