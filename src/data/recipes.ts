@@ -3476,6 +3476,50 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Caterium Computer",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 15,
+      },
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 52.5,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 22.5
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.Computer,
+        rate: 3.75,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Crystal Computer",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 5,
+      },
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        rate: 5/3,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.Computer,
+        rate: 10/3,
+      },
+    ],
+  },
 
   // Quantum
   {
