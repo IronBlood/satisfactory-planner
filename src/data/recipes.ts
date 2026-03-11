@@ -3862,6 +3862,22 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Time Crystal",
+    building: BuildingNames.Converter,
+    inputs: [
+      {
+        name: QuantumTechnologyItemNames.Diamonds,
+        rate: 12,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.TimeCrystal,
+        rate: 6,
+      },
+    ],
+  },
 
   // Container
   {
