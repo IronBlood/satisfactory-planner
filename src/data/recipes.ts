@@ -3962,6 +3962,38 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Neural-Quantum Processor",
+    building: BuildingNames.QuantumEncoder,
+    inputs: [
+      {
+        name: QuantumTechnologyItemNames.TimeCrystal,
+        rate: 15,
+      },
+      {
+        name: CommunicationItemNames.Supercomputer,
+        rate: 3,
+      },
+      {
+        name: StandardPartItemNames.FicsiteTrigon,
+        rate: 45,
+      },
+      {
+        name: GasItemNames.ExcitedPhotonicMatter,
+        rate: 75,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.NeuralQuantumProcessor,
+        rate: 3,
+      },
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 75,
+      },
+    ],
+  },
 
   // Container
   {
