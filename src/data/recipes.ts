@@ -3322,6 +3322,46 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "AI Limiter",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.CopperSheet,
+        rate: 25,
+      },
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 100,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.AILimiter,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Plastic AI Limiter",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 120,
+      },
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 28,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.AILimiter,
+        rate: 8,
+      },
+    ],
+  },
 
   // Communication
   {
