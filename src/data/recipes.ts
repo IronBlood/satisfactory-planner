@@ -4520,6 +4520,94 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Fine Black Powder",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: OreItemNames.Sulfur,
+        rate: 7.5,
+      },
+      {
+        name: FuelItemNames.CompactedCoal,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: ConsumedItemNames.BlackPowder,
+        rate: 45,
+      },
+    ],
+  },
+  {
+    name: "Smokeless Powder",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: ConsumedItemNames.BlackPowder,
+        rate: 20,
+      },
+      {
+        name: LiquidItemNames.HeavyOilResidue,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: ConsumedItemNames.SmokelessPowder,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Gas Filter",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: StandardPartItemNames.Fabric,
+        rate: 15,
+      },
+      {
+        name: OreItemNames.Coal,
+        rate: 30,
+      },
+      {
+        name: StandardPartItemNames.IronPlate,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: ConsumedItemNames.GasFilter,
+        rate: 7.5,
+      },
+    ],
+  },
+  {
+    name: "Iodine-Infused Filter",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: ConsumedItemNames.GasFilter,
+        rate: 3.75,
+      },
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 30,
+      },
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 3.75,
+      },
+    ],
+    outputs: [
+      {
+        name: ConsumedItemNames.IodineInfusedFilter,
+        rate: 3.75,
+      },
+    ],
+  },
 
   // Ammo
   {
