@@ -3520,6 +3520,82 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Supercomputer",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: CommunicationItemNames.Computer,
+        rate: 7.5,
+      },
+      {
+        name: ElectronicItemNames.AILimiter,
+        rate: 3.75,
+      },
+      {
+        name: ElectronicItemNames.HighSpeedConnector,
+        rate: 5.625,
+      },
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 52.5,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.Supercomputer,
+        rate: 1.875,
+      },
+    ],
+  },
+  {
+    name: "Alt.: OC Supercomputer",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: CommunicationItemNames.RadioControlUnit,
+        rate: 6,
+      },
+      {
+        name: IndustrialPartItemNames.CoolingSystem,
+        rate: 6,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.Supercomputer,
+        rate: 3,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Super-State Computer",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: CommunicationItemNames.Computer,
+        rate: 7.2,
+      },
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 2.4,
+      },
+      {
+        name: IndustrialPartItemNames.Battery,
+        rate: 24,
+      },
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.Supercomputer,
+        rate: 2.4,
+      },
+    ],
+  },
 
   // Quantum
   {
