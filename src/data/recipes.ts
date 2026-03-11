@@ -3206,6 +3206,42 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Quickwire",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.CateriumIngot,
+        rate: 12,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 60,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Fused Quickwire",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IngotItemNames.CateriumIngot,
+        rate: 7.5,
+      },
+      {
+        name: IngotItemNames.CopperIngot,
+        rate: 37.5,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 90,
+      },
+    ],
+  },
 
   // Communication
   {
