@@ -3878,6 +3878,62 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Dark Matter Crystal",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: QuantumTechnologyItemNames.Diamonds,
+        rate: 30,
+      },
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 150,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.DarkMatterCrystal,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Dark Matter Crystallization",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 200,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.DarkMatterCrystal,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Dark Matter Trap",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: QuantumTechnologyItemNames.TimeCrystal,
+        rate: 30,
+      },
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 150,
+      },
+    ],
+    outputs: [
+      {
+        name: QuantumTechnologyItemNames.DarkMatterCrystal,
+        rate: 60,
+      },
+    ],
+  },
 
   // Container
   {
