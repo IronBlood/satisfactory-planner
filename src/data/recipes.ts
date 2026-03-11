@@ -4096,6 +4096,26 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Pressure Conversion Cube",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.FusedModularFrame,
+        rate: 1,
+      },
+      {
+        name: CommunicationItemNames.RadioControlUnit,
+        rate: 2,
+      },
+    ],
+    outputs: [
+      {
+        name: ContainerItemNames.PressureConversionCube,
+        rate: 1,
+      },
+    ],
+  },
 
   // Fuel
   {
