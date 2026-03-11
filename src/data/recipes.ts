@@ -3410,6 +3410,46 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Reanimated SAM",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: OreItemNames.SAM,
+        rate: 120,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.ReanimatedSAM,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "SAM Fluctuator",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: ElectronicItemNames.ReanimatedSAM,
+        rate: 60,
+      },
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 50,
+      },
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: ElectronicItemNames.SAMFluctuator,
+        rate: 10,
+      },
+    ],
+  },
 
   // Communication
   {
