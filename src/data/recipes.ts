@@ -5252,6 +5252,30 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Plastic Smart Plating",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: StandardPartItemNames.ReinforcedIronPlate,
+        rate: 2.5,
+      },
+      {
+        name: IndustrialPartItemNames.Rotor,
+        rate: 2.5,
+      },
+      {
+        name: StandardPartItemNames.Plastic,
+        rate: 7.5,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.SmartPlating,
+        rate: 5,
+      },
+    ],
+  },
 
   // Coal and Fuel generators
   {
