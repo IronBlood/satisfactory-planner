@@ -5456,6 +5456,138 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Thermal Propulsion Rocket",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: SpecialItemNames.ModularEngine,
+        rate: 2.5,
+      },
+      {
+        name: IndustrialPartItemNames.TurboMotor,
+        rate: 1,
+      },
+      {
+        name: IndustrialPartItemNames.CoolingSystem,
+        rate: 3,
+      },
+      {
+        name: StandardPartItemNames.FusedModularFrame,
+        rate: 1,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.ThermalPropulsionRocket,
+        rate: 1,
+      },
+    ],
+  },
+  {
+    name: "Nuclear Pasta",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: MineralItemNames.CopperPowder,
+        rate: 200,
+      },
+      {
+        name: ContainerItemNames.PressureConversionCube,
+        rate: 0.5,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.NuclearPasta,
+        rate: 0.5,
+      },
+    ],
+  },
+  {
+    name: "Biochemical Sculptor",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: SpecialItemNames.AssemblyDirectorSystem,
+        rate: 0.5,
+      },
+      {
+        name: StandardPartItemNames.FicsiteTrigon,
+        rate: 40,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.BiochemicalSculptor,
+        rate: 2,
+      },
+    ],
+  },
+  {
+    name: "Ballistic Warp Drive",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: SpecialItemNames.ThermalPropulsionRocket,
+        rate: 1,
+      },
+      {
+        name: QuantumTechnologyItemNames.SingularityCell,
+        rate: 5,
+      },
+      {
+        name: CommunicationItemNames.SuperpositionOscillator,
+        rate: 2,
+      },
+      {
+        name: QuantumTechnologyItemNames.DarkMatterCrystal,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.BallisticWarpDrive,
+        rate: 1,
+      },
+    ],
+  },
+  {
+    name: "AI Expansion Server",
+    building: BuildingNames.QuantumEncoder,
+    inputs: [
+      {
+        name: SpecialItemNames.MagneticFieldGenerator,
+        rate: 4,
+      },
+      {
+        name: QuantumTechnologyItemNames.NeuralQuantumProcessor,
+        rate: 4,
+      },
+      {
+        name: CommunicationItemNames.SuperpositionOscillator,
+        rate: 4,
+      },
+      {
+        name: GasItemNames.ExcitedPhotonicMatter,
+        rate: 100,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.AIExpansionServer,
+        rate: 4,
+      },
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 100,
+      },
+    ],
+  },
 
   // Coal and Fuel generators
   {
