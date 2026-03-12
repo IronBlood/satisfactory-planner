@@ -136,6 +136,7 @@ export const ContainerItemNames = {
 };
 
 export const FuelItemNames = {
+  Biomass: "Biomass",
   CompactedCoal: "Compacted Coal",
   PackagedOil: "Packaged Oil",
   PackagedHeavyOilResidue: "Packaged Heavy Oil Residue",
@@ -706,6 +707,10 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [ContainerItemNames.PackagedNitrogenGas]: {
     image: "IconDesc_PackagedNitrogen_256.png",
     sink_points: 312,
+  },
+  [FuelItemNames.Biomass]: {
+    image: "IconDesc_Biomass_Final_256.png",
+    sink_points: 12,
   },
   [FuelItemNames.CompactedCoal]: {
     image: "IconDesc_CompactedCoal_256.png",
