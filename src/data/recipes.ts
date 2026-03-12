@@ -4690,6 +4690,94 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Rifle Ammo",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.CopperSheet,
+        rate: 15,
+      },
+      {
+        name: ConsumedItemNames.SmokelessPowder,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.RifleAmmo,
+        rate: 75,
+      },
+    ],
+  },
+  {
+    name: "Homing Rifle Ammo",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: AmmoItemNames.RifleAmmo,
+        rate: 50,
+      },
+      {
+        name: ElectronicItemNames.HighSpeedConnector,
+        rate: 2.5,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.HomingRifleAmmo,
+        rate: 25,
+      },
+    ],
+  },
+  {
+    name: "Turbo Rifle Ammo",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: AmmoItemNames.RifleAmmo,
+        rate: 125,
+      },
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 15,
+      },
+      {
+        name: FuelItemNames.PackagedTurbofuel,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.TurboRifleAmmo,
+        rate: 250,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Turbo Rifle Ammo",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: AmmoItemNames.RifleAmmo,
+        rate: 125,
+      },
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 15,
+      },
+      {
+        name: LiquidItemNames.Turbofuel,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.TurboRifleAmmo,
+        rate: 250,
+      },
+    ],
+  },
 
   // Nuclear
   {
