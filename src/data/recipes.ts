@@ -5320,6 +5320,50 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Automated Wiring",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.Stator,
+        rate: 2.5,
+      },
+      {
+        name: ElectronicItemNames.Cable,
+        rate: 50,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.AutomatedWiring,
+        rate: 2.5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Automated Speed Wiring",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.Stator,
+        rate: 3.75,
+      },
+      {
+        name: ElectronicItemNames.Wire,
+        rate: 75,
+      },
+      {
+        name: ElectronicItemNames.HighSpeedConnector,
+        rate: 1.875,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.AutomatedWiring,
+        rate: 7.5,
+      },
+    ],
+  },
 
   // Coal and Fuel generators
   {
