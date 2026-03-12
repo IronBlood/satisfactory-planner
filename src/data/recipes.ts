@@ -5364,6 +5364,98 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Modular Engine",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.Motor,
+        rate: 2,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 15,
+      },
+      {
+        name: SpecialItemNames.SmartPlating,
+        rate: 2,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.ModularEngine,
+        rate: 1,
+      },
+    ],
+  },
+  {
+    name: "Adaptive Control Unit",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: SpecialItemNames.AutomatedWiring,
+        rate: 5,
+      },
+      {
+        name: ElectronicItemNames.CircuitBoard,
+        rate: 5,
+      },
+      {
+        name: StandardPartItemNames.HeavyModularFrame,
+        rate: 1,
+      },
+      {
+        name: CommunicationItemNames.Computer,
+        rate: 2,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.AdaptiveControlUnit,
+        rate: 1,
+      },
+    ],
+  },
+  {
+    name: "Assembly Director System",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: SpecialItemNames.AdaptiveControlUnit,
+        rate: 1.5,
+      },
+      {
+        name: CommunicationItemNames.Supercomputer,
+        rate: 0.75,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.AssemblyDirectorSystem,
+        rate: 0.75,
+      },
+    ],
+  },
+  {
+    name: "Magnetic Field Generator",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: SpecialItemNames.VersatileFramework,
+        rate: 2.5,
+      },
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 1,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.MagneticFieldGenerator,
+        rate: 1,
+      },
+    ],
+  },
 
   // Coal and Fuel generators
   {
