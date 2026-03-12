@@ -5201,6 +5201,38 @@ export const Recipes: Recipe[] = [
 
   // Special
   {
+    name: "Synthetic Power Shard",
+    building: BuildingNames.QuantumEncoder,
+    inputs: [
+      {
+        name: QuantumTechnologyItemNames.TimeCrystal,
+        rate: 10,
+      },
+      {
+        name: QuantumTechnologyItemNames.DarkMatterCrystal,
+        rate: 10,
+      },
+      {
+        name: MineralItemNames.QuartzCrystal,
+        rate: 60,
+      },
+      {
+        name: GasItemNames.ExcitedPhotonicMatter,
+        rate: 60,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.PowerShard,
+        rate: 5,
+      },
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 60,
+      },
+    ],
+  },
+  {
     name: "Smart Plating",
     building: BuildingNames.Assembler,
     inputs: [
