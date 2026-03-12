@@ -38,7 +38,7 @@ import App, {
 import type {
   MultiFlow,
 } from "./types";
-import { getDefaultFlow, stripeData, useDataContext } from "./DataProvider";
+import { getDefaultFlow, stripData, useDataContext } from "./DataProvider";
 import { ChevronDownIcon, CheckIcon } from "@heroicons/react/20/solid";
 import { loadGoogleAnalytics } from "./analytics";
 
@@ -159,7 +159,7 @@ function Wrapper() {
 
     setData(nextData);
 
-    const stripedData = stripeData(nextData);
+    const stripedData = stripData(nextData);
     const json = JSON.stringify(stripedData, null, 2);
 
     const blob = new Blob([json], { type: "application/json" });

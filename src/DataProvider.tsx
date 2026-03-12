@@ -73,7 +73,7 @@ export function useDataContext() {
   return ctx;
 }
 
-export function stripeData(data: MultiFlow) {
+export function stripData(data: MultiFlow) {
   const striped: MultiFlow = {
     version: CURR_VER,
     flows: data.flows.map(f => ({
