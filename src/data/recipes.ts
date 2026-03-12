@@ -2070,7 +2070,7 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 5.63,
+        rate: 5.625,
       },
     ],
   },
