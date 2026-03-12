@@ -5276,6 +5276,50 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Versatile Framework",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: StandardPartItemNames.ModularFrame,
+        rate: 2.5,
+      },
+      {
+        name: StandardPartItemNames.StealBeam,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.VersatileFramework,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Flexible Framework",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: StandardPartItemNames.ModularFrame,
+        rate: 3.75,
+      },
+      {
+        name: StandardPartItemNames.StealBeam,
+        rate: 22.5,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        rate: 30,
+      },
+    ],
+    outputs: [
+      {
+        name: SpecialItemNames.VersatileFramework,
+        rate: 7.5,
+      },
+    ],
+  },
 
   // Coal and Fuel generators
   {
