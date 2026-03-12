@@ -4778,6 +4778,114 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Nobelisk",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: ConsumedItemNames.BlackPowder,
+        rate: 20,
+      },
+      {
+        name: StandardPartItemNames.SteelPipe,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.Nobelisk,
+        rate: 10,
+      },
+    ],
+  },
+  {
+    name: "Gas Nobelisk",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: AmmoItemNames.Nobelisk,
+        rate: 5,
+      },
+      {
+        name: FuelItemNames.Biomass,
+        rate: 50,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.GasNobelisk,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Pulse Nobelisk",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: AmmoItemNames.Nobelisk,
+        rate: 5,
+      },
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        rate: 1,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.PulseNobelisk,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Cluster Nobelisk",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: AmmoItemNames.Nobelisk,
+        rate: 7.5,
+      },
+      {
+        name: ConsumedItemNames.SmokelessPowder,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.ClusterNobelisk,
+        rate: 2.5,
+      },
+    ],
+  },
+  {
+    name: "Nuke Nobelisk",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: AmmoItemNames.Nobelisk,
+        rate: 2.5,
+      },
+      {
+        name: NuclearItemNames.EncasedUraniumCell,
+        rate: 10,
+      },
+      {
+        name: ConsumedItemNames.SmokelessPowder,
+        rate: 5,
+      },
+      {
+        name: ElectronicItemNames.AILimiter,
+        rate: 3,
+      },
+    ],
+    outputs: [
+      {
+        name: AmmoItemNames.NukeNobelisk,
+        rate: 0.5,
+      },
+    ],
+  },
 
   // Nuclear
   {
