@@ -3010,25 +3010,25 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        rate: 6.56,
+        rate: 6.5625,
       },
       {
         name: CommunicationItemNames.RadioControlUnit,
-        rate: 8.44,
+        rate: 8.4375,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 4.69,
+        rate: 4.6875,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 6.56,
+        rate: 6.5625,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.TurboMotor,
-        rate: 2.81,
+        rate: 2.8125,
       },
     ],
   },
@@ -3042,7 +3042,7 @@ export const Recipes: Recipe[] = [
       },
       {
         name: ContainerItemNames.PressureConversionCube,
-        rate: 1.88,
+        rate: 1.875,
       },
       {
         name: ContainerItemNames.PackagedNitrogenGas,
