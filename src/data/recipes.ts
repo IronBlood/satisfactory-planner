@@ -2408,7 +2408,7 @@ export const Recipes: Recipe[] = [
       },
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        rate: 9.38
+        rate: 9.375,
       },
       {
         name: StandardPartItemNames.SteelPipe,
@@ -2416,13 +2416,13 @@ export const Recipes: Recipe[] = [
       },
       {
         name: MineralItemNames.Concrete,
-        rate: 20.63,
+        rate: 20.625,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        rate: 2.81
+        rate: 2.8125,
       },
     ],
   },
