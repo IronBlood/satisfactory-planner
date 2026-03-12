@@ -4908,6 +4908,262 @@ export const Recipes: Recipe[] = [
       },
     ],
   },
+  {
+    name: "Alt.: Electromagnetic Connection Rod",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IndustrialPartItemNames.Stator,
+        rate: 8,
+      },
+      {
+        name: ElectronicItemNames.HighSpeedConnector,
+        rate: 4,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 8,
+      },
+    ],
+  },
+  {
+    name: "Encased Uranium Cell",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: OreItemNames.Uranium,
+        rate: 50,
+      },
+      {
+        name: MineralItemNames.Concrete,
+        rate: 15,
+      },
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 40,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.EncasedUraniumCell,
+        rate: 25,
+      },
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 10,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Infused Uranium Cell",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: OreItemNames.Uranium,
+        rate: 25,
+      },
+      {
+        name: MineralItemNames.Silica,
+        rate: 15,
+      },
+      {
+        name: OreItemNames.Sulfur,
+        rate: 25,
+      },
+      {
+        name: ElectronicItemNames.Quickwire,
+        rate: 75,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.EncasedUraniumCell,
+        rate: 20,
+      },
+    ],
+  },
+  {
+    name: "Non-Fissile Uranium",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: WasteItemNames.UraniumWaste,
+        rate: 37.5,
+      },
+      {
+        name: MineralItemNames.Silica,
+        rate: 25,
+      },
+      {
+        name: LiquidItemNames.NitricAcid,
+        rate: 15,
+      },
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 15,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.NonFissileUranium,
+        rate: 50,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 15,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Fertile Uranium",
+    building: BuildingNames.Blender,
+    inputs: [
+      {
+        name: OreItemNames.Uranium,
+        rate: 25,
+      },
+      {
+        name: WasteItemNames.UraniumWaste,
+        rate: 25,
+      },
+      {
+        name: LiquidItemNames.NitricAcid,
+        rate: 15,
+      },
+      {
+        name: LiquidItemNames.SulfuricAcid,
+        rate: 25,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.NonFissileUranium,
+        rate: 100,
+      },
+      {
+        name: LiquidItemNames.Water,
+        rate: 40,
+      },
+    ],
+  },
+  {
+    name: "Plutonium Pellet",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: NuclearItemNames.NonFissileUranium,
+        rate: 100,
+      },
+      {
+        name: WasteItemNames.UraniumWaste,
+        rate: 25,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.PlutoniumPellet,
+        rate: 30,
+      },
+    ],
+  },
+  {
+    name: "Encased Plutonium Cell",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: NuclearItemNames.PlutoniumPellet,
+        rate: 10,
+      },
+      {
+        name: MineralItemNames.Concrete,
+        rate: 20,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.EncasedPlutoniumCell,
+        rate: 5,
+      },
+    ],
+  },
+  {
+    name: "Alt.: Instant Plutonium Cell",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: NuclearItemNames.NonFissileUranium,
+        rate: 75,
+      },
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        rate: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.EncasedPlutoniumCell,
+        rate: 10,
+      },
+    ],
+  },
+  {
+    name: "Ficsonium",
+    building: BuildingNames.ParticleAccelerator,
+    inputs: [
+      {
+        name: WasteItemNames.PlutoniumWaste,
+        rate: 10,
+      },
+      {
+        name: QuantumTechnologyItemNames.SingularityCell,
+        rate: 10,
+      },
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 200,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.Ficsonium,
+        rate: 10,
+      },
+    ],
+  },
+  {
+    name: "Ficsonium Fuel Rod",
+    building: BuildingNames.QuantumEncoder,
+    inputs: [
+      {
+        name: NuclearItemNames.Ficsonium,
+        rate: 5,
+      },
+      {
+        name: NuclearItemNames.ElectromagneticControlRod,
+        rate: 5,
+      },
+      {
+        name: StandardPartItemNames.FicsiteTrigon,
+        rate: 100,
+      },
+      {
+        name: GasItemNames.ExcitedPhotonicMatter,
+        rate: 50,
+      },
+    ],
+    outputs: [
+      {
+        name: NuclearItemNames.FicsoniumFuelRod,
+        rate: 2.5,
+      },
+      {
+        name: GasItemNames.DarkMatterResidue,
+        rate: 50,
+      },
+    ],
+  },
 
   // Waste
   {
