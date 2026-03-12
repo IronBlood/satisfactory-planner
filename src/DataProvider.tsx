@@ -35,7 +35,7 @@ const DEFAULT_FLOW: {
 } as const;
 
 export function getDefaultFlow() {
-  return Object.assign({}, DEFAULT_FLOW);
+  return structuredClone(DEFAULT_FLOW);
 }
 
 export function DataProvider({ children }: { children: ReactNode }) {
@@ -80,18 +80,18 @@ export function stripData(data: MultiFlow) {
       ...f,
       flow: {
         nodes: f.flow.nodes.map(node => {
-          const dup = Object.assign({}, node);
+          const dup = structuredClone(node);
           delete dup.dragging;
           delete dup.selected;
           return dup;
         }),
         edges: f.flow.edges.map(edge => {
-          const dup = Object.assign({}, edge);
+          const dup = structuredClone(edge);
           delete dup.animated;
           delete dup.selected;
           return dup;
         }),
-        viewport: Object.assign(f.flow.viewport),
+        viewport: structuredClone(f.flow.viewport),
       },
     })),
   };
