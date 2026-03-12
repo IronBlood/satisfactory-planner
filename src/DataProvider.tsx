@@ -87,8 +87,8 @@ export function stripeData(data: MultiFlow) {
         }),
         edges: f.flow.edges.map(edge => {
           const dup = Object.assign({}, edge);
-          delete edge.animated;
-          delete edge.selected;
+          delete dup.animated;
+          delete dup.selected;
           return dup;
         }),
         viewport: Object.assign(f.flow.viewport),
