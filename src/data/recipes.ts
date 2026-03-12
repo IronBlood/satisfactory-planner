@@ -5182,6 +5182,22 @@ export const Recipes: Recipe[] = [
       }
     ],
   },
+  {
+    name: "Plutonium Waste",
+    building: BuildingNames.NuclearPowerPlant,
+    inputs: [
+      {
+        name: FuelItemNames.PlutoniumFuelRod,
+        rate: 0.1,
+      },
+    ],
+    outputs: [
+      {
+        name: WasteItemNames.PlutoniumWaste,
+        rate: 1,
+      },
+    ],
+  },
 
   // Special
   {
