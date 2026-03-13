@@ -259,6 +259,7 @@ function Wrapper() {
         json.filename = filename;
         // TODO validate
         setData(json);
+        _setActiveIdx(0);
       }
     } catch (err) {
       console.error("Failed to load flow json", err);
