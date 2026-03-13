@@ -16,6 +16,7 @@ import {
   PressureInOutHandle,
   AwesomeCollectorHandle,
 } from "@/flow/handles";
+import type { AppNodeTypes } from "../constants";
 
 export type SupportedBuildings =
   | typeof BuildingNames.AwesomeSink
@@ -42,7 +43,7 @@ type AwesomeCollectorData = BaseBuildingData & {
 
 type BuildingData = AwesomeSinkData | RWPData | AwesomeCollectorData;
 
-type AwesomeSinkNodePropsType = NodeProps<Node<AwesomeSinkData, "building">>;
+type AwesomeSinkNodePropsType = NodeProps<Node<AwesomeSinkData, typeof AppNodeTypes.Building>>;
 type RWPNodePropsType = NodeProps<Node<RWPData, "building">>;
 type AwesomeCollectorPropsType = NodeProps<Node<AwesomeCollectorData, "building">>;
 export type BuildingNodeType = Node<BuildingData, "building">;

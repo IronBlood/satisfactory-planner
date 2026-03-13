@@ -12,12 +12,13 @@ import {
 import { getItemImageByName, type ItemName } from "@/data/items";
 import { InOutHandle } from "@/flow/handles";
 import BaseNode from "./BaseNode";
+import type { AppNodeTypes } from "../constants";
 
 export type ResourceNodeType = Node<{
   name: ItemName;
   count: number;
   isLocked: boolean;
-}, "resource">;
+}, typeof AppNodeTypes.Resource>;
 
 export const ResourceNode = memo((props: NodeProps<ResourceNodeType>) => {
   const { setNodes } = useReactFlow();

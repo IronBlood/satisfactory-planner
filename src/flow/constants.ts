@@ -1,3 +1,9 @@
+export const AppNodeTypes = {
+  Building: "building",
+  Recipe: "recipe",
+  Resource: "resource",
+} as const;
+
 export const AppEdgeTypes = {
   Conveyor: "conveyor",
   Pressure: "pressure",

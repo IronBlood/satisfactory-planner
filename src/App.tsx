@@ -40,6 +40,7 @@ import {
 } from "@/flow/edges";
 import {
   AppHandleTypes,
+  AppNodeTypes,
 } from "@/flow/constants";
 import {
   getRecipeByName,
@@ -105,9 +106,9 @@ function App({
   const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, AppEdge> | null>(null);
 
   const nodeTypes = useMemo(() => ({
-    recipe: RecipeNode,
-    resource: ResourceNode,
-    building: BuildingNode,
+    [AppNodeTypes.Recipe]: RecipeNode,
+    [AppNodeTypes.Resource]: ResourceNode,
+    [AppNodeTypes.Building]: BuildingNode,
   }), []);
 
   const edgeTypes = useMemo(() => ({

@@ -22,12 +22,13 @@ import {
 } from "@/flow/handles";
 import BaseNode from "./BaseNode";
 import { getItemImageByName } from "@/data/items";
+import { AppNodeTypes } from "@/flow/constants";
 
 export type RecipeNodeType = Node<{
   recipe: Recipe;
   count: number;
   isLocked: boolean;
-}, "recipe">;
+}, typeof AppNodeTypes.Recipe>;
 
 export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
   const { setNodes } = useReactFlow();
