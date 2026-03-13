@@ -5490,7 +5490,7 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.CopperPowder,
-        rate: 200,
+        rate: 100,
       },
       {
         name: ContainerItemNames.PressureConversionCube,
