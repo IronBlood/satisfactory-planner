@@ -4894,7 +4894,7 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 5,
+        rate: 6,
       },
       {
         name: ElectronicItemNames.AILimiter,
