@@ -406,7 +406,7 @@ function Wrapper() {
       <header className="h-16 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950 text-white text-xl">
         <div>Yet Another Satisfactory Planner</div>
         {!isRenamingPlan && !isRenamingFile &&
-          <div className="w-46 gap-2 flex justify-between items-center">
+          <div className="w-52 gap-2 flex justify-between items-center">
             <Listbox value={selectedFlowName} onChange={(v) => setActiveIdx(v.id)}>
               <ListboxButton
                 className="relative flex-1 rounded-lg bg-slate-800 text-left text-sm text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus:-outline-offset-2"
