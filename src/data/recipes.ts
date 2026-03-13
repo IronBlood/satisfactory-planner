@@ -4428,7 +4428,7 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        rate: 100,
+        rate: 20,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
