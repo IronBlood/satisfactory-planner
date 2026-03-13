@@ -107,6 +107,15 @@ function FooterLink({
   );
 }
 
+function hasInvalidFilenameChars(name: string) {
+  return /[\\/:*?"<>|\u0000-\u001f]/.test(name);
+}
+
+function isInvalidFilename(name: string) {
+  const base = name.trim().replace(/\.json$/i, "");
+  return base === "" || base === "." || hasInvalidFilenameChars(base);
+}
+
 function NameEditor({
   value,
   onChange,
@@ -365,8 +374,8 @@ function Wrapper() {
   }, [data, activeIdx, planName, setRenamingPlan, setPlanName, setData]);
 
   const acceptRenamingFile = useCallback(() => {
-    if (fileName.length === 0) {
-      console.error("shouldn't be empty");
+    if (isInvalidFilename(fileName)) {
+      console.error("invalid filename");
       setRenamingFile(false);
       return;
     }
@@ -479,7 +488,7 @@ function Wrapper() {
             onChange={(name) => setFileName(name)}
             placeholder="filename"
             accept={acceptRenamingFile}
-            isDisabled={fileName.length === 0}
+            isDisabled={isInvalidFilename(fileName)}
             exit={exitRenamingFile}
           />
         )}
