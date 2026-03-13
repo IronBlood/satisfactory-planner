@@ -35,6 +35,7 @@ export type AppFlow = {
 export type MultiFlow = {
   /** Has to be an integer */
   version: number;
+  filename: string;
   flows: Array<{
     name: string;
     flow: AppFlow;

@@ -23,6 +23,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
+  faFile,
   faGear,
   faMinus,
   faPlus,
@@ -106,12 +107,62 @@ function FooterLink({
   );
 }
 
+function NameEditor({
+  value,
+  onChange,
+  placeholder,
+  accept,
+  isDisabled,
+  exit,
+}: {
+  value: string;
+  onChange: (s: string) => void;
+  placeholder: string;
+  accept: () => void;
+  isDisabled: boolean;
+  exit: () => void;
+}) {
+  return (
+    <div className="flex items-center">
+      <input
+        className="text-sm text-slate-300 bg-slate-800 border border-slate-500 rounded-md px-3 py-1 focus:outline-none focus:border-slate-100 hover:border-blue-300 placeholder:text-slate-500 outline-none"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+      />
+      <div className="text-sm flex items-center">
+        <IconButton
+          label="confirm"
+          onClick={accept}
+          disabled={isDisabled}
+          className="text-green-300"
+        >
+          <FontAwesomeIcon
+            icon={faCheck}
+          />
+        </IconButton>
+        <IconButton
+          label="cancel"
+          onClick={exit}
+        >
+          <FontAwesomeIcon
+            className="text-red-500"
+            icon={faXmark}
+          />
+        </IconButton>
+      </div>
+    </div>
+  );
+}
+
 function Wrapper() {
   const [activeIdx, _setActiveIdx] = useState(0);
   const actionsRef = useRef<ActionsRef>({});
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [isRenaming, setRenaming] = useState(false);
+  const [isRenamingPlan, setRenamingPlan] = useState(false);
+  const [isRenamingFile, setRenamingFile] = useState(false);
   const [planName, setPlanName] = useState("");
+  const [fileName, setFileName] = useState("");
   const [showGABanner, setShowGABanner] = useState(false);
   const [gaChoice, setGaChoice] = useState<boolean>(false);
 
@@ -167,7 +218,11 @@ function Wrapper() {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = `satisfactory-planner-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
+    a.download = data.filename.length === 0
+      ? `satisfactory-planner-${new Date().toISOString().replace(/[:.]/g, "-")}.json`
+      : data.filename.endsWith(".json")
+        ? data.filename
+        : `${data.filename}.json`;
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -188,6 +243,11 @@ function Wrapper() {
       const json = JSON.parse(text) as MultiFlow;
 
       if (json) {
+        let filename = file.name;
+        if (filename.endsWith(".json")) {
+          filename = filename.substring(0, filename.length - 5);
+        }
+        json.filename = filename;
         // TODO validate
         setData(json);
       }
@@ -255,21 +315,31 @@ function Wrapper() {
   const selectedFlowName = useMemo(() => list[activeIdx], [list, activeIdx]);
   const activeFlow = useMemo(() => data.flows[activeIdx].flow, [data, activeIdx]);
 
-  const enterRenaming = useCallback(() => {
-    setRenaming(true);
+  const enterRenamingPlan = useCallback(() => {
+    setRenamingPlan(true);
     setPlanName(selectedFlowName.name);
-  }, [setRenaming, selectedFlowName, setPlanName]);
+  }, [setRenamingPlan, selectedFlowName, setPlanName]);
 
-  const exitRenaming = useCallback(() => {
-    setRenaming(false);
+  const enterRenamingFile = useCallback(() => {
+    setRenamingFile(true);
+    setFileName(data.filename);
+  }, [setRenamingFile, data]);
+
+  const exitRenamingPlan = useCallback(() => {
+    setRenamingPlan(false);
     setPlanName("");
-  }, [setRenaming, setPlanName]);
+  }, [setRenamingPlan, setPlanName]);
 
-  const acceptRenaming = useCallback(() => {
+  const exitRenamingFile = useCallback(() => {
+    setRenamingFile(false);
+    setFileName("");
+  }, [setRenamingFile, setFileName]);
+
+  const acceptRenamingPlan = useCallback(() => {
     if (planName.length === 0) {
       // TODO
       console.error("shouldn't be empty");
-      setRenaming(false);
+      setRenamingPlan(false);
       return;
     }
 
@@ -290,15 +360,43 @@ function Wrapper() {
       ),
     });
 
-    setRenaming(false);
+    setRenamingPlan(false);
     setPlanName("");
-  }, [data, activeIdx, planName, setRenaming, setPlanName, setData]);
+  }, [data, activeIdx, planName, setRenamingPlan, setPlanName, setData]);
+
+  const acceptRenamingFile = useCallback(() => {
+    if (fileName.length === 0) {
+      console.error("shouldn't be empty");
+      setRenamingFile(false);
+      return;
+    }
+
+    const snapshot = actionsRef.current.syncActiveFlow?.();
+    if (!snapshot) {
+      throw new Error("cannot get a snapshot");
+    }
+
+    setData({
+      ...data,
+      flows: data.flows.map((flow, idx) => idx === activeIdx
+        ? {
+          ...flow,
+          flow: snapshot,
+        }
+        : flow
+      ),
+      filename: fileName,
+    });
+
+    setRenamingFile(false);
+    setFileName("");
+  }, [setData, data, fileName, activeIdx, setRenamingFile, setFileName]);
 
   return (
     <div className="h-screen w-screen flex flex-col">
       <header className="h-16 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950 text-white text-xl">
         <div>Yet Another Satisfactory Planner</div>
-        {!isRenaming &&
+        {!isRenamingPlan && !isRenamingFile &&
           <div className="w-46 gap-2 flex justify-between items-center">
             <Listbox value={selectedFlowName} onChange={(v) => setActiveIdx(v.id)}>
               <ListboxButton
@@ -348,44 +446,43 @@ function Wrapper() {
                 />
               </IconButton>
               <IconButton
-                onClick={enterRenaming}
+                onClick={enterRenamingPlan}
                 label="Rename this plan"
               >
                 <FontAwesomeIcon
                   icon={faPencil}
                 />
               </IconButton>
+              <IconButton
+                onClick={enterRenamingFile}
+                label="Rename file"
+              >
+                <FontAwesomeIcon
+                  icon={faFile}
+                />
+              </IconButton>
             </div>
           </div>}
-        {isRenaming && <div className="flex items-center">
-          <input
-            className="text-sm text-slate-300 bg-slate-800 border border-slate-500 rounded-md px-3 py-1 focus:outline-none focus:border-slate-100 hover:border-blue-300 placeholder:text-slate-500 outline-none"
+        {isRenamingPlan && (
+          <NameEditor
             value={planName}
-            onChange={(e) => setPlanName(e.target.value)}
+            onChange={(name) => setPlanName(name)}
             placeholder="your next awesome plan"
+            accept={acceptRenamingPlan}
+            isDisabled={planName.length === 0}
+            exit={exitRenamingPlan}
           />
-          <div className="text-sm flex items-center">
-            <IconButton
-              label="confirm"
-              onClick={acceptRenaming}
-              disabled={planName.length === 0}
-              className="text-green-300"
-            >
-              <FontAwesomeIcon
-                icon={faCheck}
-              />
-            </IconButton>
-            <IconButton
-              label="cancel"
-              onClick={exitRenaming}
-            >
-              <FontAwesomeIcon
-                className="text-red-500"
-                icon={faXmark}
-              />
-            </IconButton>
-          </div>
-        </div>}
+        )}
+        {isRenamingFile && (
+          <NameEditor
+            value={fileName}
+            onChange={(name) => setFileName(name)}
+            placeholder="filename"
+            accept={acceptRenamingFile}
+            isDisabled={fileName.length === 0}
+            exit={exitRenamingFile}
+          />
+        )}
         <div className="flex gap-2">
           <AppMenuButton
             onClick={() => exportFlow()}
