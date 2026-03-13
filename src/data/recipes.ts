@@ -3142,7 +3142,7 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: ElectronicItemNames.Cable,
-        rate: 60,
+        rate: 30,
       },
     ],
   },
