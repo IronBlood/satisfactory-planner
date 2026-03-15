@@ -35,6 +35,7 @@ export default function RecipePicker({
     }
 
     const source_key = `${target} - source`;
+    const passthrough_key = `${target} - passthrough`;
     return [
       <RecipeView
         viewType="source"
@@ -42,6 +43,14 @@ export default function RecipePicker({
         output_name={target}
         image={getItemImageByName(target)}
         onClick={() => setActiveRecipe(source_key)}
+        activeRecipe={activeRecipe}
+      />,
+      <RecipeView
+        viewType="passthrough"
+        key={passthrough_key}
+        output_name={target}
+        image={getItemImageByName(target)}
+        onClick={() => setActiveRecipe(passthrough_key)}
         activeRecipe={activeRecipe}
       />,
       ...recipes.map(r => (
