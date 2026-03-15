@@ -5596,7 +5596,7 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 7.14,
+        rate: 50/7,
       },
       {
         name: LiquidItemNames.Water,
@@ -5656,7 +5656,7 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.RocketFuel,
-        rate: 4.17,
+        rate: 60/14.4,
       },
     ],
     outputs: [
