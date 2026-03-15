@@ -236,6 +236,7 @@ export default function Picker({
 
   const recipeViews = useMemo(() => {
     const source_key = activeItem === null ? "" : `${activeItem.name} - source`;
+    const passthrough_key = activeItem === null ? "" : `${activeItem.name} - passthrough`;
     if (sourceType) {
       return activeItem === null
         ? []
@@ -272,6 +273,14 @@ export default function Picker({
             output_name={activeItem.name}
             image={getItemImageByName(activeItem.name)}
             onClick={() => setActiveRecipe(source_key)}
+            activeRecipe={activeRecipe}
+          />,
+          <RecipeView
+            viewType="passthrough"
+            key={passthrough_key}
+            output_name={activeItem.name}
+            image={getItemImageByName(activeItem.name)}
+            onClick={() => setActiveRecipe(passthrough_key)}
             activeRecipe={activeRecipe}
           />,
           ...getRecipesByOutput(activeItem.name).map(r => (
