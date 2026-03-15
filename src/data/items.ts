@@ -352,560 +352,560 @@ type ITEM_META = {
 
 const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [OreItemNames.Limestone]: {
-    image: "Stone_256.png",
+    image: "Stone_128.webp",
     sink_points: 2,
   },
   [OreItemNames.IronOre]: {
-    image: "IconDesc_iron_new_256.png",
+    image: "IconDesc_iron_new_128.webp",
     sink_points: 1,
   },
   [OreItemNames.CopperOre]: {
-    image: "IconDesc_copper_new_256.png",
+    image: "IconDesc_copper_new_128.webp",
     sink_points: 3,
   },
   [OreItemNames.CateriumOre]: {
-    image: "IconDesc_CateriumOre_256.png",
+    image: "IconDesc_CateriumOre_128.webp",
     sink_points: 7,
   },
   [OreItemNames.Coal]: {
-    image: "IconDesc_CoalOre_256.png",
+    image: "IconDesc_CoalOre_128.webp",
     sink_points: 3,
   },
   [OreItemNames.RawQuartz]: {
-    image: "IconDesc_QuartzCrystal_256.png",
+    image: "IconDesc_QuartzCrystal_128.webp",
     sink_points: 15,
   },
   [OreItemNames.Sulfur]: {
-    image: "Sulfur_256.png",
+    image: "Sulfur_128.webp",
     sink_points: 11,
   },
   [OreItemNames.Bauxite]: {
-    image: "IconDesc_Bauxite_256.png",
+    image: "IconDesc_Bauxite_128.webp",
     sink_points: 8,
   },
   [OreItemNames.SAM]: {
-    image: "IconDesc_SameOre_256.png",
+    image: "IconDesc_SameOre_128.webp",
     sink_points: 20,
   },
   [OreItemNames.Uranium]: {
-    image: "IconDesc_UraniumOre_256.png",
+    image: "IconDesc_UraniumOre_128.webp",
     sink_points: 35,
   },
   [IngotItemNames.IronIngot]: {
-    image: "IconDesc_IronIngot_256.png",
+    image: "IconDesc_IronIngot_128.webp",
     sink_points: 2,
   },
   [IngotItemNames.CopperIngot]: {
-    image: "IconDesc_CopperIngot_256.png",
+    image: "IconDesc_CopperIngot_128.webp",
     sink_points: 6,
   },
   [IngotItemNames.CateriumIngot]: {
-    image: "IconDesc_CateriumIngot_256.png",
+    image: "IconDesc_CateriumIngot_128.webp",
     sink_points: 42,
   },
   [IngotItemNames.SteelIngot]: {
-    image: "IconDesc_SteelIngot_256.png",
+    image: "IconDesc_SteelIngot_128.webp",
     sink_points: 8,
   },
   [IngotItemNames.AluminumIngot]: {
-    image: "IconDesc_AluminiumIngot_256.png",
+    image: "IconDesc_AluminiumIngot_128.webp",
     sink_points: 131,
   },
   [IngotItemNames.FicsiteIngot]: {
-    image: "IconDesc_FicsiteIngot_256.png",
+    image: "IconDesc_FicsiteIngot_128.webp",
     sink_points: 1936,
   },
   [MineralItemNames.Concrete]: {
-    image: "IconDesc_Concrete_256.png",
+    image: "IconDesc_Concrete_128.webp",
     sink_points: 12,
   },
   [MineralItemNames.QuartzCrystal]: {
-    image: "IconDesc_QuartzResource_256.png",
+    image: "IconDesc_QuartzResource_128.webp",
     sink_points: 50,
   },
   [MineralItemNames.Silica]: {
-    image: "IconDesc_Silica_256.png",
+    image: "IconDesc_Silica_128.webp",
     sink_points: 20,
   },
   [MineralItemNames.CopperPowder]: {
-    image: "IconDesc_CopperDust_256.png",
+    image: "IconDesc_CopperDust_128.webp",
     sink_points: 72,
   },
   [MineralItemNames.PolymerResin]: {
-    image: "IconDesc_PolymerResin_256.png",
+    image: "IconDesc_PolymerResin_128.webp",
     sink_points: 12,
   },
   [MineralItemNames.PetroleumCoke]: {
-    image: "IconDesc_PetroleumCoke_256.png",
+    image: "IconDesc_PetroleumCoke_128.webp",
     sink_points: 20,
   },
   [MineralItemNames.AluminumScrap]: {
-    image: "IconDesc_AluminiumScrap_256.png",
+    image: "IconDesc_AluminiumScrap_128.webp",
     sink_points: 27,
   },
   [LiquidItemNames.Water]: {
-    image: "LiquidWater_Pipe_256.png",
+    image: "LiquidWater_Pipe_128.webp",
     // TODO
     sink_points: 5,
   },
   [LiquidItemNames.CrudeOil]: {
-    image: "LiquidOil_Pipe_256.png",
+    image: "LiquidOil_Pipe_128.webp",
     sink_points: 30,
   },
   [LiquidItemNames.HeavyOilResidue]: {
-    image: "IconDesc_LiquidHeavyOilResidue_Pipe_256.png",
+    image: "IconDesc_LiquidHeavyOilResidue_Pipe_128.webp",
     sink_points: 30,
   },
   [LiquidItemNames.Fuel]: {
-    image: "IconDesc_LiquidFuel_Pipe_256.png",
+    image: "IconDesc_LiquidFuel_Pipe_128.webp",
     sink_points: 75,
   },
   [LiquidItemNames.LiquidBiofuel]: {
-    image: "IconDesc_LiquidBiofuel_Pipe_256.png",
+    image: "IconDesc_LiquidBiofuel_Pipe_128.webp",
     sink_points: 261,
   },
   [LiquidItemNames.Turbofuel]: {
-    image: "IconDesc_LiquidTurboFuel_Pipe_256.png",
+    image: "IconDesc_LiquidTurboFuel_Pipe_128.webp",
     sink_points: 225,
   },
   [LiquidItemNames.AluminaSolution]: {
-    image: "LiquidAlumina_Pipe_256.png",
+    image: "LiquidAlumina_Pipe_128.webp",
     sink_points: 20,
   },
   [LiquidItemNames.SulfuricAcid]: {
-    image: "IconDesc_LiquidSulfuricAcid_Pipe_256.png",
+    image: "IconDesc_LiquidSulfuricAcid_Pipe_128.webp",
     sink_points: 16,
   },
   [LiquidItemNames.NitricAcid]: {
-    image: "IconDesc_NitricAcid_256.png",
+    image: "IconDesc_NitricAcid_128.webp",
     sink_points: 94,
   },
   [LiquidItemNames.DissolvedSilica]: {
-    image: "IconDesc_DissolvedSilica_256.png",
+    image: "IconDesc_DissolvedSilica_128.webp",
     sink_points: -1,
   },
   [GasItemNames.NitrogenGas]: {
-    image: "IconDesc_NitricAcid_256.png",
+    image: "IconDesc_NitricAcid_128.webp",
     sink_points: 10,
   },
   [GasItemNames.RocketFuel]: {
-    image: "IconDesc_RocketFuelPipe_256.png",
+    image: "IconDesc_RocketFuelPipe_128.webp",
     sink_points: 289,
   },
   [GasItemNames.IonizedFuel]: {
-    image: "IconDesc_IonizedFuel_256.png",
+    image: "IconDesc_IonizedFuel_128.webp",
     sink_points: 2398,
   },
   [GasItemNames.DarkMatterResidue]: {
-    image: "IconDesc_DarkEnergy_256.png",
+    image: "IconDesc_DarkEnergy_128.webp",
     sink_points: 130,
   },
   [GasItemNames.ExcitedPhotonicMatter]: {
-    image: "IconDesc_QuantumEnergy_256.png",
+    image: "IconDesc_QuantumEnergy_128.webp",
     sink_points: 100,
   },
   [StandardPartItemNames.IronRod]: {
-    image: "IconDesc_IronRods_256.png",
+    image: "IconDesc_IronRods_128.webp",
     sink_points: 4,
   },
   [StandardPartItemNames.Screws]: {
-    image: "IconDesc_IronScrews_256.png",
+    image: "IconDesc_IronScrews_128.webp",
     sink_points: 2,
   },
   [StandardPartItemNames.IronPlate]: {
-    image: "IconDesc_IronPlates_256.png",
+    image: "IconDesc_IronPlates_128.webp",
     sink_points: 6,
   },
   [StandardPartItemNames.ReinforcedIronPlate]: {
-    image: "IconDesc_ReinforcedIronPlates_256.png",
+    image: "IconDesc_ReinforcedIronPlates_128.webp",
     sink_points: 120,
   },
   [StandardPartItemNames.CopperSheet]: {
-    image: "IconDesc_CopperSheet_256.png",
+    image: "IconDesc_CopperSheet_128.webp",
     sink_points: 24,
   },
   [StandardPartItemNames.AlcladAluminumSheet]: {
-    image: "IconDesc_AluminiumSheet_256.png",
+    image: "IconDesc_AluminiumSheet_128.webp",
     sink_points: 266,
   },
   [StandardPartItemNames.AluminumCasing]: {
-    image: "IconDesc_AluminiumCasing_256.png",
+    image: "IconDesc_AluminiumCasing_128.webp",
     sink_points: 393,
   },
   [StandardPartItemNames.SteelPipe]: {
-    image: "IconDesc_SteelPipe_256.png",
+    image: "IconDesc_SteelPipe_128.webp",
     sink_points: 24,
   },
   [StandardPartItemNames.StealBeam]: {
-    image: "IconDesc_SteelBeam_256.png",
+    image: "IconDesc_SteelBeam_128.webp",
     sink_points: 64,
   },
   [StandardPartItemNames.EncasedIndustrialBeam]: {
-    image: "IconDesc_EncasedSteelBeam_256.png",
+    image: "IconDesc_EncasedSteelBeam_128.webp",
     sink_points: 528,
   },
   [StandardPartItemNames.ModularFrame]: {
-    image: "IconDesc_ModularFrame_256.png",
+    image: "IconDesc_ModularFrame_128.webp",
     sink_points: 408
   },
   [StandardPartItemNames.HeavyModularFrame]: {
-    image: "IconDesc_ModularFrameHeavy_256.png",
+    image: "IconDesc_ModularFrameHeavy_128.webp",
     sink_points: 10800,
   },
   [StandardPartItemNames.FusedModularFrame]: {
-    image: "IconDesc_FusedModularFrame_256.png",
+    image: "IconDesc_FusedModularFrame_128.webp",
     sink_points: 62840,
   },
   [StandardPartItemNames.FicsiteTrigon]: {
-    image: "IconDesc_FicsiteMesh_256.png",
+    image: "IconDesc_FicsiteMesh_128.webp",
     sink_points: 1291,
   },
   [StandardPartItemNames.Fabric]: {
-    image: "IconDesc_Fabric_256.png",
+    image: "IconDesc_Fabric_128.webp",
     sink_points: 140,
   },
   [StandardPartItemNames.Plastic]: {
-    image: "IconDesc_Plastic_256.png",
+    image: "IconDesc_Plastic_128.webp",
     sink_points: 75,
   },
   [StandardPartItemNames.Rubber]: {
-    image: "IconDesc_Rubber_256.png",
+    image: "IconDesc_Rubber_128.webp",
     sink_points: 60,
   },
   [IndustrialPartItemNames.Rotor]: {
-    image: "IconDesc_Rotor_256.png",
+    image: "IconDesc_Rotor_128.webp",
     sink_points: 140,
   },
   [IndustrialPartItemNames.Stator]: {
-    image: "IconDesc_Stator_256.png",
+    image: "IconDesc_Stator_128.webp",
     sink_points: 240,
   },
   [IndustrialPartItemNames.Battery]: {
-    image: "IconDesc_Battery_256.png",
+    image: "IconDesc_Battery_128.webp",
     sink_points: 465,
   },
   [IndustrialPartItemNames.Motor]: {
-    image: "IconDesc_Engine_256.png",
+    image: "IconDesc_Engine_128.webp",
     sink_points: 1520,
   },
   [IndustrialPartItemNames.HeatSink]: {
-    image: "IconDesc_Heatsink_256.png",
+    image: "IconDesc_Heatsink_128.webp",
     sink_points: 2804,
   },
   [IndustrialPartItemNames.CoolingSystem]: {
-    image: "IconDesc_CoolingSystem_256.png",
+    image: "IconDesc_CoolingSystem_128.webp",
     sink_points: 12006,
   },
   [IndustrialPartItemNames.TurboMotor]: {
-    image: "IconDesc_TurboMotor_256.png",
+    image: "IconDesc_TurboMotor_128.webp",
     sink_points: 240496,
   },
   [ElectronicItemNames.Wire]: {
-    image: "IconDesc_Wire_256.png",
+    image: "IconDesc_Wire_128.webp",
     sink_points: 6,
   },
   [ElectronicItemNames.Cable]: {
-    image: "IconDesc_Cables_256.png",
+    image: "IconDesc_Cables_128.webp",
     sink_points: 24,
   },
   [ElectronicItemNames.Quickwire]: {
-    image: "IconDesc_Quickwire_256.png",
+    image: "IconDesc_Quickwire_128.webp",
     sink_points: 17,
   },
   [ElectronicItemNames.CircuitBoard]: {
-    image: "IconDesc_CircuitBoard_256.png",
+    image: "IconDesc_CircuitBoard_128.webp",
     sink_points: 696,
   },
   [ElectronicItemNames.AILimiter]: {
-    image: "IconDesc_AILimiter_256.png",
+    image: "IconDesc_AILimiter_128.webp",
     sink_points: 920,
   },
   [ElectronicItemNames.HighSpeedConnector]: {
-    image: "IconDesc_HighSpeedConnector_256.png",
+    image: "IconDesc_HighSpeedConnector_128.webp",
     sink_points: 3776,
   },
   [ElectronicItemNames.ReanimatedSAM]: {
-    image: "IconDesc_ReanimatedSam_256.png",
+    image: "IconDesc_ReanimatedSam_128.webp",
     sink_points: 160,
   },
   [ElectronicItemNames.SAMFluctuator]: {
-    image: "IconDesc_SamFluctuator_256.png",
+    image: "IconDesc_SamFluctuator_128.webp",
     sink_points: 1968,
   },
   [CommunicationItemNames.Computer]: {
-    image: "IconDesc_Computer_256.png",
+    image: "IconDesc_Computer_128.webp",
     sink_points: 8352,
   },
   [CommunicationItemNames.Supercomputer]: {
-    image: "IconDesc_QuantumComputer_256.png",
+    image: "IconDesc_QuantumComputer_128.webp",
     sink_points: 97352,
   },
   [CommunicationItemNames.RadioControlUnit]: {
-    image: "IconDesc_RadioControlUnit_256.png",
+    image: "IconDesc_RadioControlUnit_128.webp",
     sink_points: 32352,
   },
   [CommunicationItemNames.CrystalOscillator]: {
-    image: "IconDesc_CrystalOscillator_256.png",
+    image: "IconDesc_CrystalOscillator_128.webp",
     sink_points: 3072,
   },
   [CommunicationItemNames.SuperpositionOscillator]: {
-    image: "IconDesc_SuperPositionOscillator_256.png",
+    image: "IconDesc_SuperPositionOscillator_128.webp",
     sink_points: 37292,
   },
   [QuantumTechnologyItemNames.Diamonds]: {
-    image: "IconDesc_Diamonds_256.png",
+    image: "IconDesc_Diamonds_128.webp",
     sink_points: 240,
   },
   [QuantumTechnologyItemNames.TimeCrystal]: {
-    image: "IconDesc_ExoticMatter_256.png",
+    image: "IconDesc_ExoticMatter_128.webp",
     sink_points: 960,
   },
   [QuantumTechnologyItemNames.DarkMatterCrystal]: {
-    image: "IconDesc_TimeCrystal_256.png",
+    image: "IconDesc_TimeCrystal_128.webp",
     sink_points: 1780,
   },
   [QuantumTechnologyItemNames.SingularityCell]: {
-    image: "IconDesc_SingularityCell_256.png",
+    image: "IconDesc_SingularityCell_128.webp",
     sink_points: 114675,
   },
   [QuantumTechnologyItemNames.NeuralQuantumProcessor]: {
-    image: "IconDesc_TemporalProcessor_256.png",
+    image: "IconDesc_TemporalProcessor_128.webp",
     sink_points: 248034,
   },
   [QuantumTechnologyItemNames.AlienPowerMatrix]: {
-    image: "IconDesc_AlienPowerMatrix_256.png",
+    image: "IconDesc_AlienPowerMatrix_128.webp",
     sink_points: 210,
   },
   [ContainerItemNames.EmptyCanister]: {
-    image: "IconDesc_EmptyCannister_256.png",
+    image: "IconDesc_EmptyCannister_128.webp",
     sink_points: 60,
   },
   [ContainerItemNames.EmptyFluidTank]: {
-    image: "IconDesc_PressureTank_256.png",
+    image: "IconDesc_PressureTank_128.webp",
     sink_points: 170,
   },
   [ContainerItemNames.PressureConversionCube]: {
-    image: "IconDesc_ConversionCube_256.png",
+    image: "IconDesc_ConversionCube_128.webp",
     sink_points: 255088,
   },
   [ContainerItemNames.PackagedWater]: {
-    image: "IconDesc_PackagedWater_256.png",
+    image: "IconDesc_PackagedWater_128.webp",
     sink_points: 130,
   },
   [ContainerItemNames.PackagedAluminaSolution]: {
-    image: "IconDesc_PackagedAluminaSolution_256.png",
+    image: "IconDesc_PackagedAluminaSolution_128.webp",
     sink_points: 160,
   },
   [ContainerItemNames.PackagedSulfuricAcid]: {
-    image: "IconDesc_PckagedSulphuricAcid_256.png",
+    image: "IconDesc_PckagedSulphuricAcid_128.webp",
     sink_points: 152,
   },
   [ContainerItemNames.PackagedNitricAcid]: {
-    image: "IconDesc_PackagedNitricAcid_256.png",
+    image: "IconDesc_PackagedNitricAcid_128.webp",
     sink_points: 412,
   },
   [ContainerItemNames.PackagedNitrogenGas]: {
-    image: "IconDesc_PackagedNitrogen_256.png",
+    image: "IconDesc_PackagedNitrogen_128.webp",
     sink_points: 312,
   },
   [FuelItemNames.Biomass]: {
-    image: "IconDesc_Biomass_Final_256.png",
+    image: "IconDesc_Biomass_Final_128.webp",
     sink_points: 12,
   },
   [FuelItemNames.CompactedCoal]: {
-    image: "IconDesc_CompactedCoal_256.png",
+    image: "IconDesc_CompactedCoal_128.webp",
     sink_points: 28,
   },
   [FuelItemNames.PackagedOil]: {
-    image: "Oil_256.png",
+    image: "Oil_128.webp",
     sink_points: 180,
   },
   [FuelItemNames.PackagedHeavyOilResidue]: {
-    image: "OilResidue_256.png",
+    image: "OilResidue_128.webp",
     sink_points: 180,
   },
   [FuelItemNames.PackagedFuel]: {
-    image: "IconDesc_Fuel_256.png",
+    image: "IconDesc_Fuel_128.webp",
     sink_points: 270,
   },
   [FuelItemNames.PackagedLiquidBiofuel]: {
-    image: "IconDesc_LiquidBiofuel_256.png",
+    image: "IconDesc_LiquidBiofuel_128.webp",
     sink_points: 370,
   },
   [FuelItemNames.PackagedTurbofuel]: {
-    image: "IconDesc_TurboFuel_256.png",
+    image: "IconDesc_TurboFuel_128.webp",
     sink_points: 570,
   },
   [FuelItemNames.PackagedRocketFuel]: {
-    image: "IconDesc_PackagedRocketFuel_256.png",
+    image: "IconDesc_PackagedRocketFuel_128.webp",
     sink_points: 1028,
   },
   [FuelItemNames.PackagedIonizedFuel]: {
-    image: "IconDesc_IonizedRocketFuel_256.png",
+    image: "IconDesc_IonizedRocketFuel_128.webp",
     sink_points: 5246,
   },
   [FuelItemNames.UraniumFuelRod]: {
-    image: "IconDesc_NuclearFuelRod_256.png",
+    image: "IconDesc_NuclearFuelRod_128.webp",
     sink_points: 43468,
   },
   [FuelItemNames.PlutoniumFuelRod]: {
-    image: "IconDesc_PlutoniumFuelRod_256.png",
+    image: "IconDesc_PlutoniumFuelRod_128.webp",
     sink_points: 153184,
   },
   [ConsumedItemNames.BlackPowder]: {
-    image: "IconDesc_Gunpowder_256.png",
+    image: "IconDesc_Gunpowder_128.webp",
     sink_points: 14,
   },
   [ConsumedItemNames.SmokelessPowder]: {
-    image: "IconDesc_GunpowderMk2_256.png",
+    image: "IconDesc_GunpowderMk2_128.webp",
     sink_points: 58,
   },
   [ConsumedItemNames.GasFilter]: {
-    image: "IconDesc_GasMaskFilter_256.png",
+    image: "IconDesc_GasMaskFilter_128.webp",
     sink_points: 608,
   },
   [ConsumedItemNames.IodineInfusedFilter]: {
-    image: "IconDesc_HazmatFilter_256.png",
+    image: "IconDesc_HazmatFilter_128.webp",
     sink_points: 2274,
   },
   [AmmoItemNames.IronRebar]: {
-    image: "IconDesc_Rebar_256.png",
+    image: "IconDesc_Rebar_128.webp",
     sink_points: 8,
   },
   [AmmoItemNames.StunRebar]: {
-    image: "IconDesc_StunRebar_256.png",
+    image: "IconDesc_StunRebar_128.webp",
     sink_points: 186,
   },
   [AmmoItemNames.ShatterRebar]: {
-    image: "IconDesc_ScatterRebar_256.png",
+    image: "IconDesc_ScatterRebar_128.webp",
     sink_points: 332,
   },
   [AmmoItemNames.ExplosiveRebar]: {
-    image: "IconDesc_ExpRebar_256.png",
+    image: "IconDesc_ExpRebar_128.webp",
     sink_points: 360,
   },
   [AmmoItemNames.RifleAmmo]: {
-    image: "IconDesc_Rifle_256.png",
+    image: "IconDesc_Rifle_128.webp",
     sink_points: 25,
   },
   [AmmoItemNames.HomingRifleAmmo]: {
-    image: "IconDesc_HomingRifle_256.png",
+    image: "IconDesc_HomingRifle_128.webp",
     sink_points: 855,
   },
   [AmmoItemNames.TurboRifleAmmo]: {
-    image: "IconDesc_TurboRifle_256.png",
+    image: "IconDesc_TurboRifle_128.webp",
     sink_points: 120,
   },
   [AmmoItemNames.Nobelisk]: {
-    image: "IconDesc_Explosive_256.png",
+    image: "IconDesc_Explosive_128.webp",
     sink_points: 152,
   },
   [AmmoItemNames.GasNobelisk]: {
-    image: "IconDesc_Gas_256.png",
+    image: "IconDesc_Gas_128.webp",
     sink_points: 544,
   },
   [AmmoItemNames.PulseNobelisk]: {
-    image: "IconDesc_Shock_256.png",
+    image: "IconDesc_Shock_128.webp",
     sink_points: 1533,
   },
   [AmmoItemNames.ClusterNobelisk]: {
-    image: "IconDesc_Cluster_256.png",
+    image: "IconDesc_Cluster_128.webp",
     sink_points: 1376,
   },
   [AmmoItemNames.NukeNobelisk]: {
-    image: "IconDesc_Nuke_256.png",
+    image: "IconDesc_Nuke_128.webp",
     sink_points: 19600,
   },
   [NuclearItemNames.ElectromagneticControlRod]: {
-    image: "IconDesc_ElectromagneticControlRod_256.png",
+    image: "IconDesc_ElectromagneticControlRod_128.webp",
     sink_points: 2560,
   },
   [NuclearItemNames.EncasedUraniumCell]: {
-    image: "IconDesc_NuclearCell_256.png",
+    image: "IconDesc_NuclearCell_128.webp",
     sink_points: 147,
   },
   [NuclearItemNames.NonFissileUranium]: {
-    image: "IconDesc_NonFissileUranium_256.png",
+    image: "IconDesc_NonFissileUranium_128.webp",
     sink_points: -1,
   },
   [NuclearItemNames.PlutoniumPellet]: {
-    image: "IconDesc_PlutoniumPellet_256.png",
+    image: "IconDesc_PlutoniumPellet_128.webp",
     sink_points: -1,
   },
   [NuclearItemNames.EncasedPlutoniumCell]: {
-    image: "IconDesc_EncasedPlutoniumCell_256.png",
+    image: "IconDesc_EncasedPlutoniumCell_128.webp",
     sink_points: -1,
   },
   [NuclearItemNames.Ficsonium]: {
-    image: "IconDesc_FicsoniumCell_256.png",
+    image: "IconDesc_FicsoniumCell_128.webp",
     sink_points: -1,
   },
   [NuclearItemNames.FicsoniumFuelRod]: {
-    image: "IconDesc_FicsoniumFuelRod_256.png",
+    image: "IconDesc_FicsoniumFuelRod_128.webp",
     sink_points: -1,
   },
   [WasteItemNames.UraniumWaste]: {
-    image: "IconDesc_NuclearWaste_256.png",
+    image: "IconDesc_NuclearWaste_128.webp",
     sink_points: -1,
   },
   [WasteItemNames.PlutoniumWaste]: {
-    image: "IconDesc_PlutoniumWaste_256.png",
+    image: "IconDesc_PlutoniumWaste_128.webp",
     sink_points: -1,
   },
   [SpecialItemNames.PowerShard]: {
-    image: "PowerShard_256.png",
+    image: "PowerShard_128.webp",
     sink_points: -1,
   },
   [SpecialItemNames.SmartPlating]: {
-    image: "IconDesc_SpelevatorPart_1_256.png",
+    image: "IconDesc_SpelevatorPart_1_128.webp",
     sink_points: 520,
   },
   [SpecialItemNames.PortableMiner]: {
-    image: "IconDesc_PortableMiner_256.png",
+    image: "IconDesc_PortableMiner_128.webp",
     sink_points: 56,
   },
   [SpecialItemNames.VersatileFramework]: {
-    image: "IconDesc_SpelevatorPart_2_256.png",
+    image: "IconDesc_SpelevatorPart_2_128.webp",
     sink_points: 1176,
   },
   [SpecialItemNames.AutomatedWiring]: {
-    image: "SpelevatorPart_3_256.png",
+    image: "SpelevatorPart_3_128.webp",
     sink_points: 1440,
   },
   [SpecialItemNames.ModularEngine]: {
-    image: "IconDesc_SpelevatorPart_4_256.png",
+    image: "IconDesc_SpelevatorPart_4_128.webp",
     sink_points: 9960,
   },
   [SpecialItemNames.AdaptiveControlUnit]: {
-    image: "IconDesc_SpelevatorPart_5_256.png",
+    image: "IconDesc_SpelevatorPart_5_128.webp",
     sink_points: 76368,
   },
   [SpecialItemNames.AssemblyDirectorSystem]: {
-    image: "IconDesc_AssemblyDirectorSystem_256.png",
+    image: "IconDesc_AssemblyDirectorSystem_128.webp",
     sink_points: 500176,
   },
   [SpecialItemNames.MagneticFieldGenerator]: {
-    image: "IconDesc_MagneticFieldGenerator_256.png",
+    image: "IconDesc_MagneticFieldGenerator_128.webp",
     sink_points: 11000,
   },
   [SpecialItemNames.ThermalPropulsionRocket]: {
-    image: "IconDesc_ThermalPropulsionRocket_256.png",
+    image: "IconDesc_ThermalPropulsionRocket_128.webp",
     sink_points: 728508,
   },
   [SpecialItemNames.NuclearPasta]: {
-    image: "IconDesc_NuclearPasta_256.png",
+    image: "IconDesc_NuclearPasta_128.webp",
     sink_points: 538976,
   },
   [SpecialItemNames.BiochemicalSculptor]: {
-    image: "IconDesc_BiochemicalSculptor_256.png",
+    image: "IconDesc_BiochemicalSculptor_128.webp",
     sink_points: 301778,
   },
   [SpecialItemNames.BallisticWarpDrive]: {
-    image: "IconDesc_BallisticWarpDrive_256.png",
+    image: "IconDesc_BallisticWarpDrive_128.webp",
     sink_points: 2895334,
   },
   [SpecialItemNames.AIExpansionServer]: {
-    image: "IconDesc_AIExpension_256.png",
+    image: "IconDesc_AIExpension_128.webp",
     sink_points: 597652,
   },
 };

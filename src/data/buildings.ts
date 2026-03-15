@@ -51,7 +51,7 @@ export interface Building {
 export const Buildings: Record<BuildingName, Building> = {
   [BuildingNames.MinerMk1]: {
     name: BuildingNames.MinerMk1,
-    image: imageByName["IconDesc_MinerMk1_256.png"],
+    image: imageByName["IconDesc_MinerMk1_128.webp"],
     power: 5,
     ingredients: {
       [SpecialItemNames.PortableMiner]: 1,
@@ -61,7 +61,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.MinerMk2]: {
     name: BuildingNames.MinerMk2,
-    image: imageByName["IconDesc_MinerMk2_256.png"],
+    image: imageByName["IconDesc_MinerMk2_128.webp"],
     power: 15,
     ingredients: {
       [SpecialItemNames.PortableMiner]: 2,
@@ -72,7 +72,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.MinerMk3]: {
     name: BuildingNames.MinerMk3,
-    image: imageByName["IconDesc_MinerMk3_256.png"],
+    image: imageByName["IconDesc_MinerMk3_128.webp"],
     power: 45,
     ingredients: {
       [SpecialItemNames.PortableMiner]: 3,
@@ -84,7 +84,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.OilExtractor]: {
     name: BuildingNames.OilExtractor,
-    image: imageByName["OilPump_256.png"],
+    image: imageByName["OilPump_128.webp"],
     power: 40,
     ingredients: {
       [IndustrialPartItemNames.Motor]: 15,
@@ -94,7 +94,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.WaterExtractor]: {
     name: BuildingNames.WaterExtractor,
-    image: imageByName["Waterpump_256.png"],
+    image: imageByName["Waterpump_128.webp"],
     power: 20,
     ingredients: {
       [StandardPartItemNames.CopperSheet]: 20,
@@ -104,7 +104,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.ResourceWellPressurizer]: {
     name: BuildingNames.ResourceWellPressurizer,
-    image: imageByName["IconDesc_Smasher_256.png"],
+    image: imageByName["IconDesc_Smasher_128.webp"],
     power: 150,
     ingredients: {
       [CommunicationItemNames.RadioControlUnit]: 10,
@@ -116,7 +116,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.ResourceWellExtractor]: {
     name: BuildingNames.ResourceWellExtractor,
-    image: imageByName["IconDesc_Extractor_256.png"],
+    image: imageByName["IconDesc_Extractor_128.webp"],
     power: 0,
     ingredients: {
       [StandardPartItemNames.StealBeam]: 10,
@@ -126,7 +126,7 @@ export const Buildings: Record<BuildingName, Building> = {
 
   [BuildingNames.Smelter]: {
     name: BuildingNames.Smelter,
-    image: imageByName["IconDesc_SmelterMk1_256.png"],
+    image: imageByName["IconDesc_SmelterMk1_128.webp"],
     power: 4,
     ingredients: {
       [StandardPartItemNames.IronRod]: 5,
@@ -135,7 +135,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.Foundry]: {
     name: BuildingNames.Foundry,
-    image: imageByName["IconDesc_Foundry_256.png"],
+    image: imageByName["IconDesc_Foundry_128.webp"],
     power: 16,
     ingredients: {
       [StandardPartItemNames.ModularFrame]: 10,
@@ -145,7 +145,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.Constructor]: {
     name: BuildingNames.Constructor,
-    image: imageByName["IconDesc_ConstructorMk1_256.png"],
+    image: imageByName["IconDesc_ConstructorMk1_128.webp"],
     power: 4,
     ingredients: {
       [StandardPartItemNames.ReinforcedIronPlate]: 2,
@@ -154,7 +154,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.Assembler]: {
     name: BuildingNames.Assembler,
-    image: imageByName["IconDesc_AssemblerMk1_256.png"],
+    image: imageByName["IconDesc_AssemblerMk1_128.webp"],
     power: 15,
     ingredients: {
       [StandardPartItemNames.ReinforcedIronPlate]: 8,
@@ -164,7 +164,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.Manufacturer]: {
     name: BuildingNames.Manufacturer,
-    image: imageByName["IconDesc_Manufacturer_256.png"],
+    image: imageByName["IconDesc_Manufacturer_128.webp"],
     power: 55,
     ingredients: {
       [IndustrialPartItemNames.Motor]: 10,
@@ -175,7 +175,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.Refinery]: {
     name: BuildingNames.Refinery,
-    image: imageByName["IconDesc_OilRefinery_256.png"],
+    image: imageByName["IconDesc_OilRefinery_128.webp"],
     power: 30,
     ingredients: {
       [IndustrialPartItemNames.Motor]: 10,
@@ -186,7 +186,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.Packager]: {
     name: BuildingNames.Packager,
-    image: imageByName["IconDesc_Packager_256.png"],
+    image: imageByName["IconDesc_Packager_128.webp"],
     power: 10,
     ingredients: {
       [StandardPartItemNames.StealBeam]: 20,
@@ -196,7 +196,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.Blender]: {
     name: BuildingNames.Blender,
-    image: imageByName["IconDesc_Blender_256.png"],
+    image: imageByName["IconDesc_Blender_128.webp"],
     power: 75,
     ingredients: {
       [CommunicationItemNames.Computer]: 10,
@@ -207,7 +207,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.ParticleAccelerator]: {
     name: BuildingNames.ParticleAccelerator,
-    image: imageByName["IconDesc_HadronCollider_256.png"],
+    image: imageByName["IconDesc_HadronCollider_128.webp"],
     power: 1500,
     ingredients: {
       [IndustrialPartItemNames.TurboMotor]: 10,
@@ -219,7 +219,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.QuantumEncoder]: {
     name: BuildingNames.QuantumEncoder,
-    image: imageByName["IconDesc_QuantumEncoder_256.png"],
+    image: imageByName["IconDesc_QuantumEncoder_128.webp"],
     power: 2000,
     ingredients: {
       [IndustrialPartItemNames.TurboMotor]: 20,
@@ -231,7 +231,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.Converter]: {
     name: BuildingNames.Converter,
-    image: imageByName["IconDesc_Converter_256.png"],
+    image: imageByName["IconDesc_Converter_128.webp"],
     power: 400,
     ingredients: {
       [StandardPartItemNames.FusedModularFrame]: 10,
@@ -243,7 +243,7 @@ export const Buildings: Record<BuildingName, Building> = {
 
   [BuildingNames.CoalPoweredGenerator]: {
     name: BuildingNames.CoalPoweredGenerator,
-    image: imageByName["IconDesc_CoalGenerator_256.png"],
+    image: imageByName["IconDesc_CoalGenerator_128.webp"],
     power: -75,
     ingredients: {
       [StandardPartItemNames.ReinforcedIronPlate]: 20,
@@ -253,7 +253,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.FuelPoweredGenerator]: {
     name: BuildingNames.FuelPoweredGenerator,
-    image: imageByName["FuelGenerator_256.png"],
+    image: imageByName["FuelGenerator_128.webp"],
     power: -250,
     ingredients: {
       [IndustrialPartItemNames.Motor]: 15,
@@ -265,7 +265,7 @@ export const Buildings: Record<BuildingName, Building> = {
   },
   [BuildingNames.NuclearPowerPlant]: {
     name: BuildingNames.NuclearPowerPlant,
-    image: imageByName["NuclearPowerplant_256.png"],
+    image: imageByName["NuclearPowerplant_128.webp"],
     power: -2500,
     ingredients: {
       [CommunicationItemNames.Supercomputer]: 10,
@@ -278,7 +278,7 @@ export const Buildings: Record<BuildingName, Building> = {
 
   [BuildingNames.AwesomeSink]: {
     name: BuildingNames.AwesomeSink,
-    image: imageByName["ResourceSink_256.png"],
+    image: imageByName["ResourceSink_128.webp"],
     power: 30,
     ingredients: {
       [StandardPartItemNames.ReinforcedIronPlate]: 15,
@@ -289,7 +289,7 @@ export const Buildings: Record<BuildingName, Building> = {
 
   [BuildingNames.AwesomeCollector]: {
     name: BuildingNames.AwesomeCollector,
-    image: imageByName["IconDesc_StorageContainer_256.png"],
+    image: imageByName["IconDesc_StorageContainer_128.webp"],
     power: 0,
     ingredients: {
     },
