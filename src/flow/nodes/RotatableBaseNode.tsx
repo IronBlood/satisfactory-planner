@@ -102,8 +102,8 @@ function RotatableBaseNode({
           "bg-slate-800 flex justify-evenly",
           outputDirection === "DOWN" && "h-6 rounded-t-lg",
           outputDirection === "RIGHT" && "w-6 rounded-l-lg flex-col",
-          outputDirection === "UP" && "h-6 rounded-b-lg flex-row-reverse",
-          outputDirection === "LEFT" && "w-6 rounded-r-lg flex-col-reverse",
+          outputDirection === "UP" && "h-6 rounded-b-lg flex-row-reverse items-end",
+          outputDirection === "LEFT" && "w-6 rounded-r-lg flex-col-reverse items-end",
         )}
       >
         {inHandles}
