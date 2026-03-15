@@ -101,7 +101,7 @@ export default function RecipePicker({
               className="flex gap-3 bg-slate-900 px-3 py-3 sm:flex-row-reverse sm:px-6"
             >
               <button className={["flex items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm", activeRecipe ? "hover:bg-sky-400" : "cursor-not-allowed opacity-50"].join(" ")} disabled={activeRecipe === null} onClick={() => { onSave(activeRecipe!); setActiveRecipe(null); onClose(); }}>Add to planner</button>
-              <button className="flex items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400" onClick={() => onClose()}>Cancel</button>
+              <button className="flex items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400" onClick={() => { setActiveRecipe(null); onClose(); }}>Cancel</button>
             </div>
           </DialogPanel>
         </div>
