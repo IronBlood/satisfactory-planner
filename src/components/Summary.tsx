@@ -112,7 +112,7 @@ function isInputNode(node: AppNode): node is ResourceNodeType | RecipeNodeType {
     return true;
   }
 
-  if (node.type === AppNodeTypes.Building) {
+  if (node.type === AppNodeTypes.Building || node.type === AppNodeTypes.Passthrough) {
     return false;
   }
 
@@ -142,6 +142,10 @@ export default function Summary({
     };
 
     for (const node of nodes) {
+      if (node.type === AppNodeTypes.Passthrough) {
+        continue;
+      }
+
       if (isInputNode(node)) {
         if (node.type === AppNodeTypes.Resource) {
           s.inputs[node.data.name] = (s.inputs[node.data.name] || 0) + node.data.count;
