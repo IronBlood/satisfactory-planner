@@ -100,7 +100,7 @@ function BaseNode({
           />
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 flex items-end justify-evenly">
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-end justify-evenly">
         {outHandles}
       </div>
     </div>
