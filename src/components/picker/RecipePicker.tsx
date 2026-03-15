@@ -37,6 +37,7 @@ export default function RecipePicker({
     const source_key = `${target} - source`;
     return [
       <RecipeView
+        viewType="source"
         key={source_key}
         output_name={target}
         image={getItemImageByName(target)}
@@ -45,6 +46,7 @@ export default function RecipePicker({
       />,
       ...recipes.map(r => (
         <RecipeView
+          viewType="recipe"
           key={r.name}
           output_name={target}
           recipe={r.name}

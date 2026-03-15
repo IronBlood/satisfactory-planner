@@ -241,6 +241,7 @@ export default function Picker({
         ? []
         : recipesCanBeUsed.filter(r => r.outputs.some(x => x.name === activeItem.name)).map(r => (
           <RecipeView
+            viewType="recipe"
             key={r.name}
             output_name={activeItem.name}
             recipe={r.name}
@@ -252,6 +253,7 @@ export default function Picker({
       return activeBuilding && buildingHasRecipes
         ? getRecipesByBuilding(activeBuilding).map(r => (
           <RecipeView
+            viewType="recipe"
             key={r.name}
             output_name=""
             recipe={r.name}
@@ -265,6 +267,7 @@ export default function Picker({
         ? []
         : [
           <RecipeView
+            viewType="source"
             key={source_key}
             output_name={activeItem.name}
             image={getItemImageByName(activeItem.name)}
@@ -273,6 +276,7 @@ export default function Picker({
           />,
           ...getRecipesByOutput(activeItem.name).map(r => (
             <RecipeView
+              viewType="recipe"
               key={r.name}
               output_name={activeItem.name}
               recipe={r.name}

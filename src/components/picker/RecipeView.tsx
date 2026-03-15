@@ -10,12 +10,15 @@ type RecipeViewType = {
   output_name: string;
   onClick: () => void;
   activeRecipe: string | null;
+  viewType: "recipe" | "source" | "passthrough";
 } & ({
   image?: string;
   recipe?: never;
+  viewType: "source" | "passthrough";
 } | {
   image?: never;
   recipe?: string;
+  viewType: "recipe";
 });
 
 export default function RecipeView({
