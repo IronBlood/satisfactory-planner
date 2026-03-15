@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -158,6 +159,13 @@ export default function Picker({
     setActiveRecipe(null);
     setActiveBuilding(undefined);
   }, [setActiveItem, setActiveRecipe, setActiveBuilding]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      clearSelection();
+      setSearchText("");
+    }
+  }, [isOpen, clearSelection]);
 
   const canBeAdded = useMemo(() => {
     if (activeCat === CatBuilding) {
@@ -382,7 +390,7 @@ export default function Picker({
               className="flex gap-3 bg-slate-900 px-3 py-3 sm:flex-row-reverse sm:px-6"
             >
               <button className={["flex items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm", canBeAdded ? "hover:bg-sky-400" : "cursor-not-allowed opacity-50"].join(" ")} disabled={!canBeAdded} onClick={doSave}>Add to planner</button>
-              <button className="flex items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400" onClick={() => { clearSelection(); setSearchText(""); onClose(); }}>Cancel</button>
+              <button className="flex items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400" onClick={() => onClose()}>Cancel</button>
             </div>
           </DialogPanel>
         </div>
