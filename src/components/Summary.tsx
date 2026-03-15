@@ -2,6 +2,8 @@ import {
   useMemo,
 } from "react";
 import {
+  useEdges,
+  useNodes,
   useReactFlow,
 } from "@xyflow/react";
 import {
@@ -13,7 +15,6 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/20/solid";
 import {
-  type AppEdge,
   type AppNode,
 } from "@/types";
 import {
@@ -119,13 +120,12 @@ function isInputNode(node: AppNode): node is ResourceNodeType | RecipeNodeType {
   return InputBuildings.includes(node.data.recipe.building);
 }
 
-export default function Summary({
-  nodes,
-  edges,
-}: {
-  nodes: AppNode[];
-  edges: AppEdge[];
-}) {
+export default function Summary() {
+  const nodes = useNodes() as AppNode[];
+  // `edges` isn't used directly but once the data is changed
+  // `summary` can also be updated
+  const edges = useEdges();
+
   const {
     getNodeConnections,
     getEdge,

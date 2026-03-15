@@ -400,7 +400,7 @@ function App({
               : "translate-x-4 opacity-0 pointer-events-none"
           ].join(" ")}
         >
-          <Summary nodes={nodes as AppNode[]} edges={edges} />
+          <Summary />
         </div>
       </aside>
       <Picker
