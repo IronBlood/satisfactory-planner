@@ -33,16 +33,16 @@ const Directions: Direction[] = [
 ];
 
 type RotatableProps = Props & {
-  outputDirection?: Direction;
+  outputOrientation?: Direction;
 };
 
 function RotatableBaseNode({
   nodeId,
   children,
   isLocked,
-  outputDirection = "DOWN",
+  outputOrientation = "DOWN",
 }: RotatableProps) {
-  const currIdx = useMemo(() => Directions.indexOf(outputDirection), [outputDirection]);
+  const currIdx = useMemo(() => Directions.indexOf(outputOrientation), [outputOrientation]);
   const rotateLeftDirection = useMemo(() => Directions[(currIdx + 1) % 4], [currIdx]);
   const rotateRightDirection = useMemo(() => Directions[(currIdx + 3) % 4], [currIdx]);
 
@@ -77,33 +77,33 @@ function RotatableBaseNode({
           ...node,
           data: {
             ...node.data,
-            direction: dir === "LEFT"
+            orientation: dir === "LEFT"
               ? rotateLeftDirection
               : rotateRightDirection
           },
         }
         : node
     ));
-  }, [nodeId, outputDirection, setNodes]);
+  }, [nodeId, outputOrientation, setNodes]);
 
   return (
     <div
       className={clsx(
         "relative rounded-lg bg-slate-700 border-0",
         isLocked && "no-drag",
-        outputDirection === "DOWN" && "flex flex-col",
-        outputDirection === "RIGHT" && "flex flex-row",
-        outputDirection === "UP" && "flex flex-col-reverse",
-        outputDirection === "LEFT" && "flex flex-row-reverse",
+        outputOrientation === "DOWN" && "flex flex-col",
+        outputOrientation === "RIGHT" && "flex flex-row",
+        outputOrientation === "UP" && "flex flex-col-reverse",
+        outputOrientation === "LEFT" && "flex flex-row-reverse",
       )}
     >
       <div
         className={clsx(
           "bg-slate-800 flex justify-evenly",
-          outputDirection === "DOWN" && "h-6 rounded-t-lg",
-          outputDirection === "RIGHT" && "w-6 rounded-l-lg flex-col",
-          outputDirection === "UP" && "h-6 rounded-b-lg flex-row-reverse items-end",
-          outputDirection === "LEFT" && "w-6 rounded-r-lg flex-col-reverse items-end",
+          outputOrientation === "DOWN" && "h-6 rounded-t-lg",
+          outputOrientation === "RIGHT" && "w-6 rounded-l-lg flex-col",
+          outputOrientation === "UP" && "h-6 rounded-b-lg flex-row-reverse items-end",
+          outputOrientation === "LEFT" && "w-6 rounded-r-lg flex-col-reverse items-end",
         )}
       >
         {inHandles}
@@ -114,18 +114,18 @@ function RotatableBaseNode({
       <div
         className={clsx(
           "bg-slate-800 flex items-center justify-between",
-          outputDirection === "DOWN" && "h-6 rounded-b-lg px-1",
-          outputDirection === "RIGHT" && "w-6 rounded-r-lg flex-col-reverse py-1",
-          outputDirection === "UP" && "h-6 rounded-t-lg flex-row-reverse px-1",
-          outputDirection === "LEFT" && "w-6 rounded-l-lg flex-col py-1",
+          outputOrientation === "DOWN" && "h-6 rounded-b-lg px-1",
+          outputOrientation === "RIGHT" && "w-6 rounded-r-lg flex-col-reverse py-1",
+          outputOrientation === "UP" && "h-6 rounded-t-lg flex-row-reverse px-1",
+          outputOrientation === "LEFT" && "w-6 rounded-l-lg flex-col py-1",
         )}
       >
         <div
           className={clsx(
             "flex",
-            outputDirection === "RIGHT" && "flex-col-reverse",
-            outputDirection === "UP" && "flex-row-reverse",
-            outputDirection === "LEFT" && "flex-col",
+            outputOrientation === "RIGHT" && "flex-col-reverse",
+            outputOrientation === "UP" && "flex-row-reverse",
+            outputOrientation === "LEFT" && "flex-col",
           )}
         >
           <button
@@ -161,10 +161,10 @@ function RotatableBaseNode({
       <div
         className={clsx(
           "absolute flex items-end justify-evenly",
-          outputDirection === "DOWN" && "bottom-0 left-0 right-0",
-          outputDirection === "RIGHT" && "top-0 bottom-0 right-0 flex-col",
-          outputDirection === "UP" && "top-0 left-0 right-0 flex-row-reverse",
-          outputDirection === "LEFT" && "top-0 bottom-0 left-0 flex-col-reverse",
+          outputOrientation === "DOWN" && "bottom-0 left-0 right-0",
+          outputOrientation === "RIGHT" && "top-0 bottom-0 right-0 flex-col",
+          outputOrientation === "UP" && "top-0 left-0 right-0 flex-row-reverse",
+          outputOrientation === "LEFT" && "top-0 bottom-0 left-0 flex-col-reverse",
         )}
       >
         {outHandles}

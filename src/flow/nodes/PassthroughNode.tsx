@@ -25,7 +25,7 @@ import {
 export type PassthroughNodeType = Node<{
   name: ItemName;
   isLocked: boolean;
-  direction?: Direction;
+  orientation?: Direction;
 }, typeof AppNodeTypes.Passthrough>;
 
 const EPSILON = 0.00001;
@@ -55,7 +55,7 @@ export const PassthroughNode = memo((props: NodeProps<PassthroughNodeType>) => {
     posIn,
     posOut,
   ] = useMemo<Position[]>(() => {
-    switch (props.data.direction) {
+    switch (props.data.orientation) {
       case "RIGHT":
         return [Position.Left, Position.Right];
       case "UP":
@@ -66,7 +66,7 @@ export const PassthroughNode = memo((props: NodeProps<PassthroughNodeType>) => {
       default:
         return [Position.Top, Position.Bottom];
     }
-  }, [props.data.direction]);
+  }, [props.data.orientation]);
 
   const image = useMemo(() => getItemImageByName(props.data.name), [props]);
 
@@ -100,7 +100,7 @@ export const PassthroughNode = memo((props: NodeProps<PassthroughNodeType>) => {
     <RotatableBaseNode
       nodeId={props.id}
       isLocked={props.data.isLocked}
-      outputDirection={props.data.direction}
+      outputOrientation={props.data.orientation}
     >
       <RotatableBaseNode.InHandles>
         <PassthroughInOutHandle
