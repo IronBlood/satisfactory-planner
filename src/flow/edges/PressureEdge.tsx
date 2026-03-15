@@ -22,6 +22,8 @@ export function PressureEdge({
   targetX,
   targetY,
   selected,
+  sourcePosition,
+  targetPosition,
 }: EdgeProps<PressureEdgeType>) {
   const { setEdges } = useReactFlow();
 
@@ -32,6 +34,8 @@ export function PressureEdge({
     sourceY,
     targetX,
     targetY,
+    sourcePosition,
+    targetPosition,
   });
 
   useEffect(() => {
