@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useState,
   useMemo,
 } from "react";
@@ -27,6 +28,12 @@ export default function RecipePicker({
 }) {
   const [activeRecipe, setActiveRecipe] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setActiveRecipe(null);
+    }
+  }, [isOpen]);
+
   const recipes = useMemo(() => target ? getRecipesByOutput(target) : [], [target]);
 
   const recipeViews = useMemo(() => {
@@ -35,16 +42,27 @@ export default function RecipePicker({
     }
 
     const source_key = `${target} - source`;
+    const passthrough_key = `${target} - passthrough`;
     return [
       <RecipeView
+        viewType="source"
         key={source_key}
         output_name={target}
         image={getItemImageByName(target)}
         onClick={() => setActiveRecipe(source_key)}
         activeRecipe={activeRecipe}
       />,
+      <RecipeView
+        viewType="passthrough"
+        key={passthrough_key}
+        output_name={target}
+        image={getItemImageByName(target)}
+        onClick={() => setActiveRecipe(passthrough_key)}
+        activeRecipe={activeRecipe}
+      />,
       ...recipes.map(r => (
         <RecipeView
+          viewType="recipe"
           key={r.name}
           output_name={target}
           recipe={r.name}
@@ -89,7 +107,7 @@ export default function RecipePicker({
             <div
               className="flex gap-3 bg-slate-900 px-3 py-3 sm:flex-row-reverse sm:px-6"
             >
-              <button className={["flex items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm", activeRecipe ? "hover:bg-sky-400" : "cursor-not-allowed opacity-50"].join(" ")} disabled={activeRecipe === null} onClick={() => { onSave(activeRecipe!); setActiveRecipe(null); onClose(); }}>Add to planner</button>
+              <button className={["flex items-center justify-center rounded-md transition duration-200 ease-in-out text-white bg-sky-500 ring-1 ring-sky-400 px-3 py-1.5 text-sm", activeRecipe ? "hover:bg-sky-400" : "cursor-not-allowed opacity-50"].join(" ")} disabled={activeRecipe === null} onClick={() => { onSave(activeRecipe!); onClose(); }}>Add to planner</button>
               <button className="flex items-center justify-center rounded-md transition duration-200 ease-in-out text-sky-500 ring-1 ring-sky-500 px-3 py-1.5 text-sm hover:text-sky-400 hover:ring-sky-400" onClick={() => onClose()}>Cancel</button>
             </div>
           </DialogPanel>

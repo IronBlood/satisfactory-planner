@@ -26,9 +26,18 @@ export function ConveyorEdge({
   targetY,
   data,
   selected,
+  sourcePosition,
+  targetPosition,
 }: EdgeProps<ConveyorEdgeType>) {
   const { setEdges } = useReactFlow();
-  const [edgePath, centerX, centerY] = getSmoothStepPath({ sourceX, sourceY, targetX, targetY });
+  const [edgePath, centerX, centerY] = getSmoothStepPath({
+    sourceX,
+    sourceY,
+    targetX,
+    targetY,
+    sourcePosition,
+    targetPosition,
+  });
   const onCommit = useCallback((next: number) => {
     setEdges((edges) =>
       edges.map((e) => e.id === id

@@ -5,6 +5,11 @@ export {
 } from "./BuildingNode";
 
 export {
+  PassthroughNode,
+  type PassthroughNodeType,
+} from "./PassthroughNode";
+
+export {
   RecipeNode,
   type RecipeNodeType,
 } from "./RecipeNode";

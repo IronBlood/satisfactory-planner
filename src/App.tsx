@@ -28,8 +28,11 @@ import Picker from "./components/picker/Picker";
 import RecipePicker from "@/components/picker/RecipePicker";
 import {
   BuildingNode,
+  PassthroughNode,
   RecipeNode,
   ResourceNode,
+  type BuildingNodeType,
+  type PassthroughNodeType,
   type RecipeNodeType,
   type ResourceNodeType,
   type SupportedBuildings,
@@ -49,8 +52,73 @@ import { isItemSinkable, type ItemName } from "@/data/items";
 import Summary from "@/components/Summary";
 import type { AppEdge, AppFlow, AppNode } from "./types";
 
-function getSrcIdx(s: string) {
-  return s.lastIndexOf(` - source`);
+function getSourceIdx(name: string) {
+  return name.lastIndexOf(` - source`);
+}
+
+function getPassthroughIdx(name: string) {
+  return name.lastIndexOf(` - passthrough`);
+}
+
+function createNode({
+  name,
+  position,
+  isBuilding = false,
+}: {
+  name: string;
+  position: { x: number; y: number };
+  isBuilding?: boolean;
+}): AppNode {
+  const id = crypto.randomUUID() as string;
+  let idx = -1;
+  if (isBuilding) {
+    return ({
+      id,
+      position,
+      type: "building",
+      data: {
+        name: name as SupportedBuildings,
+        count: 1,
+        isLocked: false,
+      },
+    }) as BuildingNodeType;
+  }
+
+  if ((idx = getSourceIdx(name)) > 0) {
+    return ({
+      id,
+      position,
+      type: "resource",
+      data: {
+        count: 0,
+        name: name.substring(0, idx),
+        isLocked: false,
+      },
+    }) as ResourceNodeType;
+  }
+
+  if ((idx = getPassthroughIdx(name)) > 0) {
+    return ({
+      id,
+      position,
+      type: "passthrough",
+      data: {
+        name: name.substring(0, idx),
+        isLocked: false,
+      },
+    }) as PassthroughNodeType;
+  }
+
+  return ({
+    id,
+    position,
+    data: {
+      recipe: getRecipeByName(name),
+      count: 1,
+      isLocked: false,
+    },
+    type: "recipe",
+  }) as RecipeNodeType;
 }
 
 const isValidConnection: IsValidConnection<Edge> = (connection) => {
@@ -109,6 +177,7 @@ function App({
     [AppNodeTypes.Recipe]: RecipeNode,
     [AppNodeTypes.Resource]: ResourceNode,
     [AppNodeTypes.Building]: BuildingNode,
+    [AppNodeTypes.Passthrough]: PassthroughNode,
   }), []);
 
   const edgeTypes = useMemo(() => ({
@@ -200,42 +269,15 @@ function App({
       throw new Error(`invalid position`);
     }
 
-    const id = crypto.randomUUID() as string;
     const position = {
       x: pos.x,
       y: pos.y,
     };
-    let idx = -1;
-    let node: AppNode = isBuilding
-      ? {
-        id,
-        position,
-        type: "building",
-        data: {
-          name: name as SupportedBuildings,
-          count: 1,
-          isLocked: false,
-        },
-      } : ((idx = getSrcIdx(name)) > 0)
-        ? {
-          id,
-          position,
-          type: "resource",
-          data: {
-            count: 0,
-            name: name.substring(0, idx),
-            isLocked: false,
-          },
-        } : {
-          id,
-          position,
-          data: {
-            recipe: getRecipeByName(name),
-            count: 1,
-            isLocked: false,
-          },
-          type: "recipe",
-        };
+    let node: AppNode = createNode({
+      name,
+      position,
+      isBuilding,
+    });
 
     setNodes((nodes) => [
       ...nodes,
@@ -261,33 +303,15 @@ function App({
       throw new Error(`invalid target`);
     }
 
-    const id = crypto.randomUUID();
     const position = {
       x: pos.x,
       y: pos.y,
     };
-    let idx = -1;
 
-    let node: ResourceNodeType | RecipeNodeType = ((idx = getSrcIdx(name)) > 0)
-      ? {
-        id,
-        position,
-        type: "resource",
-        data: {
-          count: 0,
-          name: name.substring(0, idx),
-          isLocked: false,
-        },
-      } : {
-        id,
-        position,
-        data: {
-          recipe: getRecipeByName(name),
-          count: 1,
-          isLocked: false,
-        },
-        type: "recipe",
-      };
+    let node = createNode({
+      position,
+      name,
+    });
 
     setNodes((nodes) => [
       ...nodes,

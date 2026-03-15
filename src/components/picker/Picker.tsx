@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -159,6 +160,13 @@ export default function Picker({
     setActiveBuilding(undefined);
   }, [setActiveItem, setActiveRecipe, setActiveBuilding]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      clearSelection();
+      setSearchText("");
+    }
+  }, [isOpen, clearSelection]);
+
   const canBeAdded = useMemo(() => {
     if (activeCat === CatBuilding) {
       if (!activeBuilding) {
@@ -185,7 +193,6 @@ export default function Picker({
     } else {
       onSave(activeRecipe!);
     }
-    clearSelection();
     onClose();
   }, [
     activeRecipe,
@@ -194,7 +201,6 @@ export default function Picker({
     CatBuilding,
     buildingHasRecipes,
     onSave,
-    clearSelection,
     onClose,
   ]);
 
@@ -236,11 +242,13 @@ export default function Picker({
 
   const recipeViews = useMemo(() => {
     const source_key = activeItem === null ? "" : `${activeItem.name} - source`;
+    const passthrough_key = activeItem === null ? "" : `${activeItem.name} - passthrough`;
     if (sourceType) {
       return activeItem === null
         ? []
         : recipesCanBeUsed.filter(r => r.outputs.some(x => x.name === activeItem.name)).map(r => (
           <RecipeView
+            viewType="recipe"
             key={r.name}
             output_name={activeItem.name}
             recipe={r.name}
@@ -252,6 +260,7 @@ export default function Picker({
       return activeBuilding && buildingHasRecipes
         ? getRecipesByBuilding(activeBuilding).map(r => (
           <RecipeView
+            viewType="recipe"
             key={r.name}
             output_name=""
             recipe={r.name}
@@ -265,14 +274,24 @@ export default function Picker({
         ? []
         : [
           <RecipeView
+            viewType="source"
             key={source_key}
             output_name={activeItem.name}
             image={getItemImageByName(activeItem.name)}
             onClick={() => setActiveRecipe(source_key)}
             activeRecipe={activeRecipe}
           />,
+          <RecipeView
+            viewType="passthrough"
+            key={passthrough_key}
+            output_name={activeItem.name}
+            image={getItemImageByName(activeItem.name)}
+            onClick={() => setActiveRecipe(passthrough_key)}
+            activeRecipe={activeRecipe}
+          />,
           ...getRecipesByOutput(activeItem.name).map(r => (
             <RecipeView
+              viewType="recipe"
               key={r.name}
               output_name={activeItem.name}
               recipe={r.name}

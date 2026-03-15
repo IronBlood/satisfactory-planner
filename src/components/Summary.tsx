@@ -28,6 +28,7 @@ import {
 } from "@/data/buildings";
 import {
   AppEdgeTypes,
+  AppNodeTypes,
 } from "@/flow/constants";
 import type {
   ConveyorEdgeType,
@@ -107,11 +108,11 @@ const InputBuildings: BuildingName[] = [
 ];
 
 function isInputNode(node: AppNode): node is ResourceNodeType | RecipeNodeType {
-  if (node.type === "resource") {
+  if (node.type === AppNodeTypes.Resource) {
     return true;
   }
 
-  if (node.type === "building") {
+  if (node.type === AppNodeTypes.Building || node.type === AppNodeTypes.Passthrough) {
     return false;
   }
 
@@ -141,8 +142,12 @@ export default function Summary({
     };
 
     for (const node of nodes) {
+      if (node.type === AppNodeTypes.Passthrough) {
+        continue;
+      }
+
       if (isInputNode(node)) {
-        if (node.type === "resource") {
+        if (node.type === AppNodeTypes.Resource) {
           s.inputs[node.data.name] = (s.inputs[node.data.name] || 0) + node.data.count;
         } else {
           // NOTE: this should be a valid pair
@@ -151,11 +156,11 @@ export default function Summary({
         }
       }
 
-      if (node.type === "resource") {
+      if (node.type === AppNodeTypes.Resource) {
         continue;
       }
 
-      if (node.type === "building" && node.data.name === BuildingNames.AwesomeCollector) {
+      if (node.type === AppNodeTypes.Building && node.data.name === BuildingNames.AwesomeCollector) {
         const connections = getNodeConnections({
           type: "target",
           nodeId: node.id,
@@ -176,7 +181,7 @@ export default function Summary({
         continue;
       }
 
-      if (node.type === "building" && node.data.name === BuildingNames.AwesomeSink) {
+      if (node.type === AppNodeTypes.Building && node.data.name === BuildingNames.AwesomeSink) {
         const connections = getNodeConnections({
           type: "target",
           nodeId: node.id,
@@ -195,7 +200,7 @@ export default function Summary({
       }
 
       const ceiled = Math.ceil(node.data.count);
-      const building = node.type === "building"
+      const building = node.type === AppNodeTypes.Building
         ? Buildings[node.data.name]
         : Buildings[node.data.recipe.building];
 

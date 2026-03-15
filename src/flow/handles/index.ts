@@ -15,3 +15,8 @@ export {
 export {
   AwesomeSinkHandle,
 } from "./SinkHandle";
+
+export {
+  PassthroughInOutHandle,
+  type PassthroughInOutHandleParams,
+} from "./PassthroughInOutHandle";

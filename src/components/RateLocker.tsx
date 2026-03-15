@@ -3,16 +3,22 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import {
-  LockOpenIcon,
-  LockClosedIcon,
-} from "@heroicons/react/24/outline";
+  FontAwesomeIcon,
+} from "@fortawesome/react-fontawesome";
+import {
+  faLock,
+  faLockOpen,
+} from "@fortawesome/free-solid-svg-icons";
+import { clsx } from "clsx/lite";
 
 export default function RateLocker({
   nodeId,
   isLocked,
+  className = "",
 }: {
   nodeId: string;
   isLocked: boolean;
+  className?: string;
 }) {
   const { setNodes } = useReactFlow();
   const toggle = useCallback(() => {
@@ -23,15 +29,18 @@ export default function RateLocker({
 
   return (
     <button
-      className={[
-        "h-4 w-4 p-0.5 bg-slate-800 rounded-full transition",
+      className={clsx(
+        "bg-slate-800 rounded-full transition text-xs duration-200 cursor-pointer",
+        className,
         isLocked
           ? "text-yellow-700 hover:text-yellow-500"
           : "text-slate-700 hover:text-slate-500"
-      ].join(" ")}
+      )}
       onClick={toggle}
     >
-      {isLocked ? <LockClosedIcon /> : <LockOpenIcon />}
+      <FontAwesomeIcon
+        icon={isLocked ? faLock : faLockOpen}
+      />
     </button>
   );
 }
