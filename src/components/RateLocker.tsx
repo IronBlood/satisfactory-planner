@@ -30,7 +30,7 @@ export default function RateLocker({
   return (
     <button
       className={clsx(
-        "h-4 w-4 bg-slate-800 rounded-full transition text-xs duration-200",
+        "bg-slate-800 rounded-full transition text-xs duration-200 cursor-pointer",
         className,
         isLocked
           ? "text-yellow-700 hover:text-yellow-500"
