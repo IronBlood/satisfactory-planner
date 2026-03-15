@@ -28,6 +28,7 @@ import Picker from "./components/picker/Picker";
 import RecipePicker from "@/components/picker/RecipePicker";
 import {
   BuildingNode,
+  PassthroughNode,
   RecipeNode,
   ResourceNode,
   type RecipeNodeType,
@@ -109,6 +110,7 @@ function App({
     [AppNodeTypes.Recipe]: RecipeNode,
     [AppNodeTypes.Resource]: ResourceNode,
     [AppNodeTypes.Building]: BuildingNode,
+    [AppNodeTypes.Passthrough]: PassthroughNode,
   }), []);
 
   const edgeTypes = useMemo(() => ({
