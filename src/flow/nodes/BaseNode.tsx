@@ -8,13 +8,13 @@ import {
 
 import RateLocker from "@/components/RateLocker";
 
-type Props = {
+export type Props = {
   children: ReactNode;
   isLocked: boolean;
   nodeId: string;
 };
 
-function InHandles({
+export function InHandles({
   children,
 }: {
   children: ReactNode;
@@ -27,7 +27,7 @@ function InHandles({
   );
 }
 
-function Body({
+export function Body({
   children,
 }: {
   children: ReactNode;
@@ -39,7 +39,7 @@ function Body({
   );
 }
 
-function OutHandles({
+export function OutHandles({
   children,
 }: {
   children: ReactNode;
