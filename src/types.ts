@@ -1,5 +1,6 @@
 import type {
   BuildingNodeType,
+  PassthroughNodeType,
   RecipeNodeType,
   ResourceNodeType,
 } from "@/flow/nodes";
@@ -12,6 +13,7 @@ export type AppNode =
   | ResourceNodeType
   | RecipeNodeType
   | BuildingNodeType
+  | PassthroughNodeType
   ;
 
 export type AppEdge =
