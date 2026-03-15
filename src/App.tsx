@@ -8,6 +8,7 @@ import {
 } from "react";
 import {
   Background,
+  ConnectionLineType,
   Controls,
   ReactFlow,
   addEdge,
@@ -378,6 +379,7 @@ function App({
           isValidConnection={isValidConnection}
           zoomOnDoubleClick={false}
           nodeOrigin={[0.5, 0.5]}
+          connectionLineType={ConnectionLineType.SmoothStep}
           fitView
         >
           <Background />
