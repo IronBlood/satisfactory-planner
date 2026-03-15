@@ -193,7 +193,6 @@ export default function Picker({
     } else {
       onSave(activeRecipe!);
     }
-    clearSelection();
     onClose();
   }, [
     activeRecipe,
@@ -202,7 +201,6 @@ export default function Picker({
     CatBuilding,
     buildingHasRecipes,
     onSave,
-    clearSelection,
     onClose,
   ]);
 
