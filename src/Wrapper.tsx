@@ -567,21 +567,21 @@ function Wrapper() {
         >
           <span>We’d like to use Google Analytics to understand how this site is used and improve it. We only enable it if you agree. You can turn this off at any time.</span>
           <div
-            className="text-white flex gap-2"
+            className="ml-4 text-white flex gap-2"
           >
             <button
-              className="bg-green-700 p-2 cursor-pointer"
+              className="bg-green-700 p-2 cursor-pointer inline-flex items-center"
               onClick={() => setTrack(true)}
             >
               <CheckIcon className="h-5 w-5" />
-              Yes
+              <span className="hidden xl:inline">Yes</span>
             </button>
             <button
-              className="bg-red-600 p-2 cursor-pointer"
+              className="bg-red-600 p-2 cursor-pointer inline-flex items-center"
               onClick={() => setTrack(false)}
             >
               <XMarkIcon className="h-5 w-5" />
-              No, don't track
+              <span className="hidden xl:inline">No, don't track</span>
             </button>
           </div>
         </div>
