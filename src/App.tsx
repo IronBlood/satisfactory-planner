@@ -1,4 +1,6 @@
 import {
+  Suspense,
+  lazy,
   useCallback,
   useEffect,
   useMemo,
@@ -50,8 +52,9 @@ import {
   getRecipeByName,
 } from "./data/recipes";
 import { isItemSinkable, type ItemName } from "@/data/items";
-import Summary from "@/components/Summary";
 import type { AppEdge, AppFlow, AppNode } from "./types";
+
+const Summary = lazy(() => import("@/components/Summary"));
 
 function getSourceIdx(name: string) {
   return name.lastIndexOf(` - source`);
@@ -400,7 +403,9 @@ function App({
               : "translate-x-4 opacity-0 pointer-events-none"
           ].join(" ")}
         >
-          <Summary />
+          <Suspense fallback={null}>
+            <Summary />
+          </Suspense>
         </div>
       </aside>
       <Picker

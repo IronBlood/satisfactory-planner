@@ -1,4 +1,6 @@
 import {
+  Suspense,
+  lazy,
   useCallback,
   useEffect,
   useMemo,
@@ -33,8 +35,8 @@ import {
 import {
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
-import App, {
-  type ActionsRef,
+import type {
+  ActionsRef,
 } from "./App";
 import type {
   MultiFlow,
@@ -44,6 +46,7 @@ import { ChevronDownIcon, CheckIcon } from "@heroicons/react/20/solid";
 import { loadGoogleAnalytics } from "./analytics";
 
 const GA_KEY = "allow_ga";
+const App = lazy(() => import("./App"));
 
 function AppMenuButton({
   text,
@@ -553,10 +556,12 @@ function Wrapper() {
         </div>
       </header>
       <ReactFlowProvider>
-        <App
-          onActionsReady={(a) => { actionsRef.current = a; }}
-          activeFlow={activeFlow}
-        />
+        <Suspense fallback={null}>
+          <App
+            onActionsReady={(a) => { actionsRef.current = a; }}
+            activeFlow={activeFlow}
+          />
+        </Suspense>
       </ReactFlowProvider>
       <footer className="h-12 border-t border-slate-800 bg-slate-950 px-4 flex items-center text-xs text-slate-400">
         <div>
