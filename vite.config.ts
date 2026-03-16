@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type PluginOption } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath } from 'url'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 const repoName = process.env.VITE_REPO_NAME || '/';
 
@@ -11,6 +12,13 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    visualizer({
+      template: "treemap",
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
+      filename: "analyse.html",
+    }) as PluginOption,
   ],
   resolve: {
     alias: {
@@ -23,5 +31,8 @@ export default defineConfig({
         "**/*.md",
       ],
     },
+  },
+  build: {
+    assetsInlineLimit: 0,
   },
 })
