@@ -34,6 +34,7 @@ jobs:
         run: pnpm build
         env:
           VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
+          VITE_REPO_NAME: "/satisfactory-planner/"
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
