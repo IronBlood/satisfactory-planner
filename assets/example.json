@@ -1,0 +1,306 @@
+{
+  "version": 1,
+  "filename": "",
+  "flows": [
+    {
+      "name": "Unnamed Plan",
+      "flow": {
+        "nodes": [
+          {
+            "id": "25e7b74f-827e-41a2-9d27-d53f7060b1ec",
+            "position": {
+              "x": 716.8472198703919,
+              "y": -41.16777411816422
+            },
+            "data": {
+              "recipe": {
+                "name": "Power (Fuel)",
+                "building": "Fuel-Powered Generator",
+                "inputs": [
+                  {
+                    "name": "Fuel",
+                    "rate": 20
+                  }
+                ],
+                "outputs": []
+              },
+              "count": 1,
+              "isLocked": false
+            },
+            "type": "recipe",
+            "measured": {
+              "width": 308,
+              "height": 104
+            }
+          },
+          {
+            "id": "d122084c-b731-4fce-8643-c5ccf5bbbb6e",
+            "position": {
+              "x": 205.49745987039205,
+              "y": -51.75868611816426
+            },
+            "data": {
+              "recipe": {
+                "name": "Adaptive Control Unit",
+                "building": "Manufacturer",
+                "inputs": [
+                  {
+                    "name": "Automated Wiring",
+                    "rate": 5
+                  },
+                  {
+                    "name": "Circuit Board",
+                    "rate": 5
+                  },
+                  {
+                    "name": "Heavy Modular Frame",
+                    "rate": 1
+                  },
+                  {
+                    "name": "Computer",
+                    "rate": 2
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "Adaptive Control Unit",
+                    "rate": 1
+                  }
+                ]
+              },
+              "count": 1,
+              "isLocked": false
+            },
+            "type": "recipe",
+            "measured": {
+              "width": 272,
+              "height": 104
+            }
+          },
+          {
+            "id": "dc57246d-fcdb-4214-809b-4f554666a46d",
+            "position": {
+              "x": 53.02920989526994,
+              "y": 216.94978102080125
+            },
+            "type": "building",
+            "data": {
+              "name": "AWESOME Sink",
+              "count": 1,
+              "isLocked": false
+            },
+            "measured": {
+              "width": 169,
+              "height": 104
+            }
+          },
+          {
+            "id": "fb976def-f9b9-44e5-9808-e2d737c7fdf9",
+            "position": {
+              "x": 370.78016549835536,
+              "y": 216.78939862080065
+            },
+            "type": "building",
+            "data": {
+              "name": "AWESOME Collector (non-existing)",
+              "count": 1,
+              "isLocked": false
+            },
+            "measured": {
+              "width": 196,
+              "height": 104
+            }
+          },
+          {
+            "id": "7fe6957d-6061-46a6-9109-f660adc602d7",
+            "position": {
+              "x": 718.1298402535091,
+              "y": -301.02780414039285
+            },
+            "type": "resource",
+            "data": {
+              "count": 20,
+              "name": "Fuel",
+              "isLocked": false
+            },
+            "measured": {
+              "width": 127,
+              "height": 104
+            }
+          },
+          {
+            "id": "320d0f2f-1951-493a-850f-81e0b7d924c2",
+            "position": {
+              "x": -64.49511614970712,
+              "y": -178.28017471563925
+            },
+            "type": "passthrough",
+            "data": {
+              "name": "Automated Wiring",
+              "isLocked": false,
+              "orientation": "RIGHT"
+            },
+            "measured": {
+              "width": 236,
+              "height": 64
+            }
+          },
+          {
+            "id": "c9a141fb-88a5-4073-ad1b-781d177eee09",
+            "position": {
+              "x": 66.9580189080077,
+              "y": -379.59159188973024
+            },
+            "data": {
+              "recipe": {
+                "name": "Circuit Board",
+                "building": "Assembler",
+                "inputs": [
+                  {
+                    "name": "Copper Sheet",
+                    "rate": 15
+                  },
+                  {
+                    "name": "Plastic",
+                    "rate": 30
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "Circuit Board",
+                    "rate": 7.5
+                  }
+                ]
+              },
+              "count": 1,
+              "isLocked": false
+            },
+            "type": "recipe",
+            "measured": {
+              "width": 256,
+              "height": 104
+            }
+          },
+          {
+            "id": "38a9e792-c525-496c-bf6a-23892bb14603",
+            "position": {
+              "x": 415.1782442264576,
+              "y": -314.3002996425208
+            },
+            "type": "passthrough",
+            "data": {
+              "name": "Heavy Modular Frame",
+              "isLocked": false,
+              "orientation": "LEFT"
+            },
+            "measured": {
+              "width": 261,
+              "height": 64
+            }
+          },
+          {
+            "id": "c64254c6-bd22-4a00-886b-8c6381458240",
+            "position": {
+              "x": 454.35301957478316,
+              "y": -214.18698486346653
+            },
+            "type": "passthrough",
+            "data": {
+              "name": "Computer",
+              "isLocked": false,
+              "orientation": "LEFT"
+            },
+            "measured": {
+              "width": 198,
+              "height": 64
+            }
+          }
+        ],
+        "edges": [
+          {
+            "target": "25e7b74f-827e-41a2-9d27-d53f7060b1ec",
+            "targetHandle": "Fuel",
+            "source": "7fe6957d-6061-46a6-9109-f660adc602d7",
+            "sourceHandle": "Fuel",
+            "id": "16377f8a-a4fa-4fb5-8b47-71096ebc00fb",
+            "type": "conveyor",
+            "data": {
+              "value": 20
+            }
+          },
+          {
+            "source": "d122084c-b731-4fce-8643-c5ccf5bbbb6e",
+            "sourceHandle": "Adaptive Control Unit",
+            "target": "dc57246d-fcdb-4214-809b-4f554666a46d",
+            "targetHandle": "AwesomeSinkHandle",
+            "id": "8e73665b-9a1c-4294-b0ef-3b7f877fe398",
+            "type": "conveyor",
+            "data": {
+              "value": 0.5
+            }
+          },
+          {
+            "source": "d122084c-b731-4fce-8643-c5ccf5bbbb6e",
+            "sourceHandle": "Adaptive Control Unit",
+            "target": "fb976def-f9b9-44e5-9808-e2d737c7fdf9",
+            "targetHandle": "AwesomeCollectorHandle",
+            "id": "eb2be4fa-540b-4a93-8e7a-11a5ecb7ef61",
+            "type": "conveyor",
+            "data": {
+              "value": 0.5
+            }
+          },
+          {
+            "target": "d122084c-b731-4fce-8643-c5ccf5bbbb6e",
+            "targetHandle": "Automated Wiring",
+            "source": "320d0f2f-1951-493a-850f-81e0b7d924c2",
+            "sourceHandle": "Automated Wiring",
+            "id": "9246e7e1-cee9-4915-b0b1-5994a0b61794",
+            "type": "conveyor",
+            "data": {
+              "value": 5
+            }
+          },
+          {
+            "target": "d122084c-b731-4fce-8643-c5ccf5bbbb6e",
+            "targetHandle": "Circuit Board",
+            "source": "c9a141fb-88a5-4073-ad1b-781d177eee09",
+            "sourceHandle": "Circuit Board",
+            "id": "9e29b44c-8218-4ac8-ad15-ad8b7ddb6dee",
+            "type": "conveyor",
+            "data": {
+              "value": 5
+            }
+          },
+          {
+            "target": "d122084c-b731-4fce-8643-c5ccf5bbbb6e",
+            "targetHandle": "Heavy Modular Frame",
+            "source": "38a9e792-c525-496c-bf6a-23892bb14603",
+            "sourceHandle": "Heavy Modular Frame",
+            "id": "a10a0b60-2bb7-47ff-8378-7cd055367851",
+            "type": "conveyor",
+            "data": {
+              "value": 1
+            }
+          },
+          {
+            "target": "d122084c-b731-4fce-8643-c5ccf5bbbb6e",
+            "targetHandle": "Computer",
+            "source": "c64254c6-bd22-4a00-886b-8c6381458240",
+            "sourceHandle": "Computer",
+            "id": "e3e0eedb-54a6-41b8-94d4-96a9126ac7bb",
+            "type": "conveyor",
+            "data": {
+              "value": 0
+            }
+          }
+        ],
+        "viewport": {
+          "x": 401.55561276980285,
+          "y": 540.6432681318217,
+          "zoom": 1.1576760936053603
+        }
+      }
+    }
+  ]
+}

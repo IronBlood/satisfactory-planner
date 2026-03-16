@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# Satisfactory Planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Disclaimer:** This project is not affiliated with Coffee Stain Studios. “Satisfactory” and related assets/trademarks are the property of Coffee Stain Studios.
 
-Currently, two official plugins are available:
+![screenshot](./assets/snapshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is another planner for [Satisfactory](https://www.satisfactorygame.com/) for sketching production chains, inspired by [satisfactory-planner.vercel.app](https://satisfactory-planner.vercel.app/), and extended with additional features.
 
-## React Compiler
+Live version: https://ironblood.github.io/satisfactory-planner
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The screenshot above was generated from [example.json](./assets/example.json).
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Some features are similar to the original Satisfactory Planner:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Double-click any empty area to open the picker dialog, where you can choose the item to produce and the recipe to use.
+- Delete a selected node or edge with the <kbd>Del</kbd> key.
+- Drag from a handle to connect to another node or create a new node.
+- Adjust node multipliers to reduce graph clutter.
+- Supports source nodes and passthrough nodes.
+- Highlights connected edges when a node is selected.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+These features differ:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Supports multiple plans with import and export as JSON files. Plan names and export filenames can be renamed.
+- Summarizes approximate power consumption, power generation, building material requirements, sink points, and outputs.
+- Items in the picker dialog are organized by category.
+- Coal and fuel generators can be added directly from the Buildings category, while nuclear power plants can be added through nuclear recipes, allowing power plants to be planned in this tool.
+- Node and edge values are edited manually; connected values are not recalculated automatically. This differs from the original Satisfactory Planner.
+- Flow mismatches are highlighted directly in the graph:
+  - Red means inputs are insufficient or outputs are overdrawn.
+  - Yellow means inputs are overprovided or outputs are not fully used.
+  - Green means the flow is balanced.
+- Supports locking node position and rate values.
+- Supports rotating passthrough nodes.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Running Locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+To run this project locally:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Make sure `git`, `node.js`, and `pnpm` are installed.
+2. Clone this repository.
+3. Run `pnpm install` to install dependencies.
+4. Run `pnpm dev` and open `http://localhost:5173`.
+5. If port `5173` is already in use, Vite will choose another port and print the correct URL in the terminal.
+
+To build a static production version, run `pnpm build`.
+
+## Contributions
+
+This project is still in an early stage and may contain bugs, missing features, incorrect recipe data, or UI and performance issues on large flows. Bug reports, data corrections, feature suggestions, and pull requests are welcome.
+
+This project is built with React, React Flow, Tailwind CSS, and Headless UI.
+
+## License
+
+- Original source code in this repository is licensed under MIT.
+- Game-related assets and data are not covered by MIT. See [ATTRIBUTION.md](./ATTRIBUTION.md) for details.
