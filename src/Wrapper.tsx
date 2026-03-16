@@ -6,6 +6,7 @@ import {
   useMemo,
   useRef,
   useState,
+  type ComponentType,
   type ReactNode,
 } from "react";
 import {
@@ -30,11 +31,14 @@ import type {
 } from "./types";
 import { getDefaultFlow, stripData, useDataContext } from "./DataProvider";
 import {
+  ArrowDownTrayIcon,
+  ArrowUpTrayIcon,
   ChevronDownIcon,
   CheckIcon,
   CodeBracketIcon,
   Cog6ToothIcon,
   DocumentIcon,
+  InformationCircleIcon,
   MinusIcon,
   PlusIcon,
   PencilIcon,
@@ -47,13 +51,18 @@ const App = lazy(() => import("./App"));
 
 function AppMenuButton({
   text,
+  icon: Icon,
   onClick,
 }: {
   text: string;
+  icon: ComponentType<{ className?: string }>;
   onClick: () => void;
 }) {
   return (
-    <button className="rounded-md px-3 text-lg text-sky-600 border-sky-700 border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer" onClick={onClick}>{text}</button>
+    <button className="rounded-md lg:px-3 text-lg text-sky-600 border-sky-700 lg:border-2 transition duration-200 ease-in-out hover:text-sky-400 hover:border-sky-400 cursor-pointer flex items-center" onClick={onClick}>
+      <Icon className="w-5 h-5 lg:hidden" />
+      <span className="hidden lg:inline">{text}</span>
+    </button>
   );
 }
 
@@ -489,14 +498,17 @@ function Wrapper() {
           <AppMenuButton
             onClick={() => exportFlow()}
             text="export"
+            icon={ArrowDownTrayIcon}
           />
           <AppMenuButton
             onClick={() => importFlow()}
             text="import"
+            icon={ArrowUpTrayIcon}
           />
           <AppMenuButton
             onClick={() => actionsRef.current.toggleSidebar?.()}
             text="info"
+            icon={InformationCircleIcon}
           />
           {!showGABanner && (
             <Menu>
