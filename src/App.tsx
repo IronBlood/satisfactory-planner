@@ -27,8 +27,6 @@ import {
   type XYPosition,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import Picker from "./components/picker/Picker";
-import RecipePicker from "@/components/picker/RecipePicker";
 import {
   BuildingNode,
   PassthroughNode,
@@ -55,6 +53,8 @@ import { isItemSinkable, type ItemName } from "@/data/items";
 import type { AppEdge, AppFlow, AppNode } from "./types";
 
 const Summary = lazy(() => import("@/components/Summary"));
+const Picker = lazy(() => import("./components/picker/Picker"));
+const RecipePicker = lazy(() => import("@/components/picker/RecipePicker"));
 
 function getSourceIdx(name: string) {
   return name.lastIndexOf(` - source`);
@@ -408,18 +408,22 @@ function App({
           </Suspense>
         </div>
       </aside>
-      <Picker
-        isOpen={isOpen}
-        onClose={onClose}
-        onSave={onSave}
-        sourceType={source?.sourceItem}
-      />
-      <RecipePicker
-        isOpen={isRecipePickerOpen}
-        onClose={onCloseRecipePicker}
-        onSave={onSaveRecipePicker}
-        target={target?.sourceItem}
-      />
+      <Suspense fallback={null}>
+        <Picker
+          isOpen={isOpen}
+          onClose={onClose}
+          onSave={onSave}
+          sourceType={source?.sourceItem}
+        />
+      </Suspense>
+      <Suspense fallback={null}>
+        <RecipePicker
+          isOpen={isRecipePickerOpen}
+          onClose={onCloseRecipePicker}
+          onSave={onSaveRecipePicker}
+          target={target?.sourceItem}
+        />
+      </Suspense>
     </main>
   )
 }
