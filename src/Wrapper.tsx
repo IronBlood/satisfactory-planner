@@ -78,7 +78,7 @@ function IconButton({
         title={label}
         disabled={disabled}
         onClick={onClick}
-        className={`cursor-pointer disabled:cursor-not-allowed disabled:text-slate-600 ${className}`}
+        className={`cursor-pointer disabled:cursor-not-allowed disabled:text-slate-600 flex items-center ${className}`}
       >
         {children}
       </button>
@@ -501,11 +501,14 @@ function Wrapper() {
           {!showGABanner && (
             <Menu>
               <MenuButton
-                className="w-5 h-5 items-center"
               >
-                <Cog6ToothIcon
-                  className="text-sky-700 hover:text-sky-500 cursor-pointer"
-                />
+                <span
+                  className="w-5 h-5 flex items-center"
+                >
+                  <Cog6ToothIcon
+                    className="text-sky-700 hover:text-sky-500 cursor-pointer"
+                  />
+                </span>
               </MenuButton>
               <MenuItems
                 transition
@@ -535,7 +538,7 @@ function Wrapper() {
               </MenuItems>
             </Menu>
           )}
-          <div className="transition duration-200 text-sky-600 hover:text-sky-500 items-center text-2xl"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><CodeBracketIcon className="h-5 w-5" /></a></div>
+          <div className="transition duration-200 text-sky-600 hover:text-sky-500 flex items-center text-2xl"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><CodeBracketIcon className="h-5 w-5" /></a></div>
           <input
             ref={fileInputRef}
             type="file"
