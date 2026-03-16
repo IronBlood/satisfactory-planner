@@ -152,7 +152,7 @@ export default function Summary() {
         } else {
           // NOTE: this should be a valid pair
           const { name, rate } = node.data.recipe.outputs[0];
-          s.inputs[name] = (s.inputs[name] || 0) + rate;
+          s.inputs[name] = (s.inputs[name] || 0) + rate * node.data.count;
         }
       }
 
