@@ -538,7 +538,7 @@ function Wrapper() {
               </MenuItems>
             </Menu>
           )}
-          <div className="transition duration-200 text-sky-600 hover:text-sky-500 flex items-center text-2xl"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><CodeBracketIcon className="h-5 w-5" /></a></div>
+          <div className="transition duration-200 text-sky-600 hover:text-sky-300 flex items-center"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><CodeBracketIcon className="h-5 w-5" /></a></div>
           <input
             ref={fileInputRef}
             type="file"
