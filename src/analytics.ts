@@ -22,11 +22,11 @@ export function loadGoogleAnalytics() {
   document.head.appendChild(script);
 
   window.dataLayer = window.dataLayer || [];
-  function gtag(...args: unknown[]) {
-    window.dataLayer.push(args);
+  function gtag() {
+    window.dataLayer.push(arguments);
   }
   window.gtag = gtag;
 
-  gtag("js", new Date());
-  gtag("config", gaId);
+  window.gtag("js", new Date());
+  window.gtag("config", gaId);
 }
