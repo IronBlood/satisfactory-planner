@@ -542,7 +542,7 @@ function Wrapper() {
               </MenuItems>
             </Menu>
           )}
-          <div className="transition duration-200 text-sky-700 hover:text-sky-500 items-center text-2xl"><FontAwesomeIcon icon={faGithub} /></div>
+          <div className="transition duration-200 text-sky-700 hover:text-sky-500 items-center text-2xl"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><FontAwesomeIcon icon={faGithub} /></a></div>
           <input
             ref={fileInputRef}
             type="file"
