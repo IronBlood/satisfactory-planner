@@ -22,19 +22,6 @@ import {
   MenuItems,
   Switch,
 } from "@headlessui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheck,
-  faFile,
-  faGear,
-  faMinus,
-  faPlus,
-  faPencil,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faGithub,
-} from "@fortawesome/free-brands-svg-icons";
 import type {
   ActionsRef,
 } from "./App";
@@ -42,7 +29,17 @@ import type {
   MultiFlow,
 } from "./types";
 import { getDefaultFlow, stripData, useDataContext } from "./DataProvider";
-import { ChevronDownIcon, CheckIcon } from "@heroicons/react/20/solid";
+import {
+  ChevronDownIcon,
+  CheckIcon,
+  CodeBracketIcon,
+  Cog6ToothIcon,
+  DocumentIcon,
+  MinusIcon,
+  PlusIcon,
+  PencilIcon,
+  XMarkIcon,
+} from "@heroicons/react/20/solid";
 import { loadGoogleAnalytics } from "./analytics";
 
 const GA_KEY = "allow_ga";
@@ -147,20 +144,16 @@ function NameEditor({
           label="confirm"
           onClick={accept}
           disabled={isDisabled}
-          className="text-green-300"
+          className="h-6 w-6 text-green-300"
         >
-          <FontAwesomeIcon
-            icon={faCheck}
-          />
+          <CheckIcon />
         </IconButton>
         <IconButton
           label="cancel"
           onClick={exit}
+          className="h-6 w-6 text-red-500"
         >
-          <FontAwesomeIcon
-            className="text-red-500"
-            icon={faXmark}
-          />
+          <XMarkIcon />
         </IconButton>
       </div>
     </div>
@@ -444,35 +437,31 @@ function Wrapper() {
               <IconButton
                 label="Add a plan"
                 onClick={addFlow}
+                className="w-5 h-5"
               >
-                <FontAwesomeIcon
-                  icon={faPlus}
-                />
+                <PlusIcon />
               </IconButton>
               <IconButton
                 disabled={data.flows.length === 1}
                 onClick={deleteFlow}
                 label="Delete this plan"
+                className="w-5 h-5"
               >
-                <FontAwesomeIcon
-                  icon={faMinus}
-                />
+                <MinusIcon />
               </IconButton>
               <IconButton
                 onClick={enterRenamingPlan}
                 label="Rename this plan"
+                className="w-5 h-5"
               >
-                <FontAwesomeIcon
-                  icon={faPencil}
-                />
+                <PencilIcon />
               </IconButton>
               <IconButton
                 onClick={enterRenamingFile}
                 label="Rename file"
+                className="w-5 h-5"
               >
-                <FontAwesomeIcon
-                  icon={faFile}
-                />
+                <DocumentIcon />
               </IconButton>
             </div>
           </div>}
@@ -511,10 +500,11 @@ function Wrapper() {
           />
           {!showGABanner && (
             <Menu>
-              <MenuButton>
-                <FontAwesomeIcon
+              <MenuButton
+                className="w-5 h-5 items-center"
+              >
+                <Cog6ToothIcon
                   className="text-sky-700 hover:text-sky-500 cursor-pointer"
-                  icon={faGear}
                 />
               </MenuButton>
               <MenuItems
@@ -545,7 +535,7 @@ function Wrapper() {
               </MenuItems>
             </Menu>
           )}
-          <div className="transition duration-200 text-sky-700 hover:text-sky-500 items-center text-2xl"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><FontAwesomeIcon icon={faGithub} /></a></div>
+          <div className="transition duration-200 text-sky-600 hover:text-sky-500 items-center text-2xl"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><CodeBracketIcon className="h-5 w-5" /></a></div>
           <input
             ref={fileInputRef}
             type="file"
@@ -580,18 +570,14 @@ function Wrapper() {
               className="bg-green-700 p-2 cursor-pointer"
               onClick={() => setTrack(true)}
             >
-              <FontAwesomeIcon
-                icon={faCheck}
-              />
+              <CheckIcon className="h-5 w-5" />
               Yes
             </button>
             <button
               className="bg-red-600 p-2 cursor-pointer"
               onClick={() => setTrack(false)}
             >
-              <FontAwesomeIcon
-                icon={faXmark}
-              />
+              <XMarkIcon className="h-5 w-5" />
               No, don't track
             </button>
           </div>

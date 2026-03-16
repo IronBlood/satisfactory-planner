@@ -3,12 +3,9 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import {
-  FontAwesomeIcon,
-} from "@fortawesome/react-fontawesome";
-import {
-  faLock,
-  faLockOpen,
-} from "@fortawesome/free-solid-svg-icons";
+  LockOpenIcon,
+  LockClosedIcon,
+} from "@heroicons/react/24/outline";
 import { clsx } from "clsx/lite";
 
 export default function RateLocker({
@@ -30,7 +27,7 @@ export default function RateLocker({
   return (
     <button
       className={clsx(
-        "bg-slate-800 rounded-full transition text-xs duration-200 cursor-pointer",
+        "h-4 w-4 p-0.5 bg-slate-800 rounded-full transition text-xs duration-200 cursor-pointer",
         className,
         isLocked
           ? "text-yellow-700 hover:text-yellow-500"
@@ -38,9 +35,7 @@ export default function RateLocker({
       )}
       onClick={toggle}
     >
-      <FontAwesomeIcon
-        icon={isLocked ? faLock : faLockOpen}
-      />
+      {isLocked ? <LockClosedIcon /> : <LockOpenIcon />}
     </button>
   );
 }

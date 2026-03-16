@@ -9,11 +9,10 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import { clsx } from "clsx/lite";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faRotateLeft,
-  faRotateRight,
-} from "@fortawesome/free-solid-svg-icons";
+  ArrowUturnLeftIcon,
+  ArrowUturnRightIcon,
+} from "@heroicons/react/24/outline";
 
 import {
   InHandles,
@@ -130,23 +129,19 @@ function RotatableBaseNode({
         >
           <button
             className={clsx(
-              "rounded-full text-slate-700 text-xs hover:text-slate-500 cursor-pointer"
+              "h-4 w-4 rounded-full text-slate-700 text-xs hover:text-slate-500 cursor-pointer"
             )}
+            onClick={() => rotate("LEFT")}
           >
-            <FontAwesomeIcon
-              icon={faRotateLeft}
-              onClick={() => rotate("LEFT")}
-            />
+            <ArrowUturnLeftIcon />
           </button>
           <button
             className={clsx(
-              "rounded-full text-slate-700 text-xs hover:text-slate-500 cursor-pointer"
+              "h-4 w-4 rounded-full text-slate-700 text-xs hover:text-slate-500 cursor-pointer"
             )}
+            onClick={() => rotate("RIGHT")}
           >
-            <FontAwesomeIcon
-              icon={faRotateRight}
-              onClick={() => rotate("RIGHT")}
-            />
+            <ArrowUturnRightIcon />
           </button>
         </div>
 
