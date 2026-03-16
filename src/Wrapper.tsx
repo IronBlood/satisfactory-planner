@@ -78,7 +78,7 @@ function IconButton({
         title={label}
         disabled={disabled}
         onClick={onClick}
-        className={`cursor-pointer disabled:cursor-not-allowed disabled:text-slate-600 ${className}`}
+        className={`cursor-pointer disabled:cursor-not-allowed disabled:text-slate-600 flex items-center ${className}`}
       >
         {children}
       </button>
@@ -501,11 +501,14 @@ function Wrapper() {
           {!showGABanner && (
             <Menu>
               <MenuButton
-                className="w-5 h-5 items-center"
               >
-                <Cog6ToothIcon
-                  className="text-sky-700 hover:text-sky-500 cursor-pointer"
-                />
+                <span
+                  className="w-5 h-5 flex items-center"
+                >
+                  <Cog6ToothIcon
+                    className="text-sky-700 hover:text-sky-500 cursor-pointer"
+                  />
+                </span>
               </MenuButton>
               <MenuItems
                 transition
@@ -535,7 +538,7 @@ function Wrapper() {
               </MenuItems>
             </Menu>
           )}
-          <div className="transition duration-200 text-sky-600 hover:text-sky-500 items-center text-2xl"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><CodeBracketIcon className="h-5 w-5" /></a></div>
+          <div className="transition duration-200 text-sky-600 hover:text-sky-300 flex items-center"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><CodeBracketIcon className="h-5 w-5" /></a></div>
           <input
             ref={fileInputRef}
             type="file"
@@ -564,21 +567,21 @@ function Wrapper() {
         >
           <span>We’d like to use Google Analytics to understand how this site is used and improve it. We only enable it if you agree. You can turn this off at any time.</span>
           <div
-            className="text-white flex gap-2"
+            className="ml-4 text-white flex gap-2"
           >
             <button
-              className="bg-green-700 p-2 cursor-pointer"
+              className="bg-green-700 p-2 cursor-pointer inline-flex items-center"
               onClick={() => setTrack(true)}
             >
               <CheckIcon className="h-5 w-5" />
-              Yes
+              <span className="hidden xl:inline">Yes</span>
             </button>
             <button
-              className="bg-red-600 p-2 cursor-pointer"
+              className="bg-red-600 p-2 cursor-pointer inline-flex items-center"
               onClick={() => setTrack(false)}
             >
               <XMarkIcon className="h-5 w-5" />
-              No, don't track
+              <span className="hidden xl:inline">No, don't track</span>
             </button>
           </div>
         </div>
