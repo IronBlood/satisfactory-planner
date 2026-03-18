@@ -39,6 +39,7 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
     ));
   }, [setNodes, props.id]);
   const { recipe } = props.data;
+  const cycle_per_min = 60 / recipe.duration;
   const building = Buildings[recipe.building];
   return (
     <BaseNode
@@ -53,9 +54,9 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
             handleType="target"
             name={rate.name}
             position={Position.Top}
-            value={rate.rate * props.data.count}
+            value={rate.amount * cycle_per_min * props.data.count}
             isLocked={props.data.isLocked}
-            onCommit={(next) => setCount(next / rate.rate)}
+            onCommit={(next) => setCount(next / rate.amount / cycle_per_min)}
           />
         ))}
         {recipe.building === BuildingNames.ResourceWellExtractor && (
@@ -103,9 +104,9 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
             handleType="source"
             name={rate.name}
             position={Position.Bottom}
-            value={rate.rate * props.data.count}
+            value={rate.amount * cycle_per_min * props.data.count}
             isLocked={props.data.isLocked}
-            onCommit={(next) => setCount(next / rate.rate)}
+            onCommit={(next) => setCount(next / rate.amount / cycle_per_min)}
           />
         ))}
       </BaseNode.OutHandles>
