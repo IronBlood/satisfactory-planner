@@ -44,7 +44,12 @@ export default function RecipeView({
     : <OutputImage
       outputs={r!.outputs}
     />;
-  const output_rate = (isResourceOutput || isPassthrough) ? 0 : r?.outputs.find(x => x.name === output_name)?.rate ?? 0;
+  const [cycles_per_minute, output_amount] = (isResourceOutput || isPassthrough)
+    ? [0, 0]
+    : r
+      ? [60 / r.duration, r?.outputs.find(x => x.name === output_name)?.amount ?? 0]
+      : [0, 0];
+  const output_rate = cycles_per_minute * output_amount;
   return (
     <div
       className={[
@@ -91,7 +96,7 @@ export default function RecipeView({
                     className="aspect-square w-6"
                     src={getItemImageByName(i.name)}
                   />
-                  <span className="ml-1">{i.rate}</span>
+                  <span className="ml-1">{i.amount * cycles_per_minute}</span>
                 </div>
               ))}
             </div>
