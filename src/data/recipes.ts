@@ -861,15 +861,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Limestone,
-        amount: 45,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Concrete,
-        amount: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Alternate: Fine Concrete",
@@ -877,19 +878,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.Silica,
-        amount: 15,
+        amount: 3,
       },
       {
         name: OreItemNames.Limestone,
-        amount: 60,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Concrete,
-        amount: 50,
+        amount: 10,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Rubber Concrete",
@@ -897,19 +899,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Limestone,
-        amount: 100,
+        amount: 10,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Concrete,
-        amount: 90,
+        amount: 9,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Wet Concrete",
@@ -917,19 +920,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Limestone,
-        amount: 120,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 100,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Concrete,
-        amount: 80,
+        amount: 4,
       },
     ],
+    duration: 3,
   },
   {
     name: "Quartz Crystal",
@@ -937,15 +941,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        amount: 37.5
+        amount: 5
       },
     ],
     outputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        amount: 22.5,
+        amount: 3,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Fused Quartz Crystal",
@@ -953,19 +958,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        amount: 75,
+        amount: 25,
       },
       {
         name: OreItemNames.Coal,
-        amount: 36,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        amount: 54,
+        amount: 18,
       },
     ],
+    duration: 20,
   },
   {
     name: "Alt.: Pure Quartz Crystal",
@@ -973,19 +979,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        amount: 67.5,
+        amount: 9,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 37.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        amount: 52.5,
+        amount: 7,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Quartz Purification",
@@ -993,23 +1000,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        amount: 120,
+        amount: 24,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        amount: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        amount: 75,
+        amount: 15,
       },
       {
         name: LiquidItemNames.DissolvedSilica,
-        amount: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Silica",
@@ -1017,15 +1025,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        amount: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Silica,
-        amount: 37.5,
+        amount: 5,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Cheap Silica",
@@ -1033,19 +1042,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        amount: 22.5,
+        amount: 3,
       },
       {
         name: OreItemNames.Limestone,
-        amount: 37.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Silica,
-        amount: 52.5,
+        amount: 7,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Distilled Silica",
@@ -1053,27 +1063,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.DissolvedSilica,
-        amount: 120,
+        amount: 12,
       },
       {
         name: OreItemNames.Limestone,
-        amount: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Silica,
-        amount: 270,
+        amount: 27,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 80,
+        amount: 8,
       },
     ],
+    duration: 6,
   },
   {
     name: "Copper Powder",
@@ -1081,15 +1092,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 300,
+        amount: 30,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.CopperPowder,
-        amount: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Polymer Resin",
@@ -1097,19 +1109,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 60,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.PolymerResin,
-        amount: 130,
+        amount: 13,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Petroleum Coke",
@@ -1117,15 +1130,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 40,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.PetroleumCoke,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Aluminum Scrap",
@@ -1133,23 +1147,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        amount: 240,
+        amount: 4,
       },
       {
         name: OreItemNames.Coal,
-        amount: 120,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        amount: 360,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 120,
+        amount: 2,
       },
     ],
+    duration: 1,
   },
   {
     name: "Alt.: Electrode Aluminum Scrap",
@@ -1157,23 +1172,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        amount: 180,
+        amount: 12,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        amount: 60,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        amount: 300,
+        amount: 20,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 105,
+        amount: 7,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Instant Scrap",
@@ -1181,31 +1197,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Bauxite,
-        amount: 150,
+        amount: 15,
       },
       {
         name: OreItemNames.Coal,
-        amount: 100,
+        amount: 10,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 60,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        amount: 300,
+        amount: 30,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
 
   // Liquids
