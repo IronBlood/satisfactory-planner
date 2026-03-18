@@ -1940,15 +1940,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronRod,
-        amount: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Aluminum Rod",
@@ -1956,15 +1957,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        amount: 7.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronRod,
-        amount: 52.5,
+        amount: 7,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Steel Rod",
@@ -1972,15 +1974,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 12,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronRod,
-        amount: 48,
+        amount: 4,
       },
     ],
+    duration: 5,
   },
   {
     name: "Screws",
@@ -1988,15 +1991,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronRod,
-        amount: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Screws,
-        amount: 40,
+        amount: 4,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Cast Screws",
@@ -2004,15 +2008,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 12.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Screws,
-        amount: 50,
+        amount: 20,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Steel Screws",
@@ -2020,15 +2025,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Screws,
-        amount: 260,
+        amount: 52,
       },
     ],
+    duration: 12,
   },
   {
     name: "Iron Plate",
@@ -2036,15 +2042,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Coated Iron Plate",
@@ -2052,19 +2059,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 37.5,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.Plastic,
-        amount: 7.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 75,
+        amount: 10,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Steel Iron Plate",
@@ -2072,19 +2080,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 15,
+        amount: 1,
       },
       {
         name: IngotItemNames.SteelIngot,
-        amount: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 45,
+        amount: 3,
       },
     ],
+    duration: 4,
   },
   {
     name: "Reinforced Iron Plate",
@@ -2092,19 +2101,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 30,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.Screws,
-        amount: 60,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Adhered Iron Plate",
@@ -2112,19 +2122,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 11.25,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 3.75,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        amount: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Bolted Iron Plate",
@@ -2132,19 +2143,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 90,
+        amount: 18,
       },
       {
         name: StandardPartItemNames.Screws,
-        amount: 250,
+        amount: 50,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        amount: 15,
+        amount: 3,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Stitched Iron Plate",
@@ -2152,19 +2164,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 18.75,
+        amount: 10,
       },
       {
         name: ElectronicItemNames.Wire,
-        amount: 37.5,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        amount: 5.625,
+        amount: 3,
       },
     ],
+    duration: 32,
   },
   {
     name: "Copper Sheet",
@@ -2172,15 +2185,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        amount: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Steamed Copper Sheet",
@@ -2188,19 +2202,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 22.5,
+        amount: 3,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        amount: 22.5,
+        amount: 3,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alclad Aluminum Sheet",
@@ -2208,7 +2223,45 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        amount: 30,
+        amount: 3,
+      },
+      {
+        name: IngotItemNames.CopperIngot,
+        amount: 1,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.AlcladAluminumSheet,
+        amount: 3,
+      },
+    ],
+    duration: 6,
+  },
+  {
+    name: "Aluminum Casing",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        amount: 3,
+      },
+    ],
+    outputs: [
+      {
+        name: StandardPartItemNames.AluminumCasing,
+        amount: 2,
+      },
+    ],
+    duration: 2,
+  },
+  {
+    name: "Alt.: Alclad Casing",
+    building: BuildingNames.Assembler,
+    inputs: [
+      {
+        name: IngotItemNames.AluminumIngot,
+        amount: 20,
       },
       {
         name: IngotItemNames.CopperIngot,
@@ -2217,46 +2270,11 @@ export const Recipes: Recipe[] = [
     ],
     outputs: [
       {
-        name: StandardPartItemNames.AlcladAluminumSheet,
-        amount: 30,
-      },
-    ],
-  },
-  {
-    name: "Aluminum Casing",
-    building: BuildingNames.Constructor,
-    inputs: [
-      {
-        name: IngotItemNames.AluminumIngot,
-        amount: 90,
-      },
-    ],
-    outputs: [
-      {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 60,
+        amount: 15
       },
     ],
-  },
-  {
-    name: "Alt.: Alclad Casing",
-    building: BuildingNames.Assembler,
-    inputs: [
-      {
-        name: IngotItemNames.AluminumIngot,
-        amount: 150,
-      },
-      {
-        name: IngotItemNames.CopperIngot,
-        amount: 75,
-      },
-    ],
-    outputs: [
-      {
-        name: StandardPartItemNames.AluminumCasing,
-        amount: 112.5
-      },
-    ],
+    duration: 8,
   },
   {
     name: "Steel Pipe",
@@ -2264,15 +2282,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Iron Pipe",
@@ -2280,15 +2299,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 100,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 25,
+        amount: 5,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Molded Steel Pipe",
@@ -2296,19 +2316,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 50,
+        amount: 5,
       },
       {
         name: MineralItemNames.Concrete,
-        amount: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
   {
     name: "Steel Beam",
@@ -2316,15 +2337,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 60,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.StealBeam,
-        amount: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Aluminum Beam",
@@ -2332,15 +2354,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        amount: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.StealBeam,
-        amount: 22.5,
+        amount: 3,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Molded Beam",
@@ -2348,19 +2371,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 120,
+        amount: 24,
       },
       {
         name: MineralItemNames.Concrete,
-        amount: 80,
+        amount: 16,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.StealBeam,
-        amount: 45,
+        amount: 9,
       },
     ],
+    duration: 12,
   },
   {
     name: "Encased Industrial Beam",
@@ -2368,19 +2392,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.StealBeam,
-        amount: 18,
+        amount: 3,
       },
       {
         name: MineralItemNames.Concrete,
-        amount: 36,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        amount: 6,
+        amount: 1,
       },
     ],
+    duration: 10,
   },
   {
     name: "Alt.: Encased Industrial Pipe",
@@ -2388,19 +2413,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 24,
+        amount: 6,
       },
       {
         name: MineralItemNames.Concrete,
-        amount: 20,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        amount: 4,
+        amount: 1,
       },
     ],
+    duration: 15,
   },
   {
     name: "Modular Frame",
@@ -2421,6 +2447,7 @@ export const Recipes: Recipe[] = [
         amount: 2,
       },
     ],
+    duration: 60,
   },
   {
     name: "Alt.: Bolted Frame",
@@ -2428,19 +2455,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        amount: 7.5,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Screws,
-        amount: 140,
+        amount: 56,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        amount: 5,
+        amount: 2,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Steeled Frame",
@@ -2461,6 +2489,7 @@ export const Recipes: Recipe[] = [
         amount: 3,
       },
     ],
+    duration: 60,
   },
   {
     name: "Heavy Modular Frame",
@@ -2468,27 +2497,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        amount: 10,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 40,
+        amount: 20,
       },
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        amount: 10,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.Screws,
-        amount: 240,
+        amount: 120,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        amount: 2,
+        amount: 1,
       },
     ],
+    duration: 30,
   },
   {
     name: "Alt.: Heavy Encased Frame",
@@ -2496,27 +2526,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        amount: 7.5,
+        amount: 8,
       },
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        amount: 9.375,
+        amount: 10,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 33.75,
+        amount: 36,
       },
       {
         name: MineralItemNames.Concrete,
-        amount: 20.625,
+        amount: 22,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        amount: 2.8125,
+        amount: 3,
       },
     ],
+    duration: 64,
   },
   {
     name: "Alt.: Heavy Flexible Frame",
@@ -2524,27 +2555,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        amount: 18.75,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        amount: 11.25,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 75,
+        amount: 20,
       },
       {
         name: StandardPartItemNames.Screws,
-        amount: 390,
+        amount: 104,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        amount: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Fused Modular Frame",
@@ -2552,23 +2584,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        amount: 1.5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 75,
+        amount: 50,
       },
       {
         name: GasItemNames.NitrogenGas,
-        amount: 37.5,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.FusedModularFrame,
-        amount: 1.5,
+        amount: 1,
       },
     ],
+    duration: 40,
   },
   {
     name: "Alt.: Heat-Fused Frame",
@@ -2576,27 +2609,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        amount: 3,
+        amount: 1,
       },
       {
         name: IngotItemNames.AluminumIngot,
-        amount: 150,
+        amount: 50,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        amount: 24,
+        amount: 8,
       },
       {
         name: LiquidItemNames.Fuel,
-        amount: 30,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.FusedModularFrame,
-        amount: 3,
+        amount: 1,
       },
     ],
+    duration: 20,
   },
   {
     name: "Ficsite Trigon",
@@ -2604,15 +2638,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.FicsiteIngot,
-        amount: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.FicsiteTrigon,
-        amount: 30,
+        amount: 3,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Polyester Fabric",
@@ -2620,19 +2655,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PolymerResin,
-        amount: 30,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 30,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Fabric,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Plastic",
@@ -2640,19 +2676,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Plastic,
-        amount: 20,
+        amount: 2,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Recycled Plastic",
@@ -2660,19 +2697,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Rubber,
-        amount: 30,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Fuel,
-        amount: 30,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Plastic,
-        amount: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Residual Plastic",
@@ -2680,19 +2718,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PolymerResin,
-        amount: 60,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Plastic,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Rubber",
@@ -2700,19 +2739,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Rubber,
-        amount: 20,
+        amount: 2,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Recycled Rubber",
@@ -2720,19 +2760,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Plastic,
-        amount: 30,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Fuel,
-        amount: 30,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Rubber,
-        amount: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Residual Rubber",
@@ -2740,19 +2781,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PolymerResin,
-        amount: 40,
+        amount: 4,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 40,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Rubber,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
 
   // Industrial Parts
