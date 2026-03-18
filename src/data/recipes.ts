@@ -392,15 +392,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        amount: 30,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Basic Iron Ingot",
@@ -408,19 +409,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        amount: 25,
+        amount: 5,
       },
       {
         name: OreItemNames.Limestone,
-        amount: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 50,
+        amount: 10,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Iron Alloy Ingot",
@@ -428,19 +430,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        amount: 40,
+        amount: 8,
       },
       {
         name: OreItemNames.CopperOre,
-        amount: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 75,
+        amount: 15,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Leached Iron Ingot",
@@ -448,19 +451,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        amount: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 100,
+        amount: 10,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Pure Iron Ingot",
@@ -468,19 +472,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        amount: 35,
+        amount: 7,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 20,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 65,
+        amount: 13,
       },
     ],
+    duration: 12,
   },
   {
     name: "Copper Ingot",
@@ -488,15 +493,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        amount: 30,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Copper Alloy Ingot",
@@ -504,19 +510,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        amount: 50,
+        amount: 5,
       },
       {
         name: OreItemNames.IronOre,
-        amount: 50,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 100,
+        amount: 10,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Leached Copper Ingot",
@@ -524,19 +531,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        amount: 45,
+        amount: 9,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 25,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 110,
+        amount: 22,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Pure Copper Ingot",
@@ -544,19 +552,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        amount: 15,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 10,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 37.5,
+        amount: 15,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Tempered Copper Ingot",
@@ -564,19 +573,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        amount: 25,
+        amount: 5,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        amount: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Caterium Ingot",
@@ -584,15 +594,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CateriumOre,
-        amount: 45,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        amount: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Leached Caterium Ingot",
@@ -600,19 +611,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CateriumOre,
-        amount: 54,
+        amount: 9,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 30,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        amount: 36,
+        amount: 6,
       },
     ],
+    duration: 10,
   },
   {
     name: "Alt.: Pure Caterium Ingot",
@@ -620,19 +632,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CateriumOre,
-        amount: 24,
+        amount: 2,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 24,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        amount: 12,
+        amount: 1,
       },
     ],
+    duration: 5,
   },
   {
     name: "Alt.: Tempered Caterium Ingot",
@@ -640,19 +653,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CateriumOre,
-        amount: 45,
+        amount: 6,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        amount: 15,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        amount: 22.5,
+        amount: 3,
       },
     ],
+    duration: 8,
   },
   {
     name: "Steel Ingot",
@@ -660,19 +674,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        amount: 45,
+        amount: 3,
       },
       {
         name: OreItemNames.Coal,
-        amount: 45,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 45,
+        amount: 3,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Coke Steel Ingot",
@@ -680,19 +695,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        amount: 75,
+        amount: 15,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        amount: 75,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 100,
+        amount: 20,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Compacted Steel Ingot",
@@ -700,19 +716,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        amount: 5,
+        amount: 2,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 2.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 10,
+        amount: 4,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Solid Steel Ingot",
@@ -720,19 +737,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 40,
+        amount: 2,
       },
       {
         name: OreItemNames.Coal,
-        amount: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 60,
+        amount: 3,
       },
     ],
+    duration: 3,
   },
   {
     name: "Aluminum Ingot",
@@ -740,19 +758,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        amount: 90,
+        amount: 6,
       },
       {
         name: MineralItemNames.Silica,
-        amount: 75,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        amount: 60,
+        amount: 4,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Pure Aluminum Ingot",
@@ -760,15 +779,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        amount: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Ficsite Ingot (Aluminum)",
@@ -776,19 +796,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 60,
+        amount: 2,
       },
       {
         name: IngotItemNames.AluminumIngot,
-        amount: 120,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.FicsiteIngot,
-        amount: 30,
+        amount: 1
       },
     ],
+    duration: 2,
   },
   {
     name: "Ficsite Ingot (Caterium)",
@@ -796,19 +817,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 45,
+        amount: 3,
       },
       {
         name: IngotItemNames.CateriumIngot,
-        amount: 60,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.FicsiteIngot,
-        amount: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Ficsite Ingot (Iron)",
@@ -816,19 +838,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 40,
+        amount: 4,
       },
       {
         name: IngotItemNames.IronIngot,
-        amount: 240,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.FicsiteIngot,
-        amount: 10,
+        amount: 1,
       },
     ],
+    duration: 5,
   },
 
   // Minerals
