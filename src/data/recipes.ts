@@ -61,8 +61,9 @@ export const Recipes: Recipe[] = [
           inputs: [],
           outputs: [{
             name: ore,
-            amount: 30 * mul_p * mul_m,
+            amount: 1,
           }],
+          duration: 60 / (30 * mul_p * mul_m),
           building,
         } as Recipe;
       }).flat();
@@ -73,19 +74,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Sulfur,
-        amount: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Limestone,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -93,19 +95,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Limestone,
-        amount: 240,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: OreItemNames.IronOre,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -113,19 +116,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.RawQuartz,
-        amount: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: OreItemNames.CopperOre,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -133,19 +137,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Sulfur,
-        amount: 120,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: OreItemNames.CopperOre,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -153,19 +158,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.CopperOre,
-        amount: 150,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: OreItemNames.CateriumOre,
-        amount: 120,
+        amount: 12,
       }
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -173,19 +179,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.RawQuartz,
-        amount: 120
+        amount: 12
       },
     ],
     outputs: [
       {
         name: OreItemNames.CateriumOre,
-        amount: 120,
+        amount: 12,
       }
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -194,19 +201,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.IronOre,
-        amount: 180,
+        amount: 18,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Coal,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Coal (Limestone)",
@@ -214,19 +222,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Limestone,
-        amount: 360,
+        amount: 36,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Coal,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Raw Quartz (Bauxite)",
@@ -234,19 +243,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Bauxite,
-        amount: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: OreItemNames.RawQuartz,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Raw Quartz (Coal)",
@@ -254,19 +264,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Coal,
-        amount: 240,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: OreItemNames.RawQuartz,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Sulfur (Coal)",
@@ -274,19 +285,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Coal,
-        amount: 200,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Sulfur,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Sulfur (Iron)",
@@ -294,19 +306,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.IronOre,
-        amount: 300,
+        amount: 30,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Sulfur,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Bauxite (Caterium)",
@@ -314,19 +327,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.CateriumOre,
-        amount: 150,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Bauxite,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Bauxite (Copper)",
@@ -334,19 +348,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.CopperOre,
-        amount: 180,
+        amount: 18,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Bauxite,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Uranium Ore (Bauxite)",
@@ -354,19 +369,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Bauxite,
-        amount: 480,
+        amount: 48,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Uranium,
-        amount: 120,
+        amount: 12,
       }
     ],
+    duration: 6,
   },
 
   // Ingots
