@@ -1700,9 +1700,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: GasItemNames.NitrogenGas,
-        amount: 30 * mul_p,
+        amount: 1,
       },
     ],
+    duratioin: 1 / mul_p,
   } as Recipe)),
   {
     name: "Unpackage Nitrogen Gas",
@@ -1710,19 +1711,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedNitrogenGas,
-        amount: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: GasItemNames.NitrogenGas,
-        amount: 240,
+        amount: 4,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        amount: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Nitrogen Gas (Bauxite)",
@@ -1730,19 +1732,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Bauxite,
-        amount: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: GasItemNames.NitrogenGas,
-        amount: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Nitrogen Gas (Caterium)",
@@ -1750,19 +1753,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.CateriumOre,
-        amount: 120,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: GasItemNames.NitrogenGas,
-        amount: 120,
+        amount: 12,
       }
     ],
+    duration: 6,
   },
 
   {
@@ -1771,23 +1775,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        amount: 60,
+        amount: 6,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        amount: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: GasItemNames.RocketFuel,
-        amount: 100,
+        amount: 10,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Rocket Fuel",
@@ -1795,19 +1800,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedRocketFuel,
-        amount: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: GasItemNames.RocketFuel,
-        amount: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        amount: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Alt.: Nitro Rocket Fuel",
@@ -1815,31 +1821,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        amount: 100,
+        amount: 4,
       },
       {
         name: GasItemNames.NitrogenGas,
-        amount: 75,
+        amount: 3,
       },
       {
         name: OreItemNames.Sulfur,
-        amount: 100,
+        amount: 4,
       },
       {
         name: OreItemNames.Coal,
-        amount: 50,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: GasItemNames.RocketFuel,
-        amount: 150,
+        amount: 6,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 25,
+        amount: 1,
       },
     ],
+    duration: 2.4,
   },
   {
     name: "Ionized Fuel",
@@ -1847,23 +1854,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.RocketFuel,
-        amount: 40,
+        amount: 16,
       },
       {
         name: SpecialItemNames.PowerShard,
-        amount: 2.5
+        amount: 1
       },
     ],
     outputs: [
       {
         name: GasItemNames.IonizedFuel,
-        amount: 40,
+        amount: 16,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 5,
+        amount: 2,
       },
     ],
+    duration: 24,
   },
   {
     name: "Unpackage Ionized Fuel",
@@ -1871,19 +1879,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedIonizedFuel,
-        amount: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: GasItemNames.IonizedFuel,
-        amount: 80,
+        amount: 4,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        amount: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Dark-Ion Fuel",
@@ -1891,23 +1900,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedRocketFuel,
-        amount: 240,
+        amount: 12,
       },
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        amount: 80,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: GasItemNames.IonizedFuel,
-        amount: 200,
+        amount: 10,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Excited Photonic Matter",
@@ -1917,9 +1927,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        amount: 200,
+        amount: 10,
       },
     ],
+    duration: 3,
   },
 
   // Standard Parts
