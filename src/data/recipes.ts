@@ -1233,9 +1233,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: LiquidItemNames.Water,
-        amount: 120,
+        amount: 1,
       },
     ],
+    duration: 0.5,
   },
 
   ...purities.map(({ purity, mul_p }) => ({
@@ -1245,9 +1246,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: LiquidItemNames.Water,
-        amount: 30 * mul_p,
+        amount: 1,
       },
     ],
+    duration: 2 / mul_p,
   } as Recipe)),
 
   {
@@ -1256,19 +1258,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedWater,
-        amount: 120,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Water,
-        amount: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 120,
+        amount: 2,
       },
     ],
+    duration: 1,
   },
 
   ...purities.map(({ purity, mul_p }) => ({
@@ -1278,9 +1281,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 60 * mul_p,
+        amount: 1,
       },
     ],
+    duration: 1 / mul_p,
   } as Recipe)),
 
   ...purities.map(({ purity, mul_p }) => ({
@@ -1290,9 +1294,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 30 * mul_p,
+        amount: 1,
       },
     ],
+    duration: 2 / mul_p,
   } as Recipe)),
 
   {
@@ -1301,19 +1306,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedOil,
-        amount: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 60,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
 
   {
@@ -1322,19 +1328,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedHeavyOilResidue,
-        amount: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 20,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Heavy Oil Residue",
@@ -1342,19 +1349,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 40,
+        amount: 4,
       },
       {
         name: MineralItemNames.PolymerResin,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Fuel",
@@ -1362,19 +1370,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 60,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Fuel,
-        amount: 40,
+        amount: 4,
       },
       {
         name: MineralItemNames.PolymerResin,
-        amount: 30,
+        amount: 3,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Fuel",
@@ -1382,19 +1391,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedFuel,
-        amount: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Fuel,
-        amount: 60,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Diluted Fuel",
@@ -1402,19 +1412,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Fuel,
-        amount: 100,
+        amount: 10,
       },
     ],
+    duration: 6,
   },
   {
     name: "Residual Fuel",
@@ -1422,15 +1433,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 60,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Fuel,
-        amount: 40,
+        amount: 4,
       },
     ],
+    duration: 6,
   },
   {
     name: "Turbofuel",
@@ -1438,19 +1450,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        amount: 22.5,
+        amount: 6,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 15,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        amount: 18.75,
+        amount: 5,
       },
     ],
+    duration: 16,
   },
   {
     name: "Unpackage Turbofuel",
@@ -1458,19 +1471,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedTurbofuel,
-        amount: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        amount: 20,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Turbo Blend Fuel",
@@ -1478,27 +1492,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        amount: 15,
+        amount: 2,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 30,
+        amount: 4,
       },
       {
         name: OreItemNames.Sulfur,
-        amount: 22.5,
+        amount: 3,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        amount: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        amount: 45,
+        amount: 6,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Turbo Heavy Fuel",
@@ -1506,19 +1521,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 37.5,
+        amount: 5,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 30,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        amount: 30,
+        amount: 4,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alumina Solution",
@@ -1526,23 +1542,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Bauxite,
-        amount: 120,
+        amount: 12,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 180,
+        amount: 18,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        amount: 120,
+        amount: 12,
       },
       {
         name: MineralItemNames.Silica,
-        amount: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Alumina Solution",
@@ -1550,19 +1567,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedAluminaSolution,
-        amount: 120,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        amount: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 120,
+        amount: 2,
       },
     ],
+    duration: 1,
   },
   {
     name: "Alt.: Sloppy Alumina",
@@ -1570,19 +1588,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Bauxite,
-        amount: 200,
+        amount: 10,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 200,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        amount: 240,
+        amount: 12,
       },
     ],
+    duration: 3,
   },
   {
     name: "Sulfuric Acid",
@@ -1590,19 +1609,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Sulfur,
-        amount: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 50,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Sulfuric Acid",
@@ -1610,19 +1630,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedSulfuricAcid,
-        amount: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 60,
+        amount: 1,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Nitric Acid",
@@ -1630,23 +1651,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.NitrogenGas,
-        amount: 120,
+        amount: 12,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 30,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.NitricAcid,
-        amount: 30,
+        amount: 3,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Nitric Acid",
@@ -1654,19 +1676,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedNitricAcid,
-        amount: 20,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.NitricAcid,
-        amount: 20,
+        amount: 1,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        amount: 20,
+        amount: 1,
       },
     ],
+    duration: 3,
   },
 
   // Gas
