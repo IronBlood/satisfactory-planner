@@ -11,7 +11,7 @@ import {
   type MultiFlow,
 } from "./types";
 
-const CURR_VER = 1;
+const CURR_VER = 2;
 
 const DataContext = createContext<{
   data: MultiFlow;
@@ -101,4 +101,13 @@ export function stripData(data: MultiFlow) {
   };
 
   return striped;
+}
+
+export function upgradeData(data: Partial<MultiFlow> & {
+  version: number;
+}) {
+  if (data.version === 1) {
+    data.version = 2;
+    data.powerConsumptionMultiplier = 1;
+  }
 }

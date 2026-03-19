@@ -29,7 +29,7 @@ import type {
 import type {
   MultiFlow,
 } from "./types";
-import { getDefaultFlow, stripData, useDataContext } from "./DataProvider";
+import { getDefaultFlow, stripData, upgradeData, useDataContext } from "./DataProvider";
 import {
   ArrowDownTrayIcon,
   ArrowUpTrayIcon,
@@ -262,6 +262,8 @@ function Wrapper() {
           filename = filename.substring(0, filename.length - 5);
         }
         json.filename = filename;
+
+        upgradeData(json);
         // TODO validate
         setData(json);
         _setActiveIdx(0);
