@@ -17,10 +17,9 @@ import {
   ListboxButton,
   ListboxOption,
   ListboxOptions,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
   Switch,
 } from "@headlessui/react";
 import type {
@@ -512,44 +511,38 @@ function Wrapper() {
             text="info"
             icon={InformationCircleIcon}
           />
-          <Menu>
-            <MenuButton
-            >
-              <span
-                className="w-5 h-5 flex items-center"
-              >
-                <Cog6ToothIcon
-                  className="text-sky-700 hover:text-sky-500 cursor-pointer"
-                />
-              </span>
-            </MenuButton>
-            <MenuItems
-              transition
+          <Popover
+            className="flex items-center"
+          >
+            <PopoverButton className="size-5">
+              <Cog6ToothIcon
+                className="text-sky-700 hover:text-sky-500 cursor-pointer"
+              />
+            </PopoverButton>
+            <PopoverPanel
               anchor="bottom end"
-              className="origin-top-right rounded-xl border border-slate-800 bg-slate-700 p-4 text-sm text-slate-300 transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0"
+              className="w-72 rounded-xl border border-slate-800 bg-slate-700 p-4 text-sm text-slate-300 flex flex-col mt-4"
             >
-              <MenuItem>
-                <div>
-                  <div className="flex justify-between text-sm items-center gap-2">
-                    <span>Allow analytics</span>
-                    <Switch
-                      checked={gaChoice}
-                      onChange={setTrack}
-                      className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-white/10 p-1 ease-in-out focus:not-data-focus:outline-none data-checked:bg-white/10 data-focus:outline data-focus:outline-white"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-slate-700 shadow-lg ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-7 group-data-checked:bg-green-400"
-                      />
-                    </Switch>
-                  </div>
-                  <div className="italic">
-                    refresh required after changes
-                  </div>
+              <div>
+                <div className="flex justify-between items-center gap-2">
+                  <span>Allow analytics</span>
+                  <Switch
+                    checked={gaChoice}
+                    onChange={setTrack}
+                    className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-white/10 p-1 ease-in-out focus:not-data-focus:outline-none data-checked:bg-white/10 data-focus:outline data-focus:outline-white"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-slate-700 shadow-lg ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-7 group-data-checked:bg-green-400"
+                    />
+                  </Switch>
                 </div>
-              </MenuItem>
-            </MenuItems>
-          </Menu>
+                <div className="italic">
+                  refresh required after changes
+                </div>
+              </div>
+            </PopoverPanel>
+          </Popover>
           <div className="transition duration-200 text-sky-600 hover:text-sky-300 flex items-center"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><CodeBracketIcon className="h-5 w-5" /></a></div>
           <input
             ref={fileInputRef}
