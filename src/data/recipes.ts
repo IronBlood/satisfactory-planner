@@ -5456,31 +5456,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.TimeCrystal,
-        amount: 10,
+        amount: 2,
       },
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        amount: 10,
+        amount: 2,
       },
       {
         name: MineralItemNames.QuartzCrystal,
-        amount: 60,
+        amount: 12,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        amount: 60,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.PowerShard,
-        amount: 5,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Smart Plating",
@@ -5488,19 +5489,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        amount: 2,
+        amount: 1,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 2,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.SmartPlating,
-        amount: 2,
+        amount: 1,
       },
     ],
+    duration: 30,
   },
   {
     name: "Alt.: Plastic Smart Plating",
@@ -5508,23 +5510,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        amount: 2.5,
+        amount: 1,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 2.5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.Plastic,
-        amount: 7.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.SmartPlating,
-        amount: 5,
+        amount: 2,
       },
     ],
+    duration: 24,
   },
   {
     name: "Versatile Framework",
@@ -5532,19 +5535,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        amount: 2.5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.StealBeam,
-        amount: 30,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.VersatileFramework,
-        amount: 5,
+        amount: 2,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Flexible Framework",
@@ -5552,23 +5556,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        amount: 3.75,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.StealBeam,
-        amount: 22.5,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 30,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.VersatileFramework,
-        amount: 7.5,
+        amount: 2,
       },
     ],
+    duration: 16,
   },
   {
     name: "Automated Wiring",
@@ -5576,19 +5581,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        amount: 2.5,
+        amount: 1,
       },
       {
         name: ElectronicItemNames.Cable,
-        amount: 50,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.AutomatedWiring,
-        amount: 2.5,
+        amount: 1,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Automated Speed Wiring",
@@ -5596,23 +5602,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        amount: 3.75,
+        amount: 2,
       },
       {
         name: ElectronicItemNames.Wire,
-        amount: 75,
+        amount: 40,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        amount: 1.875,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.AutomatedWiring,
-        amount: 7.5,
+        amount: 4,
       },
     ],
+    duration: 32,
   },
   {
     name: "Modular Engine",
@@ -5637,6 +5644,7 @@ export const Recipes: Recipe[] = [
         amount: 1,
       },
     ],
+    duration: 60,
   },
   {
     name: "Adaptive Control Unit",
@@ -5665,6 +5673,7 @@ export const Recipes: Recipe[] = [
         amount: 1,
       },
     ],
+    duration: 60,
   },
   {
     name: "Assembly Director System",
@@ -5672,19 +5681,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.AdaptiveControlUnit,
-        amount: 1.5,
+        amount: 2
       },
       {
         name: CommunicationItemNames.Supercomputer,
-        amount: 0.75,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.AssemblyDirectorSystem,
-        amount: 0.75,
+        amount: 1,
       },
     ],
+    duration: 80,
   },
   {
     name: "Magnetic Field Generator",
@@ -5692,19 +5702,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.VersatileFramework,
-        amount: 2.5,
+        amount: 5,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 1,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.MagneticFieldGenerator,
-        amount: 1,
+        amount: 2,
       },
     ],
+    duration: 120,
   },
   {
     name: "Thermal Propulsion Rocket",
@@ -5712,27 +5723,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.ModularEngine,
-        amount: 2.5,
+        amount: 5,
       },
       {
         name: IndustrialPartItemNames.TurboMotor,
-        amount: 1,
+        amount: 2,
       },
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        amount: 3,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.FusedModularFrame,
-        amount: 1,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.ThermalPropulsionRocket,
-        amount: 1,
+        amount: 2,
       },
     ],
+    duration: 120,
   },
   {
     name: "Nuclear Pasta",
@@ -5740,19 +5752,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.CopperPowder,
-        amount: 100,
+        amount: 200,
       },
       {
         name: ContainerItemNames.PressureConversionCube,
-        amount: 0.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.NuclearPasta,
-        amount: 0.5,
+        amount: 1,
       },
     ],
+    duration: 120,
   },
   {
     name: "Biochemical Sculptor",
@@ -5760,23 +5773,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.AssemblyDirectorSystem,
-        amount: 0.5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.FicsiteTrigon,
-        amount: 40,
+        amount: 80,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 10,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.BiochemicalSculptor,
-        amount: 2,
+        amount: 4,
       },
     ],
+    duration: 120,
   },
   {
     name: "Ballistic Warp Drive",
@@ -5805,6 +5819,7 @@ export const Recipes: Recipe[] = [
         amount: 1,
       },
     ],
+    duration: 60,
   },
   {
     name: "AI Expansion Server",
@@ -5812,31 +5827,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.MagneticFieldGenerator,
-        amount: 4,
+        amount: 1,
       },
       {
         name: QuantumTechnologyItemNames.NeuralQuantumProcessor,
-        amount: 4,
+        amount: 1,
       },
       {
         name: CommunicationItemNames.SuperpositionOscillator,
-        amount: 4,
+        amount: 1,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        amount: 100,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.AIExpansionServer,
-        amount: 4,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 100,
+        amount: 25,
       },
     ],
+    duration: 15,
   },
 
   // Coal and Fuel generators
