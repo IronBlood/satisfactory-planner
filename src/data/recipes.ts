@@ -2804,19 +2804,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronRod,
-        amount: 20,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.Screws,
-        amount: 100,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 4,
+        amount: 1,
       },
     ],
+    duration: 15,
   },
   {
     name: "Alt.: Copper Rotor",
@@ -2824,19 +2825,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        amount: 22.5,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.Screws,
-        amount: 195,
+        amount: 52,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 11.25,
+        amount: 3,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Steel Rotor",
@@ -2844,19 +2846,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 10,
+        amount: 2,
       },
       {
         name: ElectronicItemNames.Wire,
-        amount: 30,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Stator",
@@ -2864,19 +2867,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 15,
+        amount: 3,
       },
       {
         name: ElectronicItemNames.Wire,
-        amount: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Quickwire Stator",
@@ -2884,19 +2888,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 16,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 60,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        amount: 8,
+        amount: 2,
       },
     ],
+    duration: 15,
   },
   {
     name: "Battery",
@@ -2904,27 +2909,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 50,
+        amount: 2.5,
       },
       {
         name: LiquidItemNames.AluminaSolution,
-        amount: 40,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 20,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Battery,
-        amount: 20,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 30,
+        amount: 1.5,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Classic Battery",
@@ -2932,27 +2938,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Sulfur,
-        amount: 45,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.AlcladAluminumSheet,
-        amount: 52.5,
+        amount: 7,
       },
       {
         name: StandardPartItemNames.Plastic,
-        amount: 60,
+        amount: 8,
       },
       {
         name: ElectronicItemNames.Wire,
-        amount: 90
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Battery,
-        amount: 30,
+        amount: 4,
       },
     ],
+    duration: 8,
   },
   {
     name: "Motor",
@@ -2960,19 +2967,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 10,
+        amount: 2,
       },
       {
         name: IndustrialPartItemNames.Stator,
-        amount: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Electric Motor",
@@ -2980,19 +2988,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 3.75,
+        amount: 1,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 7.5,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        amount: 7.5,
+        amount: 2,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Rigor Motor",
@@ -3000,23 +3009,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 3.75,
+        amount: 3,
       },
       {
         name: IndustrialPartItemNames.Stator,
-        amount: 3.75,
+        amount: 3,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        amount: 1.25,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        amount: 7.5,
+        amount: 6,
       },
     ],
+    duration: 48,
   },
   {
     name: "Heat Sink",
@@ -3024,19 +3034,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.AlcladAluminumSheet,
-        amount: 37.5,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.CopperSheet,
-        amount: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        amount: 7.5,
+        amount: 1,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Heat Exchanger",
@@ -3044,19 +3055,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 30,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        amount: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Cooling System",
@@ -3064,27 +3076,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        amount: 12,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 12,
+        amount: 2,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 30,
+        amount: 5,
       },
       {
         name: GasItemNames.NitrogenGas,
-        amount: 150,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        amount: 6,
+        amount: 1,
       },
     ],
+    duration: 10,
   },
   {
     name: "Alt.: Cooling Device",
@@ -3092,23 +3105,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        amount: 10,
+        amount: 4,
       },
       {
         name: IndustrialPartItemNames.Motor,
-        amount: 2.5,
+        amount: 1,
       },
       {
         name: GasItemNames.NitrogenGas,
-        amount: 60,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        amount: 5,
+        amount: 2,
       },
     ],
+    duration: 24,
   },
   {
     name: "Turbo Motor",
@@ -3116,27 +3130,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        amount: 7.5,
+        amount: 4,
       },
       {
         name: CommunicationItemNames.RadioControlUnit,
-        amount: 3.75,
+        amount: 2,
       },
       {
         name: IndustrialPartItemNames.Motor,
-        amount: 7.5,
+        amount: 4,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 45,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.TurboMotor,
-        amount: 1.875,
+        amount: 1,
       },
     ],
+    duration: 32,
   },
   {
     name: "Alt.: Turbo Electric Motor",
@@ -3144,27 +3159,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        amount: 6.5625,
+        amount: 7,
       },
       {
         name: CommunicationItemNames.RadioControlUnit,
-        amount: 8.4375,
+        amount: 9,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 4.6875,
+        amount: 5,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 6.5625,
+        amount: 7,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.TurboMotor,
-        amount: 2.8125,
+        amount: 3,
       },
     ],
+    duration: 64,
   },
   {
     name: "Alt.: Turbo Pressure Motor",
@@ -3172,27 +3188,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        amount: 7.5,
+        amount: 4,
       },
       {
         name: ContainerItemNames.PressureConversionCube,
-        amount: 1.875,
+        amount: 1,
       },
       {
         name: ContainerItemNames.PackagedNitrogenGas,
-        amount: 45,
+        amount: 24,
       },
       {
         name: IndustrialPartItemNames.Stator,
-        amount: 15,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.TurboMotor,
-        amount: 3.75,
+        amount: 2,
       },
     ],
+    duration: 32,
   },
 
   // Electronics
