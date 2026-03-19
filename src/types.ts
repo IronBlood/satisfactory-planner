@@ -34,11 +34,20 @@ export type AppFlow = {
   };
 }
 
+export type PowerConsumptionMultiplier =
+  | 0.25
+  | 0.5
+  | 1
+  | 0.75
+  | 2
+  | 5
+  ;
+
 export type MultiFlow = {
   /** Has to be an integer */
   version: number;
   filename: string;
-  powerConsumptionMultiplier: 0.25|0.5|1|0.75|2|5;
+  powerConsumptionMultiplier: PowerConsumptionMultiplier;
   flows: Array<{
     name: string;
     flow: AppFlow;

@@ -9,9 +9,19 @@ import {
 import {
   type AppFlow,
   type MultiFlow,
+  type PowerConsumptionMultiplier,
 } from "./types";
 
 const CURR_VER = 2;
+
+export const PowerConsumptionMultipliers: PowerConsumptionMultiplier[] = [
+  0.25,
+  0.5,
+  0.75,
+  1,
+  2,
+  5,
+] as const;
 
 const DataContext = createContext<{
   data: MultiFlow;
