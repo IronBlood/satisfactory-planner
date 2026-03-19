@@ -38,6 +38,7 @@ export type MultiFlow = {
   /** Has to be an integer */
   version: number;
   filename: string;
+  powerConsumptionMultiplier: 0.25|0.5|1|0.75|2|5;
   flows: Array<{
     name: string;
     flow: AppFlow;

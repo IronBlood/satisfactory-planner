@@ -42,6 +42,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<MultiFlow>({
     version: CURR_VER,
     filename: "",
+    powerConsumptionMultiplier: 1,
     flows: [
       getDefaultFlow(),
     ],
@@ -76,6 +77,7 @@ export function useDataContext() {
 
 export function stripData(data: MultiFlow) {
   const striped: MultiFlow = {
+    ...data,
     version: CURR_VER,
     filename: "",
     flows: data.flows.map(f => ({
