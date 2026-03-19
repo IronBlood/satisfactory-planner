@@ -4230,15 +4230,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Plastic,
-        amount: 30,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 60,
+        amount: 4,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Coated Iron Canister",
@@ -4246,19 +4247,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 30,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.CopperSheet,
-        amount: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 60,
+        amount: 4,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Steel Canister",
@@ -4266,15 +4268,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        amount: 40,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 40,
+        amount: 4,
       },
     ],
+    duration: 6,
   },
   {
     name: "Empty Fluid Tank",
@@ -4282,15 +4285,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        amount: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.EmptyFluidTank,
-        amount: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Pressure Conversion Cube",
@@ -4311,6 +4315,7 @@ export const Recipes: Recipe[] = [
         amount: 1,
       },
     ],
+    duration: 60,
   },
   {
     name: "Packaged Water",
@@ -4318,19 +4323,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Water,
-        amount: 60,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedWater,
-        amount: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
   {
     name: "Packaged Alumina Solution",
@@ -4338,19 +4344,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        amount: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 120,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedAluminaSolution,
-        amount: 120,
+        amount: 2,
       },
     ],
+    duration: 1,
   },
   {
     name: "Packaged Sulfuric Acid",
@@ -4358,19 +4365,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 40,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedSulfuricAcid,
-        amount: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Packaged Nitric Acid",
@@ -4378,19 +4386,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.NitricAcid,
-        amount: 30,
+        amount: 1,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        amount: 30,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedNitricAcid,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Packaged Nitrogen Gas",
@@ -4398,19 +4407,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.NitrogenGas,
-        amount: 240,
+        amount: 4,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        amount: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedNitrogenGas,
-        amount: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
 
   // Fuel
