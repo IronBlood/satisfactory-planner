@@ -1445,6 +1445,48 @@ export const Recipes: Recipe[] = [
     duration: 6,
   },
   {
+    name: "Liquid Biofuel",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: FuelItemNames.SolidBioFuel,
+        amount: 6,
+      },
+      {
+        name: LiquidItemNames.Water,
+        amount: 3,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.LiquidBiofuel,
+        amount: 4,
+      },
+    ],
+    duration: 4,
+  },
+  {
+    name: "Unpackage Liquid Biofuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: FuelItemNames.PackagedLiquidBiofuel,
+        amount: 2,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.LiquidBiofuel,
+        amount: 2,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        amount: 2,
+      },
+    ],
+    duration: 2,
+  },
+  {
     name: "Turbofuel",
     building: BuildingNames.Refinery,
     inputs: [
@@ -4425,6 +4467,57 @@ export const Recipes: Recipe[] = [
 
   // Fuel
   {
+    name: "Biomass (Leaves)",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: FuelItemNames.Leaves,
+        amount: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.Biomass,
+        amount: 5,
+      },
+    ],
+    duration: 5,
+  },
+  {
+    name: "Biomass (Mycelia)",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: FuelItemNames.Mycelia,
+        amount: 1,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.Biomass,
+        amount: 10,
+      },
+    ],
+    duration: 4,
+  },
+  {
+    name: "Biomass (Wood)",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: FuelItemNames.Wood,
+        amount: 4,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.Biomass,
+        amount: 20,
+      },
+    ],
+    duration: 4,
+  },
+  {
     name: "Alternate: Compacted Coal",
     building: BuildingNames.Assembler,
     inputs: [
@@ -4483,6 +4576,23 @@ export const Recipes: Recipe[] = [
       {
         name: FuelItemNames.PackagedHeavyOilResidue,
         amount: 2,
+      },
+    ],
+    duration: 4,
+  },
+  {
+    name: "Solid Biofuel",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: FuelItemNames.Biomass,
+        amount: 8,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.SolidBioFuel,
+        amount: 4,
       },
     ],
     duration: 4,
