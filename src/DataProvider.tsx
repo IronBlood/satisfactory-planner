@@ -6,10 +6,10 @@ import {
   type ReactNode,
 } from "react";
 
-import {
-  type AppFlow,
-  type MultiFlow,
-  type PowerConsumptionMultiplier,
+import type {
+  AppFlow,
+  MultiFlow,
+  PowerConsumptionMultiplier,
 } from "./types";
 
 const CURR_VER = 2;
