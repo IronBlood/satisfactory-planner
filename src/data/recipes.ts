@@ -3629,23 +3629,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 10,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.Cable,
-        amount: 20,
+        amount: 8,
       },
       {
         name: StandardPartItemNames.Plastic,
-        amount: 40,
+        amount: 16,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Computer,
-        amount: 2.5,
+        amount: 1,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Caterium Computer",
@@ -3653,23 +3654,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 15,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 52.5,
+        amount: 14,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 22.5
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Computer,
-        amount: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Crystal Computer",
@@ -3677,19 +3679,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 5,
+        amount: 3,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        amount: 5/3,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Computer,
-        amount: 10/3,
+        amount: 2,
       },
     ],
+    duration: 36,
   },
   {
     name: "Supercomputer",
@@ -3697,27 +3700,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: CommunicationItemNames.Computer,
-        amount: 7.5,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.AILimiter,
-        amount: 3.75,
+        amount: 2,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        amount: 5.625,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Plastic,
-        amount: 52.5,
+        amount: 28,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Supercomputer,
-        amount: 1.875,
+        amount: 1,
       },
     ],
+    duration: 32,
   },
   {
     name: "Alt.: OC Supercomputer",
@@ -3725,19 +3729,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: CommunicationItemNames.RadioControlUnit,
-        amount: 6,
+        amount: 2,
       },
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        amount: 6,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Supercomputer,
-        amount: 3,
+        amount: 1,
       },
     ],
+    duration: 20,
   },
   {
     name: "Alt.: Super-State Computer",
@@ -3745,27 +3750,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: CommunicationItemNames.Computer,
-        amount: 7.2,
+        amount: 3,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 2.4,
+        amount: 1,
       },
       {
         name: IndustrialPartItemNames.Battery,
-        amount: 24,
+        amount: 10,
       },
       {
         name: ElectronicItemNames.Wire,
-        amount: 60,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Supercomputer,
-        amount: 2.4,
+        amount: 1,
       },
     ],
+    duration: 25,
   },
   {
     name: "Radio Control Unit",
@@ -3773,23 +3779,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 40,
+        amount: 32,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        amount: 1.25,
+        amount: 1,
       },
       {
         name: CommunicationItemNames.Computer,
-        amount: 2.5,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.RadioControlUnit,
-        amount: 2.5,
+        amount: 2,
       },
     ],
+    duration: 48,
   },
   {
     name: "Alt.: Radio Connection Unit",
@@ -3797,23 +3804,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        amount: 15,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        amount: 7.5,
+        amount: 2,
       },
       {
         name: MineralItemNames.QuartzCrystal,
-        amount: 45,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.RadioControlUnit,
-        amount: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Radio Control System",
@@ -3821,27 +3829,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: CommunicationItemNames.CrystalOscillator,
-        amount: 1.5,
+        amount: 1,
       },
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 15,
+        amount: 10,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 90,
+        amount: 60,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 45,
+        amount: 30,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.RadioControlUnit,
-        amount: 4.5
+        amount: 3,
       },
     ],
+    duration: 40,
   },
   {
     name: "Crystal Oscillator",
@@ -3849,15 +3858,40 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        amount: 18,
+        amount: 36,
       },
       {
         name: ElectronicItemNames.Cable,
-        amount: 14,
+        amount: 28,
       },
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        amount: 2.5,
+        amount: 5,
+      },
+    ],
+    outputs: [
+      {
+        name: CommunicationItemNames.CrystalOscillator,
+        amount: 2,
+      },
+    ],
+    duration: 120,
+  },
+  {
+    name: "Alt.: Insulated Crystal Oscillator",
+    building: BuildingNames.Manufacturer,
+    inputs: [
+      {
+        name: MineralItemNames.QuartzCrystal,
+        amount: 10,
+      },
+      {
+        name: StandardPartItemNames.Rubber,
+        amount: 7,
+      },
+      {
+        name: ElectronicItemNames.AILimiter,
+        amount: 1,
       },
     ],
     outputs: [
@@ -3866,30 +3900,7 @@ export const Recipes: Recipe[] = [
         amount: 1,
       },
     ],
-  },
-  {
-    name: "Alt.: Insulated Crystal Oscillator",
-    building: BuildingNames.Manufacturer,
-    inputs: [
-      {
-        name: MineralItemNames.QuartzCrystal,
-        amount: 1.875 * 10,
-      },
-      {
-        name: StandardPartItemNames.Rubber,
-        amount: 1.875 * 7,
-      },
-      {
-        name: ElectronicItemNames.AILimiter,
-        amount: 1.875,
-      },
-    ],
-    outputs: [
-      {
-        name: CommunicationItemNames.CrystalOscillator,
-        amount: 1.875,
-      },
-    ],
+    duration: 32,
   },
   {
     name: "Superposition Oscillator",
@@ -3897,31 +3908,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        amount: 30,
+        amount: 6,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        amount: 5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.AlcladAluminumSheet,
-        amount: 45,
+        amount: 9,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        amount: 125,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.SuperpositionOscillator,
-        amount: 5,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 125,
+        amount: 25,
       },
     ],
+    duration: 12,
   },
 
   // Quantum
