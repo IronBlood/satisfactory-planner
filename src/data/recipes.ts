@@ -4430,19 +4430,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        amount: 25,
+        amount: 5,
       },
       {
         name: OreItemNames.Sulfur,
-        amount: 25,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 25,
+        amount: 5,
       },
     ],
+    duration: 12,
   },
   {
     name: "Packaged Oil",
@@ -4450,19 +4451,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 30,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 30,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedOil,
-        amount: 30,
+        amount: 2,
       },
     ],
+    duration: 4,
   },
   {
     name: "Packaged Heavy Oil Residue",
@@ -4470,19 +4472,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 30,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 30,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedHeavyOilResidue,
-        amount: 30,
+        amount: 2,
       },
     ],
+    duration: 4,
   },
   {
     name: "Packaged Fuel",
@@ -4490,19 +4493,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        amount: 40,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedFuel,
-        amount: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Diluted Packaged Fuel",
@@ -4510,19 +4514,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 30,
+        amount: 1,
       },
       {
         name: ContainerItemNames.PackagedWater,
-        amount: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedFuel,
-        amount: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
   {
     name: "Packaged Liquid Biofuel",
@@ -4530,19 +4535,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.LiquidBiofuel,
-        amount: 40,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedLiquidBiofuel,
-        amount: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Packaged Turbofuel",
@@ -4550,19 +4556,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        amount: 20,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        amount: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedTurbofuel,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Packaged Rocket Fuel",
@@ -4570,19 +4577,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.RocketFuel,
-        amount: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        amount: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedRocketFuel,
-        amount: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Packaged Ionized Fuel",
@@ -4590,19 +4598,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.IonizedFuel,
-        amount: 80,
+        amount: 4,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        amount: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedIonizedFuel,
-        amount: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Uranium Fuel Rod",
@@ -4610,23 +4619,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        amount: 20,
+        amount: 50,
       },
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        amount: 1.2,
+        amount: 3,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 2,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.UraniumFuelRod,
-        amount: 0.4,
+        amount: 1,
       },
     ],
+    duration: 150,
   },
   {
     name: "Alt.: Uranium Fuel Unit",
@@ -4634,27 +4644,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        amount: 20,
+        amount: 100,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 2,
+        amount: 10,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        amount: 0.6,
+        amount: 3,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        amount: 2,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.UraniumFuelRod,
-        amount: 0.6,
+        amount: 3,
       },
     ],
+    duration: 300,
   },
   {
     name: "Plutonium Fuel Rod",
@@ -4662,27 +4673,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.EncasedPlutoniumCell,
-        amount: 7.5,
+        amount: 30,
       },
       {
         name: StandardPartItemNames.StealBeam,
-        amount: 4.5,
+        amount: 18,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 1.5,
+        amount: 6,
       },
       {
         name: IndustrialPartItemNames.HeatSink,
-        amount: 2.5,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PlutoniumFuelRod,
-        amount: 0.25,
+        amount: 1,
       },
     ],
+    duration: 240,
   },
   {
     name: "Alt.: Plutonium Fuel Unit",
@@ -4690,19 +4702,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.EncasedPlutoniumCell,
-        amount: 10,
+        amount: 20,
       },
       {
         name: ContainerItemNames.PressureConversionCube,
-        amount: 0.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PlutoniumFuelRod,
-        amount: 0.5,
+        amount: 1,
       },
     ],
+    duration: 120,
   },
 
   // Consumed
