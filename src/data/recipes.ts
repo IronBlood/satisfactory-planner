@@ -5131,19 +5131,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        amount: 6,
+        amount: 3,
       },
       {
         name: ElectronicItemNames.AILimiter,
-        amount: 4,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 4,
+        amount: 2,
       },
     ],
+    duration: 30,
   },
   {
     name: "Alt.: Electromagnetic Connection Rod",
@@ -5151,19 +5152,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        amount: 8,
+        amount: 2,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        amount: 4,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 8,
+        amount: 2,
       },
     ],
+    duration: 15,
   },
   {
     name: "Encased Uranium Cell",
@@ -5171,27 +5173,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Uranium,
-        amount: 50,
+        amount: 10,
       },
       {
         name: MineralItemNames.Concrete,
-        amount: 15,
+        amount: 3,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        amount: 25,
+        amount: 5,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 10,
+        amount: 2,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Infused Uranium Cell",
@@ -5199,27 +5202,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Uranium,
-        amount: 25,
+        amount: 5,
       },
       {
         name: MineralItemNames.Silica,
-        amount: 15,
+        amount: 3,
       },
       {
         name: OreItemNames.Sulfur,
-        amount: 25,
+        amount: 5,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 75,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        amount: 20,
+        amount: 4,
       },
     ],
+    duration: 12,
   },
   {
     name: "Non-Fissile Uranium",
@@ -5227,31 +5231,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: WasteItemNames.UraniumWaste,
-        amount: 37.5,
+        amount: 15,
       },
       {
         name: MineralItemNames.Silica,
-        amount: 25,
+        amount: 10,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        amount: 15,
+        amount: 6,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 15,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.NonFissileUranium,
-        amount: 50,
+        amount: 20,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 15,
+        amount: 6,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Fertile Uranium",
@@ -5259,31 +5264,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Uranium,
-        amount: 25,
+        amount: 5,
       },
       {
         name: WasteItemNames.UraniumWaste,
-        amount: 25,
+        amount: 5,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        amount: 15,
+        amount: 3,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 25,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.NonFissileUranium,
-        amount: 100,
+        amount: 20,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 40,
+        amount: 8,
       },
     ],
+    duration: 12,
   },
   {
     name: "Plutonium Pellet",
@@ -5304,6 +5310,7 @@ export const Recipes: Recipe[] = [
         amount: 30,
       },
     ],
+    duration: 60,
   },
   {
     name: "Encased Plutonium Cell",
@@ -5311,19 +5318,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.PlutoniumPellet,
-        amount: 10,
+        amount: 2,
       },
       {
         name: MineralItemNames.Concrete,
-        amount: 20,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.EncasedPlutoniumCell,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Instant Plutonium Cell",
@@ -5331,19 +5339,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.NonFissileUranium,
-        amount: 75,
+        amount: 150,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 10,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.EncasedPlutoniumCell,
-        amount: 10,
+        amount: 20,
       },
     ],
+    duration: 120,
   },
   {
     name: "Ficsonium",
@@ -5351,23 +5360,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: WasteItemNames.PlutoniumWaste,
-        amount: 10,
+        amount: 1,
       },
       {
         name: QuantumTechnologyItemNames.SingularityCell,
-        amount: 10,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 200,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.Ficsonium,
-        amount: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Ficsonium Fuel Rod",
@@ -5375,31 +5385,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.Ficsonium,
-        amount: 5,
+        amount: 2,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        amount: 5,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.FicsiteTrigon,
-        amount: 100,
+        amount: 40,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        amount: 50,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.FicsoniumFuelRod,
-        amount: 2.5,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 50,
+        amount: 20,
       },
     ],
+    duration: 24,
   },
 
   // Waste
@@ -5409,15 +5420,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.UraniumFuelRod,
-        amount: 0.2,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: WasteItemNames.UraniumWaste,
-        amount: 10,
+        amount: 50,
       }
     ],
+    duration: 300,
   },
   {
     name: "Plutonium Waste",
@@ -5425,15 +5437,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PlutoniumFuelRod,
-        amount: 0.1,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: WasteItemNames.PlutoniumWaste,
-        amount: 1,
+        amount: 10,
       },
     ],
+    duration: 600,
   },
 
   // Special
