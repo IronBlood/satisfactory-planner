@@ -1703,7 +1703,7 @@ export const Recipes: Recipe[] = [
         amount: 1,
       },
     ],
-    duratioin: 1 / mul_p,
+    duration: 1 / mul_p,
   } as Recipe)),
   {
     name: "Unpackage Nitrogen Gas",
