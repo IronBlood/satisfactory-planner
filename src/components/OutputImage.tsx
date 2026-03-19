@@ -1,7 +1,7 @@
 import {
   getItemImageByName,
 } from "../data/items";
-import { type Rate } from "../data/recipes";
+import { type IngredientAmount } from "../data/recipes";
 
 /**
  * In current situation, each recipe has either one output or two outputs
@@ -10,7 +10,7 @@ export default function OutputImage({
   outputs,
   showSecond = true,
 }: {
-  outputs: Rate[];
+  outputs: IngredientAmount[];
   showSecond?: boolean;
 }) {
   return (
