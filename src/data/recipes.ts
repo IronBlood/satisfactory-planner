@@ -3943,15 +3943,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        amount: 600,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Cloudy Diamonds",
@@ -3959,19 +3960,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        amount: 240,
+        amount: 12,
       },
       {
         name: OreItemNames.Limestone,
-        amount: 480,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        amount: 20,
+        amount: 1,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Oil-Based Diamonds",
@@ -3979,15 +3981,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        amount: 200,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        amount: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Petroleum Diamonds",
@@ -3995,15 +3998,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PetroleumCoke,
-        amount: 720,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Pink Diamonds",
@@ -4011,19 +4015,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        amount: 120,
+        amount: 8,
       },
       {
         name: MineralItemNames.QuartzCrystal,
-        amount: 45,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        amount: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Turbo Diamonds",
@@ -4031,19 +4036,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        amount: 600,
+        amount: 30,
       },
       {
         name: FuelItemNames.PackagedTurbofuel,
-        amount: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        amount: 60,
+        amount: 3,
       },
     ],
+    duration: 3,
   },
   {
     name: "Time Crystal",
@@ -4051,15 +4057,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        amount: 12,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.TimeCrystal,
-        amount: 6,
+        amount: 1,
       },
     ],
+    duration: 10,
   },
   {
     name: "Dark Matter Crystal",
@@ -4067,19 +4074,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        amount: 30,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 150,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Dark Matter Crystallization",
@@ -4087,15 +4095,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 200,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        amount: 20,
+        amount: 1,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Dark Matter Trap",
@@ -4103,19 +4112,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.TimeCrystal,
-        amount: 30,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 150,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        amount: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
   {
     name: "Singularity Cell",
@@ -4144,6 +4154,7 @@ export const Recipes: Recipe[] = [
         amount: 10,
       },
     ],
+    duration: 60,
   },
   {
     name: "Neural-Quantum Processor",
@@ -4151,31 +4162,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.TimeCrystal,
-        amount: 15,
+        amount: 5,
       },
       {
         name: CommunicationItemNames.Supercomputer,
-        amount: 3,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.FicsiteTrigon,
-        amount: 45,
+        amount: 15,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        amount: 75,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.NeuralQuantumProcessor,
-        amount: 3,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 75,
+        amount: 25,
       },
     ],
+    duration: 20,
   },
   {
     name: "Alien Power Matrix",
@@ -4183,31 +4195,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.SAMFluctuator,
-        amount: 12.5,
+        amount: 5,
       },
       {
         name: SpecialItemNames.PowerShard,
-        amount: 7.5,
+        amount: 3,
       },
       {
         name: CommunicationItemNames.SuperpositionOscillator,
-        amount: 7.5,
+        amount: 3,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        amount: 60,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.AlienPowerMatrix,
-        amount: 2.5,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        amount: 60,
+        amount: 24,
       },
     ],
+    duration: 24,
   },
 
   // Container
