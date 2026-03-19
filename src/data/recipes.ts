@@ -4840,15 +4840,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronRod,
-        amount: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.IronRebar,
-        amount: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Stun Rebar",
@@ -4856,19 +4857,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.IronRebar,
-        amount: 10,
+        amount: 1,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 50,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.StunRebar,
-        amount: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Shatter Rebar",
@@ -4876,19 +4878,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.IronRebar,
-        amount: 10,
+        amount: 2,
       },
       {
         name: MineralItemNames.QuartzCrystal,
-        amount: 15,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.ShatterRebar,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Explosive Rebar",
@@ -4896,23 +4899,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.IronRebar,
-        amount: 10,
+        amount: 2,
       },
       {
         name: ConsumedItemNames.SmokelessPowder,
-        amount: 10,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.ExplosiveRebar,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Rifle Ammo",
@@ -4920,19 +4924,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        amount: 15,
+        amount: 3,
       },
       {
         name: ConsumedItemNames.SmokelessPowder,
-        amount: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.RifleAmmo,
-        amount: 75,
+        amount: 15,
       },
     ],
+    duration: 12,
   },
   {
     name: "Homing Rifle Ammo",
@@ -4940,19 +4945,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.RifleAmmo,
-        amount: 50,
+        amount: 20,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        amount: 2.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.HomingRifleAmmo,
-        amount: 25,
+        amount: 10,
       },
     ],
+    duration: 24,
   },
   {
     name: "Turbo Rifle Ammo",
@@ -4960,23 +4966,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.RifleAmmo,
-        amount: 125,
+        amount: 25,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 15,
+        amount: 3,
       },
       {
         name: FuelItemNames.PackagedTurbofuel,
-        amount: 15,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.TurboRifleAmmo,
-        amount: 250,
+        amount: 50,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Turbo Rifle Ammo",
@@ -4984,23 +4991,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.RifleAmmo,
-        amount: 125,
+        amount: 25,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 15,
+        amount: 3,
       },
       {
         name: LiquidItemNames.Turbofuel,
-        amount: 15,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.TurboRifleAmmo,
-        amount: 250,
+        amount: 50,
       },
     ],
+    duration: 12,
   },
   {
     name: "Nobelisk",
@@ -5008,19 +5016,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ConsumedItemNames.BlackPowder,
-        amount: 20,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.Nobelisk,
-        amount: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Gas Nobelisk",
@@ -5028,19 +5037,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.Nobelisk,
-        amount: 5,
+        amount: 1,
       },
       {
         name: FuelItemNames.Biomass,
-        amount: 50,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.GasNobelisk,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Pulse Nobelisk",
@@ -5061,6 +5071,7 @@ export const Recipes: Recipe[] = [
         amount: 5,
       },
     ],
+    duration: 60,
   },
   {
     name: "Cluster Nobelisk",
@@ -5068,19 +5079,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.Nobelisk,
-        amount: 7.5,
+        amount: 3,
       },
       {
         name: ConsumedItemNames.SmokelessPowder,
-        amount: 10,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.ClusterNobelisk,
-        amount: 2.5,
+        amount: 1,
       },
     ],
+    duration: 24,
   },
   {
     name: "Nuke Nobelisk",
@@ -5088,27 +5100,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.Nobelisk,
-        amount: 2.5,
-      },
-      {
-        name: NuclearItemNames.EncasedUraniumCell,
-        amount: 10,
-      },
-      {
-        name: ConsumedItemNames.SmokelessPowder,
         amount: 5,
       },
       {
+        name: NuclearItemNames.EncasedUraniumCell,
+        amount: 20,
+      },
+      {
+        name: ConsumedItemNames.SmokelessPowder,
+        amount: 10,
+      },
+      {
         name: ElectronicItemNames.AILimiter,
-        amount: 3,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.NukeNobelisk,
-        amount: 0.5,
+        amount: 1,
       },
     ],
+    duration: 120,
   },
 
   // Nuclear
