@@ -3219,15 +3219,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Wire,
-        amount: 30,
+        amount: 2,
       },
     ],
+    duration: 15,
   },
   {
     name: "Alt.: Caterium Wire",
@@ -3235,15 +3236,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        amount: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Wire,
-        amount: 120,
+        amount: 8,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Fused Wire",
@@ -3251,19 +3253,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        amount: 12,
+        amount: 4,
       },
       {
         name: IngotItemNames.CateriumIngot,
-        amount: 3,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Wire,
-        amount: 90,
+        amount: 30,
       },
     ],
+    duration: 20,
   },
   {
     name: "Alt.: Iron Wire",
@@ -3271,15 +3274,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        amount: 12.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Wire,
-        amount: 22.5,
+        amount: 9,
       },
     ],
+    duration: 24,
   },
   {
     name: "Cable",
@@ -3287,15 +3291,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Wire,
-        amount: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Cable,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Coated Cable",
@@ -3303,19 +3308,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Wire,
-        amount: 37.5,
+        amount: 5,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 15,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Cable,
-        amount: 67.5,
+        amount: 9,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Insulated Cable",
@@ -3323,19 +3329,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Wire,
-        amount: 45,
+        amount: 9,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 30,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Cable,
-        amount: 100,
+        amount: 20,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Quickwire Cable",
@@ -3343,19 +3350,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 7.5,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Rubber,
-        amount: 5,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Cable,
-        amount: 27.5,
+        amount: 11,
       },
     ],
+    duration: 24,
   },
   {
     name: "Quickwire",
@@ -3363,15 +3371,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        amount: 12,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 60,
+        amount: 5,
       },
     ],
+    duration: 5,
   },
   {
     name: "Alt.: Fused Quickwire",
@@ -3379,19 +3388,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        amount: 7.5,
+        amount: 1,
       },
       {
         name: IngotItemNames.CopperIngot,
-        amount: 37.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 90,
+        amount: 12,
       },
     ],
+    duration: 8,
   },
   {
     name: "Circuit Board",
@@ -3399,19 +3409,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        amount: 15,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.Plastic,
-        amount: 30,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 7.5,
+        amount: 1,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Caterium Circuit Board",
@@ -3419,19 +3430,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Plastic,
-        amount: 12.5,
+        amount: 10,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 37.5,
+        amount: 30,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 8.75,
+        amount: 7,
       },
     ],
+    duration: 48,
   },
   {
     name: "Alt.: Electrode Circuit Board",
@@ -3439,19 +3451,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Rubber,
-        amount: 20,
+        amount: 4,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        amount: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Silicon Circuit Board",
@@ -3459,19 +3472,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        amount: 27.5,
+        amount: 11,
       },
       {
         name: MineralItemNames.Silica,
-        amount: 27.5,
+        amount: 11,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 12.5,
+        amount: 5,
       },
     ],
+    duration: 24,
   },
   {
     name: "AI Limiter",
@@ -3479,19 +3493,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        amount: 25,
+        amount: 5,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 100,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.AILimiter,
-        amount: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Plastic AI Limiter",
@@ -3499,19 +3514,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 120,
+        amount: 30,
       },
       {
         name: StandardPartItemNames.Plastic,
-        amount: 28,
+        amount: 7,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.AILimiter,
-        amount: 8,
+        amount: 2,
       },
     ],
+    duration: 15,
   },
   {
     name: "High-Speed Connector",
@@ -3519,23 +3535,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 210,
+        amount: 56,
       },
       {
         name: ElectronicItemNames.Cable,
-        amount: 37.5,
+        amount: 10,
       },
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 3.75,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        amount: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Silicon High-Speed Connector",
@@ -3543,23 +3560,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 90,
+        amount: 60,
       },
       {
         name: MineralItemNames.Silica,
-        amount: 37.5,
+        amount: 25,
       },
       {
         name: ElectronicItemNames.CircuitBoard,
-        amount: 3,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        amount: 3,
+        amount: 2,
       },
     ],
+    duration: 40,
   },
   {
     name: "Reanimated SAM",
@@ -3567,15 +3585,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.SAM,
-        amount: 120,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "SAM Fluctuator",
@@ -3583,23 +3602,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        amount: 60,
+        amount: 6,
       },
       {
         name: ElectronicItemNames.Wire,
-        amount: 50,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        amount: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.SAMFluctuator,
-        amount: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
 
   // Communication
