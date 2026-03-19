@@ -5862,15 +5862,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 50/7,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 45,
+        amount: 6.3,
       },
     ],
     outputs: [
     ],
+    duration: 8.4,
   },
   {
     name: "Power (Coal)",
@@ -5878,15 +5879,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        amount: 15,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 45,
+        amount: 3,
       },
     ],
     outputs: [
     ],
+    duration: 4,
   },
   {
     name: "Power (Petroleum Coke)",
@@ -5894,15 +5896,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PetroleumCoke,
-        amount: 25,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        amount: 45,
+        amount: 1.8,
       },
     ],
     outputs: [
     ],
+    duration: 2.4,
   },
   {
     name: "Power (Ionized Fuel)",
@@ -5910,11 +5913,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.IonizedFuel,
-        amount: 3,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 20,
   },
   {
     name: "Power (Rocket Fuel)",
@@ -5922,11 +5926,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.RocketFuel,
-        amount: 60/14.4,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 14.4,
   },
   {
     name: "Power (Turbofuel)",
@@ -5934,11 +5939,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        amount: 7.5,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 8,
   },
   {
     name: "Power (Liquid Biofuel)",
@@ -5946,11 +5952,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.LiquidBiofuel,
-        amount: 20,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 3,
   },
   {
     name: "Power (Fuel)",
@@ -5958,11 +5965,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        amount: 20,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 3,
   },
 ];
 
