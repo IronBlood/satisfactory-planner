@@ -136,10 +136,14 @@ export const ContainerItemNames = {
 };
 
 export const FuelItemNames = {
+  Leaves: "Leaves",
+  Mycelia: "Mycelia",
+  Wood: "Wood",
   Biomass: "Biomass",
   CompactedCoal: "Compacted Coal",
   PackagedOil: "Packaged Oil",
   PackagedHeavyOilResidue: "Packaged Heavy Oil Residue",
+  SolidBioFuel: "Solid Biofuel",
   PackagedFuel: "Packaged Fuel",
   PackagedLiquidBiofuel: "Packaged Liquid Biofuel",
   PackagedTurbofuel: "Packaged Turbofuel",
@@ -708,6 +712,18 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
     image: "IconDesc_PackagedNitrogen_128.webp",
     sink_points: 312,
   },
+  [FuelItemNames.Leaves]: {
+    image: "IconDesc_Leaves_128.webp",
+    sink_points: 3,
+  },
+  [FuelItemNames.Mycelia]: {
+    image: "IconDesc_Mycelia_128.webp",
+    sink_points: 10,
+  },
+  [FuelItemNames.Wood]: {
+    image: "IconDesc_Wood_128.webp",
+    sink_points: 30,
+  },
   [FuelItemNames.Biomass]: {
     image: "IconDesc_Biomass_Final_128.webp",
     sink_points: 12,
@@ -723,6 +739,10 @@ const ITEM_MAP: Record<ItemName, ITEM_META> = {
   [FuelItemNames.PackagedHeavyOilResidue]: {
     image: "OilResidue_128.webp",
     sink_points: 180,
+  },
+  [FuelItemNames.SolidBioFuel]: {
+    image: "IconDesc_SolidBiofuel_128.webp",
+    sink_points: 48,
   },
   [FuelItemNames.PackagedFuel]: {
     image: "IconDesc_Fuel_128.webp",
