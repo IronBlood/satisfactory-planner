@@ -151,8 +151,8 @@ export default function Summary() {
           s.inputs[node.data.name] = (s.inputs[node.data.name] || 0) + node.data.count;
         } else {
           // NOTE: this should be a valid pair
-          const { name, rate } = node.data.recipe.outputs[0];
-          s.inputs[name] = (s.inputs[name] || 0) + rate * node.data.count;
+          const { name, amount } = node.data.recipe.outputs[0];
+          s.inputs[name] = (s.inputs[name] || 0) + amount * (60 / node.data.recipe.duration) * node.data.count;
         }
       }
 

@@ -25,15 +25,17 @@ import {
   type BuildingName,
 } from "./buildings";
 
-export interface Rate {
+export interface IngredientAmount {
   name: ItemName;
-  rate: number;
+  amount: number;
 }
 
 export interface Recipe {
   name: string;
-  inputs: Rate[];
-  outputs: Rate[];
+  inputs: IngredientAmount[];
+  outputs: IngredientAmount[];
+  /** unit: second */
+  duration: number;
   building: BuildingName;
 }
 
@@ -59,8 +61,9 @@ export const Recipes: Recipe[] = [
           inputs: [],
           outputs: [{
             name: ore,
-            rate: 30 * mul_p * mul_m,
+            amount: 1,
           }],
+          duration: 60 / (30 * mul_p * mul_m),
           building,
         } as Recipe;
       }).flat();
@@ -71,19 +74,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Sulfur,
-        rate: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Limestone,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -91,19 +95,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Limestone,
-        rate: 240,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: OreItemNames.IronOre,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -111,19 +116,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.RawQuartz,
-        rate: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: OreItemNames.CopperOre,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -131,19 +137,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Sulfur,
-        rate: 120,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: OreItemNames.CopperOre,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -151,19 +158,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.CopperOre,
-        rate: 150,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: OreItemNames.CateriumOre,
-        rate: 120,
+        amount: 12,
       }
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -171,19 +179,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.RawQuartz,
-        rate: 120
+        amount: 12
       },
     ],
     outputs: [
       {
         name: OreItemNames.CateriumOre,
-        rate: 120,
+        amount: 12,
       }
     ],
+    duration: 6,
     building: BuildingNames.Converter,
   },
   {
@@ -192,19 +201,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.IronOre,
-        rate: 180,
+        amount: 18,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Coal,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Coal (Limestone)",
@@ -212,19 +222,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Limestone,
-        rate: 360,
+        amount: 36,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Coal,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Raw Quartz (Bauxite)",
@@ -232,19 +243,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Bauxite,
-        rate: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: OreItemNames.RawQuartz,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Raw Quartz (Coal)",
@@ -252,19 +264,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Coal,
-        rate: 240,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: OreItemNames.RawQuartz,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Sulfur (Coal)",
@@ -272,19 +285,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Coal,
-        rate: 200,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Sulfur,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Sulfur (Iron)",
@@ -292,19 +306,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.IronOre,
-        rate: 300,
+        amount: 30,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Sulfur,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Bauxite (Caterium)",
@@ -312,19 +327,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.CateriumOre,
-        rate: 150,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Bauxite,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Bauxite (Copper)",
@@ -332,19 +348,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.CopperOre,
-        rate: 180,
+        amount: 18,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Bauxite,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Uranium Ore (Bauxite)",
@@ -352,19 +369,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Bauxite,
-        rate: 480,
+        amount: 48,
       },
     ],
     outputs: [
       {
         name: OreItemNames.Uranium,
-        rate: 120,
+        amount: 12,
       }
     ],
+    duration: 6,
   },
 
   // Ingots
@@ -374,15 +392,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        rate: 30,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Basic Iron Ingot",
@@ -390,19 +409,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        rate: 25,
+        amount: 5,
       },
       {
         name: OreItemNames.Limestone,
-        rate: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 50,
+        amount: 10,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Iron Alloy Ingot",
@@ -410,19 +430,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        rate: 40,
+        amount: 8,
       },
       {
         name: OreItemNames.CopperOre,
-        rate: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 75,
+        amount: 15,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Leached Iron Ingot",
@@ -430,19 +451,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        rate: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 100,
+        amount: 10,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Pure Iron Ingot",
@@ -450,19 +472,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        rate: 35,
+        amount: 7,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 20,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 65,
+        amount: 13,
       },
     ],
+    duration: 12,
   },
   {
     name: "Copper Ingot",
@@ -470,15 +493,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        rate: 30,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Copper Alloy Ingot",
@@ -486,19 +510,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        rate: 50,
+        amount: 5,
       },
       {
         name: OreItemNames.IronOre,
-        rate: 50,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 100,
+        amount: 10,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Leached Copper Ingot",
@@ -506,19 +531,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        rate: 45,
+        amount: 9,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 25,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 110,
+        amount: 22,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Pure Copper Ingot",
@@ -526,19 +552,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        rate: 15,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 10,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 37.5,
+        amount: 15,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Tempered Copper Ingot",
@@ -546,19 +573,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CopperOre,
-        rate: 25,
+        amount: 5,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        rate: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Caterium Ingot",
@@ -566,15 +594,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CateriumOre,
-        rate: 45,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        rate: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Leached Caterium Ingot",
@@ -582,19 +611,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CateriumOre,
-        rate: 54,
+        amount: 9,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 30,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        rate: 36,
+        amount: 6,
       },
     ],
+    duration: 10,
   },
   {
     name: "Alt.: Pure Caterium Ingot",
@@ -602,19 +632,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CateriumOre,
-        rate: 24,
+        amount: 2,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 24,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        rate: 12,
+        amount: 1,
       },
     ],
+    duration: 5,
   },
   {
     name: "Alt.: Tempered Caterium Ingot",
@@ -622,19 +653,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.CateriumOre,
-        rate: 45,
+        amount: 6,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        rate: 15,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        rate: 22.5,
+        amount: 3,
       },
     ],
+    duration: 8,
   },
   {
     name: "Steel Ingot",
@@ -642,19 +674,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        rate: 45,
+        amount: 3,
       },
       {
         name: OreItemNames.Coal,
-        rate: 45,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 45,
+        amount: 3,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Coke Steel Ingot",
@@ -662,19 +695,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        rate: 75,
+        amount: 15,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        rate: 75,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 100,
+        amount: 20,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Compacted Steel Ingot",
@@ -682,19 +716,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.IronOre,
-        rate: 5,
+        amount: 2,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 2.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 10,
+        amount: 4,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Solid Steel Ingot",
@@ -702,19 +737,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 40,
+        amount: 2,
       },
       {
         name: OreItemNames.Coal,
-        rate: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 60,
+        amount: 3,
       },
     ],
+    duration: 3,
   },
   {
     name: "Aluminum Ingot",
@@ -722,19 +758,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        rate: 90,
+        amount: 6,
       },
       {
         name: MineralItemNames.Silica,
-        rate: 75,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 60,
+        amount: 4,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Pure Aluminum Ingot",
@@ -742,15 +779,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        rate: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Ficsite Ingot (Aluminum)",
@@ -758,19 +796,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 60,
+        amount: 2,
       },
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 120,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.FicsiteIngot,
-        rate: 30,
+        amount: 1
       },
     ],
+    duration: 2,
   },
   {
     name: "Ficsite Ingot (Caterium)",
@@ -778,19 +817,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 45,
+        amount: 3,
       },
       {
         name: IngotItemNames.CateriumIngot,
-        rate: 60,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.FicsiteIngot,
-        rate: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Ficsite Ingot (Iron)",
@@ -798,19 +838,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 40,
+        amount: 4,
       },
       {
         name: IngotItemNames.IronIngot,
-        rate: 240,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: IngotItemNames.FicsiteIngot,
-        rate: 10,
+        amount: 1,
       },
     ],
+    duration: 5,
   },
 
   // Minerals
@@ -820,15 +861,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Limestone,
-        rate: 45,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Concrete,
-        rate: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Alternate: Fine Concrete",
@@ -836,19 +878,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.Silica,
-        rate: 15,
+        amount: 3,
       },
       {
         name: OreItemNames.Limestone,
-        rate: 60,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Concrete,
-        rate: 50,
+        amount: 10,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Rubber Concrete",
@@ -856,19 +899,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Limestone,
-        rate: 100,
+        amount: 10,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Concrete,
-        rate: 90,
+        amount: 9,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Wet Concrete",
@@ -876,19 +920,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Limestone,
-        rate: 120,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 100,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Concrete,
-        rate: 80,
+        amount: 4,
       },
     ],
+    duration: 3,
   },
   {
     name: "Quartz Crystal",
@@ -896,15 +941,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        rate: 37.5
+        amount: 5
       },
     ],
     outputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 22.5,
+        amount: 3,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Fused Quartz Crystal",
@@ -912,19 +958,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        rate: 75,
+        amount: 25,
       },
       {
         name: OreItemNames.Coal,
-        rate: 36,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 54,
+        amount: 18,
       },
     ],
+    duration: 20,
   },
   {
     name: "Alt.: Pure Quartz Crystal",
@@ -932,19 +979,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        rate: 67.5,
+        amount: 9,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 37.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 52.5,
+        amount: 7,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Quartz Purification",
@@ -952,23 +1000,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        rate: 120,
+        amount: 24,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        rate: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 75,
+        amount: 15,
       },
       {
         name: LiquidItemNames.DissolvedSilica,
-        rate: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Silica",
@@ -976,15 +1025,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        rate: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Silica,
-        rate: 37.5,
+        amount: 5,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Cheap Silica",
@@ -992,19 +1042,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.RawQuartz,
-        rate: 22.5,
+        amount: 3,
       },
       {
         name: OreItemNames.Limestone,
-        rate: 37.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Silica,
-        rate: 52.5,
+        amount: 7,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Distilled Silica",
@@ -1012,27 +1063,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.DissolvedSilica,
-        rate: 120,
+        amount: 12,
       },
       {
         name: OreItemNames.Limestone,
-        rate: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.Silica,
-        rate: 270,
+        amount: 27,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 80,
+        amount: 8,
       },
     ],
+    duration: 6,
   },
   {
     name: "Copper Powder",
@@ -1040,15 +1092,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 300,
+        amount: 30,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.CopperPowder,
-        rate: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Polymer Resin",
@@ -1056,19 +1109,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 60,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.PolymerResin,
-        rate: 130,
+        amount: 13,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Petroleum Coke",
@@ -1076,15 +1130,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 40,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.PetroleumCoke,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Aluminum Scrap",
@@ -1092,23 +1147,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        rate: 240,
+        amount: 4,
       },
       {
         name: OreItemNames.Coal,
-        rate: 120,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        rate: 360,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 120,
+        amount: 2,
       },
     ],
+    duration: 1,
   },
   {
     name: "Alt.: Electrode Aluminum Scrap",
@@ -1116,23 +1172,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        rate: 180,
+        amount: 12,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        rate: 60,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        rate: 300,
+        amount: 20,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 105,
+        amount: 7,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Instant Scrap",
@@ -1140,31 +1197,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Bauxite,
-        rate: 150,
+        amount: 15,
       },
       {
         name: OreItemNames.Coal,
-        rate: 100,
+        amount: 10,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 60,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: MineralItemNames.AluminumScrap,
-        rate: 300,
+        amount: 30,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
 
   // Liquids
@@ -1175,9 +1233,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: LiquidItemNames.Water,
-        rate: 120,
+        amount: 1,
       },
     ],
+    duration: 0.5,
   },
 
   ...purities.map(({ purity, mul_p }) => ({
@@ -1187,9 +1246,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: LiquidItemNames.Water,
-        rate: 30 * mul_p,
+        amount: 1,
       },
     ],
+    duration: 2 / mul_p,
   } as Recipe)),
 
   {
@@ -1198,19 +1258,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedWater,
-        rate: 120,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Water,
-        rate: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 120,
+        amount: 2,
       },
     ],
+    duration: 1,
   },
 
   ...purities.map(({ purity, mul_p }) => ({
@@ -1220,9 +1281,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 60 * mul_p,
+        amount: 1,
       },
     ],
+    duration: 1 / mul_p,
   } as Recipe)),
 
   ...purities.map(({ purity, mul_p }) => ({
@@ -1232,9 +1294,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 30 * mul_p,
+        amount: 1,
       },
     ],
+    duration: 2 / mul_p,
   } as Recipe)),
 
   {
@@ -1243,19 +1306,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedOil,
-        rate: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 60,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
 
   {
@@ -1264,19 +1328,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedHeavyOilResidue,
-        rate: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 20,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Heavy Oil Residue",
@@ -1284,19 +1349,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 40,
+        amount: 4,
       },
       {
         name: MineralItemNames.PolymerResin,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Fuel",
@@ -1304,19 +1370,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 60,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Fuel,
-        rate: 40,
+        amount: 4,
       },
       {
         name: MineralItemNames.PolymerResin,
-        rate: 30,
+        amount: 3,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Fuel",
@@ -1324,19 +1391,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedFuel,
-        rate: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Fuel,
-        rate: 60,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Diluted Fuel",
@@ -1344,19 +1412,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Fuel,
-        rate: 100,
+        amount: 10,
       },
     ],
+    duration: 6,
   },
   {
     name: "Residual Fuel",
@@ -1364,15 +1433,58 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 60,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Fuel,
-        rate: 40,
+        amount: 4,
       },
     ],
+    duration: 6,
+  },
+  {
+    name: "Liquid Biofuel",
+    building: BuildingNames.Refinery,
+    inputs: [
+      {
+        name: FuelItemNames.SolidBioFuel,
+        amount: 6,
+      },
+      {
+        name: LiquidItemNames.Water,
+        amount: 3,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.LiquidBiofuel,
+        amount: 4,
+      },
+    ],
+    duration: 4,
+  },
+  {
+    name: "Unpackage Liquid Biofuel",
+    building: BuildingNames.Packager,
+    inputs: [
+      {
+        name: FuelItemNames.PackagedLiquidBiofuel,
+        amount: 2,
+      },
+    ],
+    outputs: [
+      {
+        name: LiquidItemNames.LiquidBiofuel,
+        amount: 2,
+      },
+      {
+        name: ContainerItemNames.EmptyCanister,
+        amount: 2,
+      },
+    ],
+    duration: 2,
   },
   {
     name: "Turbofuel",
@@ -1380,19 +1492,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        rate: 22.5,
+        amount: 6,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 15,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        rate: 18.75,
+        amount: 5,
       },
     ],
+    duration: 16,
   },
   {
     name: "Unpackage Turbofuel",
@@ -1400,19 +1513,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedTurbofuel,
-        rate: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        rate: 20,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Turbo Blend Fuel",
@@ -1420,27 +1534,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        rate: 15,
+        amount: 2,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 30,
+        amount: 4,
       },
       {
         name: OreItemNames.Sulfur,
-        rate: 22.5,
+        amount: 3,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        rate: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        rate: 45,
+        amount: 6,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Turbo Heavy Fuel",
@@ -1448,19 +1563,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 37.5,
+        amount: 5,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 30,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        rate: 30,
+        amount: 4,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alumina Solution",
@@ -1468,23 +1584,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Bauxite,
-        rate: 120,
+        amount: 12,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 180,
+        amount: 18,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        rate: 120,
+        amount: 12,
       },
       {
         name: MineralItemNames.Silica,
-        rate: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Alumina Solution",
@@ -1492,19 +1609,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedAluminaSolution,
-        rate: 120,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        rate: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 120,
+        amount: 2,
       },
     ],
+    duration: 1,
   },
   {
     name: "Alt.: Sloppy Alumina",
@@ -1512,19 +1630,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Bauxite,
-        rate: 200,
+        amount: 10,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 200,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        rate: 240,
+        amount: 12,
       },
     ],
+    duration: 3,
   },
   {
     name: "Sulfuric Acid",
@@ -1532,19 +1651,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Sulfur,
-        rate: 50,
+        amount: 5,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 50,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Sulfuric Acid",
@@ -1552,19 +1672,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedSulfuricAcid,
-        rate: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 60,
+        amount: 1,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Nitric Acid",
@@ -1572,23 +1693,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.NitrogenGas,
-        rate: 120,
+        amount: 12,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 30,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.NitricAcid,
-        rate: 30,
+        amount: 3,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Nitric Acid",
@@ -1596,19 +1718,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedNitricAcid,
-        rate: 20,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: LiquidItemNames.NitricAcid,
-        rate: 20,
+        amount: 1,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        rate: 20,
+        amount: 1,
       },
     ],
+    duration: 3,
   },
 
   // Gas
@@ -1619,9 +1742,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: GasItemNames.NitrogenGas,
-        rate: 30 * mul_p,
+        amount: 1,
       },
     ],
+    duration: 1 / mul_p,
   } as Recipe)),
   {
     name: "Unpackage Nitrogen Gas",
@@ -1629,19 +1753,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ContainerItemNames.PackagedNitrogenGas,
-        rate: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: GasItemNames.NitrogenGas,
-        rate: 240,
+        amount: 4,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        rate: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Nitrogen Gas (Bauxite)",
@@ -1649,19 +1774,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.Bauxite,
-        rate: 100,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: GasItemNames.NitrogenGas,
-        rate: 120,
+        amount: 12,
       },
     ],
+    duration: 6,
   },
   {
     name: "Nitrogen Gas (Caterium)",
@@ -1669,19 +1795,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 10,
+        amount: 1,
       },
       {
         name: OreItemNames.CateriumOre,
-        rate: 120,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: GasItemNames.NitrogenGas,
-        rate: 120,
+        amount: 12,
       }
     ],
+    duration: 6,
   },
 
   {
@@ -1690,23 +1817,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        rate: 60,
+        amount: 6,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        rate: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: GasItemNames.RocketFuel,
-        rate: 100,
+        amount: 10,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Unpackage Rocket Fuel",
@@ -1714,19 +1842,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedRocketFuel,
-        rate: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: GasItemNames.RocketFuel,
-        rate: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        rate: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Alt.: Nitro Rocket Fuel",
@@ -1734,31 +1863,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        rate: 100,
+        amount: 4,
       },
       {
         name: GasItemNames.NitrogenGas,
-        rate: 75,
+        amount: 3,
       },
       {
         name: OreItemNames.Sulfur,
-        rate: 100,
+        amount: 4,
       },
       {
         name: OreItemNames.Coal,
-        rate: 50,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: GasItemNames.RocketFuel,
-        rate: 150,
+        amount: 6,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 25,
+        amount: 1,
       },
     ],
+    duration: 2.4,
   },
   {
     name: "Ionized Fuel",
@@ -1766,23 +1896,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.RocketFuel,
-        rate: 40,
+        amount: 16,
       },
       {
         name: SpecialItemNames.PowerShard,
-        rate: 2.5
+        amount: 1
       },
     ],
     outputs: [
       {
         name: GasItemNames.IonizedFuel,
-        rate: 40,
+        amount: 16,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 5,
+        amount: 2,
       },
     ],
+    duration: 24,
   },
   {
     name: "Unpackage Ionized Fuel",
@@ -1790,19 +1921,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedIonizedFuel,
-        rate: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: GasItemNames.IonizedFuel,
-        rate: 80,
+        amount: 4,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        rate: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Dark-Ion Fuel",
@@ -1810,23 +1942,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PackagedRocketFuel,
-        rate: 240,
+        amount: 12,
       },
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        rate: 80,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: GasItemNames.IonizedFuel,
-        rate: 200,
+        amount: 10,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Excited Photonic Matter",
@@ -1836,9 +1969,10 @@ export const Recipes: Recipe[] = [
     outputs: [
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        rate: 200,
+        amount: 10,
       },
     ],
+    duration: 3,
   },
 
   // Standard Parts
@@ -1848,15 +1982,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronRod,
-        rate: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Aluminum Rod",
@@ -1864,15 +1999,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 7.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronRod,
-        rate: 52.5,
+        amount: 7,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Steel Rod",
@@ -1880,15 +2016,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 12,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronRod,
-        rate: 48,
+        amount: 4,
       },
     ],
+    duration: 5,
   },
   {
     name: "Screws",
@@ -1896,15 +2033,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronRod,
-        rate: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Screws,
-        rate: 40,
+        amount: 4,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Cast Screws",
@@ -1912,15 +2050,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 12.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Screws,
-        rate: 50,
+        amount: 20,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Steel Screws",
@@ -1928,15 +2067,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Screws,
-        rate: 260,
+        amount: 52,
       },
     ],
+    duration: 12,
   },
   {
     name: "Iron Plate",
@@ -1944,15 +2084,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Coated Iron Plate",
@@ -1960,19 +2101,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 37.5,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.Plastic,
-        rate: 7.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 75,
+        amount: 10,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Steel Iron Plate",
@@ -1980,19 +2122,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 15,
+        amount: 1,
       },
       {
         name: IngotItemNames.SteelIngot,
-        rate: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 45,
+        amount: 3,
       },
     ],
+    duration: 4,
   },
   {
     name: "Reinforced Iron Plate",
@@ -2000,19 +2143,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 30,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.Screws,
-        rate: 60,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Adhered Iron Plate",
@@ -2020,19 +2164,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 11.25,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 3.75,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Bolted Iron Plate",
@@ -2040,19 +2185,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 90,
+        amount: 18,
       },
       {
         name: StandardPartItemNames.Screws,
-        rate: 250,
+        amount: 50,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 15,
+        amount: 3,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Stitched Iron Plate",
@@ -2060,19 +2206,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 18.75,
+        amount: 10,
       },
       {
         name: ElectronicItemNames.Wire,
-        rate: 37.5,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 5.625,
+        amount: 3,
       },
     ],
+    duration: 32,
   },
   {
     name: "Copper Sheet",
@@ -2080,15 +2227,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        rate: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Steamed Copper Sheet",
@@ -2096,19 +2244,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 22.5,
+        amount: 3,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        rate: 22.5,
+        amount: 3,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alclad Aluminum Sheet",
@@ -2116,19 +2265,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 30,
+        amount: 3,
       },
       {
         name: IngotItemNames.CopperIngot,
-        rate: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.AlcladAluminumSheet,
-        rate: 30,
+        amount: 3,
       },
     ],
+    duration: 6,
   },
   {
     name: "Aluminum Casing",
@@ -2136,15 +2286,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 90,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Alclad Casing",
@@ -2152,19 +2303,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 150,
+        amount: 20,
       },
       {
         name: IngotItemNames.CopperIngot,
-        rate: 75,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 112.5
+        amount: 15
       },
     ],
+    duration: 8,
   },
   {
     name: "Steel Pipe",
@@ -2172,15 +2324,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Iron Pipe",
@@ -2188,15 +2341,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 100,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 25,
+        amount: 5,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Molded Steel Pipe",
@@ -2204,19 +2358,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 50,
+        amount: 5,
       },
       {
         name: MineralItemNames.Concrete,
-        rate: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 50,
+        amount: 5,
       },
     ],
+    duration: 6,
   },
   {
     name: "Steel Beam",
@@ -2224,15 +2379,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 60,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.StealBeam,
-        rate: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Aluminum Beam",
@@ -2240,15 +2396,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.StealBeam,
-        rate: 22.5,
+        amount: 3,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Molded Beam",
@@ -2256,19 +2413,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 120,
+        amount: 24,
       },
       {
         name: MineralItemNames.Concrete,
-        rate: 80,
+        amount: 16,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.StealBeam,
-        rate: 45,
+        amount: 9,
       },
     ],
+    duration: 12,
   },
   {
     name: "Encased Industrial Beam",
@@ -2276,19 +2434,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.StealBeam,
-        rate: 18,
+        amount: 3,
       },
       {
         name: MineralItemNames.Concrete,
-        rate: 36,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        rate: 6,
+        amount: 1,
       },
     ],
+    duration: 10,
   },
   {
     name: "Alt.: Encased Industrial Pipe",
@@ -2296,19 +2455,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 24,
+        amount: 6,
       },
       {
         name: MineralItemNames.Concrete,
-        rate: 20,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        rate: 4,
+        amount: 1,
       },
     ],
+    duration: 15,
   },
   {
     name: "Modular Frame",
@@ -2316,19 +2476,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 3,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.IronRod,
-        rate: 12,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        rate: 2,
+        amount: 2,
       },
     ],
+    duration: 60,
   },
   {
     name: "Alt.: Bolted Frame",
@@ -2336,19 +2497,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 7.5,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Screws,
-        rate: 140,
+        amount: 56,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        rate: 5,
+        amount: 2,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Steeled Frame",
@@ -2356,19 +2518,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 2,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 10,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        rate: 3,
+        amount: 3,
       },
     ],
+    duration: 60,
   },
   {
     name: "Heavy Modular Frame",
@@ -2376,27 +2539,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        rate: 10,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 40,
+        amount: 20,
       },
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        rate: 10,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.Screws,
-        rate: 240,
+        amount: 120,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        rate: 2,
+        amount: 1,
       },
     ],
+    duration: 30,
   },
   {
     name: "Alt.: Heavy Encased Frame",
@@ -2404,27 +2568,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        rate: 7.5,
+        amount: 8,
       },
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        rate: 9.375,
+        amount: 10,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 33.75,
+        amount: 36,
       },
       {
         name: MineralItemNames.Concrete,
-        rate: 20.625,
+        amount: 22,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        rate: 2.8125,
+        amount: 3,
       },
     ],
+    duration: 64,
   },
   {
     name: "Alt.: Heavy Flexible Frame",
@@ -2432,27 +2597,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        rate: 18.75,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        rate: 11.25,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 75,
+        amount: 20,
       },
       {
         name: StandardPartItemNames.Screws,
-        rate: 390,
+        amount: 104,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        rate: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Fused Modular Frame",
@@ -2460,23 +2626,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        rate: 1.5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 75,
+        amount: 50,
       },
       {
         name: GasItemNames.NitrogenGas,
-        rate: 37.5,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.FusedModularFrame,
-        rate: 1.5,
+        amount: 1,
       },
     ],
+    duration: 40,
   },
   {
     name: "Alt.: Heat-Fused Frame",
@@ -2484,27 +2651,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        rate: 3,
+        amount: 1,
       },
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 150,
+        amount: 50,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        rate: 24,
+        amount: 8,
       },
       {
         name: LiquidItemNames.Fuel,
-        rate: 30,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.FusedModularFrame,
-        rate: 3,
+        amount: 1,
       },
     ],
+    duration: 20,
   },
   {
     name: "Ficsite Trigon",
@@ -2512,15 +2680,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.FicsiteIngot,
-        rate: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.FicsiteTrigon,
-        rate: 30,
+        amount: 3,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Polyester Fabric",
@@ -2528,19 +2697,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PolymerResin,
-        rate: 30,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 30,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Fabric,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Plastic",
@@ -2548,19 +2718,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Plastic,
-        rate: 20,
+        amount: 2,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Recycled Plastic",
@@ -2568,19 +2739,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Rubber,
-        rate: 30,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Fuel,
-        rate: 30,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Plastic,
-        rate: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Residual Plastic",
@@ -2588,19 +2760,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PolymerResin,
-        rate: 60,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Plastic,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Rubber",
@@ -2608,19 +2781,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Rubber,
-        rate: 20,
+        amount: 2,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Alt.: Recycled Rubber",
@@ -2628,19 +2802,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Plastic,
-        rate: 30,
+        amount: 6,
       },
       {
         name: LiquidItemNames.Fuel,
-        rate: 30,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Rubber,
-        rate: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Residual Rubber",
@@ -2648,19 +2823,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PolymerResin,
-        rate: 40,
+        amount: 4,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 40,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: StandardPartItemNames.Rubber,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
 
   // Industrial Parts
@@ -2670,19 +2846,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronRod,
-        rate: 20,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.Screws,
-        rate: 100,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 4,
+        amount: 1,
       },
     ],
+    duration: 15,
   },
   {
     name: "Alt.: Copper Rotor",
@@ -2690,19 +2867,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        rate: 22.5,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.Screws,
-        rate: 195,
+        amount: 52,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 11.25,
+        amount: 3,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Steel Rotor",
@@ -2710,19 +2888,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 10,
+        amount: 2,
       },
       {
         name: ElectronicItemNames.Wire,
-        rate: 30,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Stator",
@@ -2730,19 +2909,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 15,
+        amount: 3,
       },
       {
         name: ElectronicItemNames.Wire,
-        rate: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Quickwire Stator",
@@ -2750,19 +2930,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 16,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 60,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 8,
+        amount: 2,
       },
     ],
+    duration: 15,
   },
   {
     name: "Battery",
@@ -2770,27 +2951,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 50,
+        amount: 2.5,
       },
       {
         name: LiquidItemNames.AluminaSolution,
-        rate: 40,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 20,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Battery,
-        rate: 20,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 30,
+        amount: 1.5,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Classic Battery",
@@ -2798,27 +2980,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Sulfur,
-        rate: 45,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.AlcladAluminumSheet,
-        rate: 52.5,
+        amount: 7,
       },
       {
         name: StandardPartItemNames.Plastic,
-        rate: 60,
+        amount: 8,
       },
       {
         name: ElectronicItemNames.Wire,
-        rate: 90
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Battery,
-        rate: 30,
+        amount: 4,
       },
     ],
+    duration: 8,
   },
   {
     name: "Motor",
@@ -2826,19 +3009,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 10,
+        amount: 2,
       },
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Electric Motor",
@@ -2846,19 +3030,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 3.75,
+        amount: 1,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 7.5,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        rate: 7.5,
+        amount: 2,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Rigor Motor",
@@ -2866,23 +3051,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 3.75,
+        amount: 3,
       },
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 3.75,
+        amount: 3,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        rate: 1.25,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        rate: 7.5,
+        amount: 6,
       },
     ],
+    duration: 48,
   },
   {
     name: "Heat Sink",
@@ -2890,19 +3076,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.AlcladAluminumSheet,
-        rate: 37.5,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.CopperSheet,
-        rate: 22.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        rate: 7.5,
+        amount: 1,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Heat Exchanger",
@@ -2910,19 +3097,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 30,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        rate: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Cooling System",
@@ -2930,27 +3118,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        rate: 12,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 12,
+        amount: 2,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 30,
+        amount: 5,
       },
       {
         name: GasItemNames.NitrogenGas,
-        rate: 150,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        rate: 6,
+        amount: 1,
       },
     ],
+    duration: 10,
   },
   {
     name: "Alt.: Cooling Device",
@@ -2958,23 +3147,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        rate: 10,
+        amount: 4,
       },
       {
         name: IndustrialPartItemNames.Motor,
-        rate: 2.5,
+        amount: 1,
       },
       {
         name: GasItemNames.NitrogenGas,
-        rate: 60,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        rate: 5,
+        amount: 2,
       },
     ],
+    duration: 24,
   },
   {
     name: "Turbo Motor",
@@ -2982,27 +3172,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        rate: 7.5,
+        amount: 4,
       },
       {
         name: CommunicationItemNames.RadioControlUnit,
-        rate: 3.75,
+        amount: 2,
       },
       {
         name: IndustrialPartItemNames.Motor,
-        rate: 7.5,
+        amount: 4,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 45,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.TurboMotor,
-        rate: 1.875,
+        amount: 1,
       },
     ],
+    duration: 32,
   },
   {
     name: "Alt.: Turbo Electric Motor",
@@ -3010,27 +3201,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        rate: 6.5625,
+        amount: 7,
       },
       {
         name: CommunicationItemNames.RadioControlUnit,
-        rate: 8.4375,
+        amount: 9,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 4.6875,
+        amount: 5,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 6.5625,
+        amount: 7,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.TurboMotor,
-        rate: 2.8125,
+        amount: 3,
       },
     ],
+    duration: 64,
   },
   {
     name: "Alt.: Turbo Pressure Motor",
@@ -3038,27 +3230,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        rate: 7.5,
+        amount: 4,
       },
       {
         name: ContainerItemNames.PressureConversionCube,
-        rate: 1.875,
+        amount: 1,
       },
       {
         name: ContainerItemNames.PackagedNitrogenGas,
-        rate: 45,
+        amount: 24,
       },
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 15,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: IndustrialPartItemNames.TurboMotor,
-        rate: 3.75,
+        amount: 2,
       },
     ],
+    duration: 32,
   },
 
   // Electronics
@@ -3068,15 +3261,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Wire,
-        rate: 30,
+        amount: 2,
       },
     ],
+    duration: 15,
   },
   {
     name: "Alt.: Caterium Wire",
@@ -3084,15 +3278,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        rate: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Wire,
-        rate: 120,
+        amount: 8,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Fused Wire",
@@ -3100,19 +3295,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CopperIngot,
-        rate: 12,
+        amount: 4,
       },
       {
         name: IngotItemNames.CateriumIngot,
-        rate: 3,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Wire,
-        rate: 90,
+        amount: 30,
       },
     ],
+    duration: 20,
   },
   {
     name: "Alt.: Iron Wire",
@@ -3120,15 +3316,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.IronIngot,
-        rate: 12.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Wire,
-        rate: 22.5,
+        amount: 9,
       },
     ],
+    duration: 24,
   },
   {
     name: "Cable",
@@ -3136,15 +3333,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Wire,
-        rate: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Cable,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Coated Cable",
@@ -3152,19 +3350,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Wire,
-        rate: 37.5,
+        amount: 5,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 15,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Cable,
-        rate: 67.5,
+        amount: 9,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Insulated Cable",
@@ -3172,19 +3371,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Wire,
-        rate: 45,
+        amount: 9,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 30,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Cable,
-        rate: 100,
+        amount: 20,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Quickwire Cable",
@@ -3192,19 +3392,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 7.5,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 5,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Cable,
-        rate: 27.5,
+        amount: 11,
       },
     ],
+    duration: 24,
   },
   {
     name: "Quickwire",
@@ -3212,15 +3413,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        rate: 12,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 60,
+        amount: 5,
       },
     ],
+    duration: 5,
   },
   {
     name: "Alt.: Fused Quickwire",
@@ -3228,19 +3430,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.CateriumIngot,
-        rate: 7.5,
+        amount: 1,
       },
       {
         name: IngotItemNames.CopperIngot,
-        rate: 37.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 90,
+        amount: 12,
       },
     ],
+    duration: 8,
   },
   {
     name: "Circuit Board",
@@ -3248,19 +3451,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        rate: 15,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.Plastic,
-        rate: 30,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 7.5,
+        amount: 1,
       },
     ],
+    duration: 8,
   },
   {
     name: "Alt.: Caterium Circuit Board",
@@ -3268,19 +3472,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Plastic,
-        rate: 12.5,
+        amount: 10,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 37.5,
+        amount: 30,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 8.75,
+        amount: 7,
       },
     ],
+    duration: 48,
   },
   {
     name: "Alt.: Electrode Circuit Board",
@@ -3288,19 +3493,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Rubber,
-        rate: 20,
+        amount: 4,
       },
       {
         name: MineralItemNames.PetroleumCoke,
-        rate: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Silicon Circuit Board",
@@ -3308,19 +3514,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        rate: 27.5,
+        amount: 11,
       },
       {
         name: MineralItemNames.Silica,
-        rate: 27.5,
+        amount: 11,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 12.5,
+        amount: 5,
       },
     ],
+    duration: 24,
   },
   {
     name: "AI Limiter",
@@ -3328,19 +3535,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        rate: 25,
+        amount: 5,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 100,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.AILimiter,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Plastic AI Limiter",
@@ -3348,19 +3556,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 120,
+        amount: 30,
       },
       {
         name: StandardPartItemNames.Plastic,
-        rate: 28,
+        amount: 7,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.AILimiter,
-        rate: 8,
+        amount: 2,
       },
     ],
+    duration: 15,
   },
   {
     name: "High-Speed Connector",
@@ -3368,23 +3577,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 210,
+        amount: 56,
       },
       {
         name: ElectronicItemNames.Cable,
-        rate: 37.5,
+        amount: 10,
       },
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 3.75,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        rate: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Silicon High-Speed Connector",
@@ -3392,23 +3602,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 90,
+        amount: 60,
       },
       {
         name: MineralItemNames.Silica,
-        rate: 37.5,
+        amount: 25,
       },
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 3,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        rate: 3,
+        amount: 2,
       },
     ],
+    duration: 40,
   },
   {
     name: "Reanimated SAM",
@@ -3416,15 +3627,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.SAM,
-        rate: 120,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "SAM Fluctuator",
@@ -3432,23 +3644,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.ReanimatedSAM,
-        rate: 60,
+        amount: 6,
       },
       {
         name: ElectronicItemNames.Wire,
-        rate: 50,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 30,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: ElectronicItemNames.SAMFluctuator,
-        rate: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
 
   // Communication
@@ -3458,23 +3671,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 10,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.Cable,
-        rate: 20,
+        amount: 8,
       },
       {
         name: StandardPartItemNames.Plastic,
-        rate: 40,
+        amount: 16,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Computer,
-        rate: 2.5,
+        amount: 1,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Caterium Computer",
@@ -3482,23 +3696,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 15,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 52.5,
+        amount: 14,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 22.5
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Computer,
-        rate: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Crystal Computer",
@@ -3506,19 +3721,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 5,
+        amount: 3,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        rate: 5/3,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Computer,
-        rate: 10/3,
+        amount: 2,
       },
     ],
+    duration: 36,
   },
   {
     name: "Supercomputer",
@@ -3526,27 +3742,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: CommunicationItemNames.Computer,
-        rate: 7.5,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.AILimiter,
-        rate: 3.75,
+        amount: 2,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        rate: 5.625,
+        amount: 3,
       },
       {
         name: StandardPartItemNames.Plastic,
-        rate: 52.5,
+        amount: 28,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Supercomputer,
-        rate: 1.875,
+        amount: 1,
       },
     ],
+    duration: 32,
   },
   {
     name: "Alt.: OC Supercomputer",
@@ -3554,19 +3771,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: CommunicationItemNames.RadioControlUnit,
-        rate: 6,
+        amount: 2,
       },
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        rate: 6,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Supercomputer,
-        rate: 3,
+        amount: 1,
       },
     ],
+    duration: 20,
   },
   {
     name: "Alt.: Super-State Computer",
@@ -3574,27 +3792,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: CommunicationItemNames.Computer,
-        rate: 7.2,
+        amount: 3,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 2.4,
+        amount: 1,
       },
       {
         name: IndustrialPartItemNames.Battery,
-        rate: 24,
+        amount: 10,
       },
       {
         name: ElectronicItemNames.Wire,
-        rate: 60,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.Supercomputer,
-        rate: 2.4,
+        amount: 1,
       },
     ],
+    duration: 25,
   },
   {
     name: "Radio Control Unit",
@@ -3602,23 +3821,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 40,
+        amount: 32,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        rate: 1.25,
+        amount: 1,
       },
       {
         name: CommunicationItemNames.Computer,
-        rate: 2.5,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.RadioControlUnit,
-        rate: 2.5,
+        amount: 2,
       },
     ],
+    duration: 48,
   },
   {
     name: "Alt.: Radio Connection Unit",
@@ -3626,23 +3846,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.HeatSink,
-        rate: 15,
+        amount: 4,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        rate: 7.5,
+        amount: 2,
       },
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 45,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.RadioControlUnit,
-        rate: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Radio Control System",
@@ -3650,27 +3871,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: CommunicationItemNames.CrystalOscillator,
-        rate: 1.5,
+        amount: 1,
       },
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 15,
+        amount: 10,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 90,
+        amount: 60,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 45,
+        amount: 30,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.RadioControlUnit,
-        rate: 4.5
+        amount: 3,
       },
     ],
+    duration: 40,
   },
   {
     name: "Crystal Oscillator",
@@ -3678,23 +3900,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 18,
+        amount: 36,
       },
       {
         name: ElectronicItemNames.Cable,
-        rate: 14,
+        amount: 28,
       },
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 2.5,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.CrystalOscillator,
-        rate: 1,
+        amount: 2,
       },
     ],
+    duration: 120,
   },
   {
     name: "Alt.: Insulated Crystal Oscillator",
@@ -3702,23 +3925,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 1.875 * 10,
+        amount: 10,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 1.875 * 7,
+        amount: 7,
       },
       {
         name: ElectronicItemNames.AILimiter,
-        rate: 1.875,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.CrystalOscillator,
-        rate: 1.875,
+        amount: 1,
       },
     ],
+    duration: 32,
   },
   {
     name: "Superposition Oscillator",
@@ -3726,31 +3950,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        rate: 30,
+        amount: 6,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        rate: 5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.AlcladAluminumSheet,
-        rate: 45,
+        amount: 9,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        rate: 125,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: CommunicationItemNames.SuperpositionOscillator,
-        rate: 5,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 125,
+        amount: 25,
       },
     ],
+    duration: 12,
   },
 
   // Quantum
@@ -3760,15 +3985,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        rate: 600,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Cloudy Diamonds",
@@ -3776,19 +4002,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        rate: 240,
+        amount: 12,
       },
       {
         name: OreItemNames.Limestone,
-        rate: 480,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        rate: 20,
+        amount: 1,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Oil-Based Diamonds",
@@ -3796,15 +4023,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 200,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        rate: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Petroleum Diamonds",
@@ -3812,15 +4040,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PetroleumCoke,
-        rate: 720,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Pink Diamonds",
@@ -3828,19 +4057,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        rate: 120,
+        amount: 8,
       },
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 45,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        rate: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Turbo Diamonds",
@@ -3848,19 +4078,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        rate: 600,
+        amount: 30,
       },
       {
         name: FuelItemNames.PackagedTurbofuel,
-        rate: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        rate: 60,
+        amount: 3,
       },
     ],
+    duration: 3,
   },
   {
     name: "Time Crystal",
@@ -3868,15 +4099,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        rate: 12,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.TimeCrystal,
-        rate: 6,
+        amount: 1,
       },
     ],
+    duration: 10,
   },
   {
     name: "Dark Matter Crystal",
@@ -3884,19 +4116,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.Diamonds,
-        rate: 30,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 150,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Alt.: Dark Matter Crystallization",
@@ -3904,15 +4137,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 200,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        rate: 20,
+        amount: 1,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Dark Matter Trap",
@@ -3920,19 +4154,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.TimeCrystal,
-        rate: 30,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 150,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        rate: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
   {
     name: "Singularity Cell",
@@ -3940,27 +4175,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.NuclearPasta,
-        rate: 1,
+        amount: 1,
       },
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        rate: 20,
+        amount: 20,
       },
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 100,
+        amount: 100,
       },
       {
         name: MineralItemNames.Concrete,
-        rate: 200,
+        amount: 200,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.SingularityCell,
-        rate: 10,
+        amount: 10,
       },
     ],
+    duration: 60,
   },
   {
     name: "Neural-Quantum Processor",
@@ -3968,31 +4204,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.TimeCrystal,
-        rate: 15,
+        amount: 5,
       },
       {
         name: CommunicationItemNames.Supercomputer,
-        rate: 3,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.FicsiteTrigon,
-        rate: 45,
+        amount: 15,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        rate: 75,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.NeuralQuantumProcessor,
-        rate: 3,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 75,
+        amount: 25,
       },
     ],
+    duration: 20,
   },
   {
     name: "Alien Power Matrix",
@@ -4000,31 +4237,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ElectronicItemNames.SAMFluctuator,
-        rate: 12.5,
+        amount: 5,
       },
       {
         name: SpecialItemNames.PowerShard,
-        rate: 7.5,
+        amount: 3,
       },
       {
         name: CommunicationItemNames.SuperpositionOscillator,
-        rate: 7.5,
+        amount: 3,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        rate: 60,
+        amount: 24,
       },
     ],
     outputs: [
       {
         name: QuantumTechnologyItemNames.AlienPowerMatrix,
-        rate: 2.5,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 60,
+        amount: 24,
       },
     ],
+    duration: 24,
   },
 
   // Container
@@ -4034,15 +4272,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Plastic,
-        rate: 30,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 60,
+        amount: 4,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Coated Iron Canister",
@@ -4050,19 +4289,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 30,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.CopperSheet,
-        rate: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 60,
+        amount: 4,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Steel Canister",
@@ -4070,15 +4310,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.SteelIngot,
-        rate: 40,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 40,
+        amount: 4,
       },
     ],
+    duration: 6,
   },
   {
     name: "Empty Fluid Tank",
@@ -4086,15 +4327,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IngotItemNames.AluminumIngot,
-        rate: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.EmptyFluidTank,
-        rate: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Pressure Conversion Cube",
@@ -4102,19 +4344,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.FusedModularFrame,
-        rate: 1,
+        amount: 1,
       },
       {
         name: CommunicationItemNames.RadioControlUnit,
-        rate: 2,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PressureConversionCube,
-        rate: 1,
+        amount: 1,
       },
     ],
+    duration: 60,
   },
   {
     name: "Packaged Water",
@@ -4122,19 +4365,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Water,
-        rate: 60,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedWater,
-        rate: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
   {
     name: "Packaged Alumina Solution",
@@ -4142,19 +4386,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.AluminaSolution,
-        rate: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 120,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedAluminaSolution,
-        rate: 120,
+        amount: 2,
       },
     ],
+    duration: 1,
   },
   {
     name: "Packaged Sulfuric Acid",
@@ -4162,19 +4407,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 40,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedSulfuricAcid,
-        rate: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Packaged Nitric Acid",
@@ -4182,19 +4428,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.NitricAcid,
-        rate: 30,
+        amount: 1,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        rate: 30,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedNitricAcid,
-        rate: 30,
+        amount: 1,
       },
     ],
+    duration: 2,
   },
   {
     name: "Packaged Nitrogen Gas",
@@ -4202,41 +4449,94 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.NitrogenGas,
-        rate: 240,
+        amount: 4,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        rate: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ContainerItemNames.PackagedNitrogenGas,
-        rate: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
 
   // Fuel
+  {
+    name: "Biomass (Leaves)",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: FuelItemNames.Leaves,
+        amount: 10,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.Biomass,
+        amount: 5,
+      },
+    ],
+    duration: 5,
+  },
+  {
+    name: "Biomass (Mycelia)",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: FuelItemNames.Mycelia,
+        amount: 1,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.Biomass,
+        amount: 10,
+      },
+    ],
+    duration: 4,
+  },
+  {
+    name: "Biomass (Wood)",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: FuelItemNames.Wood,
+        amount: 4,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.Biomass,
+        amount: 20,
+      },
+    ],
+    duration: 4,
+  },
   {
     name: "Alternate: Compacted Coal",
     building: BuildingNames.Assembler,
     inputs: [
       {
         name: OreItemNames.Coal,
-        rate: 25,
+        amount: 5,
       },
       {
         name: OreItemNames.Sulfur,
-        rate: 25,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 25,
+        amount: 5,
       },
     ],
+    duration: 12,
   },
   {
     name: "Packaged Oil",
@@ -4244,19 +4544,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.CrudeOil,
-        rate: 30,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 30,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedOil,
-        rate: 30,
+        amount: 2,
       },
     ],
+    duration: 4,
   },
   {
     name: "Packaged Heavy Oil Residue",
@@ -4264,19 +4565,37 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 30,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 30,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedHeavyOilResidue,
-        rate: 30,
+        amount: 2,
       },
     ],
+    duration: 4,
+  },
+  {
+    name: "Solid Biofuel",
+    building: BuildingNames.Constructor,
+    inputs: [
+      {
+        name: FuelItemNames.Biomass,
+        amount: 8,
+      },
+    ],
+    outputs: [
+      {
+        name: FuelItemNames.SolidBioFuel,
+        amount: 4,
+      },
+    ],
+    duration: 4,
   },
   {
     name: "Packaged Fuel",
@@ -4284,19 +4603,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        rate: 40,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedFuel,
-        rate: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Alt.: Diluted Packaged Fuel",
@@ -4304,19 +4624,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 30,
+        amount: 1,
       },
       {
         name: ContainerItemNames.PackagedWater,
-        rate: 60,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedFuel,
-        rate: 60,
+        amount: 2,
       },
     ],
+    duration: 2,
   },
   {
     name: "Packaged Liquid Biofuel",
@@ -4324,19 +4645,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.LiquidBiofuel,
-        rate: 40,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedLiquidBiofuel,
-        rate: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Packaged Turbofuel",
@@ -4344,19 +4666,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        rate: 20,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyCanister,
-        rate: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedTurbofuel,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Packaged Rocket Fuel",
@@ -4364,19 +4687,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.RocketFuel,
-        rate: 120,
+        amount: 2,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        rate: 60,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedRocketFuel,
-        rate: 60,
+        amount: 1,
       },
     ],
+    duration: 1,
   },
   {
     name: "Packaged Ionized Fuel",
@@ -4384,19 +4708,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.IonizedFuel,
-        rate: 80,
+        amount: 4,
       },
       {
         name: ContainerItemNames.EmptyFluidTank,
-        rate: 40,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PackagedIonizedFuel,
-        rate: 40,
+        amount: 2,
       },
     ],
+    duration: 3,
   },
   {
     name: "Uranium Fuel Rod",
@@ -4404,23 +4729,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        rate: 20,
+        amount: 50,
       },
       {
         name: StandardPartItemNames.EncasedIndustrialBeam,
-        rate: 1.2,
+        amount: 3,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 2,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.UraniumFuelRod,
-        rate: 0.4,
+        amount: 1,
       },
     ],
+    duration: 150,
   },
   {
     name: "Alt.: Uranium Fuel Unit",
@@ -4428,27 +4754,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        rate: 20,
+        amount: 100,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 2,
+        amount: 10,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        rate: 0.6,
+        amount: 3,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 2,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.UraniumFuelRod,
-        rate: 0.6,
+        amount: 3,
       },
     ],
+    duration: 300,
   },
   {
     name: "Plutonium Fuel Rod",
@@ -4456,27 +4783,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.EncasedPlutoniumCell,
-        rate: 7.5,
+        amount: 30,
       },
       {
         name: StandardPartItemNames.StealBeam,
-        rate: 4.5,
+        amount: 18,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 1.5,
+        amount: 6,
       },
       {
         name: IndustrialPartItemNames.HeatSink,
-        rate: 2.5,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PlutoniumFuelRod,
-        rate: 0.25,
+        amount: 1,
       },
     ],
+    duration: 240,
   },
   {
     name: "Alt.: Plutonium Fuel Unit",
@@ -4484,19 +4812,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.EncasedPlutoniumCell,
-        rate: 10,
+        amount: 20,
       },
       {
         name: ContainerItemNames.PressureConversionCube,
-        rate: 0.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: FuelItemNames.PlutoniumFuelRod,
-        rate: 0.5,
+        amount: 1,
       },
     ],
+    duration: 120,
   },
 
   // Consumed
@@ -4506,19 +4835,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        rate: 15,
+        amount: 1,
       },
       {
         name: OreItemNames.Sulfur,
-        rate: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.BlackPowder,
-        rate: 30,
+        amount: 2,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Fine Black Powder",
@@ -4526,19 +4856,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Sulfur,
-        rate: 7.5,
+        amount: 1,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 15,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.BlackPowder,
-        rate: 45,
+        amount: 6,
       },
     ],
+    duration: 8,
   },
   {
     name: "Smokeless Powder",
@@ -4546,19 +4877,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ConsumedItemNames.BlackPowder,
-        rate: 20,
+        amount: 2,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        rate: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.SmokelessPowder,
-        rate: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Gas Filter",
@@ -4566,23 +4898,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Fabric,
-        rate: 15,
+        amount: 2,
       },
       {
         name: OreItemNames.Coal,
-        rate: 30,
+        amount: 4,
       },
       {
         name: StandardPartItemNames.IronPlate,
-        rate: 15,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.GasFilter,
-        rate: 7.5,
+        amount: 1,
       },
     ],
+    duration: 8,
   },
   {
     name: "Iodine-Infused Filter",
@@ -4590,23 +4923,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ConsumedItemNames.GasFilter,
-        rate: 3.75,
+        amount: 1,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 30,
+        amount: 8,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 3.75,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.IodineInfusedFilter,
-        rate: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
 
   // Ammo
@@ -4616,15 +4950,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.IronRod,
-        rate: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.IronRebar,
-        rate: 15,
+        amount: 1,
       },
     ],
+    duration: 4,
   },
   {
     name: "Stun Rebar",
@@ -4632,19 +4967,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.IronRebar,
-        rate: 10,
+        amount: 1,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 50,
+        amount: 5,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.StunRebar,
-        rate: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Shatter Rebar",
@@ -4652,19 +4988,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.IronRebar,
-        rate: 10,
+        amount: 2,
       },
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 15,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.ShatterRebar,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Explosive Rebar",
@@ -4672,23 +5009,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.IronRebar,
-        rate: 10,
+        amount: 2,
       },
       {
         name: ConsumedItemNames.SmokelessPowder,
-        rate: 10,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.ExplosiveRebar,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Rifle Ammo",
@@ -4696,19 +5034,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.CopperSheet,
-        rate: 15,
+        amount: 3,
       },
       {
         name: ConsumedItemNames.SmokelessPowder,
-        rate: 10,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.RifleAmmo,
-        rate: 75,
+        amount: 15,
       },
     ],
+    duration: 12,
   },
   {
     name: "Homing Rifle Ammo",
@@ -4716,19 +5055,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.RifleAmmo,
-        rate: 50,
+        amount: 20,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        rate: 2.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.HomingRifleAmmo,
-        rate: 25,
+        amount: 10,
       },
     ],
+    duration: 24,
   },
   {
     name: "Turbo Rifle Ammo",
@@ -4736,23 +5076,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.RifleAmmo,
-        rate: 125,
+        amount: 25,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 15,
+        amount: 3,
       },
       {
         name: FuelItemNames.PackagedTurbofuel,
-        rate: 15,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.TurboRifleAmmo,
-        rate: 250,
+        amount: 50,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Turbo Rifle Ammo",
@@ -4760,23 +5101,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.RifleAmmo,
-        rate: 125,
+        amount: 25,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 15,
+        amount: 3,
       },
       {
         name: LiquidItemNames.Turbofuel,
-        rate: 15,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.TurboRifleAmmo,
-        rate: 250,
+        amount: 50,
       },
     ],
+    duration: 12,
   },
   {
     name: "Nobelisk",
@@ -4784,19 +5126,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ConsumedItemNames.BlackPowder,
-        rate: 20,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.SteelPipe,
-        rate: 20,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.Nobelisk,
-        rate: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Gas Nobelisk",
@@ -4804,19 +5147,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.Nobelisk,
-        rate: 5,
+        amount: 1,
       },
       {
         name: FuelItemNames.Biomass,
-        rate: 50,
+        amount: 10,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.GasNobelisk,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Pulse Nobelisk",
@@ -4824,19 +5168,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.Nobelisk,
-        rate: 5,
+        amount: 5,
       },
       {
         name: CommunicationItemNames.CrystalOscillator,
-        rate: 1,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.PulseNobelisk,
-        rate: 5,
+        amount: 5,
       },
     ],
+    duration: 60,
   },
   {
     name: "Cluster Nobelisk",
@@ -4844,19 +5189,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.Nobelisk,
-        rate: 7.5,
+        amount: 3,
       },
       {
         name: ConsumedItemNames.SmokelessPowder,
-        rate: 10,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.ClusterNobelisk,
-        rate: 2.5,
+        amount: 1,
       },
     ],
+    duration: 24,
   },
   {
     name: "Nuke Nobelisk",
@@ -4864,27 +5210,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: AmmoItemNames.Nobelisk,
-        rate: 2.5,
+        amount: 5,
       },
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        rate: 10,
+        amount: 20,
       },
       {
         name: ConsumedItemNames.SmokelessPowder,
-        rate: 5,
+        amount: 10,
       },
       {
         name: ElectronicItemNames.AILimiter,
-        rate: 3,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: AmmoItemNames.NukeNobelisk,
-        rate: 0.5,
+        amount: 1,
       },
     ],
+    duration: 120,
   },
 
   // Nuclear
@@ -4894,19 +5241,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 6,
+        amount: 3,
       },
       {
         name: ElectronicItemNames.AILimiter,
-        rate: 4,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 4,
+        amount: 2,
       },
     ],
+    duration: 30,
   },
   {
     name: "Alt.: Electromagnetic Connection Rod",
@@ -4914,19 +5262,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 8,
+        amount: 2,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        rate: 4,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 8,
+        amount: 2,
       },
     ],
+    duration: 15,
   },
   {
     name: "Encased Uranium Cell",
@@ -4934,27 +5283,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Uranium,
-        rate: 50,
+        amount: 10,
       },
       {
         name: MineralItemNames.Concrete,
-        rate: 15,
+        amount: 3,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 40,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        rate: 25,
+        amount: 5,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 10,
+        amount: 2,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Infused Uranium Cell",
@@ -4962,27 +5312,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Uranium,
-        rate: 25,
+        amount: 5,
       },
       {
         name: MineralItemNames.Silica,
-        rate: 15,
+        amount: 3,
       },
       {
         name: OreItemNames.Sulfur,
-        rate: 25,
+        amount: 5,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        rate: 75,
+        amount: 15,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.EncasedUraniumCell,
-        rate: 20,
+        amount: 4,
       },
     ],
+    duration: 12,
   },
   {
     name: "Non-Fissile Uranium",
@@ -4990,31 +5341,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: WasteItemNames.UraniumWaste,
-        rate: 37.5,
+        amount: 15,
       },
       {
         name: MineralItemNames.Silica,
-        rate: 25,
+        amount: 10,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        rate: 15,
+        amount: 6,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 15,
+        amount: 6,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.NonFissileUranium,
-        rate: 50,
+        amount: 20,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 15,
+        amount: 6,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Fertile Uranium",
@@ -5022,31 +5374,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Uranium,
-        rate: 25,
+        amount: 5,
       },
       {
         name: WasteItemNames.UraniumWaste,
-        rate: 25,
+        amount: 5,
       },
       {
         name: LiquidItemNames.NitricAcid,
-        rate: 15,
+        amount: 3,
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        rate: 25,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.NonFissileUranium,
-        rate: 100,
+        amount: 20,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 40,
+        amount: 8,
       },
     ],
+    duration: 12,
   },
   {
     name: "Plutonium Pellet",
@@ -5054,19 +5407,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.NonFissileUranium,
-        rate: 100,
+        amount: 100,
       },
       {
         name: WasteItemNames.UraniumWaste,
-        rate: 25,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.PlutoniumPellet,
-        rate: 30,
+        amount: 30,
       },
     ],
+    duration: 60,
   },
   {
     name: "Encased Plutonium Cell",
@@ -5074,19 +5428,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.PlutoniumPellet,
-        rate: 10,
+        amount: 2,
       },
       {
         name: MineralItemNames.Concrete,
-        rate: 20,
+        amount: 4,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.EncasedPlutoniumCell,
-        rate: 5,
+        amount: 1,
       },
     ],
+    duration: 12,
   },
   {
     name: "Alt.: Instant Plutonium Cell",
@@ -5094,19 +5449,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.NonFissileUranium,
-        rate: 75,
+        amount: 150,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        rate: 10,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.EncasedPlutoniumCell,
-        rate: 10,
+        amount: 20,
       },
     ],
+    duration: 120,
   },
   {
     name: "Ficsonium",
@@ -5114,23 +5470,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: WasteItemNames.PlutoniumWaste,
-        rate: 10,
+        amount: 1,
       },
       {
         name: QuantumTechnologyItemNames.SingularityCell,
-        rate: 10,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 200,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.Ficsonium,
-        rate: 10,
+        amount: 1,
       },
     ],
+    duration: 6,
   },
   {
     name: "Ficsonium Fuel Rod",
@@ -5138,31 +5495,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: NuclearItemNames.Ficsonium,
-        rate: 5,
+        amount: 2,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 5,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.FicsiteTrigon,
-        rate: 100,
+        amount: 40,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        rate: 50,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: NuclearItemNames.FicsoniumFuelRod,
-        rate: 2.5,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 50,
+        amount: 20,
       },
     ],
+    duration: 24,
   },
 
   // Waste
@@ -5172,15 +5530,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.UraniumFuelRod,
-        rate: 0.2,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: WasteItemNames.UraniumWaste,
-        rate: 10,
+        amount: 50,
       }
     ],
+    duration: 300,
   },
   {
     name: "Plutonium Waste",
@@ -5188,15 +5547,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.PlutoniumFuelRod,
-        rate: 0.1,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: WasteItemNames.PlutoniumWaste,
-        rate: 1,
+        amount: 10,
       },
     ],
+    duration: 600,
   },
 
   // Special
@@ -5206,31 +5566,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: QuantumTechnologyItemNames.TimeCrystal,
-        rate: 10,
+        amount: 2,
       },
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        rate: 10,
+        amount: 2,
       },
       {
         name: MineralItemNames.QuartzCrystal,
-        rate: 60,
+        amount: 12,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        rate: 60,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.PowerShard,
-        rate: 5,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 60,
+        amount: 12,
       },
     ],
+    duration: 12,
   },
   {
     name: "Smart Plating",
@@ -5238,19 +5599,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 2,
+        amount: 1,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 2,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.SmartPlating,
-        rate: 2,
+        amount: 1,
       },
     ],
+    duration: 30,
   },
   {
     name: "Alt.: Plastic Smart Plating",
@@ -5258,23 +5620,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ReinforcedIronPlate,
-        rate: 2.5,
+        amount: 1,
       },
       {
         name: IndustrialPartItemNames.Rotor,
-        rate: 2.5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.Plastic,
-        rate: 7.5,
+        amount: 3,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.SmartPlating,
-        rate: 5,
+        amount: 2,
       },
     ],
+    duration: 24,
   },
   {
     name: "Versatile Framework",
@@ -5282,19 +5645,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        rate: 2.5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.StealBeam,
-        rate: 30,
+        amount: 12,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.VersatileFramework,
-        rate: 5,
+        amount: 2,
       },
     ],
+    duration: 16,
   },
   {
     name: "Alt.: Flexible Framework",
@@ -5302,23 +5666,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.ModularFrame,
-        rate: 3.75,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.StealBeam,
-        rate: 22.5,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 30,
+        amount: 8,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.VersatileFramework,
-        rate: 7.5,
+        amount: 2,
       },
     ],
+    duration: 16,
   },
   {
     name: "Automated Wiring",
@@ -5326,19 +5691,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 2.5,
+        amount: 1,
       },
       {
         name: ElectronicItemNames.Cable,
-        rate: 50,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.AutomatedWiring,
-        rate: 2.5,
+        amount: 1,
       },
     ],
+    duration: 24,
   },
   {
     name: "Alt.: Automated Speed Wiring",
@@ -5346,23 +5712,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Stator,
-        rate: 3.75,
+        amount: 2,
       },
       {
         name: ElectronicItemNames.Wire,
-        rate: 75,
+        amount: 40,
       },
       {
         name: ElectronicItemNames.HighSpeedConnector,
-        rate: 1.875,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.AutomatedWiring,
-        rate: 7.5,
+        amount: 4,
       },
     ],
+    duration: 32,
   },
   {
     name: "Modular Engine",
@@ -5370,23 +5737,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: IndustrialPartItemNames.Motor,
-        rate: 2,
+        amount: 2,
       },
       {
         name: StandardPartItemNames.Rubber,
-        rate: 15,
+        amount: 15,
       },
       {
         name: SpecialItemNames.SmartPlating,
-        rate: 2,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.ModularEngine,
-        rate: 1,
+        amount: 1,
       },
     ],
+    duration: 60,
   },
   {
     name: "Adaptive Control Unit",
@@ -5394,27 +5762,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.AutomatedWiring,
-        rate: 5,
+        amount: 5,
       },
       {
         name: ElectronicItemNames.CircuitBoard,
-        rate: 5,
+        amount: 5,
       },
       {
         name: StandardPartItemNames.HeavyModularFrame,
-        rate: 1,
+        amount: 1,
       },
       {
         name: CommunicationItemNames.Computer,
-        rate: 2,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.AdaptiveControlUnit,
-        rate: 1,
+        amount: 1,
       },
     ],
+    duration: 60,
   },
   {
     name: "Assembly Director System",
@@ -5422,19 +5791,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.AdaptiveControlUnit,
-        rate: 1.5,
+        amount: 2
       },
       {
         name: CommunicationItemNames.Supercomputer,
-        rate: 0.75,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.AssemblyDirectorSystem,
-        rate: 0.75,
+        amount: 1,
       },
     ],
+    duration: 80,
   },
   {
     name: "Magnetic Field Generator",
@@ -5442,19 +5812,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.VersatileFramework,
-        rate: 2.5,
+        amount: 5,
       },
       {
         name: NuclearItemNames.ElectromagneticControlRod,
-        rate: 1,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.MagneticFieldGenerator,
-        rate: 1,
+        amount: 2,
       },
     ],
+    duration: 120,
   },
   {
     name: "Thermal Propulsion Rocket",
@@ -5462,27 +5833,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.ModularEngine,
-        rate: 2.5,
+        amount: 5,
       },
       {
         name: IndustrialPartItemNames.TurboMotor,
-        rate: 1,
+        amount: 2,
       },
       {
         name: IndustrialPartItemNames.CoolingSystem,
-        rate: 3,
+        amount: 6,
       },
       {
         name: StandardPartItemNames.FusedModularFrame,
-        rate: 1,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.ThermalPropulsionRocket,
-        rate: 1,
+        amount: 2,
       },
     ],
+    duration: 120,
   },
   {
     name: "Nuclear Pasta",
@@ -5490,19 +5862,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.CopperPowder,
-        rate: 100,
+        amount: 200,
       },
       {
         name: ContainerItemNames.PressureConversionCube,
-        rate: 0.5,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.NuclearPasta,
-        rate: 0.5,
+        amount: 1,
       },
     ],
+    duration: 120,
   },
   {
     name: "Biochemical Sculptor",
@@ -5510,23 +5883,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.AssemblyDirectorSystem,
-        rate: 0.5,
+        amount: 1,
       },
       {
         name: StandardPartItemNames.FicsiteTrigon,
-        rate: 40,
+        amount: 80,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 10,
+        amount: 20,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.BiochemicalSculptor,
-        rate: 2,
+        amount: 4,
       },
     ],
+    duration: 120,
   },
   {
     name: "Ballistic Warp Drive",
@@ -5534,27 +5908,28 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.ThermalPropulsionRocket,
-        rate: 1,
+        amount: 1,
       },
       {
         name: QuantumTechnologyItemNames.SingularityCell,
-        rate: 5,
+        amount: 5,
       },
       {
         name: CommunicationItemNames.SuperpositionOscillator,
-        rate: 2,
+        amount: 2,
       },
       {
         name: QuantumTechnologyItemNames.DarkMatterCrystal,
-        rate: 40,
+        amount: 40,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.BallisticWarpDrive,
-        rate: 1,
+        amount: 1,
       },
     ],
+    duration: 60,
   },
   {
     name: "AI Expansion Server",
@@ -5562,31 +5937,32 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: SpecialItemNames.MagneticFieldGenerator,
-        rate: 4,
+        amount: 1,
       },
       {
         name: QuantumTechnologyItemNames.NeuralQuantumProcessor,
-        rate: 4,
+        amount: 1,
       },
       {
         name: CommunicationItemNames.SuperpositionOscillator,
-        rate: 4,
+        amount: 1,
       },
       {
         name: GasItemNames.ExcitedPhotonicMatter,
-        rate: 100,
+        amount: 25,
       },
     ],
     outputs: [
       {
         name: SpecialItemNames.AIExpansionServer,
-        rate: 4,
+        amount: 1,
       },
       {
         name: GasItemNames.DarkMatterResidue,
-        rate: 100,
+        amount: 25,
       },
     ],
+    duration: 15,
   },
 
   // Coal and Fuel generators
@@ -5596,15 +5972,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: FuelItemNames.CompactedCoal,
-        rate: 50/7,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 45,
+        amount: 6.3,
       },
     ],
     outputs: [
     ],
+    duration: 8.4,
   },
   {
     name: "Power (Coal)",
@@ -5612,15 +5989,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        rate: 15,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 45,
+        amount: 3,
       },
     ],
     outputs: [
     ],
+    duration: 4,
   },
   {
     name: "Power (Petroleum Coke)",
@@ -5628,15 +6006,16 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: MineralItemNames.PetroleumCoke,
-        rate: 25,
+        amount: 1,
       },
       {
         name: LiquidItemNames.Water,
-        rate: 45,
+        amount: 1.8,
       },
     ],
     outputs: [
     ],
+    duration: 2.4,
   },
   {
     name: "Power (Ionized Fuel)",
@@ -5644,11 +6023,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.IonizedFuel,
-        rate: 3,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 20,
   },
   {
     name: "Power (Rocket Fuel)",
@@ -5656,11 +6036,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: GasItemNames.RocketFuel,
-        rate: 60/14.4,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 14.4,
   },
   {
     name: "Power (Turbofuel)",
@@ -5668,11 +6049,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Turbofuel,
-        rate: 7.5,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 8,
   },
   {
     name: "Power (Liquid Biofuel)",
@@ -5680,11 +6062,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.LiquidBiofuel,
-        rate: 20,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 3,
   },
   {
     name: "Power (Fuel)",
@@ -5692,11 +6075,12 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: LiquidItemNames.Fuel,
-        rate: 20,
+        amount: 1,
       },
     ],
     outputs: [
     ],
+    duration: 3,
   },
 ];
 
