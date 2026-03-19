@@ -4725,19 +4725,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Coal,
-        amount: 15,
+        amount: 1,
       },
       {
         name: OreItemNames.Sulfur,
-        amount: 15,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.BlackPowder,
-        amount: 30,
+        amount: 2,
       },
     ],
+    duration: 4,
   },
   {
     name: "Alt.: Fine Black Powder",
@@ -4745,19 +4746,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: OreItemNames.Sulfur,
-        amount: 7.5,
+        amount: 1,
       },
       {
         name: FuelItemNames.CompactedCoal,
-        amount: 15,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.BlackPowder,
-        amount: 45,
+        amount: 6,
       },
     ],
+    duration: 8,
   },
   {
     name: "Smokeless Powder",
@@ -4765,19 +4767,20 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ConsumedItemNames.BlackPowder,
-        amount: 20,
+        amount: 2,
       },
       {
         name: LiquidItemNames.HeavyOilResidue,
-        amount: 10,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.SmokelessPowder,
-        amount: 20,
+        amount: 2,
       },
     ],
+    duration: 6,
   },
   {
     name: "Gas Filter",
@@ -4785,23 +4788,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: StandardPartItemNames.Fabric,
-        amount: 15,
+        amount: 2,
       },
       {
         name: OreItemNames.Coal,
-        amount: 30,
+        amount: 4,
       },
       {
         name: StandardPartItemNames.IronPlate,
-        amount: 15,
+        amount: 2,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.GasFilter,
-        amount: 7.5,
+        amount: 1,
       },
     ],
+    duration: 8,
   },
   {
     name: "Iodine-Infused Filter",
@@ -4809,23 +4813,24 @@ export const Recipes: Recipe[] = [
     inputs: [
       {
         name: ConsumedItemNames.GasFilter,
-        amount: 3.75,
+        amount: 1,
       },
       {
         name: ElectronicItemNames.Quickwire,
-        amount: 30,
+        amount: 8,
       },
       {
         name: StandardPartItemNames.AluminumCasing,
-        amount: 3.75,
+        amount: 1,
       },
     ],
     outputs: [
       {
         name: ConsumedItemNames.IodineInfusedFilter,
-        amount: 3.75,
+        amount: 1,
       },
     ],
+    duration: 16,
   },
 
   // Ammo
