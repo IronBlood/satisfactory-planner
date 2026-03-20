@@ -2,17 +2,74 @@ import {
   createContext,
   useContext,
   useMemo,
-  useState,
+  useReducer,
   type ReactNode,
 } from "react";
 
-import {
-  type AppFlow,
-  type MultiFlow,
-  type PowerConsumptionMultiplier,
+import type {
+  AppFlow,
+  FlowEntry,
+  MultiFlow,
+  PowerConsumptionMultiplier,
 } from "./types";
 
 const CURR_VER = 2;
+
+type DataAction =
+  | { type: "importData"; data: MultiFlow }
+  | { type: "setFilename"; filename: string }
+  | { type: "addFlow"; flow?: FlowEntry }
+  | { type: "deleteFlow"; index: number }
+  | { type: "renameFlow"; index: number; name: string }
+  | { type: "replaceFlow"; index: number; flow: AppFlow }
+  ;
+
+function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
+  switch (action.type) {
+    case "importData":
+      upgradeData(action.data);
+      return action.data;
+    case "setFilename":
+      return {
+        ...state,
+        filename: action.filename,
+      };
+    case "addFlow":
+      return {
+        ...state,
+        flows: [
+          ...state.flows,
+          action.flow ?? getDefaultFlow(),
+        ],
+      };
+    case "deleteFlow":
+      return {
+        ...state,
+        flows: state.flows.filter((_, idx) => idx !== action.index),
+      };
+    case "renameFlow":
+      return {
+        ...state,
+        flows: state.flows.map((entry, idx) =>
+          idx === action.index
+            ? { ...entry, name: action.name }
+            : entry
+        ),
+      };
+    case "replaceFlow":
+      return {
+        ...state,
+        flows: state.flows.map((entry, idx) =>
+          idx === action.index
+            ? { ...entry, flow: action.flow }
+            : entry
+        ),
+      };
+
+    default:
+      return state;
+  }
+}
 
 export const PowerConsumptionMultipliers: PowerConsumptionMultiplier[] = [
   0.25,
@@ -23,10 +80,21 @@ export const PowerConsumptionMultipliers: PowerConsumptionMultiplier[] = [
   5,
 ] as const;
 
-const DataContext = createContext<{
+type RenameFlowInput = { index: number; name: string };
+type ReplaceFlowInput = { index: number; flow: AppFlow };
+type DataContextValue = {
   data: MultiFlow;
-  setData: (data: MultiFlow) => void;
-} | null>(null);
+  importData: (data: MultiFlow) => void;
+  addFlow: (flow?: FlowEntry) => void;
+  deleteFlow: (index: number) => void;
+  renameFlow: (data: RenameFlowInput) => void;
+  replaceFlow: (data: ReplaceFlowInput) => void;
+  /** This API share the same flow of `replaceFlow` but doesn't commit the change */
+  previewReplaceFlow: (data: ReplaceFlowInput) => MultiFlow;
+  setFilename: (filename: string) => void;
+};
+
+const DataContext = createContext<DataContextValue | null>(null);
 
 const DEFAULT_FLOW: {
   name: string;
@@ -49,7 +117,7 @@ export function getDefaultFlow() {
 }
 
 export function DataProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<MultiFlow>({
+  const [data, dispatch] = useReducer(dataReducer, {
     version: CURR_VER,
     filename: "",
     powerConsumptionMultiplier: 1,
@@ -58,16 +126,15 @@ export function DataProvider({ children }: { children: ReactNode }) {
     ],
   });
 
-  const value = useMemo(() => ({
+  const value: DataContextValue = useMemo(() => ({
     data,
-    setData: ((data: MultiFlow) => {
-      if (data.version !== CURR_VER) {
-        // TODO
-        throw new Error("data version mismatch");
-      }
-
-      setData(data);
-    }),
+    importData: (data) => dispatch({ type: "importData", data }),
+    addFlow: (flow) => dispatch({ type: "addFlow", flow }),
+    deleteFlow: (index) => dispatch({ type: "deleteFlow", index }),
+    renameFlow: ({ index, name }) => dispatch({ type: "renameFlow", index, name }),
+    replaceFlow: ({ index, flow }) => dispatch({ type: "replaceFlow", index, flow }),
+    previewReplaceFlow: ({ index, flow }) => dataReducer(data, { type: "replaceFlow", index, flow }),
+    setFilename: (filename) => dispatch({ type: "setFilename", filename }),
   }), [data]);
 
   return (

@@ -43,13 +43,15 @@ export type PowerConsumptionMultiplier =
   | 5
   ;
 
+export type FlowEntry = {
+  name: string;
+  flow: AppFlow;
+};
+
 export type MultiFlow = {
   /** Has to be an integer */
   version: number;
   filename: string;
   powerConsumptionMultiplier: PowerConsumptionMultiplier;
-  flows: Array<{
-    name: string;
-    flow: AppFlow;
-  }>;
+  flows: FlowEntry[];
 };

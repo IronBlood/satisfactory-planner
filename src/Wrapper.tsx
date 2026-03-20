@@ -174,12 +174,21 @@ function Wrapper() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isRenamingPlan, setRenamingPlan] = useState(false);
   const [isRenamingFile, setRenamingFile] = useState(false);
-  const [planName, setPlanName] = useState("");
-  const [fileName, setFileName] = useState("");
+  const [planNameInput, setPlanNameInput] = useState("");
+  const [fileNameInput, setFileNameInput] = useState("");
   const [showGABanner, setShowGABanner] = useState(false);
   const [gaChoice, setGaChoice] = useState<boolean>(false);
 
-  const { data, setData } = useDataContext();
+  const {
+    data,
+    importData,
+    addFlow,
+    deleteFlow: _deleteFlow,
+    renameFlow,
+    replaceFlow,
+    previewReplaceFlow,
+    setFilename,
+  } = useDataContext();
 
   useEffect(() => {
     const raw = localStorage.getItem(GA_KEY);
@@ -213,15 +222,13 @@ function Wrapper() {
       throw new Error("cannot get a snapshot");
     }
 
-    const nextData = {
-      ...data,
-      flows: data.flows.map((flow, idx) => idx !== activeIdx
-        ? flow
-        : { ...flow, flow: snapshot }
-      ),
+    const actionData = {
+      index: activeIdx,
+      flow: snapshot,
     };
 
-    setData(nextData);
+    const nextData = previewReplaceFlow(actionData);
+    replaceFlow(actionData);
 
     const stripedData = stripData(nextData);
     const json = JSON.stringify(stripedData, null, 2);
@@ -240,11 +247,11 @@ function Wrapper() {
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-  }, [data, activeIdx, actionsRef, setData]);
+  }, [data, activeIdx, actionsRef, previewReplaceFlow, replaceFlow]);
 
   const importFlow = useCallback(() => {
     fileInputRef.current?.click();
-  }, [setData]);
+  }, []);
 
   const onPickFlowFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -264,15 +271,16 @@ function Wrapper() {
 
         upgradeData(json);
         // TODO validate
-        setData(json);
+        importData(json);
         _setActiveIdx(0);
+        actionsRef.current.setActiveFlow?.(json.flows[0].flow);
       }
     } catch (err) {
       console.error("Failed to load flow json", err);
     } finally {
       e.target.value = "";
     }
-  }, []);
+  }, [upgradeData, importData, _setActiveIdx, actionsRef]);
 
   const setActiveIdx = useCallback((idx: number) => {
     const snapshot = actionsRef.current.syncActiveFlow?.();
@@ -280,133 +288,84 @@ function Wrapper() {
       throw new Error("cannot get a snapshot");
     }
 
-    const nextData = {
-      ...data,
-      flows: data.flows.map((flow, idx) => idx !== activeIdx
-        ? flow
-        : { ...flow, flow: snapshot }
-      ),
-    };
-
-    setData(nextData);
+    replaceFlow({
+      index: activeIdx,
+      flow: snapshot,
+    });
 
     if (idx < 0) {
       idx = 0;
     }
 
-    if (idx > data.flows.length) {
+    if (idx >= data.flows.length) {
       idx = data.flows.length - 1;
     }
 
     _setActiveIdx(idx | 0);
-  }, [activeIdx, _setActiveIdx, data, setData]);
-
-  const addFlow = useCallback(() => {
-    setData({
-      ...data,
-      flows: [
-        ...data.flows,
-        getDefaultFlow(),
-      ],
-    });
-  }, [data, setData]);
+    actionsRef.current.setActiveFlow?.(data.flows[idx].flow);
+  }, [activeIdx, _setActiveIdx, data, replaceFlow, actionsRef]);
 
   const deleteFlow = useCallback(() => {
     if (data.flows.length <= 1) {
       return;
     }
 
-    const idx = activeIdx;
-    setActiveIdx(0);
-
-    setData({
-      ...data,
-      flows: [
-        ...data.flows.slice(0, idx),
-        ...data.flows.slice(idx + 1),
-      ],
-    });
-  }, [data, activeIdx, setData, setActiveIdx]);
+    const nextFlow = data.flows[activeIdx === 0 ? 1 : 0].flow;
+    _setActiveIdx(0);
+    actionsRef.current.setActiveFlow?.(nextFlow);
+    _deleteFlow(activeIdx);
+  }, [data, activeIdx, _setActiveIdx, _deleteFlow, actionsRef]);
 
   const selectedFlowName = useMemo(() => list[activeIdx], [list, activeIdx]);
-  const activeFlow = useMemo(() => data.flows[activeIdx].flow, [data, activeIdx]);
 
   const enterRenamingPlan = useCallback(() => {
     setRenamingPlan(true);
-    setPlanName(selectedFlowName.name);
-  }, [setRenamingPlan, selectedFlowName, setPlanName]);
+    setPlanNameInput(selectedFlowName.name);
+  }, [setRenamingPlan, selectedFlowName, setPlanNameInput]);
 
   const enterRenamingFile = useCallback(() => {
     setRenamingFile(true);
-    setFileName(data.filename);
+    setFileNameInput(data.filename);
   }, [setRenamingFile, data]);
 
   const exitRenamingPlan = useCallback(() => {
     setRenamingPlan(false);
-    setPlanName("");
-  }, [setRenamingPlan, setPlanName]);
+    setPlanNameInput("");
+  }, [setRenamingPlan, setPlanNameInput]);
 
   const exitRenamingFile = useCallback(() => {
     setRenamingFile(false);
-    setFileName("");
-  }, [setRenamingFile, setFileName]);
+    setFileNameInput("");
+  }, [setRenamingFile, setFileNameInput]);
 
   const acceptRenamingPlan = useCallback(() => {
-    if (planName.length === 0) {
+    if (planNameInput.length === 0) {
       // TODO
       console.error("shouldn't be empty");
       setRenamingPlan(false);
       return;
     }
 
-    const snapshot = actionsRef.current.syncActiveFlow?.();
-    if (!snapshot) {
-      throw new Error("cannot get a snapshot");
-    }
-
-    setData({
-      ...data,
-      flows: data.flows.map((flow, idx) => idx === activeIdx
-        ? {
-          ...flow,
-          name: planName,
-          flow: snapshot,
-        }
-        : flow
-      ),
+    renameFlow({
+      name: planNameInput,
+      index: activeIdx,
     });
 
     setRenamingPlan(false);
-    setPlanName("");
-  }, [data, activeIdx, planName, setRenamingPlan, setPlanName, setData]);
+    setPlanNameInput("");
+  }, [activeIdx, planNameInput, setRenamingPlan, setPlanNameInput, renameFlow]);
 
   const acceptRenamingFile = useCallback(() => {
-    if (isInvalidFilename(fileName)) {
+    if (isInvalidFilename(fileNameInput)) {
       console.error("invalid filename");
       setRenamingFile(false);
       return;
     }
 
-    const snapshot = actionsRef.current.syncActiveFlow?.();
-    if (!snapshot) {
-      throw new Error("cannot get a snapshot");
-    }
-
-    setData({
-      ...data,
-      flows: data.flows.map((flow, idx) => idx === activeIdx
-        ? {
-          ...flow,
-          flow: snapshot,
-        }
-        : flow
-      ),
-      filename: fileName,
-    });
-
+    setFilename(fileNameInput);
     setRenamingFile(false);
-    setFileName("");
-  }, [setData, data, fileName, activeIdx, setRenamingFile, setFileName]);
+    setFileNameInput("");
+  }, [fileNameInput, setRenamingFile, setFileNameInput, setFilename]);
 
   return (
     <div className="h-screen w-screen flex flex-col">
@@ -446,7 +405,7 @@ function Wrapper() {
             >
               <IconButton
                 label="Add a plan"
-                onClick={addFlow}
+                onClick={() => addFlow()}
                 className="w-5 h-5"
               >
                 <PlusIcon />
@@ -477,21 +436,21 @@ function Wrapper() {
           </div>}
         {isRenamingPlan && (
           <NameEditor
-            value={planName}
-            onChange={(name) => setPlanName(name)}
+            value={planNameInput}
+            onChange={(name) => setPlanNameInput(name)}
             placeholder="your next awesome plan"
             accept={acceptRenamingPlan}
-            isDisabled={planName.length === 0}
+            isDisabled={planNameInput.length === 0}
             exit={exitRenamingPlan}
           />
         )}
         {isRenamingFile && (
           <NameEditor
-            value={fileName}
-            onChange={(name) => setFileName(name)}
+            value={fileNameInput}
+            onChange={(name) => setFileNameInput(name)}
             placeholder="filename"
             accept={acceptRenamingFile}
-            isDisabled={isInvalidFilename(fileName)}
+            isDisabled={isInvalidFilename(fileNameInput)}
             exit={exitRenamingFile}
           />
         )}
@@ -557,7 +516,6 @@ function Wrapper() {
         <Suspense fallback={null}>
           <App
             onActionsReady={(a) => { actionsRef.current = a; }}
-            activeFlow={activeFlow}
           />
         </Suspense>
       </ReactFlowProvider>
