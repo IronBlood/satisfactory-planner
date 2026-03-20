@@ -22,6 +22,7 @@ type DataAction =
   | { type: "deleteFlow"; index: number }
   | { type: "renameFlow"; index: number; name: string }
   | { type: "replaceFlow"; index: number; flow: AppFlow }
+  | { type: "setPowerConsumptionMultiplier"; multiplier: PowerConsumptionMultiplier }
   ;
 
 function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
@@ -65,6 +66,11 @@ function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
             : entry
         ),
       };
+    case "setPowerConsumptionMultiplier":
+      return {
+        ...state,
+        powerConsumptionMultiplier: action.multiplier,
+      };
 
     default:
       return state;
@@ -92,6 +98,7 @@ type DataContextValue = {
   /** This API share the same flow of `replaceFlow` but doesn't commit the change */
   previewReplaceFlow: (data: ReplaceFlowInput) => MultiFlow;
   setFilename: (filename: string) => void;
+  setPowerConsumptionMultiplier: (multiplier: PowerConsumptionMultiplier) => void;
 };
 
 const DataContext = createContext<DataContextValue | null>(null);
@@ -135,6 +142,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
     replaceFlow: ({ index, flow }) => dispatch({ type: "replaceFlow", index, flow }),
     previewReplaceFlow: ({ index, flow }) => dataReducer(data, { type: "replaceFlow", index, flow }),
     setFilename: (filename) => dispatch({ type: "setFilename", filename }),
+    setPowerConsumptionMultiplier: (multiplier) => dispatch({ type: "setPowerConsumptionMultiplier", multiplier }),
   }), [data]);
 
   return (
