@@ -215,5 +215,6 @@ export function upgradeData(data: Partial<MultiFlow> & {
   if (data.version === 1) {
     data.version = 2;
     data.powerConsumptionMultiplier = 1;
+    data.partsCostMultiplier = 1;
   }
 }
