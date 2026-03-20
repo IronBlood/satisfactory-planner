@@ -7,6 +7,10 @@ import {
 } from "@/data/recipes";
 import OutputImage from "@/components/OutputImage";
 import { useDataContext } from "@/DataProvider";
+import {
+  BuildingNames,
+  type BuildingName,
+} from "@/data/buildings";
 
 type RecipeViewType = {
   output_name: string;
@@ -34,6 +38,12 @@ export default function RecipeView({
   const isResourceOutput = viewType === "source";
   const isPassthrough = viewType === "passthrough";
   const r = recipe ? getRecipeByName(recipe) : null;
+  const shouldApplyMultiplier = r
+    ? !([
+      BuildingNames.CoalPoweredGenerator,
+      BuildingNames.FuelPoweredGenerator,
+    ] as BuildingName[]).includes(r.building)
+    : false;
   const {
     data,
   } = useDataContext();
@@ -101,7 +111,7 @@ export default function RecipeView({
                     className="aspect-square w-6"
                     src={getItemImageByName(i.name)}
                   />
-                  <span className="ml-1">{getCostByMultiplier(i.amount, data.partsCostMultiplier) * cycles_per_minute}</span>
+                  <span className="ml-1">{(shouldApplyMultiplier ? getCostByMultiplier(i.amount, data.partsCostMultiplier) : i.amount) * cycles_per_minute}</span>
                 </div>
               ))}
             </div>

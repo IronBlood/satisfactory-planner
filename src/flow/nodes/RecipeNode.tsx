@@ -15,6 +15,7 @@ import {
 import {
   BuildingNames,
   Buildings,
+  type BuildingName,
 } from "@/data/buildings";
 import NumericInput from "@/components/NumericInput";
 import {
@@ -47,6 +48,10 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
   const { recipe } = props.data;
   const cycle_per_min = 60 / recipe.duration;
   const building = Buildings[recipe.building];
+  const shouldApplyMultiplier = !([
+    BuildingNames.CoalPoweredGenerator,
+    BuildingNames.FuelPoweredGenerator,
+  ] as BuildingName[]).includes(recipe.building);
   return (
     <BaseNode
       isLocked={props.data.isLocked}
@@ -60,7 +65,7 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
             handleType="target"
             name={rate.name}
             position={Position.Top}
-            value={getCostByMultiplier(rate.amount, data.partsCostMultiplier) * cycle_per_min * props.data.count}
+            value={(shouldApplyMultiplier ? getCostByMultiplier(rate.amount, data.partsCostMultiplier) : rate.amount) * cycle_per_min * props.data.count}
             isLocked={props.data.isLocked}
             onCommit={(next) => setCount(next / rate.amount / cycle_per_min)}
           />
