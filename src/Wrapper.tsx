@@ -266,6 +266,7 @@ function Wrapper() {
         // TODO validate
         setData(json);
         _setActiveIdx(0);
+        actionsRef.current.setActiveFlow?.(json.flows[0].flow);
       }
     } catch (err) {
       console.error("Failed to load flow json", err);
