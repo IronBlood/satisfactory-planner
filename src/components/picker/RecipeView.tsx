@@ -3,8 +3,10 @@ import {
 } from "@/data/items";
 import {
   getRecipeByName,
+  getCostByMultiplier,
 } from "@/data/recipes";
 import OutputImage from "@/components/OutputImage";
+import { useDataContext } from "@/DataProvider";
 
 type RecipeViewType = {
   output_name: string;
@@ -32,6 +34,9 @@ export default function RecipeView({
   const isResourceOutput = viewType === "source";
   const isPassthrough = viewType === "passthrough";
   const r = recipe ? getRecipeByName(recipe) : null;
+  const {
+    data,
+  } = useDataContext();
   const outputImage = (isResourceOutput || isPassthrough)
     ? <img
       src={image}
@@ -96,7 +101,7 @@ export default function RecipeView({
                     className="aspect-square w-6"
                     src={getItemImageByName(i.name)}
                   />
-                  <span className="ml-1">{i.amount * cycles_per_minute}</span>
+                  <span className="ml-1">{getCostByMultiplier(i.amount, data.partsCostMultiplier) * cycles_per_minute}</span>
                 </div>
               ))}
             </div>

@@ -9,6 +9,7 @@ import {
   type NodeProps,
 } from "@xyflow/react";
 import {
+  getCostByMultiplier,
   type Recipe,
 } from "@/data/recipes";
 import {
@@ -59,7 +60,7 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
             handleType="target"
             name={rate.name}
             position={Position.Top}
-            value={rate.amount * cycle_per_min * props.data.count}
+            value={getCostByMultiplier(rate.amount, data.partsCostMultiplier) * cycle_per_min * props.data.count}
             isLocked={props.data.isLocked}
             onCommit={(next) => setCount(next / rate.amount / cycle_per_min)}
           />
