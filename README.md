@@ -34,6 +34,7 @@ These features differ:
   - Green means the flow is balanced.
 - Supports locking node position and rate values.
 - Supports rotating passthrough nodes.
+- **[EXPERIMENTAL 1.2]** Supports Power Consumption Multiplier and Recipe Parts Cost Multiplier.
 
 ## Running Locally
 
