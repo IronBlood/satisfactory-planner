@@ -13,6 +13,8 @@ import type {
   PartsCostMultiplier,
   PowerConsumptionMultiplier,
 } from "./types";
+import { AppNodeTypes } from "./flow/constants";
+import type { Recipe } from "./data/recipes";
 
 const CURR_VER = 2;
 
@@ -216,5 +218,15 @@ export function upgradeData(data: Partial<MultiFlow> & {
     data.version = 2;
     data.powerConsumptionMultiplier = 1;
     data.partsCostMultiplier = 1;
+
+    for (const entry of data.flows!) {
+      for (const node of entry.flow.nodes) {
+        if (node.type !== AppNodeTypes.Recipe) {
+          continue;
+        }
+
+        node.data.recipe = (node.data.recipe as unknown as Recipe).name;
+      }
+    }
   }
 }
