@@ -10,6 +10,7 @@ import type {
   AppFlow,
   FlowEntry,
   MultiFlow,
+  PartsCostMultiplier,
   PowerConsumptionMultiplier,
 } from "./types";
 
@@ -23,6 +24,7 @@ type DataAction =
   | { type: "renameFlow"; index: number; name: string }
   | { type: "replaceFlow"; index: number; flow: AppFlow }
   | { type: "setPowerConsumptionMultiplier"; multiplier: PowerConsumptionMultiplier }
+  | { type: "setPartsCostMultiplier"; multiplier: PartsCostMultiplier }
   ;
 
 function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
@@ -71,6 +73,11 @@ function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
         ...state,
         powerConsumptionMultiplier: action.multiplier,
       };
+    case "setPartsCostMultiplier":
+      return {
+        ...state,
+        partsCostMultiplier: action.multiplier,
+      };
 
     default:
       return state;
@@ -86,6 +93,17 @@ export const PowerConsumptionMultipliers: PowerConsumptionMultiplier[] = [
   5,
 ] as const;
 
+export const PartsCostMultipliers: PartsCostMultiplier[] = [
+  0.25,
+  0.5,
+  0.75,
+  1,
+  1.25,
+  1.5,
+  1.75,
+  2,
+] as const;
+
 type RenameFlowInput = { index: number; name: string };
 type ReplaceFlowInput = { index: number; flow: AppFlow };
 type DataContextValue = {
@@ -99,6 +117,7 @@ type DataContextValue = {
   previewReplaceFlow: (data: ReplaceFlowInput) => MultiFlow;
   setFilename: (filename: string) => void;
   setPowerConsumptionMultiplier: (multiplier: PowerConsumptionMultiplier) => void;
+  setPartsCostMultiplier: (multiplier: PartsCostMultiplier) => void;
 };
 
 const DataContext = createContext<DataContextValue | null>(null);
@@ -128,6 +147,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
     version: CURR_VER,
     filename: "",
     powerConsumptionMultiplier: 1,
+    partsCostMultiplier: 1,
     flows: [
       getDefaultFlow(),
     ],
@@ -143,6 +163,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
     previewReplaceFlow: ({ index, flow }) => dataReducer(data, { type: "replaceFlow", index, flow }),
     setFilename: (filename) => dispatch({ type: "setFilename", filename }),
     setPowerConsumptionMultiplier: (multiplier) => dispatch({ type: "setPowerConsumptionMultiplier", multiplier }),
+    setPartsCostMultiplier: (multiplier) => dispatch({ type: "setPartsCostMultiplier", multiplier }),
   }), [data]);
 
   return (

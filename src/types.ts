@@ -42,6 +42,16 @@ export type PowerConsumptionMultiplier =
   | 2
   | 5
   ;
+export type PartsCostMultiplier =
+  | 0.25
+  | 0.5
+  | 0.75
+  | 1
+  | 1.25
+  | 1.5
+  | 1.75
+  | 2
+  ;
 
 export type FlowEntry = {
   name: string;
@@ -53,5 +63,6 @@ export type MultiFlow = {
   version: number;
   filename: string;
   powerConsumptionMultiplier: PowerConsumptionMultiplier;
+  partsCostMultiplier: PartsCostMultiplier;
   flows: FlowEntry[];
 };
