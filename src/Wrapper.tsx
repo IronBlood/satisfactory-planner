@@ -557,7 +557,6 @@ function Wrapper() {
         <Suspense fallback={null}>
           <App
             onActionsReady={(a) => { actionsRef.current = a; }}
-            activeFlow={activeFlow}
           />
         </Suspense>
       </ReactFlowProvider>
