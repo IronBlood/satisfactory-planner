@@ -68,7 +68,7 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
             position={Position.Top}
             value={(shouldApplyMultiplier ? getCostByMultiplier(rate.amount, data.partsCostMultiplier) : rate.amount) * cycle_per_min * props.data.count}
             isLocked={props.data.isLocked}
-            onCommit={(next) => setCount(next / rate.amount / cycle_per_min)}
+            onCommit={(next) => setCount(next / (shouldApplyMultiplier ? getCostByMultiplier(rate.amount, data.partsCostMultiplier) : rate.amount) / cycle_per_min)}
           />
         ))}
         {recipe.building === BuildingNames.ResourceWellExtractor && (
