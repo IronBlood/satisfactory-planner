@@ -38,6 +38,7 @@ import type {
   ResourceNodeType,
   RecipeNodeType,
 } from "@/flow/nodes";
+import { useDataContext } from "@/DataProvider";
 
 type ItemMap = Record<ItemName, number>;
 
@@ -125,6 +126,10 @@ export default function Summary() {
   // `edges` isn't used directly but once the data is changed
   // `summary` can also be updated
   const edges = useEdges();
+
+  const {
+    data,
+  } = useDataContext();
 
   const {
     getNodeConnections,
@@ -221,7 +226,7 @@ export default function Summary() {
 
   return (
     <div className="divide-y divide-slate-800">
-      {summary.power_consumed > 0 && <SummaryDisclosure title="Power Consumed"><span className="italic">approx.</span> {summary.power_consumed} MW</SummaryDisclosure>}
+      {summary.power_consumed > 0 && <SummaryDisclosure title="Power Consumed"><span className="italic">approx.</span> {summary.power_consumed * data.powerConsumptionMultiplier} MW</SummaryDisclosure>}
       {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {summary.power_generated} MW</SummaryDisclosure>}
       {summary.sink_points > 0 && <SummaryDisclosure title="Sink Points"><span className="italic">approx.</span> {summary.sink_points} /min</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
