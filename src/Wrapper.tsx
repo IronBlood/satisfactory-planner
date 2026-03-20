@@ -244,7 +244,7 @@ function Wrapper() {
 
   const importFlow = useCallback(() => {
     fileInputRef.current?.click();
-  }, [setData]);
+  }, []);
 
   const onPickFlowFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
