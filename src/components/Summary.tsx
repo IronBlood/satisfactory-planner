@@ -46,7 +46,7 @@ interface Summary {
   inputs: ItemMap;
   outputs: ItemMap;
   sink_points: number;
-  power_comsumed: number;
+  power_consumed: number;
   power_generated: number;
 }
 
@@ -137,7 +137,7 @@ export default function Summary() {
       inputs: {},
       outputs: {},
       sink_points: 0,
-      power_comsumed: 0,
+      power_consumed: 0,
       power_generated: 0,
     };
 
@@ -208,7 +208,7 @@ export default function Summary() {
       if (power_total < 0) {
         s.power_generated -= power_total;
       } else {
-        s.power_comsumed += power_total;
+        s.power_consumed += power_total;
       }
 
       for (const [item, need] of entries(building.ingredients)) {
@@ -221,7 +221,7 @@ export default function Summary() {
 
   return (
     <div className="divide-y divide-slate-800">
-      {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed"><span className="italic">approx.</span> {summary.power_comsumed} MW</SummaryDisclosure>}
+      {summary.power_consumed > 0 && <SummaryDisclosure title="Power Consumed"><span className="italic">approx.</span> {summary.power_consumed} MW</SummaryDisclosure>}
       {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {summary.power_generated} MW</SummaryDisclosure>}
       {summary.sink_points > 0 && <SummaryDisclosure title="Sink Points"><span className="italic">approx.</span> {summary.sink_points} /min</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
