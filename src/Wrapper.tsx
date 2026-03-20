@@ -174,8 +174,8 @@ function Wrapper() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isRenamingPlan, setRenamingPlan] = useState(false);
   const [isRenamingFile, setRenamingFile] = useState(false);
-  const [planName, setPlanName] = useState("");
-  const [fileName, setFileName] = useState("");
+  const [planNameInput, setPlanNameInput] = useState("");
+  const [fileNameInput, setFileNameInput] = useState("");
   const [showGABanner, setShowGABanner] = useState(false);
   const [gaChoice, setGaChoice] = useState<boolean>(false);
 
@@ -320,26 +320,26 @@ function Wrapper() {
 
   const enterRenamingPlan = useCallback(() => {
     setRenamingPlan(true);
-    setPlanName(selectedFlowName.name);
-  }, [setRenamingPlan, selectedFlowName, setPlanName]);
+    setPlanNameInput(selectedFlowName.name);
+  }, [setRenamingPlan, selectedFlowName, setPlanNameInput]);
 
   const enterRenamingFile = useCallback(() => {
     setRenamingFile(true);
-    setFileName(data.filename);
+    setFileNameInput(data.filename);
   }, [setRenamingFile, data]);
 
   const exitRenamingPlan = useCallback(() => {
     setRenamingPlan(false);
-    setPlanName("");
-  }, [setRenamingPlan, setPlanName]);
+    setPlanNameInput("");
+  }, [setRenamingPlan, setPlanNameInput]);
 
   const exitRenamingFile = useCallback(() => {
     setRenamingFile(false);
-    setFileName("");
-  }, [setRenamingFile, setFileName]);
+    setFileNameInput("");
+  }, [setRenamingFile, setFileNameInput]);
 
   const acceptRenamingPlan = useCallback(() => {
-    if (planName.length === 0) {
+    if (planNameInput.length === 0) {
       // TODO
       console.error("shouldn't be empty");
       setRenamingPlan(false);
@@ -347,25 +347,25 @@ function Wrapper() {
     }
 
     renameFlow({
-      name: planName,
+      name: planNameInput,
       index: activeIdx,
     });
 
     setRenamingPlan(false);
-    setPlanName("");
-  }, [activeIdx, planName, setRenamingPlan, setPlanName, renameFlow]);
+    setPlanNameInput("");
+  }, [activeIdx, planNameInput, setRenamingPlan, setPlanNameInput, renameFlow]);
 
   const acceptRenamingFile = useCallback(() => {
-    if (isInvalidFilename(fileName)) {
+    if (isInvalidFilename(fileNameInput)) {
       console.error("invalid filename");
       setRenamingFile(false);
       return;
     }
 
-    setFilename(fileName);
+    setFilename(fileNameInput);
     setRenamingFile(false);
-    setFileName("");
-  }, [fileName, setRenamingFile, setFileName, setFilename]);
+    setFileNameInput("");
+  }, [fileNameInput, setRenamingFile, setFileNameInput, setFilename]);
 
   return (
     <div className="h-screen w-screen flex flex-col">
@@ -436,21 +436,21 @@ function Wrapper() {
           </div>}
         {isRenamingPlan && (
           <NameEditor
-            value={planName}
-            onChange={(name) => setPlanName(name)}
+            value={planNameInput}
+            onChange={(name) => setPlanNameInput(name)}
             placeholder="your next awesome plan"
             accept={acceptRenamingPlan}
-            isDisabled={planName.length === 0}
+            isDisabled={planNameInput.length === 0}
             exit={exitRenamingPlan}
           />
         )}
         {isRenamingFile && (
           <NameEditor
-            value={fileName}
-            onChange={(name) => setFileName(name)}
+            value={fileNameInput}
+            onChange={(name) => setFileNameInput(name)}
             placeholder="filename"
             accept={acceptRenamingFile}
-            isDisabled={isInvalidFilename(fileName)}
+            isDisabled={isInvalidFilename(fileNameInput)}
             exit={exitRenamingFile}
           />
         )}
