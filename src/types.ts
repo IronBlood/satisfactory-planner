@@ -34,12 +34,35 @@ export type AppFlow = {
   };
 }
 
+export type PowerConsumptionMultiplier =
+  | 0.25
+  | 0.5
+  | 1
+  | 0.75
+  | 2
+  | 5
+  ;
+export type PartsCostMultiplier =
+  | 0.25
+  | 0.5
+  | 0.75
+  | 1
+  | 1.25
+  | 1.5
+  | 1.75
+  | 2
+  ;
+
+export type FlowEntry = {
+  name: string;
+  flow: AppFlow;
+};
+
 export type MultiFlow = {
   /** Has to be an integer */
   version: number;
   filename: string;
-  flows: Array<{
-    name: string;
-    flow: AppFlow;
-  }>;
+  powerConsumptionMultiplier: PowerConsumptionMultiplier;
+  partsCostMultiplier: PartsCostMultiplier;
+  flows: FlowEntry[];
 };

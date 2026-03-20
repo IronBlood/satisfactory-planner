@@ -2,21 +2,127 @@ import {
   createContext,
   useContext,
   useMemo,
-  useState,
+  useReducer,
   type ReactNode,
 } from "react";
 
-import {
-  type AppFlow,
-  type MultiFlow,
+import type {
+  AppFlow,
+  FlowEntry,
+  MultiFlow,
+  PartsCostMultiplier,
+  PowerConsumptionMultiplier,
 } from "./types";
+import { AppNodeTypes } from "./flow/constants";
+import type { Recipe } from "./data/recipes";
 
-const CURR_VER = 1;
+const CURR_VER = 2;
 
-const DataContext = createContext<{
+type DataAction =
+  | { type: "importData"; data: MultiFlow }
+  | { type: "setFilename"; filename: string }
+  | { type: "addFlow"; flow?: FlowEntry }
+  | { type: "deleteFlow"; index: number }
+  | { type: "renameFlow"; index: number; name: string }
+  | { type: "replaceFlow"; index: number; flow: AppFlow }
+  | { type: "setPowerConsumptionMultiplier"; multiplier: PowerConsumptionMultiplier }
+  | { type: "setPartsCostMultiplier"; multiplier: PartsCostMultiplier }
+  ;
+
+function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
+  switch (action.type) {
+    case "importData":
+      upgradeData(action.data);
+      return action.data;
+    case "setFilename":
+      return {
+        ...state,
+        filename: action.filename,
+      };
+    case "addFlow":
+      return {
+        ...state,
+        flows: [
+          ...state.flows,
+          action.flow ?? getDefaultFlow(),
+        ],
+      };
+    case "deleteFlow":
+      return {
+        ...state,
+        flows: state.flows.filter((_, idx) => idx !== action.index),
+      };
+    case "renameFlow":
+      return {
+        ...state,
+        flows: state.flows.map((entry, idx) =>
+          idx === action.index
+            ? { ...entry, name: action.name }
+            : entry
+        ),
+      };
+    case "replaceFlow":
+      return {
+        ...state,
+        flows: state.flows.map((entry, idx) =>
+          idx === action.index
+            ? { ...entry, flow: action.flow }
+            : entry
+        ),
+      };
+    case "setPowerConsumptionMultiplier":
+      return {
+        ...state,
+        powerConsumptionMultiplier: action.multiplier,
+      };
+    case "setPartsCostMultiplier":
+      return {
+        ...state,
+        partsCostMultiplier: action.multiplier,
+      };
+
+    default:
+      return state;
+  }
+}
+
+export const PowerConsumptionMultipliers: PowerConsumptionMultiplier[] = [
+  0.25,
+  0.5,
+  0.75,
+  1,
+  2,
+  5,
+] as const;
+
+export const PartsCostMultipliers: PartsCostMultiplier[] = [
+  0.25,
+  0.5,
+  0.75,
+  1,
+  1.25,
+  1.5,
+  1.75,
+  2,
+] as const;
+
+type RenameFlowInput = { index: number; name: string };
+type ReplaceFlowInput = { index: number; flow: AppFlow };
+type DataContextValue = {
   data: MultiFlow;
-  setData: (data: MultiFlow) => void;
-} | null>(null);
+  importData: (data: MultiFlow) => void;
+  addFlow: (flow?: FlowEntry) => void;
+  deleteFlow: (index: number) => void;
+  renameFlow: (data: RenameFlowInput) => void;
+  replaceFlow: (data: ReplaceFlowInput) => void;
+  /** This API share the same flow of `replaceFlow` but doesn't commit the change */
+  previewReplaceFlow: (data: ReplaceFlowInput) => MultiFlow;
+  setFilename: (filename: string) => void;
+  setPowerConsumptionMultiplier: (multiplier: PowerConsumptionMultiplier) => void;
+  setPartsCostMultiplier: (multiplier: PartsCostMultiplier) => void;
+};
+
+const DataContext = createContext<DataContextValue | null>(null);
 
 const DEFAULT_FLOW: {
   name: string;
@@ -39,24 +145,27 @@ export function getDefaultFlow() {
 }
 
 export function DataProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<MultiFlow>({
+  const [data, dispatch] = useReducer(dataReducer, {
     version: CURR_VER,
     filename: "",
+    powerConsumptionMultiplier: 1,
+    partsCostMultiplier: 1,
     flows: [
       getDefaultFlow(),
     ],
   });
 
-  const value = useMemo(() => ({
+  const value: DataContextValue = useMemo(() => ({
     data,
-    setData: ((data: MultiFlow) => {
-      if (data.version !== CURR_VER) {
-        // TODO
-        throw new Error("data version mismatch");
-      }
-
-      setData(data);
-    }),
+    importData: (data) => dispatch({ type: "importData", data }),
+    addFlow: (flow) => dispatch({ type: "addFlow", flow }),
+    deleteFlow: (index) => dispatch({ type: "deleteFlow", index }),
+    renameFlow: ({ index, name }) => dispatch({ type: "renameFlow", index, name }),
+    replaceFlow: ({ index, flow }) => dispatch({ type: "replaceFlow", index, flow }),
+    previewReplaceFlow: ({ index, flow }) => dataReducer(data, { type: "replaceFlow", index, flow }),
+    setFilename: (filename) => dispatch({ type: "setFilename", filename }),
+    setPowerConsumptionMultiplier: (multiplier) => dispatch({ type: "setPowerConsumptionMultiplier", multiplier }),
+    setPartsCostMultiplier: (multiplier) => dispatch({ type: "setPartsCostMultiplier", multiplier }),
   }), [data]);
 
   return (
@@ -76,6 +185,7 @@ export function useDataContext() {
 
 export function stripData(data: MultiFlow) {
   const striped: MultiFlow = {
+    ...data,
     version: CURR_VER,
     filename: "",
     flows: data.flows.map(f => ({
@@ -99,4 +209,24 @@ export function stripData(data: MultiFlow) {
   };
 
   return striped;
+}
+
+export function upgradeData(data: Partial<MultiFlow> & {
+  version: number;
+}) {
+  if (data.version === 1) {
+    data.version = 2;
+    data.powerConsumptionMultiplier = 1;
+    data.partsCostMultiplier = 1;
+
+    for (const entry of data.flows!) {
+      for (const node of entry.flow.nodes) {
+        if (node.type !== AppNodeTypes.Recipe) {
+          continue;
+        }
+
+        node.data.recipe = (node.data.recipe as unknown as Recipe).name;
+      }
+    }
+  }
 }

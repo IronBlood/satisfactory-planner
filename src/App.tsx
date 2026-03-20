@@ -46,9 +46,6 @@ import {
   AppHandleTypes,
   AppNodeTypes,
 } from "@/flow/constants";
-import {
-  getRecipeByName,
-} from "./data/recipes";
 import { isItemSinkable, type ItemName } from "@/data/items";
 import type { AppEdge, AppFlow, AppNode } from "./types";
 
@@ -117,7 +114,7 @@ function createNode({
     id,
     position,
     data: {
-      recipe: getRecipeByName(name),
+      recipe: name,
       count: 1,
       isLocked: false,
     },
@@ -153,14 +150,13 @@ type SourceState = {
 export type ActionsRef = {
   syncActiveFlow?: () => AppFlow | null;
   toggleSidebar?: () => void;
+  setActiveFlow?: (flow: AppFlow) => void;
 };
 
 function App({
   onActionsReady,
-  activeFlow,
 }: {
   onActionsReady: (a: ActionsRef) => void;
-  activeFlow: AppFlow;
 }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [source, setSource] = useState<SourceState | null>(null);
@@ -350,19 +346,20 @@ function App({
     [screenToFlowPosition, onOpen],
   );
 
-  useEffect(() => {
+  const setActiveFlow = useCallback((activeFlow: AppFlow) => {
     setNodes(activeFlow.nodes || []);
     setEdges(activeFlow.edges || []);
     const { x = 0, y = 0, zoom = 1 } = activeFlow.viewport ?? {};
     setViewport({ x, y, zoom });
-  }, [activeFlow, setEdges, setNodes, setViewport]);
+  }, [setEdges, setNodes, setViewport]);
 
   useEffect(() => {
     onActionsReady({
       toggleSidebar,
       syncActiveFlow,
+      setActiveFlow,
     });
-  }, [onActionsReady, toggleSidebar, syncActiveFlow]);
+  }, [onActionsReady, toggleSidebar, syncActiveFlow, setActiveFlow]);
 
   return (
     <main className="bg-slate-950 text-white flex h-full min-h-0 planner-flow">

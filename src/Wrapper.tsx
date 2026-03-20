@@ -17,10 +17,9 @@ import {
   ListboxButton,
   ListboxOption,
   ListboxOptions,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
   Switch,
 } from "@headlessui/react";
 import type {
@@ -29,7 +28,13 @@ import type {
 import type {
   MultiFlow,
 } from "./types";
-import { getDefaultFlow, stripData, useDataContext } from "./DataProvider";
+import {
+  PowerConsumptionMultipliers,
+  PartsCostMultipliers,
+  stripData,
+  upgradeData,
+  useDataContext,
+} from "./DataProvider";
 import {
   ArrowDownTrayIcon,
   ArrowUpTrayIcon,
@@ -175,12 +180,23 @@ function Wrapper() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isRenamingPlan, setRenamingPlan] = useState(false);
   const [isRenamingFile, setRenamingFile] = useState(false);
-  const [planName, setPlanName] = useState("");
-  const [fileName, setFileName] = useState("");
+  const [planNameInput, setPlanNameInput] = useState("");
+  const [fileNameInput, setFileNameInput] = useState("");
   const [showGABanner, setShowGABanner] = useState(false);
   const [gaChoice, setGaChoice] = useState<boolean>(false);
 
-  const { data, setData } = useDataContext();
+  const {
+    data,
+    importData,
+    addFlow,
+    deleteFlow: _deleteFlow,
+    renameFlow,
+    replaceFlow,
+    previewReplaceFlow,
+    setFilename,
+    setPowerConsumptionMultiplier,
+    setPartsCostMultiplier,
+  } = useDataContext();
 
   useEffect(() => {
     const raw = localStorage.getItem(GA_KEY);
@@ -214,15 +230,13 @@ function Wrapper() {
       throw new Error("cannot get a snapshot");
     }
 
-    const nextData = {
-      ...data,
-      flows: data.flows.map((flow, idx) => idx !== activeIdx
-        ? flow
-        : { ...flow, flow: snapshot }
-      ),
+    const actionData = {
+      index: activeIdx,
+      flow: snapshot,
     };
 
-    setData(nextData);
+    const nextData = previewReplaceFlow(actionData);
+    replaceFlow(actionData);
 
     const stripedData = stripData(nextData);
     const json = JSON.stringify(stripedData, null, 2);
@@ -241,11 +255,11 @@ function Wrapper() {
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-  }, [data, activeIdx, actionsRef, setData]);
+  }, [data, activeIdx, actionsRef, previewReplaceFlow, replaceFlow]);
 
   const importFlow = useCallback(() => {
     fileInputRef.current?.click();
-  }, [setData]);
+  }, []);
 
   const onPickFlowFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -262,16 +276,19 @@ function Wrapper() {
           filename = filename.substring(0, filename.length - 5);
         }
         json.filename = filename;
+
+        upgradeData(json);
         // TODO validate
-        setData(json);
+        importData(json);
         _setActiveIdx(0);
+        actionsRef.current.setActiveFlow?.(json.flows[0].flow);
       }
     } catch (err) {
       console.error("Failed to load flow json", err);
     } finally {
       e.target.value = "";
     }
-  }, []);
+  }, [upgradeData, importData, _setActiveIdx, actionsRef]);
 
   const setActiveIdx = useCallback((idx: number) => {
     const snapshot = actionsRef.current.syncActiveFlow?.();
@@ -279,133 +296,84 @@ function Wrapper() {
       throw new Error("cannot get a snapshot");
     }
 
-    const nextData = {
-      ...data,
-      flows: data.flows.map((flow, idx) => idx !== activeIdx
-        ? flow
-        : { ...flow, flow: snapshot }
-      ),
-    };
-
-    setData(nextData);
+    replaceFlow({
+      index: activeIdx,
+      flow: snapshot,
+    });
 
     if (idx < 0) {
       idx = 0;
     }
 
-    if (idx > data.flows.length) {
+    if (idx >= data.flows.length) {
       idx = data.flows.length - 1;
     }
 
     _setActiveIdx(idx | 0);
-  }, [activeIdx, _setActiveIdx, data, setData]);
-
-  const addFlow = useCallback(() => {
-    setData({
-      ...data,
-      flows: [
-        ...data.flows,
-        getDefaultFlow(),
-      ],
-    });
-  }, [data, setData]);
+    actionsRef.current.setActiveFlow?.(data.flows[idx].flow);
+  }, [activeIdx, _setActiveIdx, data, replaceFlow, actionsRef]);
 
   const deleteFlow = useCallback(() => {
     if (data.flows.length <= 1) {
       return;
     }
 
-    const idx = activeIdx;
-    setActiveIdx(0);
-
-    setData({
-      ...data,
-      flows: [
-        ...data.flows.slice(0, idx),
-        ...data.flows.slice(idx + 1),
-      ],
-    });
-  }, [data, activeIdx, setData, setActiveIdx]);
+    const nextFlow = data.flows[activeIdx === 0 ? 1 : 0].flow;
+    _setActiveIdx(0);
+    actionsRef.current.setActiveFlow?.(nextFlow);
+    _deleteFlow(activeIdx);
+  }, [data, activeIdx, _setActiveIdx, _deleteFlow, actionsRef]);
 
   const selectedFlowName = useMemo(() => list[activeIdx], [list, activeIdx]);
-  const activeFlow = useMemo(() => data.flows[activeIdx].flow, [data, activeIdx]);
 
   const enterRenamingPlan = useCallback(() => {
     setRenamingPlan(true);
-    setPlanName(selectedFlowName.name);
-  }, [setRenamingPlan, selectedFlowName, setPlanName]);
+    setPlanNameInput(selectedFlowName.name);
+  }, [setRenamingPlan, selectedFlowName, setPlanNameInput]);
 
   const enterRenamingFile = useCallback(() => {
     setRenamingFile(true);
-    setFileName(data.filename);
+    setFileNameInput(data.filename);
   }, [setRenamingFile, data]);
 
   const exitRenamingPlan = useCallback(() => {
     setRenamingPlan(false);
-    setPlanName("");
-  }, [setRenamingPlan, setPlanName]);
+    setPlanNameInput("");
+  }, [setRenamingPlan, setPlanNameInput]);
 
   const exitRenamingFile = useCallback(() => {
     setRenamingFile(false);
-    setFileName("");
-  }, [setRenamingFile, setFileName]);
+    setFileNameInput("");
+  }, [setRenamingFile, setFileNameInput]);
 
   const acceptRenamingPlan = useCallback(() => {
-    if (planName.length === 0) {
+    if (planNameInput.length === 0) {
       // TODO
       console.error("shouldn't be empty");
       setRenamingPlan(false);
       return;
     }
 
-    const snapshot = actionsRef.current.syncActiveFlow?.();
-    if (!snapshot) {
-      throw new Error("cannot get a snapshot");
-    }
-
-    setData({
-      ...data,
-      flows: data.flows.map((flow, idx) => idx === activeIdx
-        ? {
-          ...flow,
-          name: planName,
-          flow: snapshot,
-        }
-        : flow
-      ),
+    renameFlow({
+      name: planNameInput,
+      index: activeIdx,
     });
 
     setRenamingPlan(false);
-    setPlanName("");
-  }, [data, activeIdx, planName, setRenamingPlan, setPlanName, setData]);
+    setPlanNameInput("");
+  }, [activeIdx, planNameInput, setRenamingPlan, setPlanNameInput, renameFlow]);
 
   const acceptRenamingFile = useCallback(() => {
-    if (isInvalidFilename(fileName)) {
+    if (isInvalidFilename(fileNameInput)) {
       console.error("invalid filename");
       setRenamingFile(false);
       return;
     }
 
-    const snapshot = actionsRef.current.syncActiveFlow?.();
-    if (!snapshot) {
-      throw new Error("cannot get a snapshot");
-    }
-
-    setData({
-      ...data,
-      flows: data.flows.map((flow, idx) => idx === activeIdx
-        ? {
-          ...flow,
-          flow: snapshot,
-        }
-        : flow
-      ),
-      filename: fileName,
-    });
-
+    setFilename(fileNameInput);
     setRenamingFile(false);
-    setFileName("");
-  }, [setData, data, fileName, activeIdx, setRenamingFile, setFileName]);
+    setFileNameInput("");
+  }, [fileNameInput, setRenamingFile, setFileNameInput, setFilename]);
 
   return (
     <div className="h-screen w-screen flex flex-col">
@@ -445,7 +413,7 @@ function Wrapper() {
             >
               <IconButton
                 label="Add a plan"
-                onClick={addFlow}
+                onClick={() => addFlow()}
                 className="w-5 h-5"
               >
                 <PlusIcon />
@@ -476,21 +444,21 @@ function Wrapper() {
           </div>}
         {isRenamingPlan && (
           <NameEditor
-            value={planName}
-            onChange={(name) => setPlanName(name)}
+            value={planNameInput}
+            onChange={(name) => setPlanNameInput(name)}
             placeholder="your next awesome plan"
             accept={acceptRenamingPlan}
-            isDisabled={planName.length === 0}
+            isDisabled={planNameInput.length === 0}
             exit={exitRenamingPlan}
           />
         )}
         {isRenamingFile && (
           <NameEditor
-            value={fileName}
-            onChange={(name) => setFileName(name)}
+            value={fileNameInput}
+            onChange={(name) => setFileNameInput(name)}
             placeholder="filename"
             accept={acceptRenamingFile}
-            isDisabled={isInvalidFilename(fileName)}
+            isDisabled={isInvalidFilename(fileNameInput)}
             exit={exitRenamingFile}
           />
         )}
@@ -510,46 +478,98 @@ function Wrapper() {
             text="info"
             icon={InformationCircleIcon}
           />
-          {!showGABanner && (
-            <Menu>
-              <MenuButton
-              >
-                <span
-                  className="w-5 h-5 flex items-center"
-                >
-                  <Cog6ToothIcon
-                    className="text-sky-700 hover:text-sky-500 cursor-pointer"
-                  />
-                </span>
-              </MenuButton>
-              <MenuItems
-                transition
-                anchor="bottom end"
-                className="origin-top-right rounded-xl border border-slate-800 bg-slate-700 p-4 text-sm text-slate-300 transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0"
-              >
-                <MenuItem>
-                  <div>
-                    <div className="flex justify-between text-sm items-center gap-2">
-                      <span>Allow analytics</span>
-                      <Switch
-                        checked={gaChoice}
-                        onChange={setTrack}
-                        className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-white/10 p-1 ease-in-out focus:not-data-focus:outline-none data-checked:bg-white/10 data-focus:outline data-focus:outline-white"
+          <Popover
+            className="flex items-center"
+          >
+            <PopoverButton className="size-5">
+              <Cog6ToothIcon
+                className="text-sky-700 hover:text-sky-500 cursor-pointer"
+              />
+            </PopoverButton>
+            <PopoverPanel
+              anchor="bottom end"
+              className="w-72 rounded-xl border border-slate-800 bg-slate-700 p-4 text-sm text-slate-300 flex flex-col mt-4"
+            >
+              <div>
+                <div className="flex justify-between items-center gap-2">
+                  <span>Allow analytics</span>
+                  <Switch
+                    checked={gaChoice}
+                    onChange={setTrack}
+                    className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-white/10 p-1 ease-in-out focus:not-data-focus:outline-none data-checked:bg-white/10 data-focus:outline data-focus:outline-white"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-slate-700 shadow-lg ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-7 group-data-checked:bg-green-400"
+                    />
+                  </Switch>
+                </div>
+                <div className="italic">
+                  refresh required after changes
+                </div>
+              </div>
+              <div className="my-1 h-px bg-white/15" />
+              <div className="flex justify-between items-center">
+                <span>Power Consumption Multiplier</span>
+                <Listbox value={data.powerConsumptionMultiplier} onChange={(v) => setPowerConsumptionMultiplier(v)}>
+                  <ListboxButton
+                    className="relative min-w-16 rounded-lg bg-slate-800 text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus: -outline-offset-2 text-right"
+                  >
+                    {data.powerConsumptionMultiplier}
+                    <ChevronDownIcon
+                      className="group pointer-events-none aboslute size-4 fill-white/60"
+                      aria-hidden="true"
+                    />
+                  </ListboxButton>
+                  <ListboxOptions
+                    anchor="bottom"
+                    className="w-(--button-width) rounded-xl p-1 border border-slate-700 bg-slate-800 [--anchor-gap:--spacing(1)]"
+                  >
+                    {PowerConsumptionMultipliers.map((num, idx) => (
+                      <ListboxOption
+                        key={`${idx}-${num}`}
+                        value={num}
+                        className="group flex cursor-default items-center gap-2 rounded-lg px-1 py-1 select-none data-focus:bg-slate-700"
                       >
-                        <span
-                          aria-hidden="true"
-                          className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-slate-700 shadow-lg ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-7 group-data-checked:bg-green-400"
-                        />
-                      </Switch>
-                    </div>
-                    <div className="italic">
-                      refresh required after changes
-                    </div>
-                  </div>
-                </MenuItem>
-              </MenuItems>
-            </Menu>
-          )}
+                        <CheckIcon className="invisible size-4 fill-white group-data-selected:visible" />
+                        <div className="flex-1 text-right tabular-nums text-sm/6 text-slate-300">{num}</div>
+                      </ListboxOption>
+                    ))}
+                  </ListboxOptions>
+                </Listbox>
+              </div>
+              <div className="my-1 h-px bg-white/15" />
+              <div className="flex justify-between items-center">
+                <span>Recipe Parts Cost Multiplier</span>
+                <Listbox value={data.partsCostMultiplier} onChange={(v) => setPartsCostMultiplier(v)}>
+                  <ListboxButton
+                    className="relative min-w-16 rounded-lg bg-slate-800 text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus: -outline-offset-2 text-right"
+                  >
+                    {data.partsCostMultiplier}
+                    <ChevronDownIcon
+                      className="group pointer-events-none aboslute size-4 fill-white/60"
+                      aria-hidden="true"
+                    />
+                  </ListboxButton>
+                  <ListboxOptions
+                    anchor="bottom"
+                    className="w-(--button-width) rounded-xl p-1 border border-slate-700 bg-slate-800 [--anchor-gap:--spacing(1)]"
+                  >
+                    {PartsCostMultipliers.map((num, idx) => (
+                      <ListboxOption
+                        key={`${idx}-${num}`}
+                        value={num}
+                        className="group flex cursor-default items-center gap-2 rounded-lg px-1 py-1 select-none data-focus:bg-slate-700"
+                      >
+                        <CheckIcon className="invisible size-4 fill-white group-data-selected:visible" />
+                        <div className="flex-1 text-right tabular-nums text-sm/6 text-slate-300">{num}</div>
+                      </ListboxOption>
+                    ))}
+                  </ListboxOptions>
+                </Listbox>
+              </div>
+            </PopoverPanel>
+          </Popover>
           <div className="transition duration-200 text-sky-600 hover:text-sky-300 flex items-center"><a href="https://github.com/IronBlood/satisfactory-planner" target="_blank"><CodeBracketIcon className="h-5 w-5" /></a></div>
           <input
             ref={fileInputRef}
@@ -564,7 +584,6 @@ function Wrapper() {
         <Suspense fallback={null}>
           <App
             onActionsReady={(a) => { actionsRef.current = a; }}
-            activeFlow={activeFlow}
           />
         </Suspense>
       </ReactFlowProvider>

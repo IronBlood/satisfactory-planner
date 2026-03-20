@@ -9,11 +9,13 @@ import {
   type NodeProps,
 } from "@xyflow/react";
 import {
-  type Recipe,
+  getCostByMultiplier,
+  getRecipeByName,
 } from "@/data/recipes";
 import {
   BuildingNames,
   Buildings,
+  type BuildingName,
 } from "@/data/buildings";
 import NumericInput from "@/components/NumericInput";
 import {
@@ -23,24 +25,34 @@ import {
 import BaseNode from "./BaseNode";
 import { getItemImageByName } from "@/data/items";
 import { AppNodeTypes } from "@/flow/constants";
+import { useDataContext } from "@/DataProvider";
 
 export type RecipeNodeType = Node<{
-  recipe: Recipe;
+  recipe: string;
   count: number;
   isLocked: boolean;
 }, typeof AppNodeTypes.Recipe>;
 
 export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
   const { setNodes } = useReactFlow();
+  const {
+    data,
+  } = useDataContext();
+
   const setCount = useCallback((next: number) => {
     setNodes((nds) => nds.map(n => n.id === props.id
       ? { ...n, data: { ...n.data, count: next } }
       : n
     ));
   }, [setNodes, props.id]);
-  const { recipe } = props.data;
+  const { recipe: recipeName } = props.data;
+  const recipe = getRecipeByName(recipeName);
   const cycle_per_min = 60 / recipe.duration;
   const building = Buildings[recipe.building];
+  const shouldApplyMultiplier = !([
+    BuildingNames.CoalPoweredGenerator,
+    BuildingNames.FuelPoweredGenerator,
+  ] as BuildingName[]).includes(recipe.building);
   return (
     <BaseNode
       isLocked={props.data.isLocked}
@@ -54,7 +66,7 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
             handleType="target"
             name={rate.name}
             position={Position.Top}
-            value={rate.amount * cycle_per_min * props.data.count}
+            value={(shouldApplyMultiplier ? getCostByMultiplier(rate.amount, data.partsCostMultiplier) : rate.amount) * cycle_per_min * props.data.count}
             isLocked={props.data.isLocked}
             onCommit={(next) => setCount(next / rate.amount / cycle_per_min)}
           />
@@ -81,7 +93,7 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
           </div>
           <div className="flex-1">
             <div className="text-sm">{recipe.name}</div>
-            <div className="text-xs text-gray-400">{building.name} x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count} MW)</span></div>
+            <div className="text-xs text-gray-400">{building.name} x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power < 0 ? -building.power * props.data.count : building.power * props.data.count * data.powerConsumptionMultiplier} MW)</span></div>
           </div>
           <div className="shrink items-center">
             {recipe.outputs[0] && (

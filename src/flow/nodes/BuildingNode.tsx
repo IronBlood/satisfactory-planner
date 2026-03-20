@@ -17,6 +17,7 @@ import {
   AwesomeCollectorHandle,
 } from "@/flow/handles";
 import type { AppNodeTypes } from "../constants";
+import { useDataContext } from "@/DataProvider";
 
 export type SupportedBuildings =
   | typeof BuildingNames.AwesomeSink
@@ -64,6 +65,10 @@ function isAwesomeCollectorNode(props: BuildingNodePropsType): props is AwesomeC
 function AwesomeSinkNode(props: AwesomeSinkNodePropsType) {
   const building = Buildings[BuildingNames.AwesomeSink];
 
+  const {
+    data,
+  } = useDataContext();
+
   const { setNodes } = useReactFlow();
   const setCount = useCallback((next: number) => {
     setNodes((nodes) => nodes.map(
@@ -94,7 +99,7 @@ function AwesomeSinkNode(props: AwesomeSinkNodePropsType) {
           </div>
           <div className="flex-1">
             <div className="text-sm">{building.name}</div>
-            <div className="text-xs text-gray-400">x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count} MW)</span></div>
+            <div className="text-xs text-gray-400">x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count * data.powerConsumptionMultiplier} MW)</span></div>
           </div>
         </div>
       </BaseNode.Body>
@@ -104,6 +109,10 @@ function AwesomeSinkNode(props: AwesomeSinkNodePropsType) {
 
 function RWPNode(props: RWPNodePropsType) {
   const building = Buildings[BuildingNames.ResourceWellPressurizer];
+
+  const {
+    data,
+  } = useDataContext();
 
   const { setNodes } = useReactFlow();
   const setCount = useCallback((next: number) => {
@@ -140,7 +149,7 @@ function RWPNode(props: RWPNodePropsType) {
           </div>
           <div className="flex-1">
             <div className="text-sm">{building.name}</div>
-            <div className="text-xs text-gray-400">x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count} MW)</span></div>
+            <div className="text-xs text-gray-400">x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count * data.powerConsumptionMultiplier} MW)</span></div>
           </div>
         </div>
       </BaseNode.Body>

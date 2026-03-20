@@ -38,6 +38,8 @@ import type {
   ResourceNodeType,
   RecipeNodeType,
 } from "@/flow/nodes";
+import { useDataContext } from "@/DataProvider";
+import { getRecipeByName } from "@/data/recipes";
 
 type ItemMap = Record<ItemName, number>;
 
@@ -46,7 +48,7 @@ interface Summary {
   inputs: ItemMap;
   outputs: ItemMap;
   sink_points: number;
-  power_comsumed: number;
+  power_consumed: number;
   power_generated: number;
 }
 
@@ -117,7 +119,8 @@ function isInputNode(node: AppNode): node is ResourceNodeType | RecipeNodeType {
     return false;
   }
 
-  return InputBuildings.includes(node.data.recipe.building);
+  const recipe = getRecipeByName(node.data.recipe);
+  return InputBuildings.includes(recipe.building);
 }
 
 export default function Summary() {
@@ -125,6 +128,10 @@ export default function Summary() {
   // `edges` isn't used directly but once the data is changed
   // `summary` can also be updated
   const edges = useEdges();
+
+  const {
+    data,
+  } = useDataContext();
 
   const {
     getNodeConnections,
@@ -137,7 +144,7 @@ export default function Summary() {
       inputs: {},
       outputs: {},
       sink_points: 0,
-      power_comsumed: 0,
+      power_consumed: 0,
       power_generated: 0,
     };
 
@@ -150,9 +157,10 @@ export default function Summary() {
         if (node.type === AppNodeTypes.Resource) {
           s.inputs[node.data.name] = (s.inputs[node.data.name] || 0) + node.data.count;
         } else {
+          const recipe = getRecipeByName(node.data.recipe);
           // NOTE: this should be a valid pair
-          const { name, amount } = node.data.recipe.outputs[0];
-          s.inputs[name] = (s.inputs[name] || 0) + amount * (60 / node.data.recipe.duration) * node.data.count;
+          const { name, amount } = recipe.outputs[0];
+          s.inputs[name] = (s.inputs[name] || 0) + amount * (60 / recipe.duration) * node.data.count;
         }
       }
 
@@ -202,13 +210,13 @@ export default function Summary() {
       const ceiled = Math.ceil(node.data.count);
       const building = node.type === AppNodeTypes.Building
         ? Buildings[node.data.name]
-        : Buildings[node.data.recipe.building];
+        : Buildings[getRecipeByName(node.data.recipe).building];
 
       const power_total = node.data.count * building.power;
       if (power_total < 0) {
         s.power_generated -= power_total;
       } else {
-        s.power_comsumed += power_total;
+        s.power_consumed += power_total;
       }
 
       for (const [item, need] of entries(building.ingredients)) {
@@ -221,7 +229,7 @@ export default function Summary() {
 
   return (
     <div className="divide-y divide-slate-800">
-      {summary.power_comsumed > 0 && <SummaryDisclosure title="Power Cosumed"><span className="italic">approx.</span> {summary.power_comsumed} MW</SummaryDisclosure>}
+      {summary.power_consumed > 0 && <SummaryDisclosure title="Power Consumed"><span className="italic">approx.</span> {summary.power_consumed * data.powerConsumptionMultiplier} MW</SummaryDisclosure>}
       {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {summary.power_generated} MW</SummaryDisclosure>}
       {summary.sink_points > 0 && <SummaryDisclosure title="Sink Points"><span className="italic">approx.</span> {summary.sink_points} /min</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
