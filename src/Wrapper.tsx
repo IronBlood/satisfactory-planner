@@ -179,7 +179,16 @@ function Wrapper() {
   const [showGABanner, setShowGABanner] = useState(false);
   const [gaChoice, setGaChoice] = useState<boolean>(false);
 
-  const { data, setData } = useDataContext();
+  const {
+    data,
+    importData,
+    addFlow,
+    deleteFlow: _deleteFlow,
+    renameFlow,
+    replaceFlow,
+    previewReplaceFlow,
+    setFilename,
+  } = useDataContext();
 
   useEffect(() => {
     const raw = localStorage.getItem(GA_KEY);
@@ -213,15 +222,13 @@ function Wrapper() {
       throw new Error("cannot get a snapshot");
     }
 
-    const nextData = {
-      ...data,
-      flows: data.flows.map((flow, idx) => idx !== activeIdx
-        ? flow
-        : { ...flow, flow: snapshot }
-      ),
+    const actionData = {
+      index: activeIdx,
+      flow: snapshot,
     };
 
-    setData(nextData);
+    const nextData = previewReplaceFlow(actionData);
+    replaceFlow(actionData);
 
     const stripedData = stripData(nextData);
     const json = JSON.stringify(stripedData, null, 2);
@@ -240,7 +247,7 @@ function Wrapper() {
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-  }, [data, activeIdx, actionsRef, setData]);
+  }, [data, activeIdx, actionsRef, previewReplaceFlow, replaceFlow]);
 
   const importFlow = useCallback(() => {
     fileInputRef.current?.click();
@@ -264,7 +271,7 @@ function Wrapper() {
 
         upgradeData(json);
         // TODO validate
-        setData(json);
+        importData(json);
         _setActiveIdx(0);
         actionsRef.current.setActiveFlow?.(json.flows[0].flow);
       }
@@ -273,7 +280,7 @@ function Wrapper() {
     } finally {
       e.target.value = "";
     }
-  }, []);
+  }, [upgradeData, importData, _setActiveIdx, actionsRef]);
 
   const setActiveIdx = useCallback((idx: number) => {
     const snapshot = actionsRef.current.syncActiveFlow?.();
@@ -281,15 +288,10 @@ function Wrapper() {
       throw new Error("cannot get a snapshot");
     }
 
-    const nextData = {
-      ...data,
-      flows: data.flows.map((flow, idx) => idx !== activeIdx
-        ? flow
-        : { ...flow, flow: snapshot }
-      ),
-    };
-
-    setData(nextData);
+    replaceFlow({
+      index: activeIdx,
+      flow: snapshot,
+    });
 
     if (idx < 0) {
       idx = 0;
@@ -300,37 +302,21 @@ function Wrapper() {
     }
 
     _setActiveIdx(idx | 0);
-  }, [activeIdx, _setActiveIdx, data, setData]);
-
-  const addFlow = useCallback(() => {
-    setData({
-      ...data,
-      flows: [
-        ...data.flows,
-        getDefaultFlow(),
-      ],
-    });
-  }, [data, setData]);
+    actionsRef.current.setActiveFlow?.(data.flows[idx].flow);
+  }, [activeIdx, _setActiveIdx, data, replaceFlow, actionsRef]);
 
   const deleteFlow = useCallback(() => {
     if (data.flows.length <= 1) {
       return;
     }
 
-    const idx = activeIdx;
-    setActiveIdx(0);
-
-    setData({
-      ...data,
-      flows: [
-        ...data.flows.slice(0, idx),
-        ...data.flows.slice(idx + 1),
-      ],
-    });
-  }, [data, activeIdx, setData, setActiveIdx]);
+    const nextFlow = data.flows[activeIdx === 0 ? 1 : 0].flow;
+    _setActiveIdx(0);
+    actionsRef.current.setActiveFlow?.(nextFlow);
+    _deleteFlow(activeIdx);
+  }, [data, activeIdx, _setActiveIdx, _deleteFlow, actionsRef]);
 
   const selectedFlowName = useMemo(() => list[activeIdx], [list, activeIdx]);
-  const activeFlow = useMemo(() => data.flows[activeIdx].flow, [data, activeIdx]);
 
   const enterRenamingPlan = useCallback(() => {
     setRenamingPlan(true);
@@ -360,26 +346,14 @@ function Wrapper() {
       return;
     }
 
-    const snapshot = actionsRef.current.syncActiveFlow?.();
-    if (!snapshot) {
-      throw new Error("cannot get a snapshot");
-    }
-
-    setData({
-      ...data,
-      flows: data.flows.map((flow, idx) => idx === activeIdx
-        ? {
-          ...flow,
-          name: planName,
-          flow: snapshot,
-        }
-        : flow
-      ),
+    renameFlow({
+      name: planName,
+      index: activeIdx,
     });
 
     setRenamingPlan(false);
     setPlanName("");
-  }, [data, activeIdx, planName, setRenamingPlan, setPlanName, setData]);
+  }, [activeIdx, planName, setRenamingPlan, setPlanName, renameFlow]);
 
   const acceptRenamingFile = useCallback(() => {
     if (isInvalidFilename(fileName)) {
@@ -388,26 +362,10 @@ function Wrapper() {
       return;
     }
 
-    const snapshot = actionsRef.current.syncActiveFlow?.();
-    if (!snapshot) {
-      throw new Error("cannot get a snapshot");
-    }
-
-    setData({
-      ...data,
-      flows: data.flows.map((flow, idx) => idx === activeIdx
-        ? {
-          ...flow,
-          flow: snapshot,
-        }
-        : flow
-      ),
-      filename: fileName,
-    });
-
+    setFilename(fileName);
     setRenamingFile(false);
     setFileName("");
-  }, [setData, data, fileName, activeIdx, setRenamingFile, setFileName]);
+  }, [fileName, setRenamingFile, setFileName, setFilename]);
 
   return (
     <div className="h-screen w-screen flex flex-col">
@@ -447,7 +405,7 @@ function Wrapper() {
             >
               <IconButton
                 label="Add a plan"
-                onClick={addFlow}
+                onClick={() => addFlow()}
                 className="w-5 h-5"
               >
                 <PlusIcon />
