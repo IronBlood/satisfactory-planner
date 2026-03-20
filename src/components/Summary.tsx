@@ -39,6 +39,7 @@ import type {
   RecipeNodeType,
 } from "@/flow/nodes";
 import { useDataContext } from "@/DataProvider";
+import { getRecipeByName } from "@/data/recipes";
 
 type ItemMap = Record<ItemName, number>;
 
@@ -118,7 +119,8 @@ function isInputNode(node: AppNode): node is ResourceNodeType | RecipeNodeType {
     return false;
   }
 
-  return InputBuildings.includes(node.data.recipe.building);
+  const recipe = getRecipeByName(node.data.recipe);
+  return InputBuildings.includes(recipe.building);
 }
 
 export default function Summary() {
@@ -155,9 +157,10 @@ export default function Summary() {
         if (node.type === AppNodeTypes.Resource) {
           s.inputs[node.data.name] = (s.inputs[node.data.name] || 0) + node.data.count;
         } else {
+          const recipe = getRecipeByName(node.data.recipe);
           // NOTE: this should be a valid pair
-          const { name, amount } = node.data.recipe.outputs[0];
-          s.inputs[name] = (s.inputs[name] || 0) + amount * (60 / node.data.recipe.duration) * node.data.count;
+          const { name, amount } = recipe.outputs[0];
+          s.inputs[name] = (s.inputs[name] || 0) + amount * (60 / recipe.duration) * node.data.count;
         }
       }
 
@@ -207,7 +210,7 @@ export default function Summary() {
       const ceiled = Math.ceil(node.data.count);
       const building = node.type === AppNodeTypes.Building
         ? Buildings[node.data.name]
-        : Buildings[node.data.recipe.building];
+        : Buildings[getRecipeByName(node.data.recipe).building];
 
       const power_total = node.data.count * building.power;
       if (power_total < 0) {

@@ -46,9 +46,6 @@ import {
   AppHandleTypes,
   AppNodeTypes,
 } from "@/flow/constants";
-import {
-  getRecipeByName,
-} from "./data/recipes";
 import { isItemSinkable, type ItemName } from "@/data/items";
 import type { AppEdge, AppFlow, AppNode } from "./types";
 
@@ -117,7 +114,7 @@ function createNode({
     id,
     position,
     data: {
-      recipe: getRecipeByName(name),
+      recipe: name,
       count: 1,
       isLocked: false,
     },

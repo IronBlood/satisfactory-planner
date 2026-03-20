@@ -10,7 +10,7 @@ import {
 } from "@xyflow/react";
 import {
   getCostByMultiplier,
-  type Recipe,
+  getRecipeByName,
 } from "@/data/recipes";
 import {
   BuildingNames,
@@ -28,7 +28,7 @@ import { AppNodeTypes } from "@/flow/constants";
 import { useDataContext } from "@/DataProvider";
 
 export type RecipeNodeType = Node<{
-  recipe: Recipe;
+  recipe: string;
   count: number;
   isLocked: boolean;
 }, typeof AppNodeTypes.Recipe>;
@@ -45,7 +45,8 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
       : n
     ));
   }, [setNodes, props.id]);
-  const { recipe } = props.data;
+  const { recipe: recipeName } = props.data;
+  const recipe = getRecipeByName(recipeName);
   const cycle_per_min = 60 / recipe.duration;
   const building = Buildings[recipe.building];
   const shouldApplyMultiplier = !([
