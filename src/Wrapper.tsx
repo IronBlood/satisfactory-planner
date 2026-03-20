@@ -294,7 +294,7 @@ function Wrapper() {
       idx = 0;
     }
 
-    if (idx > data.flows.length) {
+    if (idx >= data.flows.length) {
       idx = data.flows.length - 1;
     }
 
