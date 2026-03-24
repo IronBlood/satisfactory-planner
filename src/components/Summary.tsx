@@ -39,6 +39,7 @@ import type {
   RecipeNodeType,
 } from "@/flow/nodes";
 import { getRecipeByName } from "@/data/recipes";
+import { useActiveFlowDataContext } from "@/ActiveFlowContextProvider";
 
 type ItemMap = Record<ItemName, number>;
 
@@ -122,11 +123,8 @@ function isInputNode(node: AppNode): node is ResourceNodeType | RecipeNodeType {
   return InputBuildings.includes(recipe.building);
 }
 
-export default function Summary({
-  powerConsumptionMultiplier,
-}: {
-  powerConsumptionMultiplier: number;
-}) {
+export default function Summary() {
+  const { powerConsumptionMultiplier } = useActiveFlowDataContext();
   const nodes = useNodes() as AppNode[];
   // `edges` isn't used directly but once the data is changed
   // `summary` can also be updated
