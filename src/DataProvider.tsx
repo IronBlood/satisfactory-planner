@@ -77,7 +77,7 @@ function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
           idx === action.index
             ? {
               ...entry,
-              powerConsumptionMultipliers: action.multiplier,
+              powerConsumptionMultiplier: action.multiplier,
             }
             : entry
         ),
