@@ -29,8 +29,6 @@ import type {
   MultiFlow,
 } from "./types";
 import {
-  PowerConsumptionMultipliers,
-  PartsCostMultipliers,
   stripData,
   upgradeData,
   useDataContext,
@@ -194,8 +192,6 @@ function Wrapper() {
     replaceFlow,
     previewReplaceFlow,
     setFilename,
-    setPowerConsumptionMultiplier,
-    setPartsCostMultiplier,
   } = useDataContext();
 
   useEffect(() => {
@@ -507,66 +503,6 @@ function Wrapper() {
                 <div className="italic">
                   refresh required after changes
                 </div>
-              </div>
-              <div className="my-1 h-px bg-white/15" />
-              <div className="flex justify-between items-center">
-                <span>Power Consumption Multiplier</span>
-                <Listbox value={data.powerConsumptionMultiplier} onChange={(v) => setPowerConsumptionMultiplier(v)}>
-                  <ListboxButton
-                    className="relative min-w-16 rounded-lg bg-slate-800 text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus: -outline-offset-2 text-right"
-                  >
-                    {data.powerConsumptionMultiplier}
-                    <ChevronDownIcon
-                      className="group pointer-events-none aboslute size-4 fill-white/60"
-                      aria-hidden="true"
-                    />
-                  </ListboxButton>
-                  <ListboxOptions
-                    anchor="bottom"
-                    className="w-(--button-width) rounded-xl p-1 border border-slate-700 bg-slate-800 [--anchor-gap:--spacing(1)]"
-                  >
-                    {PowerConsumptionMultipliers.map((num, idx) => (
-                      <ListboxOption
-                        key={`${idx}-${num}`}
-                        value={num}
-                        className="group flex cursor-default items-center gap-2 rounded-lg px-1 py-1 select-none data-focus:bg-slate-700"
-                      >
-                        <CheckIcon className="invisible size-4 fill-white group-data-selected:visible" />
-                        <div className="flex-1 text-right tabular-nums text-sm/6 text-slate-300">{num}</div>
-                      </ListboxOption>
-                    ))}
-                  </ListboxOptions>
-                </Listbox>
-              </div>
-              <div className="my-1 h-px bg-white/15" />
-              <div className="flex justify-between items-center">
-                <span>Recipe Parts Cost Multiplier</span>
-                <Listbox value={data.partsCostMultiplier} onChange={(v) => setPartsCostMultiplier(v)}>
-                  <ListboxButton
-                    className="relative min-w-16 rounded-lg bg-slate-800 text-slate-300 py-1.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus: -outline-offset-2 text-right"
-                  >
-                    {data.partsCostMultiplier}
-                    <ChevronDownIcon
-                      className="group pointer-events-none aboslute size-4 fill-white/60"
-                      aria-hidden="true"
-                    />
-                  </ListboxButton>
-                  <ListboxOptions
-                    anchor="bottom"
-                    className="w-(--button-width) rounded-xl p-1 border border-slate-700 bg-slate-800 [--anchor-gap:--spacing(1)]"
-                  >
-                    {PartsCostMultipliers.map((num, idx) => (
-                      <ListboxOption
-                        key={`${idx}-${num}`}
-                        value={num}
-                        className="group flex cursor-default items-center gap-2 rounded-lg px-1 py-1 select-none data-focus:bg-slate-700"
-                      >
-                        <CheckIcon className="invisible size-4 fill-white group-data-selected:visible" />
-                        <div className="flex-1 text-right tabular-nums text-sm/6 text-slate-300">{num}</div>
-                      </ListboxOption>
-                    ))}
-                  </ListboxOptions>
-                </Listbox>
               </div>
             </PopoverPanel>
           </Popover>
