@@ -98,6 +98,7 @@ export default function NumericInput({
     <Popover className="inline-block">
       <PopoverButton
         className={clsx(
+          "cursor-pointer",
           textRight && "text-right",
         )}
       >
