@@ -292,46 +292,40 @@ function App({
     setPowerConsumptionMultiplier,
   } = useDataContext();
 
-  const [
-    powerConsumptionSettingEntry,
-    partsCostSettingEntry,
-  ]: [
-      MultiplierSetterEntry<PowerConsumptionMultiplier>,
-      MultiplierSetterEntry<PartsCostMultiplier>,
-    ] = useMemo(() => {
-      const {
-        powerConsumptionMultiplier,
-        partsCostMultiplier,
-      } = data.flows[activeIdx];
+  const {
+    powerConsumptionMultiplier,
+    partsCostMultiplier,
+  } = useMemo(() => data.flows[activeIdx], [activeIdx, data.flows]);
 
-      return [
-        {
-          numbers: PowerConsumptionMultipliers,
-          value: powerConsumptionMultiplier,
-          setter: (multiplier) => setPowerConsumptionMultiplier({
-            index: activeIdx,
-            multiplier,
-          }),
-          text: "PCM",
-          desc: "Power Consumption Multiplier",
-        },
-        {
-          numbers: PartsCostMultipliers,
-          value: partsCostMultiplier,
-          setter: (multiplier) => setPartsCostMultiplier({
-            index: activeIdx,
-            multiplier,
-          }),
-          text: "RPCM",
-          desc: "Recipe Parts Cost Multiplier"
-        },
-      ];
-    }, [
-      activeIdx,
-      data,
-      setPowerConsumptionMultiplier,
-      setPartsCostMultiplier,
-    ]);
+  const powerConsumptionSettingEntry: MultiplierSetterEntry<PowerConsumptionMultiplier> = useMemo(() => ({
+    numbers: PowerConsumptionMultipliers,
+    value: powerConsumptionMultiplier,
+    setter: (multiplier) => setPowerConsumptionMultiplier({
+      index: activeIdx,
+      multiplier,
+    }),
+    text: "PCM",
+    desc: "Power Consumption Multiplier",
+  }), [
+    powerConsumptionMultiplier,
+    PowerConsumptionMultipliers,
+    setPowerConsumptionMultiplier,
+  ]);
+
+  const partsCostSettingEntry: MultiplierSetterEntry<PartsCostMultiplier> = useMemo(() => ({
+    numbers: PartsCostMultipliers,
+    value: partsCostMultiplier,
+    setter: (multiplier) => setPartsCostMultiplier({
+      index: activeIdx,
+      multiplier,
+    }),
+    text: "RPCM",
+    desc: "Recipe Parts Cost Multiplier"
+  }), [
+    partsCostMultiplier,
+    PartsCostMultipliers,
+    setPartsCostMultiplier,
+  ]);
 
   const nodeTypes = useMemo(() => ({
     [AppNodeTypes.Recipe]: RecipeNode,
