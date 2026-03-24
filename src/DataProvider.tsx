@@ -16,7 +16,7 @@ import type {
 import { AppNodeTypes } from "./flow/constants";
 import type { Recipe } from "./data/recipes";
 
-const CURR_VER = 2;
+const CURR_VER = 3;
 
 type DataAction =
   | { type: "importData"; data: MultiFlow }
@@ -124,11 +124,10 @@ type DataContextValue = {
 
 const DataContext = createContext<DataContextValue | null>(null);
 
-const DEFAULT_FLOW: {
-  name: string;
-  flow: AppFlow;
-} = {
+const DEFAULT_FLOW: FlowEntry = {
   name: "Unnamed Plan",
+  powerConsumptionMultiplier: 1,
+  partsCostMultiplier: 1,
   flow: {
     nodes: [],
     edges: [],
@@ -148,8 +147,6 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [data, dispatch] = useReducer(dataReducer, {
     version: CURR_VER,
     filename: "",
-    powerConsumptionMultiplier: 1,
-    partsCostMultiplier: 1,
     flows: [
       getDefaultFlow(),
     ],
@@ -216,7 +213,9 @@ export function upgradeData(data: Partial<MultiFlow> & {
 }) {
   if (data.version === 1) {
     data.version = 2;
+    // @ts-ignore used by v2
     data.powerConsumptionMultiplier = 1;
+    // @ts-ignore used by v2
     data.partsCostMultiplier = 1;
 
     for (const entry of data.flows!) {
@@ -228,5 +227,19 @@ export function upgradeData(data: Partial<MultiFlow> & {
         node.data.recipe = (node.data.recipe as unknown as Recipe).name;
       }
     }
+  }
+
+  if (data.version === 2) {
+    data.version = 3;
+    for (const entry of data.flows!) {
+      // @ts-ignore used by v2
+      entry.powerConsumptionMultiplier = data.powerConsumptionMultiplier ?? 1;
+      // @ts-ignore used by v2
+      entry.partsCostMultiplier = data.partsCostMultiplier ?? 1;
+    }
+    // @ts-ignore used by v2
+    delete data.powerConsumptionMultiplier;
+    // @ts-ignore used by v2
+    delete data.partsCostMultiplier;
   }
 }
