@@ -1,3 +1,7 @@
+## Data v3
+
+* move `powerConsumptionMultiplier` and `partsCostMultiplier` to flow level.
+
 ## Data v2
 
 * with `powerConsumptionMultiplier`.
