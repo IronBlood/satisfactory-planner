@@ -11,6 +11,9 @@ import {
   BuildingNames,
   type BuildingName,
 } from "@/data/buildings";
+import {
+  formatNumber,
+} from "@/utils";
 
 type RecipeViewType = {
   output_name: string;
@@ -96,7 +99,7 @@ export default function RecipeView({
         : isPassthrough
           ? <div className="shrink bg-slate-900 text-center text-sm font-light text-slate-300">Passthrough</div>
           : <div className="mt-2 flex gap-2">
-            <div className="w-16 shrink text-center">{output_rate > 0 && <span className="text-xs leading-6">{output_rate} / m</span>}</div>
+            <div className="w-16 shrink text-center">{output_rate > 0 && <span className="text-xs leading-6">{formatNumber(output_rate)} / m</span>}</div>
             <div className="grid flex-1 grid-cols-2">
               {r!.inputs.map((i) => (
                 <div
@@ -111,7 +114,7 @@ export default function RecipeView({
                     className="aspect-square w-6"
                     src={getItemImageByName(i.name)}
                   />
-                  <span className="ml-1">{(shouldApplyMultiplier ? getCostByMultiplier(i.amount, data.partsCostMultiplier) : i.amount) * cycles_per_minute}</span>
+                  <span className="ml-1">{formatNumber((shouldApplyMultiplier ? getCostByMultiplier(i.amount, data.partsCostMultiplier) : i.amount) * cycles_per_minute)}</span>
                 </div>
               ))}
             </div>
