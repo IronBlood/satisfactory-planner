@@ -25,8 +25,8 @@ type DataAction =
   | { type: "deleteFlow"; index: number }
   | { type: "renameFlow"; index: number; name: string }
   | { type: "replaceFlow"; index: number; flow: AppFlow }
-  | { type: "setPowerConsumptionMultiplier"; multiplier: PowerConsumptionMultiplier }
-  | { type: "setPartsCostMultiplier"; multiplier: PartsCostMultiplier }
+  | { type: "setPowerConsumptionMultiplier"; index: number; multiplier: PowerConsumptionMultiplier }
+  | { type: "setPartsCostMultiplier"; index: number; multiplier: PartsCostMultiplier }
   ;
 
 function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
@@ -73,12 +73,26 @@ function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
     case "setPowerConsumptionMultiplier":
       return {
         ...state,
-        powerConsumptionMultiplier: action.multiplier,
+        flows: state.flows.map((entry, idx) =>
+          idx === action.index
+            ? {
+              ...entry,
+              powerConsumptionMultipliers: action.multiplier,
+            }
+            : entry
+        ),
       };
     case "setPartsCostMultiplier":
       return {
         ...state,
-        partsCostMultiplier: action.multiplier,
+        flows: state.flows.map((entry, idx) =>
+          idx === action.index
+            ? {
+              ...entry,
+              partsCostMultiplier: action.multiplier,
+            }
+            : entry
+        ),
       };
 
     default:
@@ -108,6 +122,8 @@ export const PartsCostMultipliers: PartsCostMultiplier[] = [
 
 type RenameFlowInput = { index: number; name: string };
 type ReplaceFlowInput = { index: number; flow: AppFlow };
+type SetPowerConsumptionMultiplierInput = { index: number; multiplier: PowerConsumptionMultiplier };
+type SetPartsCostMultiplierInput = { index: number; multiplier: PartsCostMultiplier };
 type DataContextValue = {
   data: MultiFlow;
   importData: (data: MultiFlow) => void;
@@ -118,8 +134,8 @@ type DataContextValue = {
   /** This API share the same flow of `replaceFlow` but doesn't commit the change */
   previewReplaceFlow: (data: ReplaceFlowInput) => MultiFlow;
   setFilename: (filename: string) => void;
-  setPowerConsumptionMultiplier: (multiplier: PowerConsumptionMultiplier) => void;
-  setPartsCostMultiplier: (multiplier: PartsCostMultiplier) => void;
+  setPowerConsumptionMultiplier: (data: SetPowerConsumptionMultiplierInput) => void;
+  setPartsCostMultiplier: (data: SetPartsCostMultiplierInput) => void;
 };
 
 const DataContext = createContext<DataContextValue | null>(null);
@@ -161,8 +177,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
     replaceFlow: ({ index, flow }) => dispatch({ type: "replaceFlow", index, flow }),
     previewReplaceFlow: ({ index, flow }) => dataReducer(data, { type: "replaceFlow", index, flow }),
     setFilename: (filename) => dispatch({ type: "setFilename", filename }),
-    setPowerConsumptionMultiplier: (multiplier) => dispatch({ type: "setPowerConsumptionMultiplier", multiplier }),
-    setPartsCostMultiplier: (multiplier) => dispatch({ type: "setPartsCostMultiplier", multiplier }),
+    setPowerConsumptionMultiplier: ({ index, multiplier }) => dispatch({ type: "setPowerConsumptionMultiplier", index, multiplier }),
+    setPartsCostMultiplier: ({ index, multiplier }) => dispatch({ type: "setPartsCostMultiplier", index, multiplier }),
   }), [data]);
 
   return (
