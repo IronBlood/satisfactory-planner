@@ -55,11 +55,12 @@ import {
 } from "@/flow/constants";
 import { isItemSinkable, type ItemName } from "@/data/items";
 import type { AppEdge, AppFlow, AppNode, PartsCostMultiplier, PowerConsumptionMultiplier } from "./types";
-import { PartsCostMultipliers, PowerConsumptionMultipliers, useDataContext } from "./DataProvider";
+import { PartsCostMultipliers, PowerConsumptionMultipliers } from "./DataProvider";
 import {
   CheckIcon,
   ChevronDownIcon,
 } from "@heroicons/react/20/solid";
+import { useActiveFlowDataContext } from "./ActiveFlowContextProvider";
 
 const Summary = lazy(() => import("@/components/Summary"));
 const Picker = lazy(() => import("./components/picker/Picker"));
@@ -266,10 +267,8 @@ function MultiplierSetter<T extends number>({
 }
 
 function App({
-  activeIdx,
   onActionsReady,
 }: {
-  activeIdx: number;
   onActionsReady: (a: ActionsRef) => void;
 }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -287,23 +286,16 @@ function App({
   const [isRecipePickerOpen, setRecipePickerOpen] = useState(false);
   const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, AppEdge> | null>(null);
   const {
-    data,
-    setPartsCostMultiplier,
-    setPowerConsumptionMultiplier,
-  } = useDataContext();
-
-  const {
     powerConsumptionMultiplier,
     partsCostMultiplier,
-  } = useMemo(() => data.flows[activeIdx], [activeIdx, data.flows]);
+    setPartsCostMultiplier,
+    setPowerConsumptionMultiplier,
+  } = useActiveFlowDataContext();
 
   const powerConsumptionSettingEntry: MultiplierSetterEntry<PowerConsumptionMultiplier> = useMemo(() => ({
     numbers: PowerConsumptionMultipliers,
     value: powerConsumptionMultiplier,
-    setter: (multiplier) => setPowerConsumptionMultiplier({
-      index: activeIdx,
-      multiplier,
-    }),
+    setter: setPowerConsumptionMultiplier,
     text: "PCM",
     desc: "Power Consumption Multiplier",
   }), [
@@ -315,10 +307,7 @@ function App({
   const partsCostSettingEntry: MultiplierSetterEntry<PartsCostMultiplier> = useMemo(() => ({
     numbers: PartsCostMultipliers,
     value: partsCostMultiplier,
-    setter: (multiplier) => setPartsCostMultiplier({
-      index: activeIdx,
-      multiplier,
-    }),
+    setter: setPartsCostMultiplier,
     text: "RPCM",
     desc: "Recipe Parts Cost Multiplier"
   }), [
