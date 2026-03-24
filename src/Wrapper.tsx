@@ -34,6 +34,9 @@ import {
   useDataContext,
 } from "./DataProvider";
 import {
+  useActiveFlowDataContext,
+} from "./ActiveFlowContextProvider";
+import {
   ArrowDownTrayIcon,
   ArrowUpTrayIcon,
   ChevronDownIcon,
@@ -173,7 +176,7 @@ function NameEditor({
 }
 
 function Wrapper() {
-  const [activeIdx, _setActiveIdx] = useState(0);
+  const { activeIdx, setActiveIdx: _setActiveIdx } = useActiveFlowDataContext();
   const actionsRef = useRef<ActionsRef>({});
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isRenamingPlan, setRenamingPlan] = useState(false);
