@@ -566,7 +566,9 @@ function App({
           ].join(" ")}
         >
           <Suspense fallback={null}>
-            <Summary />
+            <Summary
+              powerConsumptionMultiplier={powerConsumptionMultiplier}
+            />
           </Suspense>
         </div>
       </aside>
