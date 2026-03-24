@@ -55,6 +55,8 @@ export type PartsCostMultiplier =
 
 export type FlowEntry = {
   name: string;
+  powerConsumptionMultiplier: PowerConsumptionMultiplier;
+  partsCostMultiplier: PartsCostMultiplier;
   flow: AppFlow;
 };
 
@@ -62,7 +64,5 @@ export type MultiFlow = {
   /** Has to be an integer */
   version: number;
   filename: string;
-  powerConsumptionMultiplier: PowerConsumptionMultiplier;
-  partsCostMultiplier: PartsCostMultiplier;
   flows: FlowEntry[];
 };

@@ -16,7 +16,7 @@ import type {
 import { AppNodeTypes } from "./flow/constants";
 import type { Recipe } from "./data/recipes";
 
-const CURR_VER = 2;
+const CURR_VER = 3;
 
 type DataAction =
   | { type: "importData"; data: MultiFlow }
@@ -25,8 +25,8 @@ type DataAction =
   | { type: "deleteFlow"; index: number }
   | { type: "renameFlow"; index: number; name: string }
   | { type: "replaceFlow"; index: number; flow: AppFlow }
-  | { type: "setPowerConsumptionMultiplier"; multiplier: PowerConsumptionMultiplier }
-  | { type: "setPartsCostMultiplier"; multiplier: PartsCostMultiplier }
+  | { type: "setPowerConsumptionMultiplier"; index: number; multiplier: PowerConsumptionMultiplier }
+  | { type: "setPartsCostMultiplier"; index: number; multiplier: PartsCostMultiplier }
   ;
 
 function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
@@ -73,12 +73,26 @@ function dataReducer(state: MultiFlow, action: DataAction): MultiFlow {
     case "setPowerConsumptionMultiplier":
       return {
         ...state,
-        powerConsumptionMultiplier: action.multiplier,
+        flows: state.flows.map((entry, idx) =>
+          idx === action.index
+            ? {
+              ...entry,
+              powerConsumptionMultiplier: action.multiplier,
+            }
+            : entry
+        ),
       };
     case "setPartsCostMultiplier":
       return {
         ...state,
-        partsCostMultiplier: action.multiplier,
+        flows: state.flows.map((entry, idx) =>
+          idx === action.index
+            ? {
+              ...entry,
+              partsCostMultiplier: action.multiplier,
+            }
+            : entry
+        ),
       };
 
     default:
@@ -108,6 +122,8 @@ export const PartsCostMultipliers: PartsCostMultiplier[] = [
 
 type RenameFlowInput = { index: number; name: string };
 type ReplaceFlowInput = { index: number; flow: AppFlow };
+type SetPowerConsumptionMultiplierInput = { index: number; multiplier: PowerConsumptionMultiplier };
+type SetPartsCostMultiplierInput = { index: number; multiplier: PartsCostMultiplier };
 type DataContextValue = {
   data: MultiFlow;
   importData: (data: MultiFlow) => void;
@@ -118,17 +134,16 @@ type DataContextValue = {
   /** This API share the same flow of `replaceFlow` but doesn't commit the change */
   previewReplaceFlow: (data: ReplaceFlowInput) => MultiFlow;
   setFilename: (filename: string) => void;
-  setPowerConsumptionMultiplier: (multiplier: PowerConsumptionMultiplier) => void;
-  setPartsCostMultiplier: (multiplier: PartsCostMultiplier) => void;
+  setPowerConsumptionMultiplier: (data: SetPowerConsumptionMultiplierInput) => void;
+  setPartsCostMultiplier: (data: SetPartsCostMultiplierInput) => void;
 };
 
 const DataContext = createContext<DataContextValue | null>(null);
 
-const DEFAULT_FLOW: {
-  name: string;
-  flow: AppFlow;
-} = {
+const DEFAULT_FLOW: FlowEntry = {
   name: "Unnamed Plan",
+  powerConsumptionMultiplier: 1,
+  partsCostMultiplier: 1,
   flow: {
     nodes: [],
     edges: [],
@@ -148,8 +163,6 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [data, dispatch] = useReducer(dataReducer, {
     version: CURR_VER,
     filename: "",
-    powerConsumptionMultiplier: 1,
-    partsCostMultiplier: 1,
     flows: [
       getDefaultFlow(),
     ],
@@ -164,8 +177,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
     replaceFlow: ({ index, flow }) => dispatch({ type: "replaceFlow", index, flow }),
     previewReplaceFlow: ({ index, flow }) => dataReducer(data, { type: "replaceFlow", index, flow }),
     setFilename: (filename) => dispatch({ type: "setFilename", filename }),
-    setPowerConsumptionMultiplier: (multiplier) => dispatch({ type: "setPowerConsumptionMultiplier", multiplier }),
-    setPartsCostMultiplier: (multiplier) => dispatch({ type: "setPartsCostMultiplier", multiplier }),
+    setPowerConsumptionMultiplier: ({ index, multiplier }) => dispatch({ type: "setPowerConsumptionMultiplier", index, multiplier }),
+    setPartsCostMultiplier: ({ index, multiplier }) => dispatch({ type: "setPartsCostMultiplier", index, multiplier }),
   }), [data]);
 
   return (
@@ -216,7 +229,9 @@ export function upgradeData(data: Partial<MultiFlow> & {
 }) {
   if (data.version === 1) {
     data.version = 2;
+    // @ts-ignore used by v2
     data.powerConsumptionMultiplier = 1;
+    // @ts-ignore used by v2
     data.partsCostMultiplier = 1;
 
     for (const entry of data.flows!) {
@@ -228,5 +243,19 @@ export function upgradeData(data: Partial<MultiFlow> & {
         node.data.recipe = (node.data.recipe as unknown as Recipe).name;
       }
     }
+  }
+
+  if (data.version === 2) {
+    data.version = 3;
+    for (const entry of data.flows!) {
+      // @ts-ignore used by v2
+      entry.powerConsumptionMultiplier = data.powerConsumptionMultiplier ?? 1;
+      // @ts-ignore used by v2
+      entry.partsCostMultiplier = data.partsCostMultiplier ?? 1;
+    }
+    // @ts-ignore used by v2
+    delete data.powerConsumptionMultiplier;
+    // @ts-ignore used by v2
+    delete data.partsCostMultiplier;
   }
 }

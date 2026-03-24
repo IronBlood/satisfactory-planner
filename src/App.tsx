@@ -13,6 +13,7 @@ import {
   ConnectionLineType,
   Controls,
   ReactFlow,
+  Panel,
   addEdge,
   useEdgesState,
   useNodesState,
@@ -27,6 +28,12 @@ import {
   type XYPosition,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/react";
 import {
   BuildingNode,
   PassthroughNode,
@@ -47,7 +54,13 @@ import {
   AppNodeTypes,
 } from "@/flow/constants";
 import { isItemSinkable, type ItemName } from "@/data/items";
-import type { AppEdge, AppFlow, AppNode } from "./types";
+import type { AppEdge, AppFlow, AppNode, PartsCostMultiplier, PowerConsumptionMultiplier } from "./types";
+import { PartsCostMultipliers, PowerConsumptionMultipliers } from "./DataProvider";
+import {
+  CheckIcon,
+  ChevronDownIcon,
+} from "@heroicons/react/20/solid";
+import { useActiveFlowDataContext } from "./ActiveFlowContextProvider";
 
 const Summary = lazy(() => import("@/components/Summary"));
 const Picker = lazy(() => import("./components/picker/Picker"));
@@ -153,6 +166,107 @@ export type ActionsRef = {
   setActiveFlow?: (flow: AppFlow) => void;
 };
 
+function Label({
+  text,
+  desc,
+}: {
+  text: string;
+  desc: string;
+}) {
+  return (
+    <div className="relative group">
+      <span
+        className="select-none cursor-help"
+      >
+        {text}
+      </span>
+      <div
+        className="pointer-events-none absolute top-full z-10 -translate-x-1/2 rounded-sm bg-slate-800 border border-slate-700 px-2 py-1 text-sx text-slate-100 opacity-0 shadow transition group-hover:opacity-100 group-focus-within:opacity-100"
+      >
+        {desc}
+      </div>
+    </div>
+  );
+}
+
+type NumericListInput<T> = {
+  value: T;
+  numbers: readonly T[];
+  setter: (value: T) => void;
+};
+
+type MultiplierSetterEntry<T> = NumericListInput<T> & {
+  text: string;
+  desc: string;
+};
+
+function NumericList<T extends number>({
+  value,
+  numbers,
+  setter,
+}: NumericListInput<T>) {
+  return (
+    <Listbox
+      value={value}
+      onChange={(v) => setter(v)}
+    >
+      <ListboxButton
+        className="relative min-w-16 rounded-lg bg-slate-800 text-slate-300 py-0.5 px-2 data-focus:outline-2 flex items-center justify-between focus:not-data-focus:outline-none data-focus:-outline-offset-2 text-right"
+      >
+        {value}
+        <ChevronDownIcon
+          className="group pointer-events-none aboslute size-4 fill-white/60"
+          aria-hidden="true"
+        />
+      </ListboxButton>
+      <ListboxOptions
+        anchor="bottom"
+        className="w-(--button-width) rounded-lg p-1 border border-slate-700 bg-slate-800 [--anchor-gap:--spacing(1)]"
+      >
+        {numbers.map((num, idx) => (
+          <ListboxOption
+            key={`${idx}-${num}`}
+            value={num}
+            className="group flex cursor-default items-center gap-2 rounded-lg px-1 py-1 select-none data-focus:bg-slate-700"
+          >
+            <CheckIcon className="invisible size-4 fill-white group-data-selected:visible" />
+            <div className="flex-1 text-right tabular-nums text-sm/6 text-slate-300">{num}</div>
+          </ListboxOption>
+        ))}
+      </ListboxOptions>
+    </Listbox>
+  );
+}
+
+function MultiplierSetter<T extends number>({
+  entry,
+}: {
+  entry: MultiplierSetterEntry<T>;
+}) {
+  const {
+    value,
+    numbers,
+    setter,
+    text,
+    desc,
+  } = entry;
+  return (
+    <div
+      className="flex flex-row gap-2 items-center"
+    >
+      <NumericList
+        value={value}
+        numbers={numbers}
+        setter={setter}
+      />
+      <Label
+        text={text}
+        desc={desc}
+      />
+    </div>
+  );
+}
+
 function App({
   onActionsReady,
 }: {
@@ -172,6 +286,36 @@ function App({
   const [isOpen, setOpen] = useState(false);
   const [isRecipePickerOpen, setRecipePickerOpen] = useState(false);
   const [rfInstance, setRfInstance] = useState<ReactFlowInstance<Node, AppEdge> | null>(null);
+  const {
+    powerConsumptionMultiplier,
+    partsCostMultiplier,
+    setPartsCostMultiplier,
+    setPowerConsumptionMultiplier,
+  } = useActiveFlowDataContext();
+
+  const powerConsumptionSettingEntry: MultiplierSetterEntry<PowerConsumptionMultiplier> = useMemo(() => ({
+    numbers: PowerConsumptionMultipliers,
+    value: powerConsumptionMultiplier,
+    setter: setPowerConsumptionMultiplier,
+    text: "PCM",
+    desc: "Power Consumption Multiplier",
+  }), [
+    powerConsumptionMultiplier,
+    PowerConsumptionMultipliers,
+    setPowerConsumptionMultiplier,
+  ]);
+
+  const partsCostSettingEntry: MultiplierSetterEntry<PartsCostMultiplier> = useMemo(() => ({
+    numbers: PartsCostMultipliers,
+    value: partsCostMultiplier,
+    setter: setPartsCostMultiplier,
+    text: "RPCM",
+    desc: "Recipe Parts Cost Multiplier"
+  }), [
+    partsCostMultiplier,
+    PartsCostMultipliers,
+    setPartsCostMultiplier,
+  ]);
 
   const nodeTypes = useMemo(() => ({
     [AppNodeTypes.Recipe]: RecipeNode,
@@ -382,6 +526,17 @@ function App({
           connectionLineType={ConnectionLineType.SmoothStep}
           fitView
         >
+          <Panel
+            position="top-left"
+            className="flex flex-col gap-2"
+          >
+            <MultiplierSetter
+              entry={powerConsumptionSettingEntry}
+            />
+            <MultiplierSetter
+              entry={partsCostSettingEntry}
+            />
+          </Panel>
           <Background />
           <Controls />
         </ReactFlow>
