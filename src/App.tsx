@@ -176,6 +176,7 @@ function Label({
   return (
     <div className="relative group">
       <span
+        className="select-none cursor-help"
       >
         {text}
       </span>
