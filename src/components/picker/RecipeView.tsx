@@ -6,7 +6,7 @@ import {
   getCostByMultiplier,
 } from "@/data/recipes";
 import OutputImage from "@/components/OutputImage";
-import { useDataContext } from "@/DataProvider";
+import { useActiveFlowDataContext } from "@/ActiveFlowContextProvider";
 import {
   BuildingNames,
   type BuildingName,
@@ -48,8 +48,8 @@ export default function RecipeView({
     ] as BuildingName[]).includes(r.building)
     : false;
   const {
-    data,
-  } = useDataContext();
+    partsCostMultiplier,
+  } = useActiveFlowDataContext();
   const outputImage = (isResourceOutput || isPassthrough)
     ? <img
       src={image}
@@ -114,7 +114,7 @@ export default function RecipeView({
                     className="aspect-square w-6"
                     src={getItemImageByName(i.name)}
                   />
-                  <span className="ml-1">{formatNumber((shouldApplyMultiplier ? getCostByMultiplier(i.amount, data.partsCostMultiplier) : i.amount) * cycles_per_minute)}</span>
+                  <span className="ml-1">{formatNumber((shouldApplyMultiplier ? getCostByMultiplier(i.amount, partsCostMultiplier) : i.amount) * cycles_per_minute)}</span>
                 </div>
               ))}
             </div>
