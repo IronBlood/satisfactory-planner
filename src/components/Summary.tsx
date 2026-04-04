@@ -40,6 +40,7 @@ import type {
 } from "@/flow/nodes";
 import { getRecipeByName } from "@/data/recipes";
 import { useActiveFlowDataContext } from "@/ActiveFlowContextProvider";
+import { formatNumber } from "@/utils";
 
 type ItemMap = Record<ItemName, number>;
 
@@ -226,9 +227,9 @@ export default function Summary() {
 
   return (
     <div className="divide-y divide-slate-800">
-      {summary.power_consumed > 0 && <SummaryDisclosure title="Power Consumed"><span className="italic">approx.</span> {summary.power_consumed * powerConsumptionMultiplier} MW</SummaryDisclosure>}
-      {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {summary.power_generated} MW</SummaryDisclosure>}
-      {summary.sink_points > 0 && <SummaryDisclosure title="Sink Points"><span className="italic">approx.</span> {summary.sink_points} /min</SummaryDisclosure>}
+      {summary.power_consumed > 0 && <SummaryDisclosure title="Power Consumed"><span className="italic">approx.</span> {formatNumber(summary.power_consumed * powerConsumptionMultiplier)} MW</SummaryDisclosure>}
+      {summary.power_generated > 0 && <SummaryDisclosure title="Power Generated"><span className="italic">approx.</span> {formatNumber(summary.power_generated)} MW</SummaryDisclosure>}
+      {summary.sink_points > 0 && <SummaryDisclosure title="Sink Points"><span className="italic">approx.</span> {formatNumber(summary.sink_points)} /min</SummaryDisclosure>}
       {Object.keys(summary.need).length > 0 && (
         <SummaryDisclosure title="Items for Buildings">
           <ListItems map={summary.need} unit="x" />
