@@ -18,6 +18,7 @@ import {
 } from "@/flow/handles";
 import type { AppNodeTypes } from "../constants";
 import { useActiveFlowDataContext } from "@/ActiveFlowContextProvider";
+import { formatNumber } from "@/utils";
 
 export type SupportedBuildings =
   | typeof BuildingNames.AwesomeSink
@@ -99,7 +100,7 @@ function AwesomeSinkNode(props: AwesomeSinkNodePropsType) {
           </div>
           <div className="flex-1">
             <div className="text-sm">{building.name}</div>
-            <div className="text-xs text-gray-400">x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count * powerConsumptionMultiplier} MW)</span></div>
+            <div className="text-xs text-gray-400">x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({formatNumber(building.power * props.data.count * powerConsumptionMultiplier)} MW)</span></div>
           </div>
         </div>
       </BaseNode.Body>
@@ -149,7 +150,7 @@ function RWPNode(props: RWPNodePropsType) {
           </div>
           <div className="flex-1">
             <div className="text-sm">{building.name}</div>
-            <div className="text-xs text-gray-400">x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({building.power * props.data.count * powerConsumptionMultiplier} MW)</span></div>
+            <div className="text-xs text-gray-400">x<NumericInput value={props.data.count} onCommit={(next) => setCount(next)} readonly={props.data.isLocked} /><span className="ml-6 font-light italic">({formatNumber(building.power * props.data.count * powerConsumptionMultiplier)} MW)</span></div>
           </div>
         </div>
       </BaseNode.Body>
