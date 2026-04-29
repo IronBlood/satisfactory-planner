@@ -2067,7 +2067,7 @@ export const Recipes: Recipe[] = [
     building: BuildingNames.Constructor,
     inputs: [
       {
-        name: IngotItemNames.SteelIngot,
+        name: StandardPartItemNames.StealBeam,
         amount: 1,
       },
     ],
