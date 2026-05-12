@@ -5659,7 +5659,7 @@ export const Recipes: Recipe[] = [
         amount: 2,
       },
     ],
-    duration: 16,
+    duration: 24,
   },
   {
     name: "Alt.: Flexible Framework",
