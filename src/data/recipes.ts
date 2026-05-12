@@ -3271,7 +3271,7 @@ export const Recipes: Recipe[] = [
         amount: 2,
       },
     ],
-    duration: 15,
+    duration: 4,
   },
   {
     name: "Alt.: Caterium Wire",
