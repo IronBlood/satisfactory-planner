@@ -944,3 +944,7 @@ const gasSet = new Set(Object.values(GasItemNames));
 export function isItemSinkable(name: ItemName) {
   return !liquidSet.has(name) && !gasSet.has(name);
 }
+
+export function isItemFluid(name: ItemName) {
+  return liquidSet.has(name) || gasSet.has(name);
+}

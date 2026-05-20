@@ -23,7 +23,10 @@ import {
   PressureInOutHandle,
 } from "@/flow/handles";
 import BaseNode from "./BaseNode";
-import { getItemImageByName } from "@/data/items";
+import {
+  getItemImageByName,
+  isItemFluid,
+} from "@/data/items";
 import { AppNodeTypes } from "@/flow/constants";
 import { useActiveFlowDataContext } from "@/ActiveFlowContextProvider";
 import { formatNumber } from "@/utils";
@@ -68,9 +71,9 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
             handleType="target"
             name={rate.name}
             position={Position.Top}
-            value={(shouldApplyMultiplier ? getCostByMultiplier(rate.amount, partsCostMultiplier) : rate.amount) * cycle_per_min * props.data.count}
+            value={(shouldApplyMultiplier ? getCostByMultiplier(rate.amount, partsCostMultiplier, isItemFluid(rate.name)) : rate.amount) * cycle_per_min * props.data.count}
             isLocked={props.data.isLocked}
-            onCommit={(next) => setCount(next / (shouldApplyMultiplier ? getCostByMultiplier(rate.amount, partsCostMultiplier) : rate.amount) / cycle_per_min)}
+            onCommit={(next) => setCount(next / (shouldApplyMultiplier ? getCostByMultiplier(rate.amount, partsCostMultiplier, isItemFluid(rate.name)) : rate.amount) / cycle_per_min)}
           />
         ))}
         {recipe.building === BuildingNames.ResourceWellExtractor && (

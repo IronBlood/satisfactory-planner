@@ -1,5 +1,6 @@
 import {
   getItemImageByName,
+  isItemFluid,
 } from "@/data/items";
 import {
   getRecipeByName,
@@ -114,7 +115,7 @@ export default function RecipeView({
                     className="aspect-square w-6"
                     src={getItemImageByName(i.name)}
                   />
-                  <span className="ml-1">{formatNumber((shouldApplyMultiplier ? getCostByMultiplier(i.amount, partsCostMultiplier) : i.amount) * cycles_per_minute)}</span>
+                  <span className="ml-1">{formatNumber((shouldApplyMultiplier ? getCostByMultiplier(i.amount, partsCostMultiplier, isItemFluid(i.name)) : i.amount) * cycles_per_minute)}</span>
                 </div>
               ))}
             </div>

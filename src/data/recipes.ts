@@ -6109,6 +6109,7 @@ export function getRecipesByBuilding(b: BuildingName) {
   return Recipes.filter(r => r.building === b);
 }
 
-export function getCostByMultiplier(raw: number, multiplier: PartsCostMultiplier) {
-  return Math.max(1, Math.round(raw * multiplier));
+export function getCostByMultiplier(raw: number, multiplier: PartsCostMultiplier, isFluid: boolean) {
+  const multiplied = raw * multiplier;
+  return isFluid ? multiplied : Math.max(1, Math.round(multiplied));
 }
