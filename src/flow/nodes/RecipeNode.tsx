@@ -57,6 +57,7 @@ export const RecipeNode = memo((props: NodeProps<RecipeNodeType>) => {
   const shouldApplyMultiplier = !([
     BuildingNames.CoalPoweredGenerator,
     BuildingNames.FuelPoweredGenerator,
+    BuildingNames.Packager,
   ] as BuildingName[]).includes(recipe.building);
   return (
     <BaseNode

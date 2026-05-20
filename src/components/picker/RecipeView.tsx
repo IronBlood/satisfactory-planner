@@ -46,6 +46,7 @@ export default function RecipeView({
     ? !([
       BuildingNames.CoalPoweredGenerator,
       BuildingNames.FuelPoweredGenerator,
+      BuildingNames.Packager,
     ] as BuildingName[]).includes(r.building)
     : false;
   const {
