@@ -1975,6 +1975,23 @@ export const Recipes: Recipe[] = [
     ],
     duration: 3,
   },
+  {
+    name: "Dark Matter Residue",
+    building: BuildingNames.Converter,
+    inputs: [
+      {
+        name: ElectronicItemNames.ReanimatedSAM,
+        amount: 5,
+      },
+    ],
+    outputs: [
+      {
+        name: GasItemNames.DarkMatterResidue,
+        amount: 10,
+      },
+    ],
+    duration: 6,
+  },
 
   // Standard Parts
   {
@@ -5387,7 +5404,7 @@ export const Recipes: Recipe[] = [
       },
       {
         name: LiquidItemNames.SulfuricAcid,
-        amount: 3,
+        amount: 5,
       },
     ],
     outputs: [
